@@ -9,9 +9,7 @@ type Props = {
 const Button: FC<Props> = (props) => {
   const { className, text } = props;
   return (
-    <button
-      className={clsx(className, 'rounded-full ring-2 ring-gray-500 py-3 px-4')}
-    >
+    	<button className={clsx(className, 'rounded-full ring-2 ring-gray-500 py-3 px-4')}>
       {text}
     </button>
   );

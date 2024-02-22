@@ -8,7 +8,9 @@ type Props = {
   lang: Locale;
 };
 
-export const Home: FC<Props> = async (props) => {
+export const Home: FC<Props> = async () => {
+  // const { lang } = props;
+
   const client = createClient();
   const page = await client.getSingle('home');
 

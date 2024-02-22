@@ -3,7 +3,6 @@
 import { FC, PropsWithChildren } from 'react';
 
 import clsx from 'clsx';
-import { usePathname } from 'next/navigation';
 
 import { SpaceGrotesk } from '@/lib/fonts';
 import { Dictionary, Locale } from '@lib/i18n/types';
@@ -14,9 +13,7 @@ type Props = PropsWithChildren<{
 }>;
 
 export const BaseLayout: FC<Props> = (props) => {
-  const { children, lang, dictionary } = props;
-
-  const pathName = usePathname();
+  const { children, lang } = props;
 
   return (
     <html lang={lang}>
