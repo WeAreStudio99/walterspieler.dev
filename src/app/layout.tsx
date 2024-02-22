@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import { Space_Grotesk as FontSans } from "next/font/google";
 import { FC, PropsWithChildren } from "react";
 
+import { MenuContent } from "@/components/MenuContent";
+import { SideMenu } from "@/components/SideMenu";
 import "@/styles/globals.css";
 
 const fontSans = FontSans({
@@ -25,10 +27,17 @@ const RootLayout: FC<Props> = (props) => {
 			<body
 				className={cn(
 					"min-h-screen bg-background font-sans antialiased",
+					"bg-eerie-dark",
+					"text-white",
 					fontSans.variable,
 				)}
 			>
-				{children}
+				<div className="lg:flex">
+					<SideMenu>
+						<MenuContent />
+					</SideMenu>
+					<div className="flex flex-1">{children}</div>
+				</div>
 			</body>
 		</html>
 	);
