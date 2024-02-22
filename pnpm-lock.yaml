@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@formatjs/intl-localematcher':
+    specifier: ^0.5.4
+    version: 0.5.4
   '@prismicio/client':
     specifier: ^7.3.1
     version: 7.3.1
