@@ -1,34 +1,12 @@
-import { SpaceGrotesk } from "@/lib/fonts";
-import type { Metadata } from "next";
+import { FC } from "react";
 
-import { FC, PropsWithChildren } from "react";
-
-import clsx from "clsx";
-import "./globals.css";
-
-export const metadata: Metadata = {
-	title: "Website title",
-	description: "Website description",
-};
-
-type Props = {} & PropsWithChildren;
-
-const RootLayout: FC<Props> = (props) => {
-	const { children } = props;
-
+const Home: FC = () => {
 	return (
-		<html lang="en">
-			<body
-				className={clsx(
-					SpaceGrotesk.variable,
-					"bg-obsidian",
-					"font-sans text-white",
-				)}
-			>
-				{children}
-			</body>
-		</html>
+		<main>
+			<h1>Thibault Walterspieler</h1>
+			<p>Building fullstack applications</p>
+		</main>
 	);
 };
 
-export default RootLayout;
+export default Home;
