@@ -1,0 +1,18 @@
+{
+  "format": "custom",
+  "id": "mainMenu",
+  "label": "MainMenu",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "links": {
+        "type": "Link",
+        "config": {
+          "label": "links",
+          "select": "document"
+        }
+      }
+    }
+  }
+}

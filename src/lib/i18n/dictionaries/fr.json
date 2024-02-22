@@ -1,0 +1,156 @@
+{
+  "firstLevelPages": {
+    "home": "Accueil",
+    "guides": "Guides",
+    "news": "Actus",
+    "wiki": "Wiki"
+  },
+  "secondLevelPages": {
+    "crafting": "Crafting",
+    "resources": "Ressources",
+    "animals": "Animaux & Créatures",
+    "biomes": "Biomes",
+    "regions": "Régions"
+  },
+  "thirdLevelPages": {
+    "buildings": "Constructions",
+    "villageItems": "Élements de Village",
+    "benchs": "Bancs et Stations de Craft",
+    "toys": "Jouets",
+    "cookings": "Recettes de Cuisine",
+    "tools": "Outils",
+    "weapons": "Armes",
+    "shields": "Boucliers",
+    "charms": "Enchantements",
+    "gadgets": "Gadgets",
+    "furnitures": "Meubles",
+    "decorations": "Décorations",
+    "processedMaterials": "Matérieux Transformés",
+    "rawMaterials": "Materiaux Bruts",
+    "creatureItems": "Objets de Creature",
+    "rawFood": "Nourriture",
+    "seeds": "Graines",
+    "caves": "Grottes",
+    "shores": "Côtes",
+    "grasslands": "Prairie Pastorale",
+    "dryValley": "Vallée Aride",
+    "frostlands": "Terre Gelée"
+  },
+  "home": {
+    "metadata": {
+      "title": "Bricknite | Le guilde ultime de LEGO Fortnite",
+      "description": "Guides, Wiki, Actus... Retrouvez toutes les informations pour jouer à LEGO Fortnite",
+      "twitterDescription": "Guides, Wiki, Actus ... Retrouvez toutes les informations pour jouer à LEGO Fortnite"
+    },
+    "title": "La référence de l'univers LEGO Fortnite !",
+    "slider": {
+      "guides": {
+        "title": "Guides",
+        "description": "Découvrez nos guides pratiques pour Lego Fortnite ! Que ce soit pour des astuces de construction ou des stratégies de jeu, nos conseils experts sont là pour vous aider à exceller dans cet univers captivant.",
+        "CTA": "Découvrez nos guides"
+      },
+      "news": {
+        "title": "Actus",
+        "description": "Découvrez toutes les dernières actualités sur Lego Fortnite ! Que ce soit pour les nouvelles fonctionnalités, les mises à jour ou les événements, vous trouverez toutes les informations nécessaires pour rester à jour des dernières actualités.",
+        "CTA": "Voir les actus"
+      },
+      "wiki": {
+        "title": "Wiki",
+        "description": "Découvrez toutes les informations sur les objets, les créatures, les biomes et les régions de Lego Fortnite !",
+        "CTA": "Bientôt disponible"
+      }
+    },
+    "latestGuidesSection": {
+      "title": "Nos derniers guides",
+      "CTA": "Voir tous les guides"
+    },
+    "popularGuidesSection": {
+      "title": "Les guides les plus populaires",
+      "CTA": "Voir tous les guides"
+    },
+    "todayTipsSection": {
+      "title": "Les astuces du moment"
+    },
+    "latestNewsSection": {
+      "title": "Les dernieres actus",
+      "CTA": "Voir toutes les actus"
+    },
+    "popularNewsSection": {
+      "title": "Les actus les plus populaires",
+      "CTA": "Voir toutes les actus"
+    }
+  },
+  "newsArticle": {
+    "recommendedNews": {
+      "title": "Actualités recommandées",
+      "CTA": "Voir toutes les actus"
+    }
+  },
+  "guideArticle": {
+    "recommendedGuides": {
+      "title": "Guides recommandés",
+      "CTA": "Voir tous les guides"
+    }
+  },
+  "nav": {
+    "title": "Menu",
+    "soon": "prochainement"
+  },
+  "legal": {
+    "legalNotice": {
+      "title": "Mentions légales",
+      "metadata": {
+        "title": "Mentions légales | Bricknite",
+        "description": "Mentions légales du site Bricknite"
+      }
+    },
+    "privacyPolicy": {
+      "title": "Politique de confidentialité",
+      "metadata": {
+        "title": "Politique de confidentialité | Bricknite",
+        "description": "Politique de confidentialité du site Bricknite"
+      }
+    }
+  },
+  "guide": {
+    "seo": {
+      "title": "Guides | Bricknite",
+      "description": "Découvrez nos guides pratiques pour Lego Fortnite ! Que ce soit pour des astuces de construction ou des stratégies de jeu, nos conseils experts sont là pour vous aider à exceller dans cet univers captivant."
+    },
+    "hero": {
+      "title": "Guides",
+      "catchPhrase": "Apprenez tout ce qu'il y a à savoir sur Lego Fortnite®"
+    },
+    "titles": {
+      "popularGuides": "Les guides populaires",
+      "latestGuides": "Les derniers guides",
+      "recommendedGuides": "Les guides recommandés",
+      "todayTips": "Les astuces du moment",
+      "allGuides": "Tous les guides"
+    }
+  },
+  "news": {
+    "seo": {
+      "title": "Actus | Bricknite",
+      "description": "Découvrez toutes les dernières actualités sur Lego Fortnite® ! Que ce soit pour les nouvelles fonctionnalités, les mises à jour ou les événements, vous trouverez toutes les informations nécessaires pour rester à jour des dernières actualités."
+    },
+    "hero": {
+      "title": "Actus",
+      "catchPhrase": "Toutes les dernières actualités sur Lego Fortnite®"
+    },
+    "titles": {
+      "popularNews": "Les actus populaires",
+      "latestNews": "Les dernières actus",
+      "recommendedNews": "Les actus recommandées",
+      "allNews": "Toutes les actus"
+    }
+  },
+  "notFound": {
+    "title": "Page non trouvée",
+    "description": "La page que vous cherchez n'existe pas ou a été déplacée.",
+    "CTA": "Retour à l'accueil"
+  },
+  "adSense": {
+    "disclaimer": "Ce site est financé par la publicité. Merci de désactiver votre bloqueur de publicité pour nous soutenir."
+  }
+}
