@@ -1,17 +1,12 @@
-import './globals.css';
+import { FC } from "react";
 
-import { Viewport } from 'next';
-
-import { FC, PropsWithChildren } from 'react';
-
-export const viewport: Viewport = {
-  themeColor: 'black',
+const Home: FC = () => {
+	return (
+		<main>
+			<h1>Thibault Walterspieler</h1>
+			<p>Building fullstack applications</p>
+		</main>
+	);
 };
 
-const RootLayout: FC<PropsWithChildren> = (props) => {
-  const { children } = props;
-
-  return children;
-};
-
-export default RootLayout;
+export default Home;

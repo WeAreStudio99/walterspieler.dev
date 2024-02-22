@@ -4,7 +4,6 @@ const config: Config = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/slices/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
@@ -12,10 +11,7 @@ const config: Config = {
       fontFamily: {
         sans: ['var(--font-space-grotesk)'],
       },
-      colors: {
-        obsidian: '#0B1215',
-        'picton-blue': '#4EC2ED',
-      },
+      colors: {},
     },
   },
   plugins: [],
