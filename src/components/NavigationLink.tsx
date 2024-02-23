@@ -1,56 +1,48 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import Link from "next/link";
+import { LinkField } from "@prismicio/client";
+import { PrismicNextLink } from "@prismicio/next";
 import { usePathname } from "next/navigation";
 import { FC } from "react";
 
 type Props = {
-	href: string;
 	label: string;
-	isInternal?: boolean;
+	link: LinkField;
 };
 
-export const NavigationLink: FC<Props> = ({ isInternal, href, label }) => {
+export const NavigationLink: FC<Props> = ({ label, link }) => {
 	const pathname = usePathname();
 
-	if (!isInternal) {
-		return (
-			<a
-				className="flex items-center justify-between gap-2 rounded-lg p-2 hover:bg-metal"
-				href={href}
-				key={href}
-				rel="noopener noreferrer"
-				target="_blank"
-			>
-				<span className="inline-flex items-center gap-2 font-medium">
-					{label}
-				</span>
-			</a>
-		);
+	let isActive = true;
+
+	function extractHref(link: LinkField) {
+		if ("url" in link) {
+			return link.url;
+		}
 	}
 
-	let isActive = false;
 	if (pathname?.length > 0) {
-		const splittedPathname = pathname.split("/");
-		const currentPathname = splittedPathname[1] ?? "";
-		isActive = currentPathname === href.split("/")[1];
+		const href = extractHref(link);
+		if (href) {
+			const splittedPathname = pathname.split("/");
+			const currentPathname = splittedPathname[1] ?? "";
+			isActive = currentPathname === href.split("/")[1];
+		}
 	}
 
 	return (
-		<Link
+		<PrismicNextLink
 			className={cn(
 				"group flex items-center justify-between rounded-lg p-2",
-				isActive ? "bg-eerie-light text-white" : "hover:bg-metal",
+				isActive ? "bg-metal text-red" : "hover:bg-metal",
 			)}
-			href={href}
-			key={href}
+			field={link}
+			rel={({ isExternal }) => (isExternal ? "noreferrer nofollow" : undefined)}
 		>
-			<span className="flex items-center gap-2">
-				<span className={cn("font-medium", isActive && "text-white")}>
-					{label}
-				</span>
+			<span className="flex items-center gap-2 text-base">
+				<span className={cn(isActive && "font-bold")}>{label}</span>
 			</span>
-		</Link>
+		</PrismicNextLink>
 	);
 };
