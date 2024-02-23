@@ -1,4 +1,8 @@
+import ContentWrapper from "@/components/ContentWrapper";
 import { Locale } from "@/lib/i18n/types";
+import { createClient } from "@/prismicio";
+import { components } from "@/slices";
+import { SliceZone } from "@prismicio/react";
 import { FC } from "react";
 
 type Params = {
@@ -9,15 +13,17 @@ type Props = {
 	params: Params;
 };
 
-const HomeLang: FC<Props> = (props) => {
+const HomeLang: FC<Props> = async (props) => {
 	const { params } = props;
 	const { lang } = params;
 
+	const client = createClient();
+	const page = await client.getSingle("home", { lang });
+
 	return (
-		<div>
-			<h1>Thibault Walterspieler ({lang})</h1>
-			<p>Building fullstack applications</p>
-		</div>
+		<ContentWrapper>
+			<SliceZone components={components} slices={page.data.slices} />
+		</ContentWrapper>
 	);
 };
 

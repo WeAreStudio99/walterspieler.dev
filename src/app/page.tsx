@@ -1,12 +1,18 @@
+import ContentWrapper from "@/components/ContentWrapper";
+import { createClient } from "@/prismicio";
+import { components } from "@/slices";
+import { SliceZone } from "@prismicio/react";
 import { FC } from "react";
 
-const Home: FC = () => {
+const HomePage: FC = async () => {
+	const client = createClient();
+	const page = await client.getSingle("home");
+
 	return (
-		<div>
-			<h1>Thibault Walterspieler</h1>
-			<p>Building fullstack applications</p>
-		</div>
+		<ContentWrapper>
+			<SliceZone components={components} slices={page.data.slices} />
+		</ContentWrapper>
 	);
 };
 
-export default Home;
+export default HomePage;

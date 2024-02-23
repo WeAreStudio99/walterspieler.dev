@@ -1,0 +1,10 @@
+@media (min-width: 1024px) {
+  .wrapper {
+    padding: 6rem 2rem 4rem;
+  }
+
+  .content {
+    margin-bottom: 0;
+    max-width: 48rem;
+  }
+}
