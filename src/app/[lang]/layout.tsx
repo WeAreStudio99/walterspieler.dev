@@ -5,6 +5,7 @@ import { FC, PropsWithChildren } from "react";
 
 import { MenuContent } from "@/components/MenuContent";
 import { SideMenu } from "@/components/SideMenu";
+import { Toaster } from "@/components/ui/toaster";
 import { Locale } from "@/lib/i18n/types";
 import { repositoryName } from "@/prismicio";
 import "@/styles/globals.css";
@@ -36,6 +37,7 @@ const LangRootLayout: FC<Props> = (props) => {
 		<html lang={lang}>
 			<body
 				className={cn(
+					"dark",
 					"min-h-screen bg-background font-sans antialiased",
 					"bg-eerie-dark",
 					"text-white",
@@ -49,6 +51,7 @@ const LangRootLayout: FC<Props> = (props) => {
 					<div className="flex flex-1">{children}</div>
 					<PrismicPreview repositoryName={repositoryName} />
 				</div>
+				<Toaster />
 			</body>
 		</html>
 	);

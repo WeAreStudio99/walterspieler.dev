@@ -1,0 +1,33 @@
+{
+  "format": "custom",
+  "id": "social",
+  "label": "Social",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Main": {
+      "uid": {
+        "config": {
+          "label": "UID"
+        },
+        "type": "UID"
+      },
+      "label": {
+        "type": "Text",
+        "config": {
+          "label": "label",
+          "placeholder": ""
+        }
+      },
+      "url": {
+        "type": "Link",
+        "config": {
+          "label": "url",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "select": null
+        }
+      }
+    }
+  }
+}

@@ -1,11 +1,25 @@
 {
   "format": "page",
-  "id": "home",
-  "label": "Home",
-  "repeatable": false,
+  "id": "WorkDetail",
+  "label": "WorkPost",
+  "repeatable": true,
   "status": true,
   "json": {
     "Main": {
+      "uid": {
+        "config": {
+          "label": "UID"
+        },
+        "type": "UID"
+      },
+      "work": {
+        "type": "Link",
+        "config": {
+          "label": "work",
+          "select": "document",
+          "customtypes": ["work"]
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",
@@ -15,9 +29,6 @@
               "type": "SharedSlice"
             },
             "button": {
-              "type": "SharedSlice"
-            },
-            "work_item": {
               "type": "SharedSlice"
             },
             "paragraph": {

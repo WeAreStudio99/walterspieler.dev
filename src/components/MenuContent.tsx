@@ -1,5 +1,7 @@
+import LangSelector from "@/components/LangSelector";
 import { NavigationLink } from "@/components/NavigationLink";
 import { Locale } from "@/lib/i18n/types";
+import { getLocales } from "@/lib/locales";
 import { createClient } from "@/prismicio";
 import { FC } from "react";
 
@@ -8,11 +10,20 @@ type Props = {
 };
 
 export const MenuContent: FC<Props> = async ({ lang }) => {
-	const client = createClient();
-	const navigation = await client.getByUID("navigation", "main-menu", { lang });
-	const navigationItems = navigation.data.slices;
+	// const pathname = usePathname();
+	// const currentPage = pathname.split("/").pop();
 
-	console.log(navigationItems[0]);
+	// const prismicPageName =
+	// 	currentPage === "" ? "home" : (currentPage as "home" | "works");
+
+	const client = createClient();
+	const page = await client.getSingle("works", { lang });
+	const locales = await getLocales(page, client);
+
+	const navigation = await client.getByUID("navigation", "main-menu", {
+		lang,
+	});
+	const navigationItems = navigation.data.slices;
 
 	return (
 		<div className="flex w-full flex-col text-sm">
@@ -26,6 +37,7 @@ export const MenuContent: FC<Props> = async ({ lang }) => {
 						/>
 					);
 				})}
+				<LangSelector currentLang={lang} locales={locales} />
 			</div>
 		</div>
 	);

@@ -3,6 +3,9 @@
 import dynamic from "next/dynamic";
 
 export const components = {
+  button: dynamic(() => import("./Button")),
   navigation_item: dynamic(() => import("./NavigationItem")),
   paragraph: dynamic(() => import("./Paragraph")),
+  socials_list: dynamic(() => import("./SocialsList")),
+  work_item: dynamic(() => import("./WorkItem")),
 };
