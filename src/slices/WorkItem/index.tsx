@@ -15,7 +15,7 @@ import { formatDateDiff, formatDateToMonthYear } from "@/lib/date";
 import { Locale } from "@/lib/i18n/types";
 import * as prismic from "@prismicio/client";
 import { Content } from "@prismicio/client";
-import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
+import { PrismicNextImage } from "@prismicio/next";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
 import { CalendarIcon } from "lucide-react";
 import Link from "next/link";
@@ -74,17 +74,15 @@ const WorkItem = ({ slice }: WorkItemProps): JSX.Element => {
 					<div className="grid gap-1">
 						<CardTitle>{company.name}</CardTitle>
 						<CardDescription>
-							<PrismicNextLink
+							<a
 								className="hover:underline hover:text-pearl"
-								field={company.website}
-								rel={({ isExternal }) =>
-									isExternal ? "noreferrer nofollow" : undefined
-								}
+								href={"url" in company.website ? company.website.url : "#"}
+								rel={"noopener nofollow"}
 							>
 								{"url" in company.website &&
 									company.website.url &&
 									company.website.url.replace(/(^\w+:|^)\/\//, "")}
-							</PrismicNextLink>
+							</a>
 						</CardDescription>
 					</div>
 				</CardHeader>
