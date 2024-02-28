@@ -39,6 +39,10 @@ export type WorkItemProps = SliceComponentProps<
  * Component for "WorkItem" Slices.
  */
 const WorkItem = ({ slice }: WorkItemProps): JSX.Element => {
+	if (!slice.primary.work || !slice.primary.work.data) {
+		return <></>;
+	}
+
 	const lang = slice.primary.work.lang;
 	const company = slice.primary.work.data.company[0];
 
