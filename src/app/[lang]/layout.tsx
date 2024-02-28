@@ -7,9 +7,7 @@ import { MenuContent } from "@/components/MenuContent";
 import { SideMenu } from "@/components/SideMenu";
 import { Toaster } from "@/components/ui/toaster";
 import { Locale } from "@/lib/i18n/types";
-import { repositoryName } from "@/prismicio";
 import "@/styles/globals.css";
-import { PrismicPreview } from "@prismicio/next";
 
 const fontSans = FontSans({
 	subsets: ["latin"],
@@ -49,7 +47,6 @@ const LangRootLayout: FC<Props> = (props) => {
 						<MenuContent lang={lang} />
 					</SideMenu>
 					<div className="flex flex-1">{children}</div>
-					<PrismicPreview repositoryName={repositoryName} />
 				</div>
 				<Toaster />
 			</body>
