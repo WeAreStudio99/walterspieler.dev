@@ -13,8 +13,7 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { formatDateDiff, formatDateToMonthYear } from "@/lib/date";
 import { Locale } from "@/lib/i18n/types";
-import * as prismic from "@prismicio/client";
-import { Content } from "@prismicio/client";
+import { Content, asDate, asLink } from "@prismicio/client";
 import { PrismicNextImage } from "@prismicio/next";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
 import { CalendarIcon } from "lucide-react";
@@ -45,6 +44,7 @@ const WorkItem = ({ slice }: WorkItemProps): JSX.Element => {
 
 	const lang = slice.primary.work.lang;
 	const company = slice.primary.work.data.company[0];
+	const companyLink = asLink(company?.website);
 
 	if (!company) {
 		return <></>;
@@ -54,8 +54,8 @@ const WorkItem = ({ slice }: WorkItemProps): JSX.Element => {
 		return <></>;
 	}
 
-	const date1 = prismic.asDate(slice.primary.work.data.duration[0]?.start);
-	const date2 = prismic.asDate(slice.primary.work.data.duration[0]?.end);
+	const date1 = asDate(slice.primary.work.data.duration[0]?.start);
+	const date2 = asDate(slice.primary.work.data.duration[0]?.end);
 
 	let difference = "";
 
@@ -74,15 +74,15 @@ const WorkItem = ({ slice }: WorkItemProps): JSX.Element => {
 					<div className="grid gap-1">
 						<CardTitle>{company.name}</CardTitle>
 						<CardDescription>
-							<a
-								className="hover:underline hover:text-pearl"
-								href={"url" in company.website ? company.website.url : "#"}
-								rel={"noopener nofollow"}
-							>
-								{"url" in company.website &&
-									company.website.url &&
-									company.website.url.replace(/(^\w+:|^)\/\//, "")}
-							</a>
+							{companyLink && (
+								<a
+									className="hover:underline hover:text-pearl"
+									href={companyLink}
+									rel={"noopener nofollow"}
+								>
+									{companyLink.replace(/(^\w+:|^)\/\//, "")}
+								</a>
+							)}
 						</CardDescription>
 					</div>
 				</CardHeader>

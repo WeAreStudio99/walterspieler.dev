@@ -1,17 +1,18 @@
 "use client";
 
-import {
-	Select,
-	SelectContent,
-	SelectGroup,
-	SelectItem,
-	SelectTrigger,
-	SelectValue,
-} from "@/components/ui/select";
 import { Locale } from "@/lib/i18n/types";
-import { PrismicNextLink } from "@prismicio/next";
 import { useRouter } from "next/navigation";
 import { FC } from "react";
+
+import { Button } from "@/components/ui/button";
+import {
+	DropdownMenu,
+	DropdownMenuCheckboxItem,
+	DropdownMenuContent,
+	DropdownMenuLabel,
+	DropdownMenuSeparator,
+	DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 type Props = {
 	currentLang: Locale;
@@ -40,27 +41,25 @@ const LangSelector: FC<Props> = ({ locales, currentLang }) => {
 	};
 
 	return (
-		<Select onValueChange={handleLocaleChange}>
-			<SelectTrigger>
-				<SelectValue placeholder={currentLangPlaceholder} />
-			</SelectTrigger>
-			<SelectContent>
-				<SelectGroup>
-					{locales.map((locale) => (
-						<SelectItem key={locale.lang} value={locale.lang}>
-							<PrismicNextLink
-								aria-label={`Change language to ${locale.lang_name}`}
-								href={locale.url}
-								locale={locale.lang}
-							>
-								{localeLabels[locale.lang as keyof typeof localeLabels] ||
-									locale.lang}
-							</PrismicNextLink>
-						</SelectItem>
-					))}
-				</SelectGroup>
-			</SelectContent>
-		</Select>
+		<DropdownMenu>
+			<DropdownMenuTrigger asChild>
+				<Button variant="outline">{currentLangPlaceholder}</Button>
+			</DropdownMenuTrigger>
+			<DropdownMenuContent className="w-56">
+				<DropdownMenuLabel>Language</DropdownMenuLabel>
+				<DropdownMenuSeparator />
+				{locales.map((locale) => (
+					<DropdownMenuCheckboxItem
+						checked={locale.lang === currentLang}
+						key={locale.lang}
+						onCheckedChange={() => handleLocaleChange(locale.lang)}
+					>
+						{localeLabels[locale.lang as keyof typeof localeLabels] ||
+							locale.lang}
+					</DropdownMenuCheckboxItem>
+				))}
+			</DropdownMenuContent>
+		</DropdownMenu>
 	);
 };
 

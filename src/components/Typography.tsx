@@ -17,7 +17,7 @@ const H2 = forwardRef<
 	React.HTMLAttributes<HTMLHeadingElement>
 >(({ className, ...props }, ref) => (
 	<h2
-		className={`scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0 ${className}`}
+		className={`scroll-m-20 border-grey border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0 ${className}`}
 		ref={ref}
 		{...props}
 	/>
@@ -60,4 +60,22 @@ const P = forwardRef<
 ));
 P.displayName = "P";
 
-export { H1, H2, H3, H4, P };
+const LI = forwardRef<HTMLLIElement, React.HTMLAttributes<HTMLLIElement>>(
+	({ className, ...props }, ref) => (
+		<li className={`${className}`} ref={ref} {...props} />
+	),
+);
+LI.displayName = "LI";
+
+const UL = forwardRef<HTMLUListElement, React.HTMLAttributes<HTMLUListElement>>(
+	({ className, ...props }, ref) => (
+		<ul
+			className={`my-6 ml-6 list-disc [&>li]:mt-2 ${className}`}
+			ref={ref}
+			{...props}
+		/>
+	),
+);
+UL.displayName = "UL";
+
+export { H1, H2, H3, H4, LI, P, UL };

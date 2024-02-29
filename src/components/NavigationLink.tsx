@@ -3,7 +3,6 @@
 import { cn } from "@/lib/utils";
 import { LinkField } from "@prismicio/client";
 import { PrismicNextLink } from "@prismicio/next";
-import { usePathname } from "next/navigation";
 import { FC } from "react";
 
 type Props = {
@@ -12,36 +11,31 @@ type Props = {
 };
 
 export const NavigationLink: FC<Props> = ({ label, link }) => {
-	const pathname = usePathname();
+	// const pathname = usePathname();
 
-	let isActive = true;
+	// const [isActive, setIsActive] = useState(false);
 
-	function extractHref(link: LinkField) {
-		if ("url" in link) {
-			return link.url;
-		}
-	}
+	// const linkUrl = asLink(link);
 
-	if (pathname?.length > 0) {
-		const href = extractHref(link);
-		if (href) {
-			const splittedPathname = pathname.split("/");
-			const currentPathname = splittedPathname[1] ?? "";
-			isActive = currentPathname === href.split("/")[1];
-		}
-	}
+	// useEffect(() => {
+	// 	if (linkUrl) {
+	// 		const linkPath = linkUrl.replace(/https?:\/\/[^/]+/, "");
+	// 		setIsActive(linkPath === pathname);
+	// 	}
+	// }, [pathname, linkUrl]);
 
 	return (
 		<PrismicNextLink
 			className={cn(
 				"group flex items-center justify-between rounded-lg p-2",
-				isActive ? "bg-metal text-red" : "hover:bg-metal",
+				// isActive ? "bg-metal text-red" : "hover:bg-metal",
 			)}
 			field={link}
 			rel={({ isExternal }) => (isExternal ? "noreferrer nofollow" : undefined)}
 		>
 			<span className="flex items-center gap-2 text-base">
-				<span className={cn(isActive && "font-bold")}>{label}</span>
+				{/* <span className={cn(isActive && "font-bold")}>{label}</span> */}
+				<span>{label}</span>
 			</span>
 		</PrismicNextLink>
 	);

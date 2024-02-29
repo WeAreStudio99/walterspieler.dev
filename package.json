@@ -14,6 +14,8 @@
 		"@prismicio/client": "^7.3.1",
 		"@prismicio/next": "^1.5.0",
 		"@prismicio/react": "^2.7.3",
+		"@radix-ui/react-dropdown-menu": "^2.0.6",
+		"@radix-ui/react-scroll-area": "^1.0.5",
 		"@radix-ui/react-select": "^2.0.0",
 		"@radix-ui/react-separator": "^1.0.3",
 		"@radix-ui/react-slot": "^1.0.2",

@@ -4,85 +4,6 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
-type WorkDetailDocumentDataSlicesSlice =
-  | SocialsListSlice
-  | ButtonSlice
-  | ParagraphSlice;
-
-/**
- * Content for WorkPost documents
- */
-interface WorkDetailDocumentData {
-  /**
-   * work field in *WorkPost*
-   *
-   * - **Field Type**: Content Relationship
-   * - **Placeholder**: *None*
-   * - **API ID Path**: WorkDetail.work
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  work: prismic.ContentRelationshipField<"work">;
-
-  /**
-   * Slice Zone field in *WorkPost*
-   *
-   * - **Field Type**: Slice Zone
-   * - **Placeholder**: *None*
-   * - **API ID Path**: WorkDetail.slices[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#slices
-   */
-  slices: prismic.SliceZone<WorkDetailDocumentDataSlicesSlice> /**
-   * Meta Description field in *WorkPost*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: A brief summary of the page
-   * - **API ID Path**: WorkDetail.meta_description
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */;
-  meta_description: prismic.KeyTextField;
-
-  /**
-   * Meta Image field in *WorkPost*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: WorkDetail.meta_image
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#image
-   */
-  meta_image: prismic.ImageField<never>;
-
-  /**
-   * Meta Title field in *WorkPost*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: A title of the page used for social media and search engines
-   * - **API ID Path**: WorkDetail.meta_title
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  meta_title: prismic.KeyTextField;
-}
-
-/**
- * WorkPost document from Prismic
- *
- * - **API ID**: `WorkDetail`
- * - **Repeatable**: `true`
- * - **Documentation**: https://prismic.io/docs/custom-types
- *
- * @typeParam Lang - Language API ID of the document.
- */
-export type WorkDetailDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithUID<
-    Simplify<WorkDetailDocumentData>,
-    "WorkDetail",
-    Lang
-  >;
-
 type HomeDocumentDataSlicesSlice =
   | SocialsListSlice
   | ButtonSlice
@@ -247,6 +168,16 @@ export interface WorkDocumentDataCompanyItem {
   name: prismic.KeyTextField;
 
   /**
+   * Description field in *Work → Company*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: work.company[].description
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField;
+
+  /**
    * website field in *Work → Company*
    *
    * - **Field Type**: Link
@@ -356,15 +287,15 @@ interface WorkDocumentData {
   tags: prismic.GroupField<Simplify<WorkDocumentDataTagsItem>>;
 
   /**
-   * relatedPage field in *Work*
+   * workPost field in *Work*
    *
    * - **Field Type**: Content Relationship
    * - **Placeholder**: *None*
-   * - **API ID Path**: work.relatedPage
+   * - **API ID Path**: work.workPost
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  relatedPage: prismic.ContentRelationshipField<"WorkDetail">;
+  workPost: prismic.ContentRelationshipField<"workPost">;
 }
 
 /**
@@ -378,6 +309,82 @@ interface WorkDocumentData {
  */
 export type WorkDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<WorkDocumentData>, "work", Lang>;
+
+type WorkPostDocumentDataSlicesSlice = ButtonSlice | ParagraphSlice;
+
+/**
+ * Content for Work Post documents
+ */
+interface WorkPostDocumentData {
+  /**
+   * work field in *Work Post*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: workPost.work
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  work: prismic.ContentRelationshipField<"work">;
+
+  /**
+   * Slice Zone field in *Work Post*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: workPost.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<WorkPostDocumentDataSlicesSlice> /**
+   * Meta Description field in *Work Post*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: workPost.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Work Post*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: workPost.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+
+  /**
+   * Meta Title field in *Work Post*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: workPost.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_title: prismic.KeyTextField;
+}
+
+/**
+ * Work Post document from Prismic
+ *
+ * - **API ID**: `workPost`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type WorkPostDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<WorkPostDocumentData>,
+    "workPost",
+    Lang
+  >;
 
 type WorksDocumentDataSlicesSlice = ParagraphSlice;
 
@@ -441,11 +448,11 @@ export type WorksDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<Simplify<WorksDocumentData>, "works", Lang>;
 
 export type AllDocumentTypes =
-  | WorkDetailDocument
   | HomeDocument
   | NavigationDocument
   | SocialDocument
   | WorkDocument
+  | WorkPostDocument
   | WorksDocument;
 
 /**
@@ -937,9 +944,6 @@ declare module "@prismicio/client" {
 
   namespace Content {
     export type {
-      WorkDetailDocument,
-      WorkDetailDocumentData,
-      WorkDetailDocumentDataSlicesSlice,
       HomeDocument,
       HomeDocumentData,
       HomeDocumentDataSlicesSlice,
@@ -953,6 +957,9 @@ declare module "@prismicio/client" {
       WorkDocumentDataCompanyItem,
       WorkDocumentDataDurationItem,
       WorkDocumentDataTagsItem,
+      WorkPostDocument,
+      WorkPostDocumentData,
+      WorkPostDocumentDataSlicesSlice,
       WorksDocument,
       WorksDocumentData,
       WorksDocumentDataSlicesSlice,

@@ -1,7 +1,7 @@
 {
   "format": "page",
-  "id": "WorkDetail",
-  "label": "WorkPost",
+  "id": "workPost",
+  "label": "Work Post",
   "repeatable": true,
   "status": true,
   "json": {
@@ -25,9 +25,6 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
-            "socials_list": {
-              "type": "SharedSlice"
-            },
             "button": {
               "type": "SharedSlice"
             },

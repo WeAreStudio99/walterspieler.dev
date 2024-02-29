@@ -37,7 +37,7 @@ const LangRootLayout: FC<Props> = (props) => {
 				className={cn(
 					"dark",
 					"min-h-screen bg-background font-sans antialiased",
-					"bg-eerie-dark",
+					"bg-eerie-light",
 					"text-white",
 					fontSans.variable,
 				)}
