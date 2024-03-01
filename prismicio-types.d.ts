@@ -69,6 +69,71 @@ interface HomeDocumentData {
 export type HomeDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<Simplify<HomeDocumentData>, "home", Lang>;
 
+type LegalNoticeDocumentDataSlicesSlice = ParagraphSlice;
+
+/**
+ * Content for Legal notice documents
+ */
+interface LegalNoticeDocumentData {
+  /**
+   * Slice Zone field in *Legal notice*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: legalNotice.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<LegalNoticeDocumentDataSlicesSlice> /**
+   * Meta Description field in *Legal notice*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: legalNotice.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Legal notice*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: legalNotice.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+
+  /**
+   * Meta Title field in *Legal notice*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: legalNotice.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_title: prismic.KeyTextField;
+}
+
+/**
+ * Legal notice document from Prismic
+ *
+ * - **API ID**: `legalNotice`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type LegalNoticeDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<LegalNoticeDocumentData>,
+    "legalNotice",
+    Lang
+  >;
+
 type NavigationDocumentDataSlicesSlice = NavigationItemSlice;
 
 /**
@@ -111,6 +176,71 @@ export type NavigationDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<
     Simplify<NavigationDocumentData>,
     "navigation",
+    Lang
+  >;
+
+type OpenSourceDocumentDataSlicesSlice = ParagraphSlice;
+
+/**
+ * Content for OpenSource documents
+ */
+interface OpenSourceDocumentData {
+  /**
+   * Slice Zone field in *OpenSource*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: openSource.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<OpenSourceDocumentDataSlicesSlice> /**
+   * Meta Description field in *OpenSource*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: openSource.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *OpenSource*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: openSource.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+
+  /**
+   * Meta Title field in *OpenSource*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: openSource.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_title: prismic.KeyTextField;
+}
+
+/**
+ * OpenSource document from Prismic
+ *
+ * - **API ID**: `openSource`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type OpenSourceDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<OpenSourceDocumentData>,
+    "openSource",
     Lang
   >;
 
@@ -449,7 +579,9 @@ export type WorksDocument<Lang extends string = string> =
 
 export type AllDocumentTypes =
   | HomeDocument
+  | LegalNoticeDocument
   | NavigationDocument
+  | OpenSourceDocument
   | SocialDocument
   | WorkDocument
   | WorkPostDocument
@@ -947,9 +1079,15 @@ declare module "@prismicio/client" {
       HomeDocument,
       HomeDocumentData,
       HomeDocumentDataSlicesSlice,
+      LegalNoticeDocument,
+      LegalNoticeDocumentData,
+      LegalNoticeDocumentDataSlicesSlice,
       NavigationDocument,
       NavigationDocumentData,
       NavigationDocumentDataSlicesSlice,
+      OpenSourceDocument,
+      OpenSourceDocumentData,
+      OpenSourceDocumentDataSlicesSlice,
       SocialDocument,
       SocialDocumentData,
       WorkDocument,

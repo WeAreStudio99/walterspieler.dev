@@ -1,8 +1,10 @@
+import { Breadcrumb } from "@/components/Breadcrumb";
 import ContentWrapper from "@/components/ContentWrapper";
 import { H1 } from "@/components/Typography";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { Locale } from "@/lib/i18n/types";
+import { getDictionary } from "@/lib/i18n/utils";
 import { createClient } from "@/prismicio";
 import { components } from "@/slices";
 import { Content, asLink } from "@prismicio/client";
@@ -48,13 +50,27 @@ const WorkPage: FC<Props> = async (props) => {
 	const company = page.data.work.data.company[0];
 	const companyLink = asLink(company?.website);
 
+	const dictionary = await getDictionary(lang);
+
 	return (
 		<ScrollArea className="h-screen">
 			<ContentWrapper>
+				<Breadcrumb
+					className={"mb-5"}
+					dictionary={dictionary}
+					lang={lang}
+					paths={[
+						{
+							label: "Works",
+							href: lang === "en-gb" ? "/works" : `/${lang}/works`,
+						},
+						{ label: company?.name || "" },
+					]}
+				/>
 				{company && (
 					<>
 						<div className="flex flex-col gap-1 mb-8">
-							<H1 className="mb-3">{page.data.work.data.company[0]?.name}</H1>
+							<H1 className="mb-3">{company.name}</H1>
 							{companyLink && (
 								<a
 									className="hover:underline hover:text-pearl"

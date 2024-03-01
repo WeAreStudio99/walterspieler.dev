@@ -53,7 +53,11 @@ const WorkMenuContent: FC<Props> = async ({ lang }) => {
 									"group flex items-center justify-between rounded-lg p-2",
 									"hover:bg-metal",
 								)}
-								href={`/works/${work.uid}`}
+								href={
+									lang !== "en-gb"
+										? `/${lang}/works/${work.uid} `
+										: `/works/${work.uid}`
+								}
 								key={work.id}
 							>
 								<span className="flex flex-col  gap-2 text-base">

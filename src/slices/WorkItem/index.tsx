@@ -28,7 +28,7 @@ export type WorkItemProps = SliceComponentProps<
 		primary: {
 			work: {
 				lang: Locale;
-				data: WorkDocumentData;
+				data: WorkDocumentData & { workPost: { uid: string } };
 			};
 		};
 	}
@@ -63,6 +63,8 @@ const WorkItem = ({ slice }: WorkItemProps): JSX.Element => {
 		difference = formatDateDiff(date1, date2);
 	}
 
+	const relatedWorkPostLink = slice.primary.work.data?.workPost?.uid;
+
 	return (
 		<section
 			data-slice-type={slice.slice_type}
@@ -73,6 +75,19 @@ const WorkItem = ({ slice }: WorkItemProps): JSX.Element => {
 					<PrismicNextImage className="w-8 max-h-8" field={company.logo} />
 					<div className="grid gap-1">
 						<CardTitle>{company.name}</CardTitle>
+						{date1 && date2 && (
+							<div className="text-sm flex items-center md:gap-1">
+								<CalendarIcon className="h-4 w-4 mr-1" />
+								<span>{formatDateToMonthYear(date1, lang)}</span>
+								<span> - </span>
+								<span>{formatDateToMonthYear(date2, lang)}</span>
+								<Separator
+									className="hidden md:block h-4 mx-2"
+									orientation="vertical"
+								/>
+								<span className="hidden md:block">{difference}</span>
+							</div>
+						)}
 						<CardDescription>
 							{companyLink && (
 								<a
@@ -96,20 +111,20 @@ const WorkItem = ({ slice }: WorkItemProps): JSX.Element => {
 						))}
 					</div>
 				</CardContent>
-				<CardFooter className="flex justify-between">
-					{date1 && date2 && (
-						<div className="text-sm flex items-center gap-1">
-							<CalendarIcon className="h-4 w-4" />
-							<span>{formatDateToMonthYear(date1, lang)}</span>
-							<span> - </span>
-							<span>{formatDateToMonthYear(date2, lang)}</span>
-							<Separator className="h-4 mx-2" orientation="vertical" />
-							<span>{difference}</span>
-						</div>
-					)}
-					<Button asChild variant="default">
-						<Link href={``}>Read more</Link>
-					</Button>
+				<CardFooter className="flex items-start justify-between flex-col md:flex-row gap-5">
+					<div className="flex">
+						<Button asChild variant="outline">
+							<Link
+								href={
+									lang !== "en-gb"
+										? `/${lang}/works/${relatedWorkPostLink}`
+										: `/works/${relatedWorkPostLink}`
+								}
+							>
+								Read more
+							</Link>
+						</Button>
+					</div>
 				</CardFooter>
 			</Card>
 		</section>

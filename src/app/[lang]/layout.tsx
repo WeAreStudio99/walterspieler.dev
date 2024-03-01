@@ -6,8 +6,8 @@ import { FC, PropsWithChildren } from "react";
 import { MenuContent } from "@/components/MenuContent";
 import { SideMenu } from "@/components/SideMenu";
 import { Toaster } from "@/components/ui/toaster";
+import { MenuContextProvider } from "@/contexts/MenuContext";
 import { Locale } from "@/lib/i18n/types";
-import "@/styles/globals.css";
 
 const fontSans = FontSans({
 	subsets: ["latin"],
@@ -36,18 +36,22 @@ const LangRootLayout: FC<Props> = (props) => {
 			<body
 				className={cn(
 					"dark",
+					"relative",
 					"min-h-screen bg-background font-sans antialiased",
 					"bg-eerie-light",
 					"text-white",
 					fontSans.variable,
 				)}
 			>
-				<div className="lg:flex">
-					<SideMenu>
-						<MenuContent lang={lang} />
-					</SideMenu>
-					<div className="flex flex-1">{children}</div>
-				</div>
+				<MenuContextProvider>
+					<div className={cn("lg:flex")}>
+						<SideMenu>
+							<MenuContent lang={lang} />
+						</SideMenu>
+
+						<div className="flex flex-1">{children}</div>
+					</div>
+				</MenuContextProvider>
 				<Toaster />
 			</body>
 		</html>

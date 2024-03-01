@@ -24,10 +24,14 @@ const MiscMenu: FC = () => {
 				<DropdownMenuSeparator />
 				<DropdownMenuGroup>
 					<DropdownMenuItem>
-						<Link href="/docs">Terms of Service</Link>
+						<Link href="/legal/notice">Legal notice</Link>
 					</DropdownMenuItem>
-					<DropdownMenuItem>Open Source Licenses</DropdownMenuItem>
-					<DropdownMenuItem>Source code</DropdownMenuItem>
+					<DropdownMenuItem>
+						<Link href="/open-source">Open source</Link>
+					</DropdownMenuItem>
+					<DropdownMenuItem>
+						<a href="">WeAreStudio99</a>
+					</DropdownMenuItem>
 				</DropdownMenuGroup>
 			</DropdownMenuContent>
 		</DropdownMenu>

@@ -24,12 +24,12 @@ export const MenuContent: FC<Props> = async ({ lang }) => {
 
 	return (
 		<>
-			<div className="bg-chinese-black  w-full p-4 flex flex-col">
+			<div className="hidden bg-chinese-black  w-full p-4 md:flex flex-col">
 				<span className="text-xl font-bold">Thibault Walterspieler</span>
 				<span className="text-stone-400 text-xs">Fullstack engineer</span>
 			</div>
-			<div className="flex w-full lg:h-full flex-col text-sm justify-between p-4">
-				<div className="flex flex-col gap-3">
+			<div className="flex w-full h-full flex-col text-sm justify-between p-4">
+				<div className="flex h-full flex-col gap-3">
 					{navigationItems.map((item) => {
 						return (
 							<NavigationLink
@@ -41,7 +41,7 @@ export const MenuContent: FC<Props> = async ({ lang }) => {
 					})}
 				</div>
 			</div>
-			<div className="flex justify-between border-t-grey border-t py-8 px-4">
+			<div className="flex justify-between border-t-grey md:border-t py-8 px-4">
 				<MiscMenu />
 				<LangSelector currentLang={lang} locales={locales} />
 			</div>

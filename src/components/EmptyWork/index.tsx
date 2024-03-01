@@ -1,16 +1,23 @@
+import { Locale } from "@/lib/i18n/types";
+import { cn } from "@/lib/utils";
 import { FC } from "react";
 
 import "./_internal/style.css";
 
-const EmptyWork: FC = () => {
+type Props = {
+	lang: Locale;
+	className?: string;
+};
+
+const EmptyWork: FC<Props> = ({ className }) => {
 	return (
-		<div className="w-full h-full flex justify-center items-center emptyLayout">
-			<span
-				className="text-stone-400 text-2xl font-bold"
-				data-testid="works-placeholder"
-			>
-				Select a work
-			</span>
+		<div
+			className={cn(
+				"hidden w-full h-full md:flex justify-center items-center emptyLayout",
+				className,
+			)}
+		>
+			<span className="text-stone-400 text-2xl font-bold">Select a work</span>
 		</div>
 	);
 };

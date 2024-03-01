@@ -3,7 +3,7 @@ import { Locale } from "@/lib/i18n/types";
 import { createClient } from "@/prismicio";
 import { components } from "@/slices";
 import { SliceZone } from "@prismicio/react";
-import { notFound } from "next/navigation";
+import { Metadata } from "next";
 import { FC } from "react";
 
 type Params = {
@@ -14,27 +14,12 @@ type Props = {
 	params: Params;
 };
 
-const HomeLang: FC<Props> = async (props) => {
+const NoticePage: FC<Props> = async (props) => {
 	const { params } = props;
 	const { lang } = params;
 
 	const client = createClient();
-	const page = await client
-		.getSingle("home", {
-			lang,
-			fetchLinks: [
-				"work.company",
-				"work.description",
-				"work.duration",
-				"work.workPost",
-				"work.tags",
-				"work.logo",
-				"social.label",
-				"social.url",
-				"social.type",
-			],
-		})
-		.catch(() => notFound());
+	const page = await client.getSingle("legalNotice", { lang });
 
 	return (
 		<ContentWrapper>
@@ -43,4 +28,14 @@ const HomeLang: FC<Props> = async (props) => {
 	);
 };
 
-export default HomeLang;
+export async function generateMetadata(): Promise<Metadata> {
+	const client = createClient();
+	const page = await client.getSingle("legalNotice");
+
+	return {
+		title: page.data.meta_title,
+		description: page.data.meta_description,
+	};
+}
+
+export default NoticePage;
