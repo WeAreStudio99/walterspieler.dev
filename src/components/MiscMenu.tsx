@@ -15,7 +15,7 @@ const MiscMenu: FC = () => {
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
-				<Button variant="outline">Legal</Button>
+				<Button variant="outline">Other</Button>
 			</DropdownMenuTrigger>
 			<DropdownMenuContent align="start" className="w-56">
 				<DropdownMenuLabel>

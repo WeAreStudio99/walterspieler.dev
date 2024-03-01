@@ -1,9 +1,10 @@
-import { Separator } from "@/components/ui/separator";
-import { formatDateDiff, formatDateToMonthYear } from "@/lib/date";
+import { H1 } from "@/components/Typography";
+import { formatDateToMonthYear } from "@/lib/date";
 import { Locale } from "@/lib/i18n/types";
 import { cn } from "@/lib/utils";
 import { createClient } from "@/prismicio";
 import { Content, asDate } from "@prismicio/client";
+import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { FC } from "react";
 
@@ -29,50 +30,51 @@ const WorksList: FC<Props> = async (props) => {
 	});
 
 	return (
-		<>
-			{workPages.map((work) => {
-				const workData = work.data.work.data;
-				const company = workData.company[0];
+		<div className="py-20 md:py-24 px-5 w-full wrapper">
+			<div className="w-full mx-auto content">
+				<H1 className="mb-8">Works</H1>
+				{workPages.map((work) => {
+					const workData = work.data.work.data;
+					const company = workData.company[0];
 
-				const duration = workData.duration[0];
-				const date1 = asDate(duration?.start);
-				const date2 = asDate(duration?.end);
+					const duration = workData.duration[0];
+					const date1 = asDate(duration?.start);
+					const date2 = asDate(duration?.end);
 
-				let difference = "";
-
-				if (date1 && date2) {
-					difference = formatDateDiff(date1, date2);
-				}
-
-				return (
-					<Link
-						className={cn(
-							"group flex items-center justify-between rounded-lg p-2",
-							"hover:bg-metal",
-						)}
-						href={
-							lang !== "en-gb"
-								? `/${lang}/works/${work.uid} `
-								: `/works/${work.uid}`
-						}
-						key={work.id}
-					>
-						<span className="flex flex-col  gap-2 text-base">
-							<span className="font-bold">{company && company.name}</span>
-							{date1 && date2 && (
-								<div className="text-sm flex items-center gap-1">
-									<span>{formatDateToMonthYear(date1, lang)}</span>
-									<span> - </span>
-									<span>{formatDateToMonthYear(date2, lang)}</span>
-									<Separator className="h-4 mx-2" orientation="vertical" />
-									<span>{difference}</span>
-								</div>
+					return (
+						<Link
+							className={cn(
+								"group flex items-center justify-between rounded-lg p-5 mb-4",
+								"bg-metal",
+								"border-grey border",
 							)}
-						</span>
-					</Link>
-				);
-			})}
-		</>
+							href={
+								lang !== "en-gb"
+									? `/${lang}/works/${work.uid} `
+									: `/works/${work.uid}`
+							}
+							key={work.id}
+						>
+							<div className="flex flex-col gap-2 text-base">
+								<span className="font-bold text-lg">
+									{company && company.name}
+								</span>
+								{date1 && date2 && (
+									<div className="text-sm flex items-center gap-1">
+										<span>{formatDateToMonthYear(date1, lang)}</span>
+										<span> - </span>
+										<span>{formatDateToMonthYear(date2, lang)}</span>
+									</div>
+								)}
+							</div>
+							<div>
+								<ChevronRight />
+							</div>
+						</Link>
+					);
+				})}
+			</div>
+		</div>
 	);
 };
 
