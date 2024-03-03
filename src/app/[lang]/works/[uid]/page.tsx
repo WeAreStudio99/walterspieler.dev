@@ -25,6 +25,8 @@ const WorkPage: FC<Props> = async (props) => {
 	const { params } = props;
 	const { lang, uid } = params;
 
+	const dictionary = await getDictionary(lang);
+
 	const client = createClient();
 	const page = await client
 		.getByUID<
@@ -47,10 +49,8 @@ const WorkPage: FC<Props> = async (props) => {
 		})
 		.catch(() => notFound());
 
-	const company = page.data.work.data.company[0];
+	const company = page?.data?.work?.data?.company[0];
 	const companyLink = asLink(company?.website);
-
-	const dictionary = await getDictionary(lang);
 
 	return (
 		<ScrollArea className="h-screen">

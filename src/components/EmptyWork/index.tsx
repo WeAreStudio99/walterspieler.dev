@@ -13,7 +13,7 @@ const EmptyWork: FC<Props> = ({ className }) => {
 	return (
 		<div
 			className={cn(
-				"hidden w-full h-full md:flex justify-center items-center emptyLayout",
+				"hidden w-full h-full md:flex justify-center items-center empty-layout",
 				className,
 			)}
 		>

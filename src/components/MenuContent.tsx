@@ -1,5 +1,3 @@
-"use client";
-
 import LangSelector from "@/components/LangSelector";
 import MiscMenu from "@/components/MiscMenu";
 import { NavigationLink } from "@/components/NavigationLink";

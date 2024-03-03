@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
-import { Space_Grotesk as FontSans } from "next/font/google";
+import { Space_Grotesk } from "next/font/google";
 import { FC, PropsWithChildren } from "react";
 
 import { MenuContent } from "@/components/MenuContent";
@@ -9,7 +9,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { MenuContextProvider } from "@/contexts/MenuContext";
 import { Locale } from "@/lib/i18n/types";
 
-const fontSans = FontSans({
+const spaceGrotesk = Space_Grotesk({
 	subsets: ["latin"],
 	variable: "--font-sans",
 });
@@ -40,7 +40,7 @@ const LangRootLayout: FC<Props> = (props) => {
 					"min-h-screen bg-background font-sans antialiased",
 					"bg-eerie-light",
 					"text-white",
-					fontSans.variable,
+					spaceGrotesk.variable,
 				)}
 			>
 				<MenuContextProvider>
@@ -48,7 +48,6 @@ const LangRootLayout: FC<Props> = (props) => {
 						<SideMenu>
 							<MenuContent lang={lang} />
 						</SideMenu>
-
 						<div className="flex flex-1">{children}</div>
 					</div>
 				</MenuContextProvider>

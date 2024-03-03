@@ -1,4 +1,4 @@
-.empty-layout::before {
+.grid-layout::before {
   --line: hsl(0 0% 95% / 0.15);
   --size: 60px;
   content: '';

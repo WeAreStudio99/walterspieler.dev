@@ -1,1 +1,8 @@
-{}
+{
+	"works": "Works",
+	"menuItems": {
+		"other": "Other",
+		"legalNotice": "Legal Notice"
+	},
+	"languages": "Languages"
+}

@@ -6,6 +6,7 @@ import { createClient } from "@/prismicio";
 import { Content, asDate } from "@prismicio/client";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { FC } from "react";
 
 type Props = {
@@ -16,18 +17,26 @@ const WorksList: FC<Props> = async (props) => {
 	const { lang } = props;
 
 	const client = createClient();
-	const workPages = await client.getAllByType<
-		Content.WorkPostDocument & {
-			data: {
-				work: {
-					data: Pick<Content.WorkDocument["data"], "duration" | "company">;
+	const workPages = await client
+		.getAllByType<
+			Content.WorkPostDocument & {
+				data: {
+					work: {
+						data: Pick<Content.WorkDocument["data"], "duration" | "company">;
+					};
 				};
-			};
-		}
-	>("workPost", {
-		lang,
-		fetchLinks: ["work.company", "work.duration"],
-	});
+			}
+		>("workPost", {
+			lang,
+			orderings: [
+				{
+					field: "my.work.duration.end",
+					direction: "desc",
+				},
+			],
+			fetchLinks: ["work.company", "work.duration"],
+		})
+		.catch(() => notFound());
 
 	return (
 		<div className="py-20 md:py-24 px-5 w-full wrapper">

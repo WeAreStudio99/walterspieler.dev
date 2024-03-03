@@ -1,1 +1,8 @@
-{}
+{
+	"works": "Travaux",
+	"menuItems": {
+		"other": "Autre",
+		"legalNotice": "Mentions légales"
+	},
+	"languages": "Langues"
+}
