@@ -1,5 +1,6 @@
 "use client";
 
+import { ScrollArea } from "@/components/ScrollArea";
 import { MenuContext } from "@/contexts/MenuContext";
 import { cn } from "@/lib/utils";
 import { Command, X } from "lucide-react";
@@ -15,24 +16,25 @@ export const SideMenu: FC<Props> = ({ children, isInner }) => {
 	return (
 		<>
 			{!isMenuOpen && (
-				<div className="absolute top-6 right-6 md:hidden bg-eerie-dark/30 z-50 backdrop-blur rounded p-2">
+				<div className="absolute top-10 right-4 lg:hidden bg-eerie-dark/30 z-50 backdrop-blur rounded p-2">
 					<Command onClick={openMenu} size={24} />
 				</div>
 			)}
-			<div
-				className={cn(
-					"flex flex-col absolute w-screen z-30 justify-between h-screen md:relative bg-eerie-dark lg:flex",
-					isInner
-						? "hidden lg:w-80 xl:w-96 border-x border-grey"
-						: "lg:w-60 xl:w-72",
-					!isInner && !isMenuOpen && "hidden",
-				)}
-			>
-				<div className="absolute top-6 right-6 md:hidden">
+			{isMenuOpen && (
+				<div className="absolute top-10 right-4 lg:hidden bg-eerie-dark/30 z-50 backdrop-blur rounded p-2">
 					<X onClick={closeMenu} size={24} />
 				</div>
+			)}
+
+			<ScrollArea
+				className={cn(
+					"bg-eerie-dark lg:flex lg:flex-col border-r border-grey z-40",
+					!isMenuOpen && "hidden",
+					isInner ? "lg:w-72 xl:w-72" : "lg:w-60 xl:w-72",
+				)}
+			>
 				{children}
-			</div>
+			</ScrollArea>
 		</>
 	);
 };

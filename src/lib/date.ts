@@ -1,4 +1,5 @@
 import { Locale } from '@/lib/i18n/types';
+import { getDictionary } from '@/lib/i18n/utils';
 import {
   differenceInCalendarMonths,
   differenceInCalendarYears,
@@ -7,21 +8,41 @@ import {
 } from 'date-fns';
 import { enGB, fr } from 'date-fns/locale';
 
-const formatDateDiff = (date1: Date, date2: Date) => {
-  const yearsDiff = differenceInCalendarYears(date2, date1);
-  const monthsDiff = differenceInCalendarMonths(date2, date1);
-  const weeksDiff = differenceInWeeks(date2, date1);
-
-  if (yearsDiff >= 1) {
-    const monthsAfterYears = monthsDiff - yearsDiff * 12;
-    return `${yearsDiff} year(s) ${monthsAfterYears > 0 ? `${monthsAfterYears} month(s)` : ''}`;
-  } else if (monthsDiff >= 11) {
-    return `${monthsDiff} month(s)`;
-  } else {
-    return `${weeksDiff} week(s)`;
-  }
+const getPluralization = (
+  count: number,
+  dictionary: any,
+  unit: string
+): string => {
+  const isPlural = count > 1 ? 'plural' : 'singular';
+  return `${count} ${dictionary.time[unit][isPlural]}`;
 };
 
+const formatDateDiff = async (
+  date1: Date,
+  date2: Date,
+  locale: Locale = 'en-gb'
+): Promise<string> => {
+  const dictionary = await getDictionary(locale);
+
+  const yearsDiff = differenceInCalendarYears(date2, date1);
+  if (yearsDiff >= 1) {
+    const monthsDiff = differenceInCalendarMonths(date2, date1) % 12; // Get remaining months after full years
+    const yearStr = getPluralization(yearsDiff, dictionary, 'year');
+    const monthStr =
+      monthsDiff >= 1
+        ? ` ${getPluralization(monthsDiff, dictionary, 'month')}`
+        : '';
+    return `${yearStr}${monthStr}`;
+  }
+
+  const monthsDiff = differenceInCalendarMonths(date2, date1);
+  if (monthsDiff >= 1) {
+    return getPluralization(monthsDiff, dictionary, 'month');
+  }
+
+  const weeksDiff = differenceInWeeks(date2, date1);
+  return getPluralization(weeksDiff, dictionary, 'week');
+};
 const formatDateToMonthYear = (date: Date, locale: Locale) => {
   const locales = { 'en-gb': enGB, 'fr-fr': fr };
   const selectedLocale = locales[locale];

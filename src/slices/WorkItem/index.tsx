@@ -1,5 +1,3 @@
-"use client";
-
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -37,7 +35,7 @@ export type WorkItemProps = SliceComponentProps<
 /**
  * Component for "WorkItem" Slices.
  */
-const WorkItem = ({ slice }: WorkItemProps): JSX.Element => {
+const WorkItem = async ({ slice }: WorkItemProps) => {
 	if (!slice.primary.work || !slice.primary.work.data) {
 		return <></>;
 	}
@@ -60,7 +58,7 @@ const WorkItem = ({ slice }: WorkItemProps): JSX.Element => {
 	let difference = "";
 
 	if (date1 && date2) {
-		difference = formatDateDiff(date1, date2);
+		difference = await formatDateDiff(date1, date2);
 	}
 
 	const relatedWorkPostLink = slice.primary.work.data?.workPost?.uid;

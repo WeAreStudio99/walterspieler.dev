@@ -1,4 +1,4 @@
-import ContentWrapper from "@/components/ContentWrapper";
+import { ScrollArea } from "@/components/ScrollArea";
 import { Locale } from "@/lib/i18n/types";
 import { createClient } from "@/prismicio";
 import { components } from "@/slices";
@@ -37,9 +37,13 @@ const HomeLang: FC<Props> = async (props) => {
 		.catch(() => notFound());
 
 	return (
-		<ContentWrapper>
-			<SliceZone components={components} slices={page.data.slices} />
-		</ContentWrapper>
+		<ScrollArea className="flex flex-col">
+			<div className="content-wrapper">
+				<div className="content">
+					<SliceZone components={components} slices={page.data.slices} />
+				</div>
+			</div>
+		</ScrollArea>
 	);
 };
 

@@ -4,5 +4,24 @@
 		"other": "Autre",
 		"legalNotice": "Mentions légales"
 	},
-	"languages": "Langues"
+	"selectAWork": "Sélectionnez un travail",
+	"languages": "Langues",
+	"time": {
+		"week": {
+			"plural": "semaines",
+			"singular": "semaine"
+		},
+		"day": {
+			"plural": "jours",
+			"singular": "jour"
+		},
+		"month": {
+			"plural": "mois",
+			"singular": "mois"
+		},
+		"year": {
+			"plural": "années",
+			"singular": "année"
+		}
+	}
 }

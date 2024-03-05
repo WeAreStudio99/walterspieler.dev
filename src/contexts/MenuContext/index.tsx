@@ -5,7 +5,9 @@ import { FC, PropsWithChildren, createContext, useState } from "react";
 
 type MenuContextValue = {
 	isMenuOpen: boolean;
+	isInnerMenuOpen: boolean;
 	setIsMenuOpen: StateSetter<boolean>;
+	setIsInnerMenuOpen: StateSetter<boolean>;
 	closeMenu: () => void;
 	openMenu: () => void;
 };
@@ -18,6 +20,7 @@ export const MenuContextProvider: FC<PropsWithChildren> = (props) => {
 	const { children } = props;
 
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
+	const [isInnerMenuOpen, setIsInnerMenuOpen] = useState(true);
 
 	const closeMenu = () => {
 		setIsMenuOpen(false);
@@ -37,6 +40,8 @@ export const MenuContextProvider: FC<PropsWithChildren> = (props) => {
 	const contextValue: MenuContextValue = {
 		isMenuOpen,
 		setIsMenuOpen,
+		isInnerMenuOpen,
+		setIsInnerMenuOpen,
 		closeMenu,
 		openMenu,
 	};

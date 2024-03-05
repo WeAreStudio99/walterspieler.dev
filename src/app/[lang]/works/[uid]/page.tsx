@@ -1,7 +1,6 @@
 import { Breadcrumb } from "@/components/Breadcrumb";
-import ContentWrapper from "@/components/ContentWrapper";
+import { ScrollArea } from "@/components/ScrollArea";
 import { H1 } from "@/components/Typography";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { Locale } from "@/lib/i18n/types";
 import { getDictionary } from "@/lib/i18n/utils";
@@ -53,44 +52,46 @@ const WorkPage: FC<Props> = async (props) => {
 	const companyLink = asLink(company?.website);
 
 	return (
-		<ScrollArea className="h-screen">
-			<ContentWrapper>
-				<Breadcrumb
-					className={"mb-5"}
-					dictionary={dictionary}
-					lang={lang}
-					paths={[
-						{
-							label: "Works",
-							href: lang === "en-gb" ? "/works" : `/${lang}/works`,
-						},
-						{ label: company?.name || "" },
-					]}
-				/>
-				{company && (
-					<>
-						<div className="flex flex-col gap-1 mb-8">
-							<H1 className="mb-3">{company.name}</H1>
-							{companyLink && (
-								<a
-									className="hover:underline hover:text-pearl"
-									href={companyLink}
-									rel={"noopener nofollow"}
-								>
-									{companyLink.replace(/(^\w+:|^)\/\//, "")}
-								</a>
-							)}
-							<span className="text-stone-400">
-								<PrismicRichText
-									field={page.data.work.data.company[0]?.description}
-								/>
-							</span>
-							<Separator className="mt-8" />
-						</div>
-						<SliceZone components={components} slices={page.data.slices} />
-					</>
-				)}
-			</ContentWrapper>
+		<ScrollArea className="flex flex-col">
+			<div className="content-wrapper">
+				<article className="content">
+					<Breadcrumb
+						className={"mb-5"}
+						dictionary={dictionary}
+						lang={lang}
+						paths={[
+							{
+								label: "Works",
+								href: lang === "en-gb" ? "/works" : `/${lang}/works`,
+							},
+							{ label: company?.name || "" },
+						]}
+					/>
+					{company && (
+						<>
+							<div className="flex flex-col gap-1 mb-8">
+								<H1 className="mb-3">{company.name}</H1>
+								{companyLink && (
+									<a
+										className="hover:underline hover:text-pearl"
+										href={companyLink}
+										rel={"noopener nofollow"}
+									>
+										{companyLink.replace(/(^\w+:|^)\/\//, "")}
+									</a>
+								)}
+								<span className="text-stone-400">
+									<PrismicRichText
+										field={page.data.work.data.company[0]?.description}
+									/>
+								</span>
+								<Separator className="mt-8" />
+							</div>
+							<SliceZone components={components} slices={page.data.slices} />
+						</>
+					)}
+				</article>
+			</div>
 		</ScrollArea>
 	);
 };

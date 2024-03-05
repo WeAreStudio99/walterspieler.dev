@@ -19,7 +19,7 @@ const Works: FC<Props> = (props) => {
 	return (
 		<>
 			<EmptyWork lang={lang} />
-			<div className="flex-1 md:hidden">
+			<div className="flex-1 lg:hidden">
 				<WorksList lang={lang} />
 			</div>
 		</>

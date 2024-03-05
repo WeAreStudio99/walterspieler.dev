@@ -37,14 +37,14 @@ const LangRootLayout: FC<Props> = (props) => {
 				className={cn(
 					"dark",
 					"relative",
-					"min-h-screen bg-background font-sans antialiased",
+					"min-h-dvh bg-background font-sans antialiased",
 					"bg-eerie-light",
 					"text-white",
 					spaceGrotesk.variable,
 				)}
 			>
 				<MenuContextProvider>
-					<div className={cn("lg:flex")}>
+					<div className="lg:flex">
 						<SideMenu>
 							<MenuContent lang={lang} />
 						</SideMenu>
