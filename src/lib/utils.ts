@@ -19,7 +19,7 @@ export const generateAlternates = (
   >(
     (languages, language) => {
       languages[language] =
-        `${process.env.BASE_URL}/${language}${pathWithoutLang}`;
+        `${process.env.BASE_URL}/${language}/${pathWithoutLang}`;
 
       return languages;
     },
@@ -31,7 +31,7 @@ export const generateAlternates = (
   );
 
   return {
-    canonical: `${process.env.BASE_URL}/${lang}${pathWithoutLang}`,
+    canonical: `${process.env.BASE_URL}/${lang === 'en-gb' ? '' : lang}${pathWithoutLang}`,
     languages,
   };
 };

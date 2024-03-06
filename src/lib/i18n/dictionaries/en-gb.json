@@ -8,7 +8,12 @@
 			"description": "Hi, I'm Thibault Walterspieler, a fullstack engineer based in Lyon, France."
 		}
 	},
-	"works": "Works",
+	"works": {
+		"metadata": {
+			"title": "Works | Thibault Walterspieler",
+			"description": "Here are some of the projects I've worked on."
+		}
+	},
 	"menuItems": {
 		"other": "Other",
 		"legalNotice": "Legal Notice"
