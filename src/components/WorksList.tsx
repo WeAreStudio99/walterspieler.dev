@@ -39,9 +39,10 @@ const WorksList: FC<Props> = async (props) => {
 		.catch(() => notFound());
 
 	return (
-		<div className="py-20 md:py-24 px-5 w-full wrapper">
+		<div className="py-10 md:py-24 px-5 w-full wrapper bg-eerie-dark h-screen">
+			<H1 className="mb-8 sticky top-10 z-40">Works</H1>
+
 			<div className="w-full mx-auto content">
-				<H1 className="mb-8">Works</H1>
 				{workPages.map((work) => {
 					const workData = work.data.work.data;
 					const company = workData.company[0];

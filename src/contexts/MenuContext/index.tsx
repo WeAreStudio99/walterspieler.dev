@@ -25,15 +25,27 @@ export const MenuContextProvider: FC<PropsWithChildren> = (props) => {
 	const closeMenu = () => {
 		setIsMenuOpen(false);
 
+		const meta = document.querySelector('meta[name="theme-color"]');
+		if (meta) {
+			meta.setAttribute("content", "dark");
+		}
+
 		document.body.classList.remove("overflow-hidden", "h-screen");
 	};
 
 	const openMenu = () => {
-		if (setIsMenuOpen === undefined) {
-			return;
+		setIsMenuOpen(true);
+
+		const meta = document.querySelector('meta[name="theme-color"]');
+		if (meta) {
+			meta.setAttribute("content", "#16181b");
+		} else {
+			const newMeta = document.createElement("meta");
+			newMeta.name = "theme-color";
+			newMeta.content = "#16181b";
+			document.head.appendChild(newMeta);
 		}
 
-		setIsMenuOpen(true);
 		document.body.classList.add("overflow-hidden", "h-screen");
 	};
 
