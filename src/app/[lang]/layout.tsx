@@ -44,9 +44,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 			title: "Thibault Walterspieler | Fullstack engineer",
 			description: dictionary.home.metadata.description,
 			images: {
-				url: "/og/default.png",
+				url: "/images/og/default.png",
 				alt: "Thibault Walterspieler | Fullstack engineer",
-				type: "image/webp",
+				type: "image/png",
 				// height: 1024,
 				// width: 1024,
 			},
@@ -57,9 +57,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 			description: dictionary.home.metadata.description,
 			url: `/`,
 			images: {
-				url: "/og/default.png",
+				url: "/images/og/default.png",
 				alt: "Thibault Walterspieler | Fullstack engineer",
-				type: "image/webp",
+				type: "image/png",
 				// height: 1024,
 				// width: 1955,
 			},

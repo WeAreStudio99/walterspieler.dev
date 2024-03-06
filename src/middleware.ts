@@ -1,3 +1,4 @@
+import { PUBLIC_PATHS } from '@/lib/routing/constants';
 import { createClient } from '@/prismicio';
 import { NextRequest, NextResponse } from 'next/server';
 
@@ -10,11 +11,22 @@ export async function middleware(request: NextRequest) {
 
   const { pathname } = request.nextUrl;
 
+  const pathnameIsPublicPath: boolean = PUBLIC_PATHS.reduce(
+    (pathnameIsPublicPath, publicPath) => {
+      if (pathname.startsWith(publicPath)) {
+        pathnameIsPublicPath = true;
+      }
+
+      return pathnameIsPublicPath;
+    },
+    false
+  );
+
   const pathnameIsMissingLocale = locales.every(
     (locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
   );
 
-  if (pathnameIsMissingLocale) {
+  if (pathnameIsMissingLocale && !pathnameIsPublicPath) {
     return NextResponse.rewrite(
       new URL(`/${defaultLocale}${pathname}`, request.url)
     );
