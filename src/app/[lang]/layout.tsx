@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn, generateAlternates } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Space_Grotesk } from "next/font/google";
 import { FC, PropsWithChildren } from "react";
@@ -9,6 +9,7 @@ import { SideMenu } from "@/components/SideMenu";
 import { Toaster } from "@/components/ui/toaster";
 import { MenuContextProvider } from "@/contexts/MenuContext";
 import { Locale } from "@/lib/i18n/types";
+import { getDictionary } from "@/lib/i18n/utils";
 import dynamic from "next/dynamic";
 
 const PostHogPageView = dynamic(
@@ -23,10 +24,48 @@ const spaceGrotesk = Space_Grotesk({
 	variable: "--font-sans",
 });
 
-export const metadata: Metadata = {
-	title: "Thibault Walterspieler",
-	description: "Website description",
-};
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+	const { lang } = params;
+	const dictionary = await getDictionary(lang);
+
+	return {
+		title: "Thibault Walterspieler | Fullstack engineer",
+		description: dictionary.home.metadata.description,
+		alternates: generateAlternates("", lang),
+		icons: [
+			{
+				rel: "icon",
+				url: "/favicon.ico",
+				sizes: "any",
+			},
+		],
+		twitter: {
+			card: "summary_large_image",
+			title: "Thibault Walterspieler | Fullstack engineer",
+			description: dictionary.home.metadata.description,
+			images: {
+				url: "/og/default.png",
+				alt: "Thibault Walterspieler | Fullstack engineer",
+				type: "image/webp",
+				// height: 1024,
+				// width: 1024,
+			},
+		},
+		openGraph: {
+			type: "website",
+			title: "Thibault Walterspieler | Fullstack engineer",
+			description: dictionary.home.metadata.description,
+			url: `/`,
+			images: {
+				url: "/og/default.png",
+				alt: "Thibault Walterspieler | Fullstack engineer",
+				type: "image/webp",
+				// height: 1024,
+				// width: 1955,
+			},
+		},
+	};
+}
 
 type Params = {
 	lang: Locale;
