@@ -1,6 +1,37 @@
-import { type ClassValue, clsx } from "clsx"
-import { twMerge } from "tailwind-merge"
+import { DICTIONARIES } from '@/lib/i18n/constants';
+import { Locale } from '@/lib/i18n/types';
+import { clsx, type ClassValue } from 'clsx';
+import { AlternateURLs } from 'next/dist/lib/metadata/types/alternative-urls-types';
+import { twMerge } from 'tailwind-merge';
 
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
+  return twMerge(clsx(inputs));
 }
+
+export const generateAlternates = (
+  pathWithoutLang: string,
+  lang: Locale
+): AlternateURLs => {
+  const locales = Object.keys(DICTIONARIES) as Locale[];
+
+  const languages: AlternateURLs['languages'] = locales.reduce<
+    Record<Locale | 'x-default', string>
+  >(
+    (languages, language) => {
+      languages[language] =
+        `${process.env.BASE_URL}/${language}${pathWithoutLang}`;
+
+      return languages;
+    },
+    {
+      'x-default': `${process.env.BASE_URL}/${pathWithoutLang}`,
+      'en-gb': '',
+      'fr-fr': '',
+    }
+  );
+
+  return {
+    canonical: `${process.env.BASE_URL}/${lang}${pathWithoutLang}`,
+    languages,
+  };
+};
