@@ -1,4 +1,8 @@
 {
+	"firstLevelPages": {
+		"home": "Accueil",
+		"works": "Travaux"
+	},
 	"home": {
 		"metadata": {
 			"description": "Hi, I'm Thibault Walterspieler, a fullstack engineer based in Lyon, France."
