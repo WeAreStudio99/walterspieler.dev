@@ -10,16 +10,19 @@ export default function PostHogPageView() {
 	const posthog = usePostHog();
 
 	useEffect(() => {
+		if (process.env.NODE_ENV === "development") {
+			return;
+		}
+
 		if (pathname && posthog) {
 			let url = window.origin + pathname;
 			if (searchParams.toString()) {
 				url = url + `?${searchParams.toString()}`;
 			}
+
 			posthog.capture("$pageview", {
 				$current_url: url,
 			});
-
-			console.log("Captured pageview event", url);
 		}
 	}, [pathname, searchParams, posthog]);
 
