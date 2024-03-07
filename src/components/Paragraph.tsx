@@ -68,7 +68,9 @@ const ParagraphBlock: FC<Props> = ({ field }) => {
 							className="py-0 px-0 bold h-0 leading-7 text-base"
 							variant={"link"}
 						>
-							<a href={node.data.url}>{text}</a>
+							<a href={node.data.url} rel="noopener" target="_blank">
+								{text}
+							</a>
 						</Button>
 					);
 				},

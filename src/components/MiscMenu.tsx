@@ -30,7 +30,9 @@ const MiscMenu: FC = () => {
 						<Link href="/open-source">Open source</Link>
 					</DropdownMenuItem>
 					<DropdownMenuItem>
-						<a href="">WeAreStudio99</a>
+						<a href="https://www.instagram.com/wearestudio99" target="_blank">
+							WeAreStudio99
+						</a>
 					</DropdownMenuItem>
 				</DropdownMenuGroup>
 			</DropdownMenuContent>
