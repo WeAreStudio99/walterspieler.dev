@@ -122,27 +122,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 		],
 		twitter: {
 			card: "summary_large_image",
-			title: `${page.data.meta_title} | Thibault Walterspieler`,
+			title: `${page.data.meta_title || uid} | Thibault Walterspieler`,
 			description: page.data.meta_description || works.metadata.description,
 			images: {
 				url: "/images/og/default.png",
 				alt: "Thibault Walterspieler | Fullstack engineer",
 				type: "image/png",
-				// height: 1024,
-				// width: 1024,
 			},
 		},
 		openGraph: {
 			type: "website",
-			title: `${page.data.meta_title} | Thibault Walterspieler`,
+			title: `${page.data.meta_title || uid} | Thibault Walterspieler`,
 			description: page.data.meta_description || works.metadata.description,
 			url: `/`,
 			images: {
 				url: "/images/og/default.png",
 				alt: "Thibault Walterspieler | Fullstack engineer",
 				type: "image/png",
-				// height: 1024,
-				// width: 1955,
 			},
 		},
 	};
