@@ -29,6 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 	const dictionary = await getDictionary(lang);
 
 	return {
+		metadataBase: new URL(process.env.base_url || "https://walterspieler.dev"),
 		title: "Thibault Walterspieler | Fullstack engineer",
 		description: dictionary.home.metadata.description,
 		alternates: generateAlternates("", lang),

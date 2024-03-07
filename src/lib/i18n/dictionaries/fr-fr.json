@@ -14,6 +14,18 @@
 			"description": "Voici quelques-uns des projets sur lesquels j'ai travaillé."
 		}
 	},
+	"openSource": {
+		"metadata": {
+			"title": "Open Source | Thibault Walterspieler",
+			"description": "Merci à la communauté open-source sans qui tout notre travail d'ingénieur serait bien plus complexe."
+		}
+	},
+	"notice": {
+		"metadata": {
+			"title": "Mentions légales | Thibault Walterspieler",
+			"description": "Mentions légales du site walterspieler.dev"
+		}
+	},
 	"menuItems": {
 		"other": "Autre",
 		"legalNotice": "Mentions légales"

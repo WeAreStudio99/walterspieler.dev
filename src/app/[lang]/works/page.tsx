@@ -37,11 +37,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 			title: works.metadata.title,
 			description: works.metadata.description,
 			images: {
-				url: "/images/og/default.png",
+				url: `/images/og/works_${lang}.png`,
 				alt: "Thibault Walterspieler | Fullstack engineer",
 				type: "image/png",
-				// height: 1024,
-				// width: 1024,
 			},
 		},
 		openGraph: {
@@ -50,11 +48,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 			description: works.metadata.description,
 			url: `/`,
 			images: {
-				url: "/images/og/default.png",
+				url: `/images/og/works_${lang}.png`,
 				alt: "Thibault Walterspieler | Fullstack engineer",
 				type: "image/png",
-				// height: 1024,
-				// width: 1955,
 			},
 		},
 	};

@@ -14,6 +14,18 @@
 			"description": "Here are some of the projects I've worked on."
 		}
 	},
+	"openSource": {
+		"metadata": {
+			"title": "Open Source | Thibault Walterspieler",
+			"description": "Thanks to the open-source community. Without you our work as engineer would give more headaches."
+		}
+	},
+	"notice": {
+		"metadata": {
+			"title": "Legal notice | Thibault Walterspieler",
+			"description": "Legal notice of walterspieler.dev website"
+		}
+	},
 	"menuItems": {
 		"other": "Other",
 		"legalNotice": "Legal Notice"

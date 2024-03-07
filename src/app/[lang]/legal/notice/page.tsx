@@ -1,5 +1,7 @@
 import ContentWrapper from "@/components/ContentWrapper";
 import { Locale } from "@/lib/i18n/types";
+import { getDictionary } from "@/lib/i18n/utils";
+import { generateAlternates } from "@/lib/utils";
 import { createClient } from "@/prismicio";
 import { components } from "@/slices";
 import { SliceZone } from "@prismicio/react";
@@ -28,13 +30,44 @@ const NoticePage: FC<Props> = async (props) => {
 	);
 };
 
-export async function generateMetadata(): Promise<Metadata> {
-	const client = createClient();
-	const page = await client.getSingle("legalNotice");
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+	const { lang } = params;
+	const dictionary = await getDictionary(lang);
+
+	const { notice } = dictionary;
 
 	return {
-		title: page.data.meta_title,
-		description: page.data.meta_description,
+		title: notice.metadata.title,
+		description: notice.metadata.description,
+		alternates: generateAlternates("open-source", lang),
+		icons: [
+			{
+				rel: "icon",
+				url: "/favicon.ico",
+				sizes: "any",
+			},
+		],
+		twitter: {
+			card: "summary_large_image",
+			title: notice.metadata.title,
+			description: notice.metadata.description,
+			images: {
+				url: `/images/og/notice_${lang}.png`,
+				alt: "Thibault Walterspieler | Fullstack engineer",
+				type: "image/png",
+			},
+		},
+		openGraph: {
+			type: "website",
+			title: notice.metadata.title,
+			description: notice.metadata.description,
+			url: `/`,
+			images: {
+				url: `/images/notice_${lang}.png`,
+				alt: "Thibault Walterspieler | Fullstack engineer",
+				type: "image/png",
+			},
+		},
 	};
 }
 
