@@ -10,6 +10,7 @@ const NotFound: FC = () => {
 				label: "Return to works",
 				path: "/works",
 			}}
+			label="This work does not exist."
 		/>
 	);
 };

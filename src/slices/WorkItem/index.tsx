@@ -110,19 +110,21 @@ const WorkItem = async ({ slice }: WorkItemProps) => {
 					</div>
 				</CardContent>
 				<CardFooter className="flex items-start justify-between flex-col md:flex-row gap-5">
-					<div className="flex">
-						<Button asChild variant="outline">
-							<Link
-								href={
-									lang !== "en-gb"
-										? `/${lang}/works/${relatedWorkPostLink}`
-										: `/works/${relatedWorkPostLink}`
-								}
-							>
-								Read more
-							</Link>
-						</Button>
-					</div>
+					{relatedWorkPostLink && (
+						<div className="flex">
+							<Button asChild variant="outline">
+								<Link
+									href={
+										lang !== "en-gb"
+											? `/${lang}/works/${relatedWorkPostLink}`
+											: `/works/${relatedWorkPostLink}`
+									}
+								>
+									Read more
+								</Link>
+							</Button>
+						</div>
+					)}
 				</CardFooter>
 			</Card>
 		</section>
