@@ -103,9 +103,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 	const dictionary = await getDictionary(lang);
 
 	const client = createClient();
-	const page = await client.getByUID("workPost", uid, {
-		lang,
-	});
+	const page = await client
+		.getByUID("workPost", uid, {
+			lang,
+		})
+		.catch(() => notFound());
 
 	const { works } = dictionary;
 

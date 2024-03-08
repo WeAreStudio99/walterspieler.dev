@@ -19,7 +19,12 @@ export default function NotFound() {
 					spaceGrotesk.variable,
 				)}
 			>
-				<Error404 />
+				<Error404
+					button={{
+						label: "Return to home",
+						path: "/",
+					}}
+				/>
 			</body>
 		</html>
 	);

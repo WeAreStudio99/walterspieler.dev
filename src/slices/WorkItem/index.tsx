@@ -68,7 +68,7 @@ const WorkItem = async ({ slice }: WorkItemProps) => {
 			data-slice-type={slice.slice_type}
 			data-slice-variation={slice.variation}
 		>
-			<Card className="my-4">
+			<Card className="my-8">
 				<CardHeader className="flex flex-row items-center gap-4">
 					<PrismicNextImage className="w-8 max-h-8" field={company.logo} />
 					<div className="grid gap-1">
