@@ -11,6 +11,7 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { formatDateDiff, formatDateToMonthYear } from "@/lib/date";
 import { Locale } from "@/lib/i18n/types";
+import { getDictionary } from "@/lib/i18n/utils";
 import { Content, asDate, asLink } from "@prismicio/client";
 import { PrismicNextImage } from "@prismicio/next";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
@@ -51,6 +52,8 @@ const WorkItem = async ({ slice }: WorkItemProps) => {
 	if (!slice.primary.work.data.duration) {
 		return <></>;
 	}
+
+	const dictionary = await getDictionary(lang);
 
 	const date1 = asDate(slice.primary.work.data.duration[0]?.start);
 	const date2 = asDate(slice.primary.work.data.duration[0]?.end);
@@ -120,7 +123,7 @@ const WorkItem = async ({ slice }: WorkItemProps) => {
 											: `/works/${relatedWorkPostLink}`
 									}
 								>
-									Read more
+									{dictionary.home.buttons.readMore}
 								</Link>
 							</Button>
 						</div>
