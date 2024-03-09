@@ -29,8 +29,8 @@ export const SideMenu: FC<Props> = ({ children, isInner }) => {
 			<ScrollArea
 				className={cn(
 					"bg-eerie-dark lg:flex lg:flex-col border-r border-grey z-40 justify-between",
+					isInner ? "lg:w-72 xl:w-72" : "lg:w-60 xl:w-72 flex flex-col",
 					!isMenuOpen && "hidden",
-					isInner ? "lg:w-72 xl:w-72" : "lg:w-60 xl:w-72",
 				)}
 			>
 				{children}

@@ -24,6 +24,17 @@ interface HomeDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
   slices: prismic.SliceZone<HomeDocumentDataSlicesSlice> /**
+   * Meta Title field in *Home*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: home.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
    * Meta Description field in *Home*
    *
    * - **Field Type**: Text
@@ -31,7 +42,7 @@ interface HomeDocumentData {
    * - **API ID Path**: home.meta_description
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/field#key-text
-   */;
+   */
   meta_description: prismic.KeyTextField;
 
   /**
@@ -44,17 +55,6 @@ interface HomeDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   meta_image: prismic.ImageField<never>;
-
-  /**
-   * Meta Title field in *Home*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: A title of the page used for social media and search engines
-   * - **API ID Path**: home.meta_title
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  meta_title: prismic.KeyTextField;
 }
 
 /**
@@ -283,6 +283,71 @@ interface SocialDocumentData {
 export type SocialDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<SocialDocumentData>, "social", Lang>;
 
+type WeAreStudio99DocumentDataSlicesSlice = SocialsListSlice | ParagraphSlice;
+
+/**
+ * Content for WeAreStudio99 documents
+ */
+interface WeAreStudio99DocumentData {
+  /**
+   * Slice Zone field in *WeAreStudio99*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: weAreStudio99.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<WeAreStudio99DocumentDataSlicesSlice> /**
+   * Meta Title field in *WeAreStudio99*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: weAreStudio99.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *WeAreStudio99*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: weAreStudio99.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *WeAreStudio99*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: weAreStudio99.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * WeAreStudio99 document from Prismic
+ *
+ * - **API ID**: `weAreStudio99`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type WeAreStudio99Document<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<WeAreStudio99DocumentData>,
+    "weAreStudio99",
+    Lang
+  >;
+
 /**
  * Item in *Work → Company*
  */
@@ -467,6 +532,17 @@ interface WorkPostDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
   slices: prismic.SliceZone<WorkPostDocumentDataSlicesSlice> /**
+   * Meta Title field in *Work Post*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: workPost.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
    * Meta Description field in *Work Post*
    *
    * - **Field Type**: Text
@@ -474,7 +550,7 @@ interface WorkPostDocumentData {
    * - **API ID Path**: workPost.meta_description
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/field#key-text
-   */;
+   */
   meta_description: prismic.KeyTextField;
 
   /**
@@ -487,17 +563,6 @@ interface WorkPostDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   meta_image: prismic.ImageField<never>;
-
-  /**
-   * Meta Title field in *Work Post*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: A title of the page used for social media and search engines
-   * - **API ID Path**: workPost.meta_title
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  meta_title: prismic.KeyTextField;
 }
 
 /**
@@ -532,6 +597,17 @@ interface WorksDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
   slices: prismic.SliceZone<WorksDocumentDataSlicesSlice> /**
+   * Meta Title field in *Works*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: works.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
    * Meta Description field in *Works*
    *
    * - **Field Type**: Text
@@ -539,7 +615,7 @@ interface WorksDocumentData {
    * - **API ID Path**: works.meta_description
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/field#key-text
-   */;
+   */
   meta_description: prismic.KeyTextField;
 
   /**
@@ -552,17 +628,6 @@ interface WorksDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   meta_image: prismic.ImageField<never>;
-
-  /**
-   * Meta Title field in *Works*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: A title of the page used for social media and search engines
-   * - **API ID Path**: works.meta_title
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  meta_title: prismic.KeyTextField;
 }
 
 /**
@@ -583,6 +648,7 @@ export type AllDocumentTypes =
   | NavigationDocument
   | OpenSourceDocument
   | SocialDocument
+  | WeAreStudio99Document
   | WorkDocument
   | WorkPostDocument
   | WorksDocument;
@@ -1090,6 +1156,9 @@ declare module "@prismicio/client" {
       OpenSourceDocumentDataSlicesSlice,
       SocialDocument,
       SocialDocumentData,
+      WeAreStudio99Document,
+      WeAreStudio99DocumentData,
+      WeAreStudio99DocumentDataSlicesSlice,
       WorkDocument,
       WorkDocumentData,
       WorkDocumentDataCompanyItem,

@@ -35,6 +35,10 @@ const routes: prismic.ClientConfig['routes'] = [
     type: 'legalNotice',
     path: '/:lang?/legal/notice',
   },
+  {
+    type: 'weAreStudio99',
+    path: '/:lang?/wearestudio99',
+  },
 ];
 
 /**

@@ -1,5 +1,6 @@
 "use client";
 
+import WeAreStudio99 from "@/components/Icons/WeAreStudio99";
 import { MenuContext } from "@/contexts/MenuContext";
 import { Locale } from "@/lib/i18n/types";
 import { cn } from "@/lib/utils";
@@ -29,6 +30,8 @@ export const NavigationLink: FC<Props> = ({ label, link }) => {
 		}
 	}
 
+	console.log("link", link);
+
 	return (
 		<PrismicNextLink
 			className={cn(
@@ -40,10 +43,11 @@ export const NavigationLink: FC<Props> = ({ label, link }) => {
 			rel={({ isExternal }) => (isExternal ? "noreferrer nofollow" : undefined)}
 		>
 			{"type" in link && (
-				<div className="flex items-center gap-2 text-3xl md:text-base">
+				<div className="flex items-center gap-2 text-xl md:text-base">
 					{link.type === "home" && <BoltIcon className="w-4" />}
 					{link.type === "works" && <DraftingCompass className="w-4" />}
-					<span>{label}</span>
+					{link.type === "weAreStudio99" && <WeAreStudio99 className="w-4" />}
+					<span className="text-ellipsis overflow-hidden">{label}</span>
 				</div>
 			)}
 		</PrismicNextLink>

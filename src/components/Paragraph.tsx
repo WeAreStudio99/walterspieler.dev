@@ -1,6 +1,5 @@
 "use client";
-
-import { H1, H2, H3, LI, P, UL } from "@/components/Typography";
+import { H1, H2, H3, H4, LI, P, UL } from "@/components/Typography";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 import { RichTextField } from "@prismicio/client";
@@ -28,7 +27,7 @@ const ParagraphBlock: FC<Props> = ({ field }) => {
 				heading1: ({ children }) => <H1>{children}</H1>,
 				heading2: ({ children }) => <H2>{children}</H2>,
 				heading3: ({ children }) => <H3>{children}</H3>,
-				heading4: ({ children }) => <H3>{children}</H3>,
+				heading4: ({ children }) => <H4>{children}</H4>,
 				paragraph: ({ children }) => <P>{children}</P>,
 				list: ({ children }) => <UL className="">{children}</UL>,
 				listItem: ({ children }) => <LI>{children}</LI>,

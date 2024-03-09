@@ -29,6 +29,12 @@
 			"description": "Mentions légales du site walterspieler.dev"
 		}
 	},
+	"weAreStudio99": {
+		"metadata": {
+			"title": "WeAreStudio99 | Thibault Walterspieler",
+			"description": "WeAreStudio99 est un collectif de développeurs et d'artistes."
+		}
+	},
 	"menuItems": {
 		"other": "Autre",
 		"legalNotice": "Mentions légales"

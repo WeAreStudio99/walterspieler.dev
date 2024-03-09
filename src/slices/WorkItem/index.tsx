@@ -92,6 +92,7 @@ const WorkItem = async ({ slice }: WorkItemProps) => {
 						<CardDescription>
 							{companyLink && (
 								<a
+									aria-label={`${company.name} website`}
 									className="hover:underline hover:text-pearl"
 									href={companyLink}
 									rel={"noopener nofollow"}
@@ -117,6 +118,7 @@ const WorkItem = async ({ slice }: WorkItemProps) => {
 						<div className="flex">
 							<Button asChild variant="outline">
 								<Link
+									aria-label={`Read more about ${company.name}`}
 									href={
 										lang !== "en-gb"
 											? `/${lang}/works/${relatedWorkPostLink}`

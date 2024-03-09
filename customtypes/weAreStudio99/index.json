@@ -1,7 +1,7 @@
 {
   "format": "page",
-  "id": "home",
-  "label": "Home",
+  "id": "weAreStudio99",
+  "label": "WeAreStudio99",
   "repeatable": false,
   "status": true,
   "json": {
@@ -12,12 +12,6 @@
         "config": {
           "choices": {
             "socials_list": {
-              "type": "SharedSlice"
-            },
-            "button": {
-              "type": "SharedSlice"
-            },
-            "work_item": {
               "type": "SharedSlice"
             },
             "paragraph": {
