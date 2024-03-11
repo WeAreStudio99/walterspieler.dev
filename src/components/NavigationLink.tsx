@@ -30,8 +30,6 @@ export const NavigationLink: FC<Props> = ({ label, link }) => {
 		}
 	}
 
-	console.log("link", link);
-
 	return (
 		<PrismicNextLink
 			className={cn(

@@ -61,7 +61,7 @@ const WorkItem = async ({ slice }: WorkItemProps) => {
 	let difference = "";
 
 	if (date1 && date2) {
-		difference = await formatDateDiff(date1, date2);
+		difference = await formatDateDiff(date1, date2, lang);
 	}
 
 	const relatedWorkPostLink = slice.primary.work.data?.workPost?.uid;

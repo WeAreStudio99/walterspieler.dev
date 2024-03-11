@@ -20,7 +20,7 @@ const getPluralization = (
 const formatDateDiff = async (
   date1: Date,
   date2: Date,
-  locale: Locale = 'en-gb'
+  locale: Locale
 ): Promise<string> => {
   const dictionary = await getDictionary(locale);
 
@@ -32,7 +32,7 @@ const formatDateDiff = async (
       monthsDiff >= 1
         ? ` ${getPluralization(monthsDiff, dictionary, 'month')}`
         : '';
-    return `${yearStr}${monthStr}`;
+    return `${yearStr} ${locale === 'fr-fr' && 'et '}${monthStr}`;
   }
 
   const monthsDiff = differenceInCalendarMonths(date2, date1);
@@ -43,6 +43,7 @@ const formatDateDiff = async (
   const weeksDiff = differenceInWeeks(date2, date1);
   return getPluralization(weeksDiff, dictionary, 'week');
 };
+
 const formatDateToMonthYear = (date: Date, locale: Locale) => {
   const locales = { 'en-gb': enGB, 'fr-fr': fr };
   const selectedLocale = locales[locale];

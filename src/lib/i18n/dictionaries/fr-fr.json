@@ -55,8 +55,8 @@
 			"singular": "mois"
 		},
 		"year": {
-			"plural": "années",
-			"singular": "année"
+			"plural": "ans",
+			"singular": "an"
 		}
 	}
 }
