@@ -73,7 +73,11 @@ const WorkItem = async ({ slice }: WorkItemProps) => {
 		>
 			<Card className="my-8">
 				<CardHeader className="flex flex-row items-center gap-4">
-					<PrismicNextImage className="w-8 max-h-8" field={company.logo} />
+					<PrismicNextImage
+						className="w-8 max-h-8"
+						field={company.logo}
+						sizes="(max-width: 640px) 32px, (max-width: 768px) 32px, (max-width: 1024px) 32px, 32px"
+					/>
 					<div className="grid gap-1">
 						<CardTitle>{company.name}</CardTitle>
 						{date1 && date2 && (
