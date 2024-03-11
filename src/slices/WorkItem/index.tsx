@@ -125,7 +125,7 @@ const WorkItem = async ({ slice }: WorkItemProps) => {
 											: `/works/${relatedWorkPostLink}`
 									}
 								>
-									{dictionary.home.buttons.readMore}
+									{dictionary.home.buttons.readMore} {company.name}
 								</Link>
 							</Button>
 						</div>
