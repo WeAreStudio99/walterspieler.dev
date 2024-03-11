@@ -30,7 +30,7 @@ export const MenuContent: FC<Props> = async ({ lang }) => {
 				<MainMenuItems items={navigationItems} lang={lang} />
 			</div>
 			<div className="flex justify-between border-t-grey md:border-t py-8 px-4  gap-3 lg:flex-col xl:flex-row ">
-				<MiscMenu />
+				<MiscMenu lang={lang} />
 				<LangSelector currentLang={lang} locales={locales} />
 			</div>
 		</>

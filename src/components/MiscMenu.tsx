@@ -8,14 +8,22 @@ import {
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Locale } from "@/lib/i18n/types";
+import { getDictionary } from "@/lib/i18n/utils";
 import Link from "next/link";
 import { FC } from "react";
 
-const MiscMenu: FC = () => {
+type Props = {
+	lang: Locale;
+};
+
+const MiscMenu: FC<Props> = async ({ lang }) => {
+	const dictionary = await getDictionary(lang);
+
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
-				<Button variant="outline">Other</Button>
+				<Button variant="outline">{dictionary.menuItems.other}</Button>
 			</DropdownMenuTrigger>
 			<DropdownMenuContent align="start" className="w-56">
 				<DropdownMenuLabel>
@@ -24,7 +32,7 @@ const MiscMenu: FC = () => {
 				<DropdownMenuSeparator />
 				<DropdownMenuGroup>
 					<DropdownMenuItem>
-						<Link href="/legal/notice">Legal notice</Link>
+						<Link href="/legal/notice">{dictionary.menuItems.legalNotice}</Link>
 					</DropdownMenuItem>
 					<DropdownMenuItem>
 						<Link href="/open-source">Open source</Link>

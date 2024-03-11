@@ -1,6 +1,7 @@
 import { H1 } from "@/components/Typography";
 import { formatDateToMonthYear } from "@/lib/date";
 import { Locale } from "@/lib/i18n/types";
+import { getDictionary } from "@/lib/i18n/utils";
 import { cn } from "@/lib/utils";
 import { createClient } from "@/prismicio";
 import { Content, asDate } from "@prismicio/client";
@@ -15,6 +16,7 @@ type Props = {
 
 const WorksList: FC<Props> = async (props) => {
 	const { lang } = props;
+	const dictionary = await getDictionary(lang);
 
 	const client = createClient();
 	const workPages = await client
@@ -40,8 +42,9 @@ const WorksList: FC<Props> = async (props) => {
 
 	return (
 		<div className="py-10 md:py-24 px-5 w-full wrapper bg-eerie-dark h-screen">
-			<H1 className="mb-8 sticky top-10 z-40">Works</H1>
-
+			<H1 className="mb-8 sticky top-10 z-40">
+				{dictionary.firstLevelPages.works}
+			</H1>
 			<div className="w-full mx-auto content">
 				{workPages.map((work) => {
 					const workData = work.data.work.data;
