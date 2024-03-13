@@ -11,6 +11,7 @@ import { Content, asLink } from "@prismicio/client";
 import { PrismicRichText, SliceZone } from "@prismicio/react";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
+import Script from "next/script";
 import { FC } from "react";
 import { SoftwareApplication } from "schema-dts";
 
@@ -61,6 +62,7 @@ const WorkPage: FC<Props> = async (props) => {
 		applicationCategory: "WebApplication",
 		description: page.data.meta_description || "",
 		headline: `${page.data.meta_title} | Thibault Walterspieler`,
+		operatingSystem: "Web",
 		author: {
 			"@type": "Person",
 			name: "Thibault Walterspieler",
@@ -74,8 +76,9 @@ const WorkPage: FC<Props> = async (props) => {
 
 	return (
 		<>
-			<script
+			<Script
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+				id="json-ld-software-application"
 				type="application/ld+json"
 			/>
 			<ScrollArea className="flex flex-col">
