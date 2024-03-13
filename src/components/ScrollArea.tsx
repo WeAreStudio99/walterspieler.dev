@@ -6,9 +6,5 @@ type Props = PropsWithChildren<{
 }>;
 
 export const ScrollArea: FC<Props> = ({ className, ...rest }) => (
-	<div
-		className={cn("scrollable-area relative w-full", className)}
-		// id={hasScrollTitle ? SCROLL_AREA_ID : undefined}
-		{...rest}
-	/>
+	<div className={cn("scrollable-area relative w-full", className)} {...rest} />
 );

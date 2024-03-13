@@ -1,8 +1,10 @@
 "use client";
+
 import { formatDateToMonthYear } from "@/lib/date";
 import { Locale } from "@/lib/i18n/types";
 import { cn } from "@/lib/utils";
 import { Content, asDate } from "@prismicio/client";
+import { motion } from "framer-motion";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -25,23 +27,27 @@ const WorkMenuContent: FC<Props> = ({ lang, workPages }) => {
 	const currentWork = splitPathname[splitPathname.length - 1];
 
 	return (
-		<>
-			<div className="flex w-full flex-col">
-				<div className="w-full p-4">
-					<span className={cn("font-bold text-lg")}>My works</span>
-				</div>
-				<div className="flex flex-col w-full p-4 gap-4">
-					{workPages.map((work) => {
-						const workData = work.data.work.data;
-						const company = workData.company[0];
+		<div className="flex w-full flex-col">
+			<div className="w-full p-4">
+				<span className={cn("font-bold text-lg")}>My works</span>
+			</div>
+			<div className="flex flex-col w-full p-4 gap-4">
+				{workPages.map((work) => {
+					const workData = work.data.work.data;
+					const company = workData.company[0];
 
-						const duration = workData.duration[0];
-						const date1 = asDate(duration?.start);
-						const date2 = asDate(duration?.end);
+					const duration = workData.duration[0];
+					const date1 = asDate(duration?.start);
+					const date2 = asDate(duration?.end);
 
-						const isActive = currentWork === work.uid;
+					const isActive = currentWork === work.uid;
 
-						return (
+					return (
+						<motion.div
+							key={work.id}
+							whileHover={{ scale: 1.05 }}
+							whileTap={{ scale: 0.95 }}
+						>
 							<Link
 								className={cn(
 									"group flex items-center justify-between rounded-lg p-4",
@@ -53,7 +59,6 @@ const WorkMenuContent: FC<Props> = ({ lang, workPages }) => {
 										? `/${lang}/works/${work.uid} `
 										: `/works/${work.uid}`
 								}
-								key={work.id}
 							>
 								<div className="flex flex-col  gap-2 text-base">
 									<span className="font-bold">{company && company.name}</span>
@@ -68,11 +73,11 @@ const WorkMenuContent: FC<Props> = ({ lang, workPages }) => {
 								</div>
 								<ChevronRight />
 							</Link>
-						);
-					})}
-				</div>
+						</motion.div>
+					);
+				})}
 			</div>
-		</>
+		</div>
 	);
 };
 

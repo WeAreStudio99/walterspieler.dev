@@ -6,6 +6,7 @@ import { Locale } from "@/lib/i18n/types";
 import { cn } from "@/lib/utils";
 import { LinkField, asLink } from "@prismicio/client";
 import { PrismicNextLink } from "@prismicio/next";
+import { motion } from "framer-motion";
 import { BoltIcon, DraftingCompass } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { FC, useContext } from "react";
@@ -31,23 +32,27 @@ export const NavigationLink: FC<Props> = ({ label, link }) => {
 	}
 
 	return (
-		<PrismicNextLink
-			className={cn(
-				"group flex items-center justify-between rounded-lg p-4 bg-metal border-grey border hover:bg-eerie-light transition-colors duration-200",
-				isActive && "bg-chinese-black",
-			)}
-			field={link}
-			onClick={closeMenu}
-			rel={({ isExternal }) => (isExternal ? "noreferrer nofollow" : undefined)}
-		>
-			{"type" in link && (
-				<div className="flex items-center gap-2 text-xl md:text-base">
-					{link.type === "home" && <BoltIcon className="w-4" />}
-					{link.type === "works" && <DraftingCompass className="w-4" />}
-					{link.type === "weAreStudio99" && <WeAreStudio99 className="w-4" />}
-					<span className="text-ellipsis overflow-hidden">{label}</span>
-				</div>
-			)}
-		</PrismicNextLink>
+		<motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+			<PrismicNextLink
+				className={cn(
+					"group flex items-center justify-between rounded-lg p-4 bg-metal border-grey border hover:bg-eerie-light transition-colors duration-200",
+					isActive && "bg-chinese-black",
+				)}
+				field={link}
+				onClick={closeMenu}
+				rel={({ isExternal }) =>
+					isExternal ? "noreferrer nofollow" : undefined
+				}
+			>
+				{"type" in link && (
+					<div className="flex items-center gap-2 text-xl md:text-base">
+						{link.type === "home" && <BoltIcon className="w-4" />}
+						{link.type === "works" && <DraftingCompass className="w-4" />}
+						{link.type === "weAreStudio99" && <WeAreStudio99 className="w-4" />}
+						<span className="text-ellipsis overflow-hidden">{label}</span>
+					</div>
+				)}
+			</PrismicNextLink>
+		</motion.div>
 	);
 };
