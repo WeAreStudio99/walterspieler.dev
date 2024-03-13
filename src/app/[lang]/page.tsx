@@ -5,7 +5,7 @@ import { components } from "@/slices";
 import { SliceZone } from "@prismicio/react";
 import { notFound } from "next/navigation";
 import { FC } from "react";
-import { Person, WithContext } from "schema-dts";
+import { ProfilePage, WithContext } from "schema-dts";
 
 type Params = {
 	lang: Locale;
@@ -37,23 +37,29 @@ const HomeLang: FC<Props> = async (props) => {
 		})
 		.catch(() => notFound());
 
-	const jsonLd: WithContext<Person> = {
+	const jsonLd: WithContext<ProfilePage> = {
 		"@context": "https://schema.org",
-		"@type": "Person",
+		"@type": "ProfilePage",
 		name: "Thibault Walterspieler",
-		jobTitle: "Fullstack engineer",
-		url: "https://walterspieler.dev",
-		address: {
-			"@type": "PostalAddress",
-			addressLocality: "Lyon",
-			addressRegion: "Rhône-Alpes",
-			addressCountry: "France",
-		},
-		email: "thibs@wearestudio99.fr",
-		worksFor: {
-			"@type": "Organization",
-			name: "WeAreStudio99",
-			url: "https://www.instagram.com/wearestudio99/",
+		mainEntity: {
+			"@type": "Person",
+			name: "Thibault Walterspieler",
+			description: "Fullstack engineer based in Lyon, France",
+			jobTitle: "Fullstack engineer",
+			affiliation: "WeAreStudio99",
+			url: "https://walterspieler.dev",
+			email: "thibs@wearestudio99.fr",
+			address: {
+				"@type": "PostalAddress",
+				addressLocality: "Lyon",
+				addressRegion: "Rhône-Alpes",
+				addressCountry: "France",
+			},
+			worksFor: {
+				"@type": "Organization",
+				name: "WeAreStudio99",
+				url: "https://www.instagram.com/wearestudio99/",
+			},
 		},
 		sameAs: [
 			"https://www.linkedin.com/in/thibault-walterspieler-84881716b/",
