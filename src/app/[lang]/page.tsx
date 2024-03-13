@@ -6,7 +6,7 @@ import { SliceZone } from "@prismicio/react";
 import { notFound } from "next/navigation";
 import Script from "next/script";
 import { FC } from "react";
-import { Person } from "schema-dts";
+import { Person, WithContext } from "schema-dts";
 
 type Params = {
 	lang: Locale;
@@ -38,7 +38,8 @@ const HomeLang: FC<Props> = async (props) => {
 		})
 		.catch(() => notFound());
 
-	const jsonLd: Person = {
+	const jsonLd: WithContext<Person> = {
+		"@context": "https://schema.org",
 		"@type": "Person",
 		name: "Thibault Walterspieler",
 		jobTitle: "Fullstack engineer",

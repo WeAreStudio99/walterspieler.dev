@@ -6,7 +6,7 @@ import { generateAlternates } from "@/lib/utils";
 import { Metadata } from "next";
 import Script from "next/script";
 import { FC } from "react";
-import { CollectionPage } from "schema-dts";
+import { CollectionPage, WithContext } from "schema-dts";
 
 type Params = {
 	lang: Locale;
@@ -24,7 +24,8 @@ const Works: FC<Props> = async (props) => {
 	const dictionary = await getDictionary(lang);
 	const { works } = dictionary;
 
-	const jsonLd: CollectionPage = {
+	const jsonLd: WithContext<CollectionPage> = {
+		"@context": "https://schema.org",
 		"@type": "CollectionPage",
 		name: works.metadata.title,
 		url: `https://walterspieler.dev/works`,

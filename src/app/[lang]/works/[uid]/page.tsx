@@ -13,7 +13,7 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Script from "next/script";
 import { FC } from "react";
-import { SoftwareApplication } from "schema-dts";
+import { SoftwareApplication, WithContext } from "schema-dts";
 
 type Params = {
 	lang: Locale;
@@ -55,7 +55,8 @@ const WorkPage: FC<Props> = async (props) => {
 	const company = page?.data?.work?.data?.company[0];
 	const companyLink = asLink(company?.website);
 
-	const jsonLd: SoftwareApplication = {
+	const jsonLd: WithContext<SoftwareApplication> = {
+		"@context": "https://schema.org",
 		"@type": "SoftwareApplication",
 		name: page.data.meta_title || uid,
 		url: `https://walterspieler.dev/works/${uid}`,
