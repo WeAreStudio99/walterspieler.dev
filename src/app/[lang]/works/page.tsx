@@ -4,7 +4,6 @@ import { Locale } from "@/lib/i18n/types";
 import { getDictionary } from "@/lib/i18n/utils";
 import { generateAlternates } from "@/lib/utils";
 import { Metadata } from "next";
-import Script from "next/script";
 import { FC } from "react";
 import { CollectionPage, WithContext } from "schema-dts";
 
@@ -41,9 +40,8 @@ const Works: FC<Props> = async (props) => {
 
 	return (
 		<>
-			<Script
+			<script
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-				id="json-ld-works"
 				type="application/ld+json"
 			/>
 			<EmptyWork lang={lang} />

@@ -11,7 +11,6 @@ import { Content, asLink } from "@prismicio/client";
 import { PrismicRichText, SliceZone } from "@prismicio/react";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Script from "next/script";
 import { FC } from "react";
 import { SoftwareApplication, WithContext } from "schema-dts";
 
@@ -77,9 +76,8 @@ const WorkPage: FC<Props> = async (props) => {
 
 	return (
 		<>
-			<Script
+			<script
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-				id="json-ld-software-application"
 				type="application/ld+json"
 			/>
 			<ScrollArea className="flex flex-col">
