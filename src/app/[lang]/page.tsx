@@ -5,6 +5,7 @@ import { components } from "@/slices";
 import { SliceZone } from "@prismicio/react";
 import { notFound } from "next/navigation";
 import { FC } from "react";
+import { Person } from "schema-dts";
 
 type Params = {
 	lang: Locale;
@@ -36,14 +37,45 @@ const HomeLang: FC<Props> = async (props) => {
 		})
 		.catch(() => notFound());
 
+	const jsonLd: Person = {
+		"@type": "Person",
+		name: "Thibault Walterspieler",
+		jobTitle: "Fullstack engineer",
+		url: "https://walterspieler.dev",
+		address: {
+			"@type": "PostalAddress",
+			addressLocality: "Lyon",
+			addressRegion: "Rhône-Alpes",
+			addressCountry: "France",
+		},
+		email: "thibs@wearestudio99.fr",
+		worksFor: {
+			"@type": "Organization",
+			name: "WeAreStudio99",
+			url: "https://www.instagram.com/wearestudio99/",
+		},
+		sameAs: [
+			"https://www.linkedin.com/in/thibault-walterspieler-84881716b/",
+			"https://github.com/ThibaultWalterspieler",
+			"https://stackoverflow.com/users/10094877/thibault-walterspieler",
+			"https://www.malt.fr/profile/thibaultwalterspieler",
+		],
+	};
+
 	return (
-		<ScrollArea className="flex flex-col">
-			<div className="content-wrapper">
-				<div className="content">
-					<SliceZone components={components} slices={page.data.slices} />
+		<>
+			<script
+				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+				type="application/ld+json"
+			/>
+			<ScrollArea className="flex flex-col">
+				<div className="content-wrapper">
+					<div className="content">
+						<SliceZone components={components} slices={page.data.slices} />
+					</div>
 				</div>
-			</div>
-		</ScrollArea>
+			</ScrollArea>
+		</>
 	);
 };
 

@@ -12,6 +12,7 @@ import { PrismicRichText, SliceZone } from "@prismicio/react";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { FC } from "react";
+import { SoftwareApplication } from "schema-dts";
 
 type Params = {
 	lang: Locale;
@@ -53,48 +54,72 @@ const WorkPage: FC<Props> = async (props) => {
 	const company = page?.data?.work?.data?.company[0];
 	const companyLink = asLink(company?.website);
 
+	const jsonLd: SoftwareApplication = {
+		"@type": "SoftwareApplication",
+		name: page.data.meta_title || uid,
+		url: `https://walterspieler.dev/works/${uid}`,
+		applicationCategory: "WebApplication",
+		description: page.data.meta_description || "",
+		headline: `${page.data.meta_title} | Thibault Walterspieler`,
+		author: {
+			"@type": "Person",
+			name: "Thibault Walterspieler",
+			jobTitle: "Fullstack Engineer",
+			affiliation: "WeAreStudio99",
+			url: "https://walterspieler.dev",
+		},
+		datePublished: page.first_publication_date,
+		dateModified: page.last_publication_date,
+	};
+
 	return (
-		<ScrollArea className="flex flex-col">
-			<div className="content-wrapper">
-				<article className="content">
-					<Breadcrumb
-						className={"mb-5"}
-						dictionary={dictionary}
-						lang={lang}
-						paths={[
-							{
-								label: "Works",
-								href: lang === "en-gb" ? "/works" : `/${lang}/works`,
-							},
-							{ label: company?.name || "" },
-						]}
-					/>
-					{company && (
-						<>
-							<div className="flex flex-col gap-1 mb-8">
-								<H1 className="mb-3">{company.name}</H1>
-								{companyLink && (
-									<a
-										className="hover:underline hover:text-pearl"
-										href={companyLink}
-										rel={"noopener nofollow"}
-									>
-										{companyLink.replace(/(^\w+:|^)\/\//, "")}
-									</a>
-								)}
-								<span className="text-stone-400">
-									<PrismicRichText
-										field={page.data.work.data.company[0]?.description}
-									/>
-								</span>
-								<Separator className="mt-8" />
-							</div>
-							<SliceZone components={components} slices={page.data.slices} />
-						</>
-					)}
-				</article>
-			</div>
-		</ScrollArea>
+		<>
+			<script
+				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+				type="application/ld+json"
+			/>
+			<ScrollArea className="flex flex-col">
+				<div className="content-wrapper">
+					<article className="content">
+						<Breadcrumb
+							className={"mb-5"}
+							dictionary={dictionary}
+							lang={lang}
+							paths={[
+								{
+									label: "Works",
+									href: lang === "en-gb" ? "/works" : `/${lang}/works`,
+								},
+								{ label: company?.name || "" },
+							]}
+						/>
+						{company && (
+							<>
+								<div className="flex flex-col gap-1 mb-8">
+									<H1 className="mb-3">{company.name}</H1>
+									{companyLink && (
+										<a
+											className="hover:underline hover:text-pearl"
+											href={companyLink}
+											rel={"noopener nofollow"}
+										>
+											{companyLink.replace(/(^\w+:|^)\/\//, "")}
+										</a>
+									)}
+									<span className="text-stone-400">
+										<PrismicRichText
+											field={page.data.work.data.company[0]?.description}
+										/>
+									</span>
+									<Separator className="mt-8" />
+								</div>
+								<SliceZone components={components} slices={page.data.slices} />
+							</>
+						)}
+					</article>
+				</div>
+			</ScrollArea>
+		</>
 	);
 };
 

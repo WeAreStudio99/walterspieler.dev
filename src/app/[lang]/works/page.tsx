@@ -5,6 +5,7 @@ import { getDictionary } from "@/lib/i18n/utils";
 import { generateAlternates } from "@/lib/utils";
 import { Metadata } from "next";
 import { FC } from "react";
+import { CollectionPage } from "schema-dts";
 
 type Params = {
 	lang: Locale;
@@ -13,6 +14,41 @@ type Params = {
 
 type Props = {
 	params: Params;
+};
+
+const Works: FC<Props> = async (props) => {
+	const { params } = props;
+	const { lang } = params;
+
+	const dictionary = await getDictionary(lang);
+	const { works } = dictionary;
+
+	const jsonLd: CollectionPage = {
+		"@type": "CollectionPage",
+		name: works.metadata.title,
+		url: `https://walterspieler.dev/works`,
+		description: works.metadata.description,
+		author: {
+			"@type": "Person",
+			name: "Thibault Walterspieler",
+			jobTitle: "Fullstack Engineer",
+			affiliation: "WeAreStudio99",
+			url: "https://walterspieler.dev",
+		},
+	};
+
+	return (
+		<>
+			<script
+				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+				type="application/ld+json"
+			/>
+			<EmptyWork lang={lang} />
+			<div className="flex-1 lg:hidden">
+				<WorksList lang={lang} />
+			</div>
+		</>
+	);
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -55,19 +91,5 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 		},
 	};
 }
-
-const Works: FC<Props> = (props) => {
-	const { params } = props;
-	const { lang } = params;
-
-	return (
-		<>
-			<EmptyWork lang={lang} />
-			<div className="flex-1 lg:hidden">
-				<WorksList lang={lang} />
-			</div>
-		</>
-	);
-};
 
 export default Works;

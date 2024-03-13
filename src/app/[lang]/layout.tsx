@@ -81,7 +81,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 		.catch(() => notFound());
 
 	return {
-		metadataBase: new URL(process.env.base_url || "https://walterspieler.dev"),
+		metadataBase: new URL(process.env.BASE_URL || "https://walterspieler.dev"),
 		title:
 			page.data.meta_title || "Thibault Walterspieler | Fullstack engineer",
 		description:
