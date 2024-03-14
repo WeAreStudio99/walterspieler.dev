@@ -32,7 +32,7 @@ export const NavigationLink: FC<Props> = ({ label, link }) => {
 	}
 
 	return (
-		<motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+		<motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
 			<PrismicNextLink
 				className={cn(
 					"group flex items-center justify-between rounded-lg p-4 bg-metal border-grey border hover:bg-eerie-light transition-colors duration-200",
