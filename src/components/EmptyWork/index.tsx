@@ -20,7 +20,7 @@ const EmptyWork: FC<Props> = async ({ className, lang }) => {
 				className,
 			)}
 		>
-			<span className="text-white text-3xl font-bold">
+			<span className="text-3xl font-bold inline-flex animate-text-gradient bg-gradient-to-r from-stone-400 via-metal to-stone-400 bg-[200%_auto]  text-center text-transparent bg-clip-text">
 				{dictionary.selectAWork}
 			</span>
 		</div>
