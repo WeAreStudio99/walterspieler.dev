@@ -34,7 +34,7 @@ export const SideMenu: FC<Props> = ({ children, isInner }) => {
 	return (
 		<>
 			{!isMenuOpen && (
-				<div className="absolute top-10 right-4 lg:hidden bg-metal/5 z-50 backdrop-blur rounded-lg p-2  border-grey border">
+				<div className="absolute top-10 right-4 lg:hidden bg-metal/5 z-50 backdrop-blur rounded-lg p-2 border-grey border">
 					<Command onClick={openMenu} size={24} />
 				</div>
 			)}

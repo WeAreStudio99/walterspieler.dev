@@ -15,8 +15,8 @@ const Separator = React.forwardRef<
 	) => (
 		<SeparatorPrimitive.Root
 			className={cn(
-				"shrink-0 bg-grey",
-				orientation === "horizontal" ? "h-[1px] w-full" : "h-full w-[1px]",
+				"shrink-0 bg-metal/50 backdrop-blur border-grey border rounded-lg",
+				orientation === "horizontal" ? "h-[5px] w-full" : "h-full w-[1px]",
 				className,
 			)}
 			decorative={decorative}
