@@ -32,7 +32,7 @@ const formatDateDiff = async (
       monthsDiff >= 1
         ? ` ${getPluralization(monthsDiff, dictionary, 'month')}`
         : '';
-    return `${yearStr} ${locale === 'fr-fr' && 'et '}${monthStr}`;
+    return `${yearStr} ${locale === 'fr-fr' ? 'et ' : 'and '}${monthStr}`;
   }
 
   const monthsDiff = differenceInCalendarMonths(date2, date1);
