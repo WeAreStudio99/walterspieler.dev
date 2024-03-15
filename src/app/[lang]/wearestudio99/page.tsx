@@ -1,4 +1,4 @@
-import ContentWrapper from "@/components/ContentWrapper";
+import { ScrollArea } from "@/components/ScrollArea";
 import { Locale } from "@/lib/i18n/types";
 import { getDictionary } from "@/lib/i18n/utils";
 import { generateAlternates } from "@/lib/utils";
@@ -24,9 +24,13 @@ const WeAreStudio99Page: FC<Props> = async (props) => {
 	const page = await client.getSingle("weAreStudio99", { lang });
 
 	return (
-		<ContentWrapper>
-			<SliceZone components={components} slices={page.data.slices} />
-		</ContentWrapper>
+		<ScrollArea className="flex flex-col">
+			<div className="content-wrapper">
+				<article className="content">
+					<SliceZone components={components} slices={page.data.slices} />
+				</article>
+			</div>
+		</ScrollArea>
 	);
 };
 

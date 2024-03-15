@@ -7,17 +7,15 @@ import "./_internal/style.css";
 
 type Props = {
 	lang: Locale;
-	className?: string;
 };
 
-const EmptyWork: FC<Props> = async ({ className, lang }) => {
+const EmptyWork: FC<Props> = async ({ lang }) => {
 	const dictionary = await getDictionary(lang);
 
 	return (
 		<div
 			className={cn(
 				"hidden w-full h-full lg:flex justify-center items-center empty-layout",
-				className,
 			)}
 		>
 			<span className="text-3xl font-bold inline-flex animate-text-gradient bg-gradient-to-r from-stone-400 via-metal to-stone-400 bg-[200%_auto]  text-center text-transparent bg-clip-text">

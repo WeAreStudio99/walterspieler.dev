@@ -36,7 +36,7 @@ const ParagraphBlock: FC<Props> = ({ field }) => {
 						<div className="flex justify-center flex-col">
 							<Image
 								alt={node.alt || ""}
-								className="lg:max-w-[48rem] lg:max-h-[550px] object-cover"
+								className="lg:max-w-[48rem] lg:max-h-[550px] object-cover rounded-t-lg"
 								height={node.dimensions.height}
 								priority={node.copyright?.includes("priority") ? true : false}
 								sizes="(max-width: 768px) 90vw, (max-width: 1024px) 688px, 768px"

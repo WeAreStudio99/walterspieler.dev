@@ -1,21 +1,16 @@
-import { Skeleton } from "@/components/ui/skeleton";
+import { cn } from "@/lib/utils";
 import { FC } from "react";
 
-const Loading: FC = () => {
+const Loading: FC = async () => {
 	return (
-		<div className="content-wrapper ">
-			<div className="content">
-				<div className="flex flex-col mb-8">
-					<Skeleton className="h-6 w-56 mb-5" />
-					<Skeleton className="h-12 w-52 mb-5" />
-					<Skeleton className="h-6 w-44 mb-2" />
-					<Skeleton className="h-12 w-full mb-5" />
-					<Skeleton className="h-1 w-full mt-8" />
-				</div>
-				<Skeleton className="h-36 w-full mb-6" />
-				<Skeleton className="h-64 w-full mb-6" />
-				<Skeleton className="h-48 w-full mb-6" />
-			</div>
+		<div
+			className={cn(
+				"hidden w-full h-full lg:flex justify-center items-center empty-layout",
+			)}
+		>
+			<span className="text-3xl font-bold inline-flex animate-text-gradient bg-gradient-to-r from-stone-400 via-metal to-stone-400 bg-[200%_auto]  text-center text-transparent bg-clip-text">
+				Loading work...
+			</span>
 		</div>
 	);
 };

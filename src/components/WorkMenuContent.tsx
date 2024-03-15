@@ -68,7 +68,7 @@ const WorkMenuContent: FC<Props> = ({ lang, workPages }) => {
 											<span className="backdrop absolute inset-px rounded-[8px] bg-chinese-black transition-colors duration-200" />
 										</>
 									)}
-									<div className="space-y-2 z-10 flex flex-col gap-2 text-base">
+									<div className="space-y-2 z-10 flex flex-col text-base">
 										<h3 className="font-bold">{company && company.name}</h3>
 										{date1 && date2 && (
 											<div className="text-sm flex items-center gap-1">
