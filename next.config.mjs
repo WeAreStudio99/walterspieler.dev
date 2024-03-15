@@ -1,7 +1,4 @@
-export const repositoryName = process.env.NEXT_PUBLIC_PRISMIC_ENVIRONMENT;
-
-/** @returns {Promise<import('next').NextConfig>} */
-export default async () => {
+const nextConfig = async () => {
   return {
     images: {
       remotePatterns: [
@@ -11,5 +8,19 @@ export default async () => {
         },
       ],
     },
+    async rewrites() {
+      return [
+        {
+          source: '/ingest/static/:path*',
+          destination: 'https://eu-assets.i.posthog.com/static/:path*',
+        },
+        {
+          source: '/ingest/:path*',
+          destination: 'https://eu.i.posthog.com/:path*',
+        },
+      ];
+    },
   };
 };
+
+export default nextConfig;
