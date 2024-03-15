@@ -10,8 +10,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { MenuContextProvider } from "@/contexts/MenuContext";
 import { Locale } from "@/lib/i18n/types";
 import { getDictionary } from "@/lib/i18n/utils";
-import { createClient, repositoryName } from "@/prismicio";
-import { PrismicPreview } from "@prismicio/next";
+import { createClient } from "@/prismicio";
 import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
 
@@ -52,7 +51,6 @@ const LangRootLayout: FC<Props> = (props) => {
 						spaceGrotesk.variable,
 					)}
 				>
-					<PrismicPreview repositoryName={repositoryName} />
 					<PostHogPageView />
 					<MenuContextProvider>
 						<div className="lg:flex">
