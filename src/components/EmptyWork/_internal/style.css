@@ -1,18 +1,20 @@
-.empty-layout::before {
-  --line: hsl(0 0% 95% / 0.15);
-  --size: 60px;
-  content: '';
-  height: 100vh;
-  width: 100vw;
-  position: fixed;
-  background:
-    linear-gradient(90deg, var(--line) 1px, transparent 1px var(--size)) 50% 50% /
-      var(--size) var(--size, 60px),
-    linear-gradient(var(--line) 1px, transparent 1px var(--size)) 50% 50% /
-      var(--size) var(--size, 60px);
-  mask: linear-gradient(-15deg, transparent 30%, white);
-  top: 0;
-  transform-style: flat;
-  pointer-events: none;
-  z-index: -1;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .empty-layout::before {
+    @apply fixed top-0 left-0 w-screen pointer-events-none;
+    content: '';
+    height: 150dvh;
+    position: fixed;
+    z-index: -100;
+    transform: translateY(-50vh);
+    background:
+      linear-gradient(90deg, hsl(0 0% 95% / 0.15) 1px, transparent 1px 60px) 50%
+        50% / 60px 60px,
+      linear-gradient(hsl(0 0% 95% / 0.15) 1px, transparent 1px 60px) 50% 50% /
+        60px 60px;
+    mask: linear-gradient(-15deg, transparent 30%, white);
+  }
 }

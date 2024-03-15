@@ -114,7 +114,7 @@ const WorkPage: FC<Props> = async (props) => {
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 				type="application/ld+json"
 			/>
-			<ScrollArea className="flex flex-col">
+			<ScrollArea className="flex flex-col md:pl-72 z-0">
 				<div className="content-wrapper">
 					<article className="content">
 						<Breadcrumb className="mb-5">

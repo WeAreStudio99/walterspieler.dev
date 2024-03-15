@@ -17,6 +17,11 @@ const variants: Variants = {
 	exit: { x: "100%", opacity: 1 },
 };
 
+const innerMenuVariants: Variants = {
+	closed: { x: "-100%", opacity: 1 },
+	animate: { x: "0%", opacity: 1 },
+};
+
 const iconVariants: Variants = {
 	open: { opacity: 1 },
 	closed: { opacity: 0 },
@@ -27,7 +32,9 @@ export const SideMenu: FC<Props> = ({ children, isInner }) => {
 
 	const scrollAreaClasses = cn(
 		"bg-eerie-dark lg:flex lg:flex-col border-r border-grey z-40 justify-between",
-		isInner ? "lg:w-72 xl:w-72" : "lg:w-60 xl:w-72 flex flex-col",
+		isInner
+			? "lg:w-72 xl:w-72 shadow"
+			: "lg:w-60 xl:w-72 flex flex-col shadow-xl",
 		!isMenuOpen && "hidden",
 	);
 
@@ -80,11 +87,25 @@ export const SideMenu: FC<Props> = ({ children, isInner }) => {
 				</AnimatePresence>
 			)}
 
-			<ScrollArea
-				className={cn(scrollAreaClasses, isInner && "hidden md:block")}
-			>
-				{children}
-			</ScrollArea>
+			{isInner ? (
+				<motion.div
+					animate="animate"
+					className="hidden md:block fixed z-10"
+					initial="closed"
+					transition={{
+						duration: 0.5,
+					}}
+					variants={innerMenuVariants}
+				>
+					<ScrollArea className={scrollAreaClasses}>{children}</ScrollArea>
+				</motion.div>
+			) : (
+				<ScrollArea
+					className={cn(scrollAreaClasses, isInner && "hidden md:block")}
+				>
+					{children}
+				</ScrollArea>
+			)}
 		</>
 	);
 };

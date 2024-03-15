@@ -44,7 +44,7 @@ const Works: FC<Props> = async (props) => {
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 				type="application/ld+json"
 			/>
-			<EmptyWork lang={lang} />
+			<EmptyWork label={dictionary.selectAWork} />
 			<div className="flex-1 lg:hidden">
 				<WorksList lang={lang} />
 			</div>

@@ -43,7 +43,7 @@ const ParagraphBlock: FC<Props> = ({ field }) => {
 								src={node.url}
 								width={node.dimensions.width}
 							/>
-							<div className="bg-chinese-black text-stone-400 text-xs lg:max-w-[900px] text-center py-1 px-2">
+							<div className="bg-chinese-black text-stone-400 text-xs lg:max-w-[900px] text-center py-1 px-2 rounded-b">
 								{node.alt}
 							</div>
 						</div>
