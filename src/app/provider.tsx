@@ -4,8 +4,7 @@ import { PostHogProvider } from "posthog-js/react";
 
 if (typeof window !== "undefined") {
 	posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY!, {
-		api_host: `https://walterspieler.dev/ingest`,
-		ui_host: `https://eu.posthog.com`,
+		api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST,
 		capture_pageview: false,
 		persistence: "localStorage",
 	});
