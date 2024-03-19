@@ -32,7 +32,7 @@ const SocialsList = ({ slice }: SocialsListProps): JSX.Element => {
 			data-slice-type={slice.slice_type}
 			data-slice-variation={slice.variation}
 		>
-			<div className="flex my-6">
+			<div className="flex flex-wrap my-6 gap-4">
 				{items.map((item: { social: { data: SocialDocumentData } }, idx) => {
 					if (!item.social.data || !item.social.data.url) {
 						return <></>;
@@ -41,7 +41,7 @@ const SocialsList = ({ slice }: SocialsListProps): JSX.Element => {
 					const link =
 						"url" in item.social.data.url ? item.social.data.url.url : "/";
 					return (
-						<Button className="mr-5" key={idx} variant="outline">
+						<Button className="" key={idx} variant="outline">
 							{item.social.data.label === "Linkedin" && (
 								<LinkedInLogoIcon className="mr-2 h-4 w-4" />
 							)}
