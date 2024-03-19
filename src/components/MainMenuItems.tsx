@@ -32,7 +32,7 @@ const MainMenuItems: FC<Props> = ({ items, lang }) => {
 
 	return (
 		<div className="flex w-full h-full flex-col text-sm justify-between p-4">
-			<div className="md:hidden flex h-full flex-col gap-3 pt-20 md:pt-0">
+			<nav className="md:hidden flex h-full flex-col gap-3 pt-20 md:pt-0">
 				{items.map((item, i) => {
 					return (
 						<motion.div animate={controls} custom={i} key={item.id}>
@@ -45,8 +45,8 @@ const MainMenuItems: FC<Props> = ({ items, lang }) => {
 						</motion.div>
 					);
 				})}
-			</div>
-			<div className="hidden md:flex h-full flex-col gap-3 pt-20 md:pt-0">
+			</nav>
+			<nav className="hidden md:flex h-full flex-col gap-3 pt-20 md:pt-0">
 				{items.map((item) => {
 					return (
 						<NavigationLink
@@ -57,7 +57,7 @@ const MainMenuItems: FC<Props> = ({ items, lang }) => {
 						/>
 					);
 				})}
-			</div>
+			</nav>
 		</div>
 	);
 };

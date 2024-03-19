@@ -22,17 +22,17 @@ export const MenuContent: FC<Props> = async ({ lang }) => {
 
 	return (
 		<>
-			<div>
+			<header>
 				<div className="hidden w-full p-4 md:flex flex-col">
 					<span className="text-lg font-bold">Thibault Walterspieler</span>
 					<span className="text-stone-400 text-xs">Fullstack engineer</span>
 				</div>
 				<MainMenuItems items={navigationItems} lang={lang} />
-			</div>
-			<div className="flex justify-between border-t-grey md:border-t p-5  gap-3 lg:flex-col xl:flex-row ">
+			</header>
+			<footer className="flex justify-between border-t-grey md:border-t p-5  gap-3 lg:flex-col xl:flex-row ">
 				<MiscMenu lang={lang} />
 				<LangSelector currentLang={lang} locales={locales} />
-			</div>
+			</footer>
 		</>
 	);
 };
