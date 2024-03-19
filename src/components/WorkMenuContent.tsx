@@ -12,6 +12,7 @@ import { FC } from "react";
 
 type Props = {
 	lang: Locale;
+	title: string;
 	workPages: (Content.WorkPostDocument & {
 		data: {
 			work: {
@@ -21,7 +22,7 @@ type Props = {
 	})[];
 };
 
-const WorkMenuContent: FC<Props> = ({ lang, workPages }) => {
+const WorkMenuContent: FC<Props> = ({ lang, workPages, title }) => {
 	const pathname = usePathname();
 	const splitPathname = pathname.split("/");
 	const currentWork = splitPathname[splitPathname.length - 1];
@@ -29,7 +30,7 @@ const WorkMenuContent: FC<Props> = ({ lang, workPages }) => {
 	return (
 		<div className="flex w-full flex-col">
 			<div className="w-full p-4">
-				<span className={cn("font-bold text-lg")}>My works</span>
+				<span className={cn("font-bold text-lg")}>{title}</span>
 			</div>
 			<div className="flex flex-col w-full p-4 gap-4">
 				{workPages.map((work) => {
@@ -57,15 +58,15 @@ const WorkMenuContent: FC<Props> = ({ lang, workPages }) => {
 							>
 								<div
 									className={cn(
-										"group relative  overflow-hidden px-4 py-5  group flex items-center justify-between rounded-lg p-4 bg-metal border-grey border hover:bg-eerie-light transition-colors shadow-duration-200",
+										"group relative   px-4 py-5  group flex items-center justify-between rounded-lg p-4 bg-metal border-grey border hover:bg-eerie-light transition-colors shadow-duration-200",
 										isActive && "[0_1000px_0_0_hsl(0_0%_20%)_inset]  ",
 									)}
 								>
 									{isActive && (
 										<>
-											<span className="spark mask-gradient animate-flip before:animate-rotate absolute inset-0 h-[100%] w-[100%] overflow-hidden rounded-lg [mask:linear-gradient(white,_transparent_50%)] before:absolute before:aspect-square before:w-[200%] before:rotate-[-90deg] before:bg-[conic-gradient(from_0deg,transparent_0_340deg,white_360deg)] before:content-[''] before:[inset:0_auto_auto_50%] before:[translate:-50%_-15%]" />
+											<span className="spark mask-gradient animate-flip before:animate-rotate absolute inset-0 h-[100%] w-[100%]  rounded-lg [mask:linear-gradient(#7ACCB8,_transparent_50%)] before:absolute before:aspect-square before:w-[200%] before:rotate-[-90deg] before:bg-[conic-gradient(from_0deg,transparent_0_340deg,#7ACCB8_360deg)] before:content-[''] before:[inset:0_auto_auto_50%] before:[translate:-50%_-15%]" />
 
-											<span className="backdrop absolute inset-px rounded-[8px] bg-chinese-black transition-colors duration-200" />
+											<span className="backdrop absolute inset-px rounded-lg bg-chinese-black transition-colors duration-200" />
 										</>
 									)}
 									<div className="space-y-2 z-10 flex flex-col text-base">

@@ -1,6 +1,7 @@
 import { SideMenu } from "@/components/SideMenu";
 import WorkMenuContent from "@/components/WorkMenuContent";
 import { Locale } from "@/lib/i18n/types";
+import { getDictionary } from "@/lib/i18n/utils";
 import { createClient } from "@/prismicio";
 import { Content } from "@prismicio/client";
 import { FC, PropsWithChildren } from "react";
@@ -13,9 +14,11 @@ type Props = PropsWithChildren<{
 	params: Params;
 }>;
 
-const WorkLayout: FC<Props> = async (props) => {
+const WorksLayout: FC<Props> = async (props) => {
 	const { children, params } = props;
 	const { lang } = params;
+
+	const dictionary = await getDictionary(lang);
 
 	const client = createClient();
 	const workPages = await client.getAllByType<
@@ -34,11 +37,15 @@ const WorkLayout: FC<Props> = async (props) => {
 	return (
 		<>
 			<SideMenu isInner>
-				<WorkMenuContent lang={lang} workPages={workPages} />
+				<WorkMenuContent
+					lang={lang}
+					title={dictionary.menuItems.myWorks}
+					workPages={workPages}
+				/>
 			</SideMenu>
-			<div className="flex-1">{children}</div>
+			<div className="flex-1 relative">{children}</div>
 		</>
 	);
 };
 
-export default WorkLayout;
+export default WorksLayout;

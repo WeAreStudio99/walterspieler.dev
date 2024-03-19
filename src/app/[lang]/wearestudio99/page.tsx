@@ -21,7 +21,10 @@ const WeAreStudio99Page: FC<Props> = async (props) => {
 	const { lang } = params;
 
 	const client = createClient();
-	const page = await client.getSingle("weAreStudio99", { lang });
+	const page = await client.getSingle("weAreStudio99", {
+		lang,
+		fetchLinks: ["social.label", "social.url", "social.type"],
+	});
 
 	return (
 		<ScrollArea className="flex flex-col">

@@ -36,6 +36,7 @@
 		}
 	},
 	"menuItems": {
+		"myWorks": "My works",
 		"other": "Other",
 		"legalNotice": "Legal Notice"
 	},

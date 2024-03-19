@@ -36,6 +36,7 @@
 		}
 	},
 	"menuItems": {
+		"myWorks": "Mes travaux",
 		"other": "Autre",
 		"legalNotice": "Mentions légales"
 	},

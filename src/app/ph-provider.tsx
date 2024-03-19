@@ -10,11 +10,11 @@ if (typeof window !== "undefined") {
 	});
 }
 
-export function PHProvider({
+const PHProvider = ({
 	children,
 }: {
 	children: React.ReactNode;
-}) {
+}) => {
 	if (process.env.NODE_ENV === "development") {
 		return <>{children}</>;
 	}
@@ -28,4 +28,6 @@ export function PHProvider({
 	}
 
 	return <PostHogProvider client={posthog}>{children}</PostHogProvider>;
-}
+};
+
+export default PHProvider;

@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { Space_Grotesk } from "next/font/google";
 import { FC, PropsWithChildren } from "react";
 
-import { PHProvider } from "@/app/provider";
+import PostHogProvider from "@/app/ph-provider";
 import { MenuContent } from "@/components/MenuContent";
 import { SideMenu } from "@/components/SideMenu";
 import { Toaster } from "@/components/ui/toaster";
@@ -40,7 +40,7 @@ const LangRootLayout: FC<Props> = (props) => {
 
 	return (
 		<html lang={lang}>
-			<PHProvider>
+			<PostHogProvider>
 				<body
 					className={cn(
 						"dark",
@@ -62,7 +62,7 @@ const LangRootLayout: FC<Props> = (props) => {
 					</MenuContextProvider>
 					<Toaster />
 				</body>
-			</PHProvider>
+			</PostHogProvider>
 		</html>
 	);
 };
