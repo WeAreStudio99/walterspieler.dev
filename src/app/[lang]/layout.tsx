@@ -13,6 +13,7 @@ import { getDictionary } from "@/lib/i18n/utils";
 import { createClient } from "@/prismicio";
 import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
+import Script from "next/script";
 
 const PostHogPageView = dynamic(
 	() => import("../../components/PostHogPageView"),
@@ -40,6 +41,14 @@ const LangRootLayout: FC<Props> = (props) => {
 
 	return (
 		<html lang={lang}>
+			{process.env.NODE_ENV === "production" && (
+				<Script
+					async
+					data-website-id={process.env.NEXT_PUBLIC_UMAMI_ID}
+					src="https://eu.umami.is/script.js"
+					strategy="afterInteractive"
+				/>
+			)}
 			<PostHogProvider>
 				<body
 					className={cn(
