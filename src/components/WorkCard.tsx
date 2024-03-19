@@ -16,6 +16,7 @@ import { PrismicRichText } from "@prismicio/react";
 import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
 import { CalendarIcon } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { FC } from "react";
 import { Simplify } from "../../prismicio-types";
 
@@ -46,12 +47,23 @@ const WorkCard: FC<Props> = ({
 	buttonLabel,
 	tags,
 }) => {
+	const router = useRouter();
+
 	const mouseX = useMotionValue(0);
 	const mouseY = useMotionValue(0);
 
 	return (
 		<div
-			className="group relative w-full overflow-hidden rounded-xl bg-metal my-8"
+			className="group relative w-full overflow-hidden rounded-xl bg-metal my-8 cursor-pointer"
+			onClick={() => {
+				if (relatedWorkPostLink) {
+					router.push(
+						lang !== "en-gb"
+							? `/${lang}/works/${relatedWorkPostLink}`
+							: `/works/${relatedWorkPostLink}`,
+					);
+				}
+			}}
 			onMouseMove={(e) => {
 				const { left, top } = e.currentTarget.getBoundingClientRect();
 
