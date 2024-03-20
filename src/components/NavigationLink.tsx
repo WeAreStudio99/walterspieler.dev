@@ -22,7 +22,7 @@ export const NavigationLink: FC<Props> = ({ label, link }) => {
 	const { closeMenu } = useContext(MenuContext) ?? {};
 
 	let isActive = false;
-	if (pathname?.length > 0) {
+	if (pathname?.length > 0 && "type" in link) {
 		const url = asLink(link);
 		if (url) {
 			const splittedPathname = pathname.split("/");
