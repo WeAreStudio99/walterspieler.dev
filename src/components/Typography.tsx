@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import { forwardRef } from "react";
 
 const H1 = forwardRef<
@@ -41,7 +42,10 @@ const H4 = forwardRef<
 	React.HTMLAttributes<HTMLHeadingElement>
 >(({ className, ...props }, ref) => (
 	<h4
-		className={`scroll-m-20 text-xl font-semibold tracking-tight ${className}`}
+		className={cn(
+			`scroll-m-20 text-xl font-semibold tracking-tight`,
+			className,
+		)}
 		ref={ref}
 		{...props}
 	/>
@@ -53,7 +57,7 @@ const P = forwardRef<
 	React.HTMLAttributes<HTMLParagraphElement>
 >(({ className, ...props }, ref) => (
 	<p
-		className={`leading-7 [&:not(:first-child)]:mt-6 ${className}`}
+		className={cn(`leading-7 [&:not(:first-child)]:mt-6`, className)}
 		ref={ref}
 		{...props}
 	/>
@@ -70,7 +74,7 @@ LI.displayName = "LI";
 const UL = forwardRef<HTMLUListElement, React.HTMLAttributes<HTMLUListElement>>(
 	({ className, ...props }, ref) => (
 		<ul
-			className={`my-6 ml-6 list-disc [&>li]:mt-2 ${className}`}
+			className={cn(`my-6 ml-6 list-disc [&>li]:mt-2`, className)}
 			ref={ref}
 			{...props}
 		/>
