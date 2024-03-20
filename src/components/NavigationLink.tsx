@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 import { LinkField, asLink } from "@prismicio/client";
 import { PrismicNextLink } from "@prismicio/next";
 import { motion } from "framer-motion";
-import { BoltIcon, DraftingCompass } from "lucide-react";
+import { BoltIcon, DraftingCompass, Nfc } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { FC, useContext } from "react";
 
@@ -45,11 +45,16 @@ export const NavigationLink: FC<Props> = ({ label, link }) => {
 					isExternal ? "noreferrer nofollow" : undefined
 				}
 			>
-				{"type" in link && (
+				{"type" in link ? (
 					<div className="flex items-center gap-2 text-xl md:text-base">
 						{link.type === "home" && <BoltIcon className="w-4" />}
 						{link.type === "works" && <DraftingCompass className="w-4" />}
 						{link.type === "weAreStudio99" && <WeAreStudio99 className="w-4" />}
+						<span className="text-ellipsis overflow-hidden">{label}</span>
+					</div>
+				) : (
+					<div className="flex items-center gap-2 text-xl md:text-base">
+						{label === "Contact" && <Nfc className="w-4" />}
 						<span className="text-ellipsis overflow-hidden">{label}</span>
 					</div>
 				)}
