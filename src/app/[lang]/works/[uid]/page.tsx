@@ -78,7 +78,7 @@ const WorkPage: FC<Props> = async (props) => {
 			/>
 			<ScrollArea className="flex flex-col md:pl-72 z-0 blueprint-layout">
 				<div className="content-wrapper mt-14 md:mt-0">
-					<Link href="/works">
+					<Link href={lang === "en-gb" ? "/works" : `/${lang}/works`}>
 						<div className="fixed top-8 left-4 lg:hidden bg-metal/5 z-50 backdrop-blur rounded-lg p-2 border-grey border md:hidden">
 							<ChevronLeft size={24} />
 						</div>
