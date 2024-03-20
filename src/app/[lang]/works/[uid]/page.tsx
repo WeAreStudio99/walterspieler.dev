@@ -6,7 +6,9 @@ import { getDictionary } from "@/lib/i18n/utils";
 import { generateAlternates } from "@/lib/utils";
 import { createClient } from "@/prismicio";
 import { Content } from "@prismicio/client";
+import { ChevronLeft } from "lucide-react";
 import { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { FC } from "react";
 import { SoftwareApplication, WithContext } from "schema-dts";
@@ -46,25 +48,6 @@ const WorkPage: FC<Props> = async (props) => {
 		})
 		.catch(() => notFound());
 
-	const workPosts = await client.getAllByType<
-		Content.WorkPostDocument & {
-			data: {
-				work: {
-					data: Pick<Content.WorkDocument["data"], "duration" | "company">;
-				};
-			};
-		}
-	>("workPost", {
-		lang,
-		orderings: [
-			{
-				field: "my.work.duration.end",
-				direction: "desc",
-			},
-		],
-		fetchLinks: ["work.company", "work.duration"],
-	});
-
 	const company = page?.data?.work?.data?.company[0];
 
 	const jsonLd: WithContext<SoftwareApplication> = {
@@ -94,13 +77,16 @@ const WorkPage: FC<Props> = async (props) => {
 				type="application/ld+json"
 			/>
 			<ScrollArea className="flex flex-col md:pl-72 z-0 blueprint-layout">
-				<div className="content-wrapper">
+				<div className="content-wrapper mt-14 md:mt-0">
+					<Link href="/works">
+						<div className="fixed top-8 left-4 lg:hidden bg-metal/5 z-50 backdrop-blur rounded-lg p-2 border-grey border md:hidden">
+							<ChevronLeft size={24} />
+						</div>
+					</Link>
 					<article className="content animate-in fade-in duration-700">
 						<ArticleBreadcrumb
 							lang={lang}
 							title={page.data.meta_title || uid}
-							uid={uid}
-							workPosts={workPosts}
 						/>
 						{company && <ArticleContent company={company} page={page} />}
 					</article>
