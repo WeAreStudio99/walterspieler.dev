@@ -1,6 +1,6 @@
 "use client";
-import { H1, H2, H3, H4, LI, P, UL } from "@/components/Typography";
-import { Button } from "@/components/ui/button";
+
+import { A, H1, H2, H3, H4, LI, P, UL } from "@/components/Typography";
 import { useToast } from "@/components/ui/use-toast";
 import { RichTextField } from "@prismicio/client";
 import { PrismicRichText } from "@prismicio/react";
@@ -51,26 +51,13 @@ const ParagraphBlock: FC<Props> = ({ field }) => {
 				},
 				hyperlink: ({ text, node }) => {
 					if (node.data.url === "[copy]") {
-						return (
-							<Button
-								className="py-0 px-0 bold h-0 leading-7 text-base"
-								onClick={() => onHyperlinkClick(text)}
-								variant={"link"}
-							>
-								{text}
-							</Button>
-						);
+						return <A onClick={() => onHyperlinkClick(text)}>{text}</A>;
 					}
 
 					return (
-						<a
-							className="hover:underline font-semibold hover:text-pearl"
-							href={node.data.url}
-							rel="noopener"
-							target="_blank"
-						>
+						<A href={node.data.url} rel="noopener" target="_blank">
 							{text}
-						</a>
+						</A>
 					);
 				},
 			}}

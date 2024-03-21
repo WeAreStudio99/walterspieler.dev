@@ -6,7 +6,10 @@ const H1 = forwardRef<
 	React.HTMLAttributes<HTMLHeadingElement>
 >(({ className, ...props }, ref) => (
 	<h1
-		className={`scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl ${className}`}
+		className={cn(
+			`scroll-m-20 text-stone-50 text-4xl font-extrabold tracking-tight lg:text-5xl`,
+			className,
+		)}
 		ref={ref}
 		{...props}
 	/>
@@ -18,7 +21,10 @@ const H2 = forwardRef<
 	React.HTMLAttributes<HTMLHeadingElement>
 >(({ className, ...props }, ref) => (
 	<h2
-		className={`scroll-m-20 border-grey border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0 ${className}`}
+		className={cn(
+			`scroll-m-20 text-stone-50 border-grey border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0`,
+			className,
+		)}
 		ref={ref}
 		{...props}
 	/>
@@ -30,7 +36,10 @@ const H3 = forwardRef<
 	React.HTMLAttributes<HTMLHeadingElement>
 >(({ className, ...props }, ref) => (
 	<h3
-		className={`scroll-m-20 text-2xl font-semibold tracking-tight ${className}`}
+		className={cn(
+			`scroll-m-20 text-stone-50 text-2xl font-semibold tracking-tight`,
+			className,
+		)}
 		ref={ref}
 		{...props}
 	/>
@@ -43,7 +52,7 @@ const H4 = forwardRef<
 >(({ className, ...props }, ref) => (
 	<h4
 		className={cn(
-			`scroll-m-20 text-xl font-semibold tracking-tight`,
+			`scroll-m-20 text-stone-50 text-xl font-semibold tracking-tight`,
 			className,
 		)}
 		ref={ref}
@@ -57,7 +66,10 @@ const P = forwardRef<
 	React.HTMLAttributes<HTMLParagraphElement>
 >(({ className, ...props }, ref) => (
 	<p
-		className={cn(`leading-7 [&:not(:first-child)]:mt-6`, className)}
+		className={cn(
+			`leading-7 [&:not(:first-child)]:mt-6 text-stone-300`,
+			className,
+		)}
 		ref={ref}
 		{...props}
 	/>
@@ -82,4 +94,19 @@ const UL = forwardRef<HTMLUListElement, React.HTMLAttributes<HTMLUListElement>>(
 );
 UL.displayName = "UL";
 
-export { H1, H2, H3, H4, LI, P, UL };
+const A = forwardRef<
+	HTMLAnchorElement,
+	React.AnchorHTMLAttributes<HTMLAnchorElement>
+>(({ className, ...props }, ref) => (
+	<a
+		className={cn(
+			`text-base text-pearl-light hover:underline hover:text-pearl-dark decoration-pearl-dark`,
+			className,
+		)}
+		ref={ref}
+		{...props}
+	/>
+));
+A.displayName = "A";
+
+export { A, H1, H2, H3, H4, LI, P, UL };

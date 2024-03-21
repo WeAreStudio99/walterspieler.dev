@@ -1,5 +1,6 @@
 "use client";
 
+import { A, H3 } from "@/components/Typography";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { formatDateToMonthYear } from "@/lib/date";
@@ -92,11 +93,11 @@ const WorkCard: FC<Props> = ({
 						sizes="(max-width: 640px) 32px, (max-width: 768px) 32px, (max-width: 1024px) 32px, 32px"
 					/>
 					<div className="grid gap-1">
-						<h3 className="text-xl font-semibold ">{title}</h3>
-						<div className="text-sm flex items-center md:gap-1">
+						<H3 className="text-xl">{title}</H3>
+						<div className="text-sm flex items-center md:gap-1 text-stone-400">
 							{duration.start && duration.end && (
 								<>
-									<CalendarIcon className="h-4 w-4 mr-1" />
+									<CalendarIcon className="h-4 w-4 mr-1 text-stone-400" />
 									<span>{formatDateToMonthYear(duration.start, lang)}</span>
 									<span> - </span>
 									<span>{formatDateToMonthYear(duration.end, lang)}</span>
@@ -109,18 +110,18 @@ const WorkCard: FC<Props> = ({
 							)}
 						</div>
 						{link && (
-							<a
+							<A
 								aria-label={`${title} website`}
-								className="hover:underline hover:text-pearl text-sm text-stone-400"
+								className="text-sm"
 								href={link}
 								rel={"noopener nofollow"}
 							>
 								{link.replace(/(^\w+:|^)\/\//, "")}
-							</a>
+							</A>
 						)}
 					</div>
 				</div>
-				<div className="text-sm leading-[1.5] p-6 pt-0">
+				<div className="text-sm leading-[1.5] p-6 pt-0 text-stone-300">
 					<PrismicRichText field={description} />
 					<div className="flex flex-wrap gap-2 mt-4">
 						{tags.map((tag, idx) => (

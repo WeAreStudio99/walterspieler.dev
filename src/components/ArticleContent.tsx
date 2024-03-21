@@ -25,7 +25,7 @@ const ArticleContent: FC<Props> = ({ company, page }) => {
 				<H1 className="mb-5">{company.name}</H1>
 				{companyLink && (
 					<a
-						className="hover:underline hover:text-pearl mb-2"
+						className="hover:underline hover:text-pearl-light mb-2"
 						href={companyLink}
 						rel={"noopener nofollow"}
 					>
