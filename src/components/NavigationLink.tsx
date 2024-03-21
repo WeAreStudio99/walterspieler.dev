@@ -17,17 +17,24 @@ type Props = {
 	lang: Locale;
 };
 
-export const NavigationLink: FC<Props> = ({ label, link }) => {
+export const NavigationLink: FC<Props> = ({ label, link, lang }) => {
 	const pathname = usePathname();
 	const { closeMenu } = useContext(MenuContext) ?? {};
 
 	let isActive = false;
-	if (pathname?.length > 0 && "type" in link) {
-		const url = asLink(link);
-		if (url) {
-			const splittedPathname = pathname.split("/");
-			const currentPathname = splittedPathname[1] ?? "";
-			isActive = currentPathname === url.split("/")[1];
+
+	const url = asLink(link);
+	if (url) {
+		const splittedPathname = pathname.split("/").filter(Boolean);
+		const splittedUrl = url.split("/").filter(Boolean);
+		if (splittedUrl.length === 0) {
+			isActive = splittedPathname.length === 0;
+		} else if (splittedUrl.length === 1 && splittedUrl[0] === lang) {
+			isActive = splittedPathname.length === 1 && splittedPathname[0] === lang;
+		} else {
+			isActive = splittedUrl.every(
+				(part, index) => splittedPathname[index] === part,
+			);
 		}
 	}
 
