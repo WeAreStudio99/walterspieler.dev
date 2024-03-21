@@ -23,6 +23,7 @@ const ButtonSlice = ({ slice }: ButtonProps): JSX.Element => {
 		<section
 			className={cn(
 				"flex",
+				"my-6",
 				position === "center"
 					? "justify-center"
 					: position === "right"
