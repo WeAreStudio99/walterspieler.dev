@@ -1,4 +1,4 @@
-import { H1 } from "@/components/Typography";
+import { A, H1 } from "@/components/Typography";
 import { Separator } from "@/components/ui/separator";
 import { components } from "@/slices";
 import { Content, asLink } from "@prismicio/client";
@@ -24,13 +24,9 @@ const ArticleContent: FC<Props> = ({ company, page }) => {
 			<div className="flex flex-col mb-8">
 				<H1 className="mb-5">{company.name}</H1>
 				{companyLink && (
-					<a
-						className="hover:underline hover:text-pearl-light mb-2"
-						href={companyLink}
-						rel={"noopener nofollow"}
-					>
+					<A className="mb-2" href={companyLink} rel={"noopener nofollow"}>
 						{companyLink.replace(/(^\w+:|^)\/\//, "")}
-					</a>
+					</A>
 				)}
 				<span className="text-stone-400">
 					<PrismicRichText field={company.description} />
