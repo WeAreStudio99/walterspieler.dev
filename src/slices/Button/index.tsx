@@ -1,7 +1,8 @@
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Content } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
+import { CalendarHeart } from "lucide-react";
 import Link from "next/link";
 
 /**
@@ -33,9 +34,12 @@ const ButtonSlice = ({ slice }: ButtonProps): JSX.Element => {
 			data-slice-type={slice.slice_type}
 			data-slice-variation={slice.variation}
 		>
-			<Button asChild variant={variation}>
-				<Link href={`${href}`}>{label}</Link>
-			</Button>
+			<Link className={buttonVariants({ variant: variation })} href={`${href}`}>
+				{href?.includes("cal.com") && (
+					<CalendarHeart className="mr-2 h-4 w-4" />
+				)}
+				{label}
+			</Link>
 		</section>
 	);
 };
