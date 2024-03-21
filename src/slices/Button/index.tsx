@@ -2,6 +2,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Content } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
+import { cva } from "class-variance-authority";
 import { CalendarHeart } from "lucide-react";
 import Link from "next/link";
 
@@ -9,6 +10,19 @@ import Link from "next/link";
  * Props for `Button`.
  */
 export type ButtonProps = SliceComponentProps<Content.ButtonSlice>;
+
+const positionVariants = cva("flex my-6", {
+	variants: {
+		position: {
+			center: "justify-center",
+			right: "justify-end",
+			left: "justify-start",
+		},
+	},
+	defaultVariants: {
+		position: "center",
+	},
+});
 
 /**
  * Component for "Button" Slices.
@@ -22,15 +36,7 @@ const ButtonSlice = ({ slice }: ButtonProps): JSX.Element => {
 
 	return (
 		<section
-			className={cn(
-				"flex",
-				"my-6",
-				position === "center"
-					? "justify-center"
-					: position === "right"
-					  ? "justify-end"
-					  : "justify-start",
-			)}
+			className={cn(positionVariants({ position }))}
 			data-slice-type={slice.slice_type}
 			data-slice-variation={slice.variation}
 		>
