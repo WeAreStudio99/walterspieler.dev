@@ -9,7 +9,7 @@ import { PrismicNextLink } from "@prismicio/next";
 import { motion } from "framer-motion";
 import { BoltIcon, DraftingCompass, Nfc } from "lucide-react";
 import { usePathname } from "next/navigation";
-import { FC, useContext } from "react";
+import { FC, useContext, useMemo } from "react";
 
 type Props = {
 	label: string;
@@ -21,22 +21,25 @@ export const NavigationLink: FC<Props> = ({ label, link, lang }) => {
 	const pathname = usePathname();
 	const { closeMenu } = useContext(MenuContext) ?? {};
 
-	let isActive = false;
-
-	const url = asLink(link);
-	if (url) {
-		const splittedPathname = pathname.split("/").filter(Boolean);
-		const splittedUrl = url.split("/").filter(Boolean);
-		if (splittedUrl.length === 0) {
-			isActive = splittedPathname.length === 0;
-		} else if (splittedUrl.length === 1 && splittedUrl[0] === lang) {
-			isActive = splittedPathname.length === 1 && splittedPathname[0] === lang;
-		} else {
-			isActive = splittedUrl.every(
-				(part, index) => splittedPathname[index] === part,
-			);
+	const url = useMemo(() => asLink(link), [link]);
+	const isActive = useMemo(() => {
+		let isActive = false;
+		if (url) {
+			const splittedPathname = pathname.split("/").filter(Boolean);
+			const splittedUrl = url.split("/").filter(Boolean);
+			if (splittedUrl.length === 0) {
+				isActive = splittedPathname.length === 0;
+			} else if (splittedUrl.length === 1 && splittedUrl[0] === lang) {
+				isActive =
+					splittedPathname.length === 1 && splittedPathname[0] === lang;
+			} else {
+				isActive = splittedUrl.every(
+					(part, index) => splittedPathname[index] === part,
+				);
+			}
 		}
-	}
+		return isActive;
+	}, [url, pathname, lang]);
 
 	return (
 		<motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>

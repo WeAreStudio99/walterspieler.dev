@@ -8,7 +8,7 @@ import { motion } from "framer-motion";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FC } from "react";
+import { FC, useMemo } from "react";
 
 type Props = {
 	lang: Locale;
@@ -27,13 +27,18 @@ const WorkMenuContent: FC<Props> = ({ lang, workPages, title }) => {
 	const splitPathname = pathname.split("/");
 	const currentWork = splitPathname[splitPathname.length - 1];
 
+	const isActiveArray = useMemo(
+		() => workPages.map((work) => currentWork === work.uid),
+		[workPages, currentWork],
+	);
+
 	return (
 		<div className="flex w-full flex-col">
 			<div className="w-full p-4">
 				<span className={cn("font-bold text-lg")}>{title}</span>
 			</div>
 			<div className="flex flex-col w-full p-4 gap-4">
-				{workPages.map((work) => {
+				{workPages.map((work, idx) => {
 					const workData = work.data.work.data;
 					const company = workData.company[0];
 
@@ -41,7 +46,7 @@ const WorkMenuContent: FC<Props> = ({ lang, workPages, title }) => {
 					const date1 = asDate(duration?.start);
 					const date2 = asDate(duration?.end);
 
-					const isActive = currentWork === work.uid;
+					const isActive = isActiveArray[idx];
 
 					return (
 						<motion.div
@@ -70,16 +75,18 @@ const WorkMenuContent: FC<Props> = ({ lang, workPages, title }) => {
 										</>
 									)}
 									<div className="space-y-2 z-10 flex flex-col text-base">
-										<h3 className="font-bold">{company && company.name}</h3>
+										<h3 className="font-bold text-stone-50">
+											{company && company.name}
+										</h3>
 										{date1 && date2 && (
-											<div className="text-sm flex items-center gap-1">
+											<div className="text-sm flex items-center gap-1 text-stone-400">
 												<span>{formatDateToMonthYear(date1, lang)}</span>
 												<span> - </span>
 												<span>{formatDateToMonthYear(date2, lang)}</span>
 											</div>
 										)}
 									</div>
-									<ChevronRight className="z-10" />
+									<ChevronRight className="z-10 text-pearl-light" />
 								</div>
 							</Link>
 						</motion.div>
