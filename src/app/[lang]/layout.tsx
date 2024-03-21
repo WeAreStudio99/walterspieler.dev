@@ -1,8 +1,3 @@
-import { cn, generateAlternates } from "@/lib/utils";
-import type { Metadata } from "next";
-import { Space_Grotesk } from "next/font/google";
-import { FC, PropsWithChildren } from "react";
-
 import PostHogProvider from "@/app/ph-provider";
 import { MenuContent } from "@/components/MenuContent";
 import { SideMenu } from "@/components/SideMenu";
@@ -10,10 +5,15 @@ import { Toaster } from "@/components/ui/toaster";
 import { MenuContextProvider } from "@/contexts/MenuContext";
 import { Locale } from "@/lib/i18n/types";
 import { getDictionary } from "@/lib/i18n/utils";
+import { cn, generateAlternates } from "@/lib/utils";
 import { createClient } from "@/prismicio";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import type { Metadata } from "next";
 import dynamic from "next/dynamic";
+import { Space_Grotesk } from "next/font/google";
 import { notFound } from "next/navigation";
 import Script from "next/script";
+import { FC, PropsWithChildren } from "react";
 
 const PostHogPageView = dynamic(
 	() => import("../../components/PostHogPageView"),
@@ -60,6 +60,7 @@ const LangRootLayout: FC<Props> = (props) => {
 						spaceGrotesk.variable,
 					)}
 				>
+					<SpeedInsights />
 					<PostHogPageView />
 					<MenuContextProvider>
 						<div className="lg:flex">
