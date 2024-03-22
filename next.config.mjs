@@ -1,5 +1,6 @@
 const nextConfig = async () => {
   return {
+    reactStrictMode: false,
     webpack: (config) => {
       config.module.rules.push({
         test: /\.glsl$/,
