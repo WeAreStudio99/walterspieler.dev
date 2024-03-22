@@ -1,36 +1,94 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Thibs portfolio
+
+This is the repository for my personal portfolio. It is a Next.js application that showcases my projects, skills, and experiences.
+
+## Prerequisites
+
+### Node.js
+
+We use [NVM (Node Version Manager)](https://github.com/nvm-sh/nvm) to ensure a consistent Node.js version. Install NVM and set the Node.js version for this project with :
+
+```bash
+nvm install
+```
+
+### Pnpm
+
+Pnpm is the package manager of choice for this project. Make sure you are using at least Node.js 14 _(lts/fermium)_ and then activate it through `corepack` :
+
+```bash
+corepack enable pnpm
+```
+
+To ensure consistent behaviour across all development environments, they should all use the same version of pnpm. That's why an explicit pnpm version is specified in the [package.json](). Check if your pnpm version is matching the one under the `packageManager` property :
+
+```bash
+pnpm -v
+```
+
+If it is not the case, install the corresponding version :
+
+```bash
+corepack install
+```
+
+### Visual Studio Code
+
+Consistency in TypeScript versions is crucial. For VSCode users, ensure that you [use the workspace version of TypeScript](https://code.visualstudio.com/docs/typescript/typescript-compiling#_using-the-workspace-version-of-typescript) and not the built-in version provided by VSCode.
+
+### Optional: Optimized VSCode Configuration
+
+For an enhanced development experience with project-specific editor settings, duplicate `.vscode.sample` as `.vscode` :
+
+```bash
+cp -R .vscode.sample .vscode
+```
 
 ## Getting Started
 
-First, run the development server:
+Ensure that you follow the sections below in sequence to set up your development environment without issues.
+Documentation is provided to guide you through the major setup steps.
+
+### Environment Configuration
+
+Initiate by setting up environment variables. Duplicate `.env.local.sample` as `.env.local`:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cp .env.local.sample .env.local
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Amend `.env.local` with your specific configurations.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Dependency Installation
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Install necessary project dependencies :
 
-## Learn More
+```bash
+pnpm install
+```
 
-To learn more about Next.js, take a look at the following resources:
+### Dependency Addition & Update (Optional)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+To precisely keep track of the dependencies of this application, each dependency should be added with a specific version number.:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```bash
+pnpm add <pkg> -E
+```
 
-## Deploy on Vercel
+Also, for easier dependency updating, you should use the pnpm interactive mode :
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+pnpm up -i -L
+``` 
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Running the Application
+
+Execute the app in various modes using :
+
+```bash
+# Development mode
+$ pnpm dev
+
+# Production mode
+$ pnpm start
+```
