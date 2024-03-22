@@ -1,11 +1,8 @@
 import PostHogProvider from "@/app/ph-provider";
-import { MenuContent } from "@/components/MenuContent";
-import { SideMenu } from "@/components/SideMenu";
-import { Toaster } from "@/components/ui/toaster";
-import { MenuContextProvider } from "@/contexts/MenuContext";
 import { Locale } from "@/lib/i18n/types";
 import { getDictionary } from "@/lib/i18n/utils";
 import { cn, generateAlternates } from "@/lib/utils";
+import ThreeInitializer from "@/lib/webgl/initializer";
 import { createClient } from "@/prismicio";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
@@ -62,7 +59,9 @@ const LangRootLayout: FC<Props> = (props) => {
 				>
 					<SpeedInsights />
 					<PostHogPageView />
-					<MenuContextProvider>
+
+					<ThreeInitializer />
+					{/* <MenuContextProvider>
 						<div className="lg:flex">
 							<SideMenu>
 								<MenuContent lang={lang} />
@@ -70,7 +69,7 @@ const LangRootLayout: FC<Props> = (props) => {
 							<div className="flex flex-1">{children}</div>
 						</div>
 					</MenuContextProvider>
-					<Toaster />
+					<Toaster /> */}
 				</body>
 			</PostHogProvider>
 		</html>

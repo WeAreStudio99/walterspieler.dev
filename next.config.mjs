@@ -1,5 +1,13 @@
 const nextConfig = async () => {
   return {
+    webpack: (config) => {
+      config.module.rules.push({
+        test: /\.glsl$/,
+        use: 'webpack-glsl-loader',
+      });
+
+      return config;
+    },
     images: {
       remotePatterns: [
         {
