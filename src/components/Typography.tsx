@@ -7,7 +7,7 @@ const H1 = forwardRef<
 >(({ className, ...props }, ref) => (
 	<h1
 		className={cn(
-			`scroll-m-20 text-stone-50 text-4xl font-extrabold tracking-tight lg:text-5xl`,
+			`scroll-m-20 text-stone-50 text-4xl font-extrabold tracking-tight lg:text-5xl text-spotlight`,
 			className,
 		)}
 		ref={ref}

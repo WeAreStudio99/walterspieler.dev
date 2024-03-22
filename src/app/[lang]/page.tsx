@@ -79,7 +79,7 @@ const HomeLang: FC<Props> = async (props) => {
 			<ScrollArea className="flex flex-col">
 				<div className="content-wrapper">
 					<div className="content">
-						<H1 className="max-w-36 mb-4 md:mb-8 md:max-w-full">
+						<H1 className="max-w-36 mb-4 md:mb-8 md:max-w-full text-spotlight">
 							Thibault Walterspieler
 						</H1>
 						<SliceZone components={components} slices={page.data.slices} />

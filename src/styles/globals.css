@@ -26,3 +26,10 @@
       60px 60px;
   mask: linear-gradient(-15deg, transparent 30%, white);
 }
+
+.text-spotlight {
+  text-shadow:
+    0 5px 20px rgba(0, 87, 255, 0.2),
+    0 -5px 15px rgba(255, 90, 0, 0.15),
+    0 0 30px rgba(255, 255, 255, 0.3);
+}

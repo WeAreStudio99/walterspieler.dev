@@ -22,6 +22,9 @@ const config = {
       fontFamily: {
         sans: ['var(--font-sans)', ...fontFamily.sans],
       },
+      boxShadow: {
+        grey: '0 0 20px #47505A',
+      },
       keyframes: {
         'accordion-down': {
           from: { height: '0' },
