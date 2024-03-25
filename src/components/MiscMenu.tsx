@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import {
 	DropdownMenu,
@@ -8,22 +10,24 @@ import {
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Locale } from "@/lib/i18n/types";
-import { getDictionary } from "@/lib/i18n/utils";
+import { MenuContext } from "@/contexts/MenuContext";
 import Link from "next/link";
-import { FC } from "react";
+import { FC, useContext } from "react";
 
 type Props = {
-	lang: Locale;
+	title: string;
+	labels: {
+		legalNotice: string;
+	};
 };
 
-const MiscMenu: FC<Props> = async ({ lang }) => {
-	const dictionary = await getDictionary(lang);
+const MiscMenu: FC<Props> = ({ title, labels }) => {
+	const { closeMenu } = useContext(MenuContext) ?? {};
 
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
-				<Button variant="outline">{dictionary.menuItems.other}</Button>
+				<Button variant="outline">{title}</Button>
 			</DropdownMenuTrigger>
 			<DropdownMenuContent align="start" className="w-56">
 				<DropdownMenuLabel>
@@ -31,10 +35,10 @@ const MiscMenu: FC<Props> = async ({ lang }) => {
 				</DropdownMenuLabel>
 				<DropdownMenuSeparator />
 				<DropdownMenuGroup>
-					<DropdownMenuItem>
-						<Link href="/legal/notice">{dictionary.menuItems.legalNotice}</Link>
+					<DropdownMenuItem asChild onClick={closeMenu}>
+						<Link href="/legal/notice">{labels.legalNotice}</Link>
 					</DropdownMenuItem>
-					<DropdownMenuItem>
+					<DropdownMenuItem asChild onClick={closeMenu}>
 						<Link href="/open-source">Open source</Link>
 					</DropdownMenuItem>
 				</DropdownMenuGroup>

@@ -2,6 +2,7 @@ import LangSelector from "@/components/LangSelector";
 import MainMenuItems from "@/components/MainMenuItems";
 import MiscMenu from "@/components/MiscMenu";
 import { Locale } from "@/lib/i18n/types";
+import { getDictionary } from "@/lib/i18n/utils";
 import { getLocales } from "@/lib/locales";
 import { createClient } from "@/prismicio";
 import { FC } from "react";
@@ -11,6 +12,8 @@ type Props = {
 };
 
 export const MenuContent: FC<Props> = async ({ lang }) => {
+	const dictionary = await getDictionary(lang);
+
 	const client = createClient();
 	const page = await client.getSingle("home", { lang });
 	const locales = await getLocales(page, client);
@@ -30,7 +33,10 @@ export const MenuContent: FC<Props> = async ({ lang }) => {
 				<MainMenuItems items={navigationItems} lang={lang} />
 			</header>
 			<footer className="flex justify-between border-t-grey md:border-t p-5  gap-3 lg:flex-col xl:flex-row ">
-				<MiscMenu lang={lang} />
+				<MiscMenu
+					labels={{ legalNotice: dictionary.menuItems.legalNotice }}
+					title={dictionary.menuItems.other}
+				/>
 				<LangSelector currentLang={lang} locales={locales} />
 			</footer>
 		</>
