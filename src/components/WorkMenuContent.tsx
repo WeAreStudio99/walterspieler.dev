@@ -1,6 +1,7 @@
 "use client";
 
 import { formatDateToMonthYear } from "@/lib/date";
+import { I18N_CONFIG } from "@/lib/i18n/config";
 import { Locale } from "@/lib/i18n/types";
 import { cn } from "@/lib/utils";
 import { Content, asDate } from "@prismicio/client";
@@ -56,7 +57,7 @@ const WorkMenuContent: FC<Props> = ({ lang, workPages, title }) => {
 						>
 							<Link
 								href={
-									lang !== "en-gb"
+									lang !== I18N_CONFIG.defaultLocale
 										? `/${lang}/works/${work.uid} `
 										: `/works/${work.uid}`
 								}

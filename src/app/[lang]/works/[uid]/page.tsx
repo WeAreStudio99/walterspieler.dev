@@ -1,6 +1,7 @@
 import ArticleBreadcrumb from "@/components/ArticleBreadcrumb";
 import ArticleContent from "@/components/ArticleContent";
 import { ScrollArea } from "@/components/ScrollArea";
+import { I18N_CONFIG } from "@/lib/i18n/config";
 import { Locale } from "@/lib/i18n/types";
 import { getDictionary } from "@/lib/i18n/utils";
 import { generateAlternates } from "@/lib/utils";
@@ -78,7 +79,11 @@ const WorkPage: FC<Props> = async (props) => {
 			/>
 			<ScrollArea className="flex flex-col md:pl-72 z-0 blueprint-layout">
 				<div className="content-wrapper mt-14 md:mt-0">
-					<Link href={lang === "en-gb" ? "/works" : `/${lang}/works`}>
+					<Link
+						href={
+							lang === I18N_CONFIG.defaultLocale ? "/works" : `/${lang}/works`
+						}
+					>
 						<div className="fixed top-8 left-4 lg:hidden bg-metal/5 z-50 backdrop-blur rounded-lg p-2 border-grey border md:hidden">
 							<ChevronLeft size={24} />
 						</div>

@@ -1,5 +1,6 @@
 import { H1 } from "@/components/Typography";
 import { formatDateToMonthYear } from "@/lib/date";
+import { I18N_CONFIG } from "@/lib/i18n/config";
 import { Locale } from "@/lib/i18n/types";
 import { getDictionary } from "@/lib/i18n/utils";
 import { cn } from "@/lib/utils";
@@ -62,7 +63,7 @@ const WorksList: FC<Props> = async (props) => {
 								"border-grey border",
 							)}
 							href={
-								lang !== "en-gb"
+								lang !== I18N_CONFIG.defaultLocale
 									? `/${lang}/works/${work.uid} `
 									: `/works/${work.uid}`
 							}

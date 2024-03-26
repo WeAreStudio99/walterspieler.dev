@@ -4,6 +4,7 @@ import { A, H3 } from "@/components/Typography";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { formatDateToMonthYear } from "@/lib/date";
+import { I18N_CONFIG } from "@/lib/i18n/config";
 import { Locale } from "@/lib/i18n/types";
 import { cn } from "@/lib/utils";
 import {
@@ -59,7 +60,7 @@ const WorkCard: FC<Props> = ({
 			onClick={() => {
 				if (relatedWorkPostLink) {
 					router.push(
-						lang !== "en-gb"
+						lang !== I18N_CONFIG.defaultLocale
 							? `/${lang}/works/${relatedWorkPostLink}`
 							: `/works/${relatedWorkPostLink}`,
 					);
@@ -144,7 +145,7 @@ const WorkCard: FC<Props> = ({
 								<Link
 									aria-label={`Read more about ${title}`}
 									href={
-										lang !== "en-gb"
+										lang !== I18N_CONFIG.defaultLocale
 											? `/${lang}/works/${relatedWorkPostLink}`
 											: `/works/${relatedWorkPostLink}`
 									}
