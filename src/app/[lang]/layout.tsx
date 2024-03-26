@@ -14,6 +14,7 @@ import { Space_Grotesk } from "next/font/google";
 import { notFound } from "next/navigation";
 import Script from "next/script";
 import { FC, PropsWithChildren } from "react";
+import { BASE_URL } from "../../../next.constants.mjs";
 
 const PostHogPageView = dynamic(
 	() => import("../../components/PostHogPageView"),
@@ -89,7 +90,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 		.catch(() => notFound());
 
 	return {
-		metadataBase: new URL(process.env.BASE_URL || "https://walterspieler.dev"),
+		metadataBase: new URL(BASE_URL),
 		title:
 			page.data.meta_title || "Thibault Walterspieler | Fullstack engineer",
 		description:

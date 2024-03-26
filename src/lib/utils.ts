@@ -3,6 +3,7 @@ import { Locale } from '@/lib/i18n/types';
 import { clsx, type ClassValue } from 'clsx';
 import { AlternateURLs } from 'next/dist/lib/metadata/types/alternative-urls-types';
 import { twMerge } from 'tailwind-merge';
+import { BASE_URL } from '../../next.constants.mjs';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -18,20 +19,19 @@ export const generateAlternates = (
     Record<Locale | 'x-default', string>
   >(
     (languages, language) => {
-      languages[language] =
-        `${process.env.BASE_URL}/${language}/${pathWithoutLang}`;
+      languages[language] = `${BASE_URL}/${language}/${pathWithoutLang}`;
 
       return languages;
     },
     {
-      'x-default': `${process.env.BASE_URL}/${pathWithoutLang}`,
+      'x-default': `${BASE_URL}/${pathWithoutLang}`,
       'en-gb': '',
       'fr-fr': '',
     }
   );
 
   return {
-    canonical: `${process.env.BASE_URL}/${lang === 'en-gb' ? '' : lang}${pathWithoutLang}`,
+    canonical: `${BASE_URL}/${lang === 'en-gb' ? '' : lang}${pathWithoutLang}`,
     languages,
   };
 };
