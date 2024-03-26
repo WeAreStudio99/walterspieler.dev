@@ -1,12 +1,17 @@
 import { MetadataRoute } from 'next';
-import { BASE_URL } from '../../next.constants.mjs';
 
-export default function robots(): MetadataRoute.Robots {
-  return {
-    rules: {
+const robots = (): MetadataRoute.Robots => ({
+  rules: [
+    {
       userAgent: '*',
-      allow: '/',
+      disallow: ['/dist/'],
+      allow: ['/'],
     },
-    sitemap: `${BASE_URL}/sitemap.xml`,
-  };
-}
+  ],
+});
+
+export default robots;
+
+// Enforces that this route is used as static rendering
+// @see https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config#dynamic
+export const dynamic = 'error';
