@@ -23,6 +23,8 @@ type Props = {
 	}[];
 };
 
+type LocaleKey = keyof typeof localeLabels;
+
 const localeLabels = {
 	"en-gb": "English 🇬🇧",
 	"fr-fr": "Français 🇫🇷",
@@ -31,7 +33,7 @@ const localeLabels = {
 const LangSelector: FC<Props> = ({ locales, currentLang, title }) => {
 	const router = useRouter();
 	const currentLangPlaceholder =
-		localeLabels[currentLang as keyof typeof localeLabels] || currentLang;
+		localeLabels[currentLang as LocaleKey] || currentLang;
 
 	const handleLocaleChange = (newLocale: string) => {
 		const selectedLocale = locales.find((locale) => locale.lang === newLocale);
@@ -48,16 +50,19 @@ const LangSelector: FC<Props> = ({ locales, currentLang, title }) => {
 			<DropdownMenuContent className="w-56">
 				<DropdownMenuLabel>{title}</DropdownMenuLabel>
 				<DropdownMenuSeparator />
-				{locales.map((locale) => (
-					<DropdownMenuCheckboxItem
-						checked={locale.lang === currentLang}
-						key={locale.lang}
-						onCheckedChange={() => handleLocaleChange(locale.lang)}
-					>
-						{localeLabels[locale.lang as keyof typeof localeLabels] ||
-							locale.lang}
-					</DropdownMenuCheckboxItem>
-				))}
+				{locales.map((locale) => {
+					const localeLabel =
+						localeLabels[locale.lang as LocaleKey] || locale.lang;
+					return (
+						<DropdownMenuCheckboxItem
+							checked={locale.lang === currentLang}
+							key={locale.lang}
+							onCheckedChange={() => handleLocaleChange(locale.lang)}
+						>
+							{localeLabel}
+						</DropdownMenuCheckboxItem>
+					);
+				})}
 			</DropdownMenuContent>
 		</DropdownMenu>
 	);
