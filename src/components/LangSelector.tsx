@@ -14,6 +14,7 @@ import { useRouter } from "next/navigation";
 import { FC } from "react";
 
 type Props = {
+	title: string;
 	currentLang: Locale;
 	locales: {
 		lang: string;
@@ -27,7 +28,7 @@ const localeLabels = {
 	"fr-fr": "Français 🇫🇷",
 };
 
-const LangSelector: FC<Props> = ({ locales, currentLang }) => {
+const LangSelector: FC<Props> = ({ locales, currentLang, title }) => {
 	const router = useRouter();
 	const currentLangPlaceholder =
 		localeLabels[currentLang as keyof typeof localeLabels] || currentLang;
@@ -45,7 +46,7 @@ const LangSelector: FC<Props> = ({ locales, currentLang }) => {
 				<Button variant="outline">{currentLangPlaceholder}</Button>
 			</DropdownMenuTrigger>
 			<DropdownMenuContent className="w-56">
-				<DropdownMenuLabel>Language</DropdownMenuLabel>
+				<DropdownMenuLabel>{title}</DropdownMenuLabel>
 				<DropdownMenuSeparator />
 				{locales.map((locale) => (
 					<DropdownMenuCheckboxItem

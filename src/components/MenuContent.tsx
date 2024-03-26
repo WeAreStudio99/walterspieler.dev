@@ -37,7 +37,11 @@ export const MenuContent: FC<Props> = async ({ lang }) => {
 					labels={{ legalNotice: dictionary.menuItems.legalNotice }}
 					title={dictionary.menuItems.other}
 				/>
-				<LangSelector currentLang={lang} locales={locales} />
+				<LangSelector
+					currentLang={lang}
+					locales={locales}
+					title={dictionary.languages}
+				/>
 			</footer>
 		</>
 	);
