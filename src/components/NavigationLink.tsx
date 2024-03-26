@@ -21,7 +21,7 @@ export const NavigationLink: FC<Props> = ({ label, link, lang }) => {
 	const pathname = usePathname();
 	const { closeMenu } = useContext(MenuContext) ?? {};
 
-	const url = useMemo(() => asLink(link), [link]);
+	const url = asLink(link);
 	const isActive = useMemo(() => {
 		let isActive = false;
 		if (url) {
