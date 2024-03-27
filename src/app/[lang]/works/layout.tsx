@@ -1,10 +1,11 @@
+import LoadingSpinner from "@/components/LoadingSpinner";
 import { SideMenu } from "@/components/SideMenu";
 import WorkMenuContent from "@/components/WorkMenuContent";
 import { Locale } from "@/lib/i18n/types";
 import { getDictionary } from "@/lib/i18n/utils";
 import { createClient } from "@/prismicio";
 import { Content } from "@prismicio/client";
-import { FC, PropsWithChildren } from "react";
+import { FC, PropsWithChildren, Suspense } from "react";
 
 type Params = {
 	lang: Locale;
@@ -37,11 +38,13 @@ const WorksLayout: FC<Props> = async (props) => {
 	return (
 		<>
 			<SideMenu isInner>
-				<WorkMenuContent
-					lang={lang}
-					title={dictionary.menuItems.myWorks}
-					workPages={workPages}
-				/>
+				<Suspense fallback={<LoadingSpinner />}>
+					<WorkMenuContent
+						lang={lang}
+						title={dictionary.menuItems.myWorks}
+						workPages={workPages}
+					/>
+				</Suspense>
 			</SideMenu>
 			<div className="flex-1 relative">{children}</div>
 		</>

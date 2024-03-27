@@ -29,7 +29,7 @@ const WeAreStudio99Page: FC<Props> = async (props) => {
 	return (
 		<ScrollArea className="flex flex-col">
 			<div className="content-wrapper">
-				<article className="content">
+				<article className="content animate-in fade-in duration-700">
 					<SliceZone components={components} slices={page.data.slices} />
 				</article>
 			</div>
