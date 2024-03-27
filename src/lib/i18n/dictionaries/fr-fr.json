@@ -5,8 +5,9 @@
 	},
 	"home": {
 		"metadata": {
-			"description": "Hi, I'm Thibault Walterspieler, a fullstack engineer based in Lyon, France."
+			"description": "Hello, je suis Thibault Walterspieler, un ingénieur fullstack freelance basé à Lyon, France."
 		},
+		"job": "Ingénieur Fullstack Freelance",
 		"buttons": {
 			"readMore": "En savoir plus sur"
 		}

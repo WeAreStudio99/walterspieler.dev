@@ -1,6 +1,8 @@
 import { ScrollArea } from "@/components/ScrollArea";
 import { H1 } from "@/components/Typography";
+import { Separator } from "@/components/ui/separator";
 import { Locale } from "@/lib/i18n/types";
+import { getDictionary } from "@/lib/i18n/utils";
 import { createClient } from "@/prismicio";
 import { components } from "@/slices";
 import { SliceZone } from "@prismicio/react";
@@ -19,6 +21,8 @@ type Props = {
 const HomeLang: FC<Props> = async (props) => {
 	const { params } = props;
 	const { lang } = params;
+
+	const dictionary = await getDictionary(lang);
 
 	const client = createClient();
 	const page = await client
@@ -45,8 +49,8 @@ const HomeLang: FC<Props> = async (props) => {
 		mainEntity: {
 			"@type": "Person",
 			name: "Thibault Walterspieler",
-			description: "Fullstack engineer based in Lyon, France",
-			jobTitle: "Fullstack engineer",
+			description: dictionary.home.metadata.description,
+			jobTitle: dictionary.home.job,
 			affiliation: "WeAreStudio99",
 			url: "https://walterspieler.dev",
 			email: "thibs@wearestudio99.fr",
@@ -78,10 +82,14 @@ const HomeLang: FC<Props> = async (props) => {
 			/>
 			<ScrollArea className="flex flex-col">
 				<div className="content-wrapper">
-					<div className="content">
-						<H1 className="max-w-36 mb-4 md:mb-8 md:max-w-full text-spotlight">
+					<div className="content animate-in fade-in duration-700">
+						<H1 className="max-w-36 mb-4 md:mb-4 md:max-w-full text-spotlight">
 							Thibault Walterspieler
+							<span className={"block text-stone-400 text-xl font-normal mt-3"}>
+								{dictionary.home.job}
+							</span>
 						</H1>
+						<Separator className="my-6" />
 						<SliceZone components={components} slices={page.data.slices} />
 					</div>
 				</div>

@@ -28,7 +28,7 @@ export const MenuContent: FC<Props> = async ({ lang }) => {
 			<header>
 				<div className="hidden w-full p-4 md:flex flex-col">
 					<span className="text-lg font-bold">Thibault Walterspieler</span>
-					<span className="text-stone-400 text-xs">Fullstack engineer</span>
+					<span className="text-stone-400 text-xs">{dictionary.home.job}</span>
 				</div>
 				<MainMenuItems items={navigationItems} lang={lang} />
 			</header>
