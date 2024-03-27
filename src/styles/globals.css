@@ -20,10 +20,9 @@
   height: 100dvh;
   z-index: -100;
   background:
-    linear-gradient(90deg, hsl(0 0% 95% / 0.15) 1px, transparent 1px 60px) 50%
-      50% / 60px 60px,
-    linear-gradient(hsl(0 0% 95% / 0.15) 1px, transparent 1px 60px) 50% 50% /
-      60px 60px;
+    linear-gradient(90deg, #47505a68 1px, #15181b6b 1px 60px) 50% 50% / 60px
+      60px,
+    linear-gradient(#47505a68 1px, transparent 1px 60px) 50% 50% / 60px 60px;
   mask: linear-gradient(-15deg, transparent 30%, white);
 }
 
