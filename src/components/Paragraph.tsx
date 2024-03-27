@@ -33,7 +33,7 @@ const ParagraphBlock: FC<Props> = ({ field }) => {
 				listItem: ({ children }) => <LI>{children}</LI>,
 				image: ({ node }) => {
 					return (
-						<div className="flex justify-center flex-col shadow-2xl">
+						<div className="flex justify-center flex-col shadow-2xl bg-chinese-black">
 							<Image
 								alt={node.alt || ""}
 								className="lg:max-w-[48rem] lg:max-h-[550px] object-cover rounded-t-lg"
