@@ -5,7 +5,6 @@ import { getDictionary } from "@/lib/i18n/utils";
 import { generateAlternates } from "@/lib/utils";
 import { Metadata } from "next";
 import { FC } from "react";
-import { CollectionPage, WithContext } from "schema-dts";
 
 type Params = {
 	lang: Locale;
@@ -21,29 +20,9 @@ const Works: FC<Props> = async (props) => {
 	const { lang } = params;
 
 	const dictionary = await getDictionary(lang);
-	const { works } = dictionary;
-
-	const jsonLd: WithContext<CollectionPage> = {
-		"@context": "https://schema.org",
-		"@type": "CollectionPage",
-		name: works.metadata.title,
-		url: `https://walterspieler.dev/works`,
-		description: works.metadata.description,
-		author: {
-			"@type": "Person",
-			name: "Thibault Walterspieler",
-			jobTitle: "Fullstack Engineer",
-			affiliation: "WeAreStudio99",
-			url: "https://walterspieler.dev",
-		},
-	};
 
 	return (
 		<>
-			<script
-				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-				type="application/ld+json"
-			/>
 			<EmptyWork label={dictionary.selectAWork} />
 			<div className="flex-1 lg:hidden">
 				<WorksList lang={lang} />

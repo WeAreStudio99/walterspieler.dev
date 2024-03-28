@@ -4,6 +4,7 @@ import { ScrollArea } from "@/components/ScrollArea";
 import { I18N_CONFIG } from "@/lib/i18n/config";
 import { Locale } from "@/lib/i18n/types";
 import { getDictionary } from "@/lib/i18n/utils";
+import getSchemaNewsArticle from "@/lib/schema-dts/news-article";
 import { generateAlternates } from "@/lib/utils";
 import { createClient } from "@/prismicio";
 import { Content } from "@prismicio/client";
@@ -12,7 +13,6 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { FC } from "react";
-import { SoftwareApplication, WithContext } from "schema-dts";
 
 type Params = {
 	lang: Locale;
@@ -51,25 +51,11 @@ const WorkPage: FC<Props> = async (props) => {
 
 	const company = page?.data?.work?.data?.company[0];
 
-	const jsonLd: WithContext<SoftwareApplication> = {
-		"@context": "https://schema.org",
-		"@type": "SoftwareApplication",
-		name: page.data.meta_title || uid,
-		url: `https://walterspieler.dev/works/${uid}`,
-		applicationCategory: "WebApplication",
-		description: page.data.meta_description || "",
-		headline: `${page.data.meta_title} | Thibault Walterspieler`,
-		operatingSystem: "Web",
-		author: {
-			"@type": "Person",
-			name: "Thibault Walterspieler",
-			jobTitle: "Fullstack Engineer",
-			affiliation: "WeAreStudio99",
-			url: "https://walterspieler.dev",
-		},
-		datePublished: page.first_publication_date,
-		dateModified: page.last_publication_date,
-	};
+	const jsonLd = getSchemaNewsArticle(
+		page.data.meta_title || uid,
+		page.first_publication_date,
+		page.last_publication_date,
+	);
 
 	return (
 		<>

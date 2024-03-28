@@ -3,12 +3,12 @@ import { H1 } from "@/components/Typography";
 import { Separator } from "@/components/ui/separator";
 import { Locale } from "@/lib/i18n/types";
 import { getDictionary } from "@/lib/i18n/utils";
+import getSchemaProfilePage from "@/lib/schema-dts/profile-page";
 import { createClient } from "@/prismicio";
 import { components } from "@/slices";
 import { SliceZone } from "@prismicio/react";
 import { notFound } from "next/navigation";
 import { FC } from "react";
-import { ProfilePage, WithContext } from "schema-dts";
 
 type Params = {
 	lang: Locale;
@@ -42,37 +42,10 @@ const HomeLang: FC<Props> = async (props) => {
 		})
 		.catch(() => notFound());
 
-	const jsonLd: WithContext<ProfilePage> = {
-		"@context": "https://schema.org",
-		"@type": "ProfilePage",
-		name: "Thibault Walterspieler",
-		mainEntity: {
-			"@type": "Person",
-			name: "Thibault Walterspieler",
-			description: dictionary.home.metadata.description,
-			jobTitle: dictionary.home.job,
-			affiliation: "WeAreStudio99",
-			url: "https://walterspieler.dev",
-			email: "thibs@wearestudio99.fr",
-			address: {
-				"@type": "PostalAddress",
-				addressLocality: "Lyon",
-				addressRegion: "Rhône-Alpes",
-				addressCountry: "France",
-			},
-			worksFor: {
-				"@type": "Organization",
-				name: "WeAreStudio99",
-				url: "https://www.instagram.com/wearestudio99/",
-			},
-		},
-		sameAs: [
-			"https://www.linkedin.com/in/thibault-walterspieler-84881716b/",
-			"https://github.com/ThibaultWalterspieler",
-			"https://stackoverflow.com/users/10094877/thibault-walterspieler",
-			"https://www.malt.fr/profile/thibaultwalterspieler",
-		],
-	};
+	const jsonLd = getSchemaProfilePage(
+		dictionary.home.metadata.description,
+		dictionary.home.job,
+	);
 
 	return (
 		<>

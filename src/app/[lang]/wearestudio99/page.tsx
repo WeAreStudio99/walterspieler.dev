@@ -1,6 +1,7 @@
 import { ScrollArea } from "@/components/ScrollArea";
 import { Locale } from "@/lib/i18n/types";
 import { getDictionary } from "@/lib/i18n/utils";
+import getSchemaOrganization from "@/lib/schema-dts/organization";
 import { generateAlternates } from "@/lib/utils";
 import { createClient } from "@/prismicio";
 import { components } from "@/slices";
@@ -26,14 +27,22 @@ const WeAreStudio99Page: FC<Props> = async (props) => {
 		fetchLinks: ["social.label", "social.url", "social.type"],
 	});
 
+	const jsonLd = getSchemaOrganization();
+
 	return (
-		<ScrollArea className="flex flex-col">
-			<div className="content-wrapper">
-				<article className="content animate-in fade-in duration-700">
-					<SliceZone components={components} slices={page.data.slices} />
-				</article>
-			</div>
-		</ScrollArea>
+		<>
+			<script
+				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+				type="application/ld+json"
+			/>
+			<ScrollArea className="flex flex-col">
+				<div className="content-wrapper">
+					<article className="content animate-in fade-in duration-700">
+						<SliceZone components={components} slices={page.data.slices} />
+					</article>
+				</div>
+			</ScrollArea>
+		</>
 	);
 };
 
