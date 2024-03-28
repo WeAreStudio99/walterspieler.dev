@@ -1,5 +1,3 @@
-"use client";
-
 import Error404 from "@/components/NotFound";
 import { FC } from "react";
 
