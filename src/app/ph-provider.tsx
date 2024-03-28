@@ -20,14 +20,6 @@ const PHProvider = ({
 		return <>{children}</>;
 	}
 
-	const isInternalUser =
-		typeof window !== "undefined" &&
-		window.localStorage.getItem("POSTHOG_INTERNAL_USER") === "TRUE";
-
-	if (isInternalUser) {
-		return <>{children}</>;
-	}
-
 	return <PostHogProvider client={posthog}>{children}</PostHogProvider>;
 };
 
