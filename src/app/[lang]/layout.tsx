@@ -46,6 +46,7 @@ const LangRootLayout: FC<Props> = (props) => {
 				<Script
 					async
 					data-website-id={process.env.NEXT_PUBLIC_UMAMI_ID}
+					rel="preconnect"
 					src="https://eu.umami.is/script.js"
 					strategy="afterInteractive"
 				/>
