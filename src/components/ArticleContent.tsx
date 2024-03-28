@@ -19,6 +19,7 @@ type Props = {
 
 const ArticleContent: FC<Props> = ({ company, page }) => {
 	const companyLink = asLink(company?.website);
+
 	return (
 		<>
 			<div className="flex flex-col mb-8">
