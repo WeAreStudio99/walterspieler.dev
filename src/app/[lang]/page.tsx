@@ -83,9 +83,13 @@ const HomeLang: FC<Props> = async (props) => {
 			<ScrollArea className="flex flex-col">
 				<div className="content-wrapper">
 					<div className="content animate-in fade-in duration-700">
-						<H1 className="max-w-36 mb-4 md:mb-4 md:max-w-full text-spotlight">
+						<H1 className="mb-4 md:mb-4 md:max-w-full text-spotlight max-w-[60vw]">
 							Thibault Walterspieler
-							<span className={"block text-stone-400 text-xl font-normal mt-3"}>
+							<span
+								className={
+									"block text-stone-400 text-xl md:text-2xl font-normal mt-3"
+								}
+							>
 								{dictionary.home.job}
 							</span>
 						</H1>
