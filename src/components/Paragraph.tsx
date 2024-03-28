@@ -1,7 +1,5 @@
-"use client";
-
+import CopyLink from "@/components/CopyLink";
 import { A, H1, H2, H3, H4, LI, P, UL } from "@/components/Typography";
-import { useToast } from "@/components/ui/use-toast";
 import { RichTextField } from "@prismicio/client";
 import { PrismicRichText } from "@prismicio/react";
 import Image from "next/image";
@@ -12,15 +10,6 @@ type Props = {
 };
 
 const ParagraphBlock: FC<Props> = ({ field }) => {
-	const { toast } = useToast();
-
-	const onHyperlinkClick = (text: string) => {
-		navigator.clipboard.writeText(text);
-		toast({
-			description: `My email (${text}) has been copied to your clipboard.`,
-		});
-	};
-
 	return (
 		<PrismicRichText
 			components={{
@@ -51,14 +40,7 @@ const ParagraphBlock: FC<Props> = ({ field }) => {
 				},
 				hyperlink: ({ text, node }) => {
 					if (node.data.url === "[copy]") {
-						return (
-							<button
-								className="text-base text-pearl-light hover:underline hover:text-pearl-dark decoration-pearl-dark"
-								onClick={() => onHyperlinkClick(text)}
-							>
-								{text}
-							</button>
-						);
+						return <CopyLink text={text} />;
 					}
 
 					return (
