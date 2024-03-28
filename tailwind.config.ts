@@ -64,7 +64,7 @@ const config = {
         },
         metal: '#1E2226',
         pearl: {
-          light: '#7ACCB8',
+          light: '#29CCA4',
           dark: '#5C9E8A',
         },
         grey: '#47505A',
