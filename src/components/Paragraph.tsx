@@ -51,7 +51,14 @@ const ParagraphBlock: FC<Props> = ({ field }) => {
 				},
 				hyperlink: ({ text, node }) => {
 					if (node.data.url === "[copy]") {
-						return <A onClick={() => onHyperlinkClick(text)}>{text}</A>;
+						return (
+							<button
+								className="text-base text-pearl-light hover:underline hover:text-pearl-dark decoration-pearl-dark"
+								onClick={() => onHyperlinkClick(text)}
+							>
+								{text}
+							</button>
+						);
 					}
 
 					return (
