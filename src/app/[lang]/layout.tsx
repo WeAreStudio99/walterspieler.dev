@@ -55,6 +55,7 @@ const LangRootLayout: FC<Props> = (props) => {
 				<body
 					className={cn(
 						"dark",
+						"overflow-hidden",
 						"relative",
 						"min-h-dvh bg-background font-sans antialiased",
 						"bg-eerie-light",
