@@ -1,6 +1,6 @@
 "use client";
 
-import { NavigationLink } from "@/components/NavigationLink";
+import NavigationLink from "@/components/NavigationLink";
 import { MenuContext } from "@/contexts/MenuContext";
 import { Locale } from "@/lib/i18n/types";
 import { SliceZone } from "@prismicio/client";
