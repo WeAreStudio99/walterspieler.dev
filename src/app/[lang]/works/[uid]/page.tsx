@@ -63,14 +63,14 @@ const WorkPage: FC<Props> = async (props) => {
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 				type="application/ld+json"
 			/>
-			<ScrollArea className="flex flex-col md:pl-72 z-0 blueprint-layout">
-				<div className="content-wrapper mt-14 md:mt-0">
+			<ScrollArea className="flex flex-col lg:pl-72 z-0 blueprint-layout">
+				<div className="content-wrapper mt-14 lg:mt-0">
 					<Link
 						href={
 							lang === I18N_CONFIG.defaultLocale ? "/works" : `/${lang}/works`
 						}
 					>
-						<div className="fixed top-8 left-4 lg:hidden bg-metal/5 z-50 backdrop-blur rounded-lg p-2 border-grey border md:hidden">
+						<div className="fixed top-8 left-4 bg-metal/5 z-50 backdrop-blur rounded-lg p-2 border-grey border lg:hidden">
 							<ChevronLeft size={24} />
 						</div>
 					</Link>
