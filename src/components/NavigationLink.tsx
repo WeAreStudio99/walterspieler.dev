@@ -6,7 +6,7 @@ import { Locale } from "@/lib/i18n/types";
 import { cn } from "@/lib/utils";
 import { LinkField, asLink } from "@prismicio/client";
 import { PrismicNextLink } from "@prismicio/next";
-import { BoltIcon, DraftingCompass, Nfc } from "lucide-react";
+import { BoltIcon, DraftingCompass, ExternalLink, Nfc } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { FC, useContext, useMemo } from "react";
 
@@ -59,9 +59,15 @@ const NavigationLink: FC<Props> = ({ label, link, lang }) => {
 					<span className="text-ellipsis overflow-hidden">{label}</span>
 				</div>
 			) : (
-				<div className="flex items-center gap-2 text-xl md:text-base">
+				<div className="flex items-center gap-2 text-xl md:text-base relative w-full">
 					{label === "Contact" && <Nfc className="w-4" />}
 					<span className="text-ellipsis overflow-hidden">{label}</span>
+					{label === "Contact" && (
+						<ExternalLink
+							className="w-4 absolute right-0 text-stone-400"
+							strokeWidth={1}
+						/>
+					)}
 				</div>
 			)}
 		</PrismicNextLink>

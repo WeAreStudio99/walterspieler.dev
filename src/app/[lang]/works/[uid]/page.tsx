@@ -74,7 +74,7 @@ const WorkPage: FC<Props> = async (props) => {
 							<ChevronLeft size={24} />
 						</div>
 					</Link>
-					<article className="content animate-in fade-in duration-700">
+					<article className="content ">
 						<ArticleBreadcrumb
 							lang={lang}
 							title={page.data.meta_title || uid}

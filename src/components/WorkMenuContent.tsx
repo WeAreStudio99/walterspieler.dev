@@ -78,7 +78,12 @@ const WorkMenuContent: FC<Props> = ({ lang, workPages, title }) => {
 										</div>
 									)}
 								</div>
-								<ChevronRight className="z-10 text-pearl-light" />
+								<ChevronRight
+									className="z-10 text-pearl-light"
+									height={22}
+									strokeLinecap="square"
+									strokeWidth={1}
+								/>
 							</div>
 						</Link>
 					);
