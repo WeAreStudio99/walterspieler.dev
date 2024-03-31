@@ -1,6 +1,6 @@
 "use client";
 
-import WeAreStudio99 from "@/components/Icons/WeAreStudio99";
+import WeAreStudio99 from "@/components/Icons/Company/WeAreStudio99";
 import { MenuContext } from "@/contexts/MenuContext";
 import { Locale } from "@/lib/i18n/types";
 import { cn } from "@/lib/utils";
