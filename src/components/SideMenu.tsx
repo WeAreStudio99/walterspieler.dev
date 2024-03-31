@@ -80,7 +80,7 @@ const SideMenu: FC<Props> = ({ children, isInner }) => {
 			{isInner ? (
 				<motion.div
 					animate="animate"
-					className="hidden md:block fixed z-10"
+					className="hidden md:block fixed z-10 bg-eerie-dark"
 					initial="closed"
 					transition={{
 						duration: 0.5,
@@ -111,7 +111,9 @@ const SideMenu: FC<Props> = ({ children, isInner }) => {
 							</>
 						)}
 					</AnimatePresence>
-					<ScrollArea className={cn(scrollAreaClasses, "hidden md:blo")}>
+					<ScrollArea
+						className={cn(scrollAreaClasses, "hidden md:block bg-eerie-dark")}
+					>
 						{children}
 					</ScrollArea>
 				</>
