@@ -1,9 +1,8 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { FC } from "react";
-
 import { motion } from "framer-motion";
+import { FC } from "react";
 
 type Props = {
 	label: string;

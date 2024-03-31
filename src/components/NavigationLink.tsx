@@ -1,14 +1,15 @@
 "use client";
 
-import WeAreStudio99 from "@/components/Icons/Company/WeAreStudio99";
 import { MenuContext } from "@/contexts/MenuContext";
 import { Locale } from "@/lib/i18n/types";
 import { cn } from "@/lib/utils";
 import { LinkField, asLink } from "@prismicio/client";
 import { PrismicNextLink } from "@prismicio/next";
-import { BoltIcon, DraftingCompass, ExternalLink, Nfc } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { FC, useContext, useMemo } from "react";
+
+import WeAreStudio99 from "@/components/Icons/Company/WeAreStudio99";
+import { BoltIcon, DraftingCompass, ExternalLink, Nfc } from "lucide-react";
 
 type Props = {
 	label: string;

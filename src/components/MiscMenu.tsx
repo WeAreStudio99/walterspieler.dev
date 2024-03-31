@@ -1,5 +1,9 @@
 "use client";
 
+import { MenuContext } from "@/contexts/MenuContext";
+import Link from "next/link";
+import { FC, useContext } from "react";
+
 import { Button } from "@/components/ui/button";
 import {
 	DropdownMenu,
@@ -10,9 +14,6 @@ import {
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { MenuContext } from "@/contexts/MenuContext";
-import Link from "next/link";
-import { FC, useContext } from "react";
 
 type Props = {
 	title: string;

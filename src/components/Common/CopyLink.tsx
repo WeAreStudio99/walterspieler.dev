@@ -1,7 +1,8 @@
 "use client";
 
-import { useToast } from "@/components/ui/use-toast";
 import { FC } from "react";
+
+import { useToast } from "@/components/ui/use-toast";
 
 type Props = {
 	text: string;

@@ -1,4 +1,3 @@
-import { H1 } from "@/components/Typography";
 import { formatDateToMonthYear } from "@/lib/date";
 import { I18N_CONFIG } from "@/lib/i18n/config";
 import { Locale } from "@/lib/i18n/types";
@@ -6,10 +5,12 @@ import { getDictionary } from "@/lib/i18n/utils";
 import { cn } from "@/lib/utils";
 import { createClient } from "@/prismicio";
 import { Content, asDate } from "@prismicio/client";
-import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { FC } from "react";
+
+import { H1 } from "@/components/Common/Typography";
+import { ChevronRight } from "lucide-react";
 
 type Props = {
 	lang: Locale;

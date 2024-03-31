@@ -1,10 +1,11 @@
-import WorkCard from "@/components/WorkCard";
 import { formatDateDiff } from "@/lib/date";
 import { Locale } from "@/lib/i18n/types";
 import { getDictionary } from "@/lib/i18n/utils";
 import { Content, asDate, asLink } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
 import { WorkDocumentData } from "../../../prismicio-types";
+
+import WorkCard from "@/components/Works/WorkCard";
 
 /**
  * Props for `WorkItem`.

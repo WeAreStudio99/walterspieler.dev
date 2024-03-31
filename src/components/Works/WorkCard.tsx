@@ -1,8 +1,5 @@
 "use client";
 
-import { A, H3 } from "@/components/Typography";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
 import { formatDateToMonthYear } from "@/lib/date";
 import { I18N_CONFIG } from "@/lib/i18n/config";
 import { Locale } from "@/lib/i18n/types";
@@ -16,11 +13,15 @@ import {
 import { PrismicNextImage } from "@prismicio/next";
 import { PrismicRichText } from "@prismicio/react";
 import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
-import { CalendarIcon } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FC } from "react";
-import { Simplify } from "../../prismicio-types";
+import { Simplify } from "../../../prismicio-types";
+
+import { A, H3 } from "@/components/Common/Typography";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import { CalendarIcon } from "lucide-react";
 
 type Props = {
 	title: string;

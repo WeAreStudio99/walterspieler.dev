@@ -1,13 +1,14 @@
-import Malt from "@/components/Icons/Company/Malt";
-import { Button } from "@/components/ui/button";
 import { Content } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
+import { SocialDocumentData } from "../../../prismicio-types";
+
+import Malt from "@/components/Icons/Company/Malt";
+import { Button } from "@/components/ui/button";
 import {
 	InstagramLogoIcon,
 	LinkedInLogoIcon,
 	StackIcon,
 } from "@radix-ui/react-icons";
-import { SocialDocumentData } from "../../../prismicio-types";
 
 /**
  * Props for `SocialsList`.

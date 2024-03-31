@@ -1,3 +1,7 @@
+import { Locale } from "@/lib/i18n/types";
+import { getDictionary } from "@/lib/i18n/utils";
+import Link from "next/link";
+
 import {
 	Breadcrumb,
 	BreadcrumbItem,
@@ -6,9 +10,6 @@ import {
 	BreadcrumbPage,
 	BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import { Locale } from "@/lib/i18n/types";
-import { getDictionary } from "@/lib/i18n/utils";
-import Link from "next/link";
 
 import { FC } from "react";
 

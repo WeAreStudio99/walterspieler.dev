@@ -1,4 +1,4 @@
-import ContentWrapper from "@/components/ContentWrapper";
+import ContentWrapper from "@/components/Common/ContentWrapper";
 import { createClient } from "@/prismicio";
 import { components } from "@/slices";
 import { SliceZone } from "@prismicio/react";

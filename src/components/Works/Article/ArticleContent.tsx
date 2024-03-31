@@ -1,10 +1,11 @@
-import { A, H1 } from "@/components/Typography";
-import { Separator } from "@/components/ui/separator";
-import { components } from "@/slices";
 import { Content, asLink } from "@prismicio/client";
 import { PrismicRichText, SliceZone } from "@prismicio/react";
 import { FC } from "react";
-import { Simplify } from "../../prismicio-types";
+import { Simplify } from "../../../../prismicio-types";
+
+import { A, H1 } from "@/components/Common/Typography";
+import { Separator } from "@/components/ui/separator";
+import { components } from "@/slices";
 
 type Props = {
 	company: Simplify<Content.WorkDocumentDataCompanyItem>;

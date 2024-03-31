@@ -1,6 +1,7 @@
-import ParagraphBlock from "@/components/Paragraph";
 import { Content } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
+
+import ParagraphBlock from "@/components/Common/Paragraph";
 
 /**
  * Props for `Paragraph`.

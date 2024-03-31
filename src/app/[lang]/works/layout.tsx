@@ -1,11 +1,12 @@
-import LoadingSpinner from "@/components/LoadingSpinner";
-import SideMenu from "@/components/SideMenu";
-import WorksMenuContent from "@/components/WorksMenuContent";
 import { Locale } from "@/lib/i18n/types";
 import { getDictionary } from "@/lib/i18n/utils";
 import { createClient } from "@/prismicio";
 import { Content } from "@prismicio/client";
 import { FC, PropsWithChildren, Suspense } from "react";
+
+import LoadingSpinner from "@/components/Common/LoadingSpinner";
+import SideMenu from "@/components/Common/SideMenu";
+import WorksMenuContent from "@/components/Works/WorksMenuContent";
 
 type Params = {
 	lang: Locale;

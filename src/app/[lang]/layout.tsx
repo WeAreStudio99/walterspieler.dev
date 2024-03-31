@@ -1,6 +1,6 @@
 import PostHogProvider from "@/app/ph-provider";
-import MainMenuContent from "@/components/MainMenuContent";
-import SideMenu from "@/components/SideMenu";
+import MainMenuContent from "@/components/Common/MainMenuContent";
+import SideMenu from "@/components/Common/SideMenu";
 import { Toaster } from "@/components/ui/toaster";
 import { MenuContextProvider } from "@/contexts/MenuContext";
 import { Locale } from "@/lib/i18n/types";

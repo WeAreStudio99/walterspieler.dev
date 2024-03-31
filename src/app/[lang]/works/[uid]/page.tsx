@@ -1,6 +1,6 @@
-import ArticleBreadcrumb from "@/components/ArticleBreadcrumb";
-import ArticleContent from "@/components/ArticleContent";
-import ScrollArea from "@/components/ScrollArea";
+import ScrollArea from "@/components/Common/ScrollArea";
+import ArticleBreadcrumb from "@/components/Works/Article/ArticleBreadcrumb";
+import ArticleContent from "@/components/Works/Article/ArticleContent";
 import { I18N_CONFIG } from "@/lib/i18n/config";
 import { Locale } from "@/lib/i18n/types";
 import { getDictionary } from "@/lib/i18n/utils";

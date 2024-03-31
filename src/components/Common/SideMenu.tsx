@@ -1,11 +1,12 @@
 "use client";
 
-import ScrollArea from "@/components/ScrollArea";
 import { MenuContext } from "@/contexts/MenuContext";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, Variants, motion } from "framer-motion";
-import { Command, X } from "lucide-react";
 import { FC, PropsWithChildren, useContext } from "react";
+
+import ScrollArea from "@/components/Common/ScrollArea";
+import { Command, X } from "lucide-react";
 
 type Props = {
 	isInner?: boolean;

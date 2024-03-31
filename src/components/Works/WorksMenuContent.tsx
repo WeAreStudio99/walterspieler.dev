@@ -5,10 +5,11 @@ import { I18N_CONFIG } from "@/lib/i18n/config";
 import { Locale } from "@/lib/i18n/types";
 import { cn } from "@/lib/utils";
 import { Content, asDate } from "@prismicio/client";
-import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FC, useMemo } from "react";
+
+import { ChevronRight } from "lucide-react";
 
 type Props = {
 	lang: Locale;

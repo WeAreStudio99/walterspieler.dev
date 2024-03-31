@@ -1,4 +1,4 @@
-import ScrollArea from "@/components/ScrollArea";
+import ScrollArea from "@/components/Common/ScrollArea";
 import { Locale } from "@/lib/i18n/types";
 import { getDictionary } from "@/lib/i18n/utils";
 import getSchemaOrganization from "@/lib/schema-dts/organization";

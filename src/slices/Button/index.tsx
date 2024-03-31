@@ -1,10 +1,11 @@
-import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Content } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
 import { cva } from "class-variance-authority";
-import { CalendarHeart } from "lucide-react";
 import Link from "next/link";
+
+import { buttonVariants } from "@/components/ui/button";
+import { CalendarHeart } from "lucide-react";
 
 /**
  * Props for `Button`.

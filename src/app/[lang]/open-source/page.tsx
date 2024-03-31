@@ -1,4 +1,4 @@
-import ContentWrapper from "@/components/ContentWrapper";
+import ContentWrapper from "@/components/Common/ContentWrapper";
 import { Locale } from "@/lib/i18n/types";
 import { getDictionary } from "@/lib/i18n/utils";
 import { generateAlternates } from "@/lib/utils";

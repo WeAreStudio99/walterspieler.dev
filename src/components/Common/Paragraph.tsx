@@ -1,9 +1,10 @@
-import CopyLink from "@/components/CopyLink";
-import { A, H1, H2, H3, H4, LI, P, UL } from "@/components/Typography";
 import { RichTextField } from "@prismicio/client";
 import { PrismicRichText } from "@prismicio/react";
 import Image from "next/image";
 import { FC } from "react";
+
+import CopyLink from "@/components/Common/CopyLink";
+import { A, H1, H2, H3, H4, LI, P, UL } from "@/components/Common/Typography";
 
 type Props = {
 	field: RichTextField | null | undefined;

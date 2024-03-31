@@ -1,11 +1,12 @@
-import LangSelector from "@/components/LangSelector";
-import MainMenuItems from "@/components/MainMenuItems";
-import MiscMenu from "@/components/MiscMenu";
 import { Locale } from "@/lib/i18n/types";
 import { getDictionary } from "@/lib/i18n/utils";
 import { getLocales } from "@/lib/locales";
 import { createClient } from "@/prismicio";
 import { FC } from "react";
+
+import MainMenuItems from "@/components/Common/MainMenuItems";
+import LangSelector from "@/components/LangSelector";
+import MiscMenu from "@/components/MiscMenu";
 
 type Props = {
 	lang: Locale;

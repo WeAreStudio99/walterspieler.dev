@@ -1,12 +1,13 @@
 "use client";
 
-import NavigationLink from "@/components/NavigationLink";
 import { MenuContext } from "@/contexts/MenuContext";
 import { Locale } from "@/lib/i18n/types";
 import { SliceZone } from "@prismicio/client";
 import { motion, useAnimation } from "framer-motion";
 import { FC, useContext, useEffect } from "react";
-import { NavigationItemSlice } from "../../prismicio-types";
+import { NavigationItemSlice } from "../../../prismicio-types";
+
+import NavigationLink from "@/components/NavigationLink";
 
 type Props = {
 	items: SliceZone<NavigationItemSlice>;

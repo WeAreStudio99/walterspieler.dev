@@ -1,5 +1,9 @@
 "use client";
 
+import { Locale } from "@/lib/i18n/types";
+import { useRouter } from "next/navigation";
+import { FC } from "react";
+
 import { Button } from "@/components/ui/button";
 import {
 	DropdownMenu,
@@ -9,9 +13,6 @@ import {
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Locale } from "@/lib/i18n/types";
-import { useRouter } from "next/navigation";
-import { FC } from "react";
 
 type Props = {
 	title: string;
