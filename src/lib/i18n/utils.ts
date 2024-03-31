@@ -6,7 +6,7 @@ import { I18N_CONFIG } from './config';
 import { DICTIONARIES } from './constants';
 import { Locale } from './types';
 
-export const getDictionary = (locale: Locale) => {
+const getDictionary = (locale: Locale) => {
   if (!(locale in DICTIONARIES)) {
     return DICTIONARIES[I18N_CONFIG.defaultLocale]();
   }
@@ -14,9 +14,7 @@ export const getDictionary = (locale: Locale) => {
   return DICTIONARIES[locale]();
 };
 
-export const getLocaleFromRequest = (
-  request: NextRequest
-): string | undefined => {
+const getLocaleFromRequest = (request: NextRequest): string | undefined => {
   const negotiatorHeaders: Record<string, string> = {};
   request.headers.forEach((value, key) => (negotiatorHeaders[key] = value));
 
@@ -28,3 +26,5 @@ export const getLocaleFromRequest = (
 
   return match(languages, locales, I18N_CONFIG.defaultLocale);
 };
+
+export { getDictionary, getLocaleFromRequest };

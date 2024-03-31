@@ -22,7 +22,7 @@ type Props = {
 	})[];
 };
 
-const WorkMenuContent: FC<Props> = ({ lang, workPages, title }) => {
+const WorksMenuContent: FC<Props> = ({ lang, workPages, title }) => {
 	const pathname = usePathname();
 	const splitPathname = pathname.split("/");
 	const currentWork = splitPathname[splitPathname.length - 1];
@@ -94,4 +94,4 @@ const WorkMenuContent: FC<Props> = ({ lang, workPages, title }) => {
 	);
 };
 
-export default WorkMenuContent;
+export default WorksMenuContent;

@@ -1,6 +1,6 @@
 import LoadingSpinner from "@/components/LoadingSpinner";
-import { SideMenu } from "@/components/SideMenu";
-import WorkMenuContent from "@/components/WorkMenuContent";
+import SideMenu from "@/components/SideMenu";
+import WorksMenuContent from "@/components/WorksMenuContent";
 import { Locale } from "@/lib/i18n/types";
 import { getDictionary } from "@/lib/i18n/utils";
 import { createClient } from "@/prismicio";
@@ -39,7 +39,7 @@ const WorksLayout: FC<Props> = async (props) => {
 		<>
 			<SideMenu isInner>
 				<Suspense fallback={<LoadingSpinner />}>
-					<WorkMenuContent
+					<WorksMenuContent
 						lang={lang}
 						title={dictionary.menuItems.myWorks}
 						workPages={workPages}

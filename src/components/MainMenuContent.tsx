@@ -11,7 +11,7 @@ type Props = {
 	lang: Locale;
 };
 
-export const MenuContent: FC<Props> = async ({ lang }) => {
+const MainMenuContent: FC<Props> = async ({ lang }) => {
 	const dictionary = await getDictionary(lang);
 
 	const client = createClient();
@@ -46,3 +46,5 @@ export const MenuContent: FC<Props> = async ({ lang }) => {
 		</>
 	);
 };
+
+export default MainMenuContent;

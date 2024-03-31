@@ -43,7 +43,7 @@ const WorksList: FC<Props> = async (props) => {
 
 	return (
 		<div className="py-10 md:py-24 px-5 w-full wrapper bg-eerie-dark h-screen">
-			<H1 className="mb-8 sticky top-10 z-40">
+			<H1 className="mb-8 sticky top-10 z-30">
 				{dictionary.firstLevelPages.works}
 			</H1>
 			<div className="w-full mx-auto content">

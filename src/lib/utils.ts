@@ -5,11 +5,11 @@ import { AlternateURLs } from 'next/dist/lib/metadata/types/alternative-urls-typ
 import { twMerge } from 'tailwind-merge';
 import { BASE_URL } from '../../next.constants.mjs';
 
-export function cn(...inputs: ClassValue[]) {
+function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export const generateAlternates = (
+const generateAlternates = (
   pathWithoutLang: string,
   lang: Locale
 ): AlternateURLs => {
@@ -35,3 +35,5 @@ export const generateAlternates = (
     languages,
   };
 };
+
+export { cn, generateAlternates };

@@ -1,6 +1,6 @@
 import PostHogProvider from "@/app/ph-provider";
-import { MenuContent } from "@/components/MenuContent";
-import { SideMenu } from "@/components/SideMenu";
+import MainMenuContent from "@/components/MainMenuContent";
+import SideMenu from "@/components/SideMenu";
 import { Toaster } from "@/components/ui/toaster";
 import { MenuContextProvider } from "@/contexts/MenuContext";
 import { Locale } from "@/lib/i18n/types";
@@ -16,6 +16,14 @@ import Script from "next/script";
 import { FC, PropsWithChildren } from "react";
 import { BASE_URL } from "../../../next.constants.mjs";
 
+type Params = {
+	lang: Locale;
+};
+
+type Props = PropsWithChildren<{
+	params: Params;
+}>;
+
 const PostHogPageView = dynamic(
 	() => import("../../components/PostHogPageView"),
 	{
@@ -27,14 +35,6 @@ const spaceGrotesk = Space_Grotesk({
 	subsets: ["latin"],
 	variable: "--font-sans",
 });
-
-type Params = {
-	lang: Locale;
-};
-
-type Props = PropsWithChildren<{
-	params: Params;
-}>;
 
 const LangRootLayout: FC<Props> = (props) => {
 	const { children, params } = props;
@@ -68,7 +68,7 @@ const LangRootLayout: FC<Props> = (props) => {
 					<MenuContextProvider>
 						<div className="lg:flex">
 							<SideMenu>
-								<MenuContent lang={lang} />
+								<MainMenuContent lang={lang} />
 							</SideMenu>
 							<div className="flex flex-1">{children}</div>
 						</div>

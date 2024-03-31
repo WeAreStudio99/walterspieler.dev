@@ -1,4 +1,4 @@
-import { ScrollArea } from "@/components/ScrollArea";
+import ScrollArea from "@/components/ScrollArea";
 import { H1 } from "@/components/Typography";
 import { Separator } from "@/components/ui/separator";
 import { Locale } from "@/lib/i18n/types";

@@ -12,11 +12,9 @@ type MenuContextValue = {
 	openMenu: () => void;
 };
 
-export const MenuContext = createContext<MenuContextValue | undefined>(
-	undefined,
-);
+const MenuContext = createContext<MenuContextValue | undefined>(undefined);
 
-export const MenuContextProvider: FC<PropsWithChildren> = (props) => {
+const MenuContextProvider: FC<PropsWithChildren> = (props) => {
 	const { children } = props;
 
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -62,3 +60,5 @@ export const MenuContextProvider: FC<PropsWithChildren> = (props) => {
 		<MenuContext.Provider value={contextValue}>{children}</MenuContext.Provider>
 	);
 };
+
+export { MenuContext, MenuContextProvider };
