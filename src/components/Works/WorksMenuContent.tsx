@@ -57,7 +57,7 @@ const WorksMenuContent: FC<Props> = ({ lang, workPages, title }) => {
 						<Link href={href} key={work.id}>
 							<div
 								className={cn(
-									"group relative px-4 py-5 group flex items-center justify-between rounded-lg p-4 bg-metal border-grey border hover:bg-eerie-light  shadow-duration-200 hover:scale-[1.01] active:scale-[0.98] active:bg-eerie-light transition-color",
+									"group relative px-4 py-5 group flex items-center justify-between rounded-lg p-4 bg-metal border-grey border hover:bg-eerie-light  shadow-duration-200 hover:scale-[1.01] active:scale-[0.98] active:bg-eerie-light transition-all",
 									isActive &&
 										"[0_1000px_0_0_hsl(0_0%_20%)_inset] overflow-hidden",
 								)}
