@@ -1,8 +1,6 @@
+import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { FC } from "react";
-
-import { Button } from "@/components/ui/button";
-import "./_internal/style.css";
 
 type Props = {
 	label?: string;
@@ -14,7 +12,7 @@ type Props = {
 
 const Error404: FC<Props> = ({ label, button }) => {
 	return (
-		<div className="text-white h-full w-full flex flex-col justify-center items-center grid-layout">
+		<div className="text-white h-full w-full flex flex-col justify-center items-center blueprint-layout">
 			<h2 className="text-9xl font-bold">404</h2>
 			<p className="text-2xl font-bold mt-5">
 				{label || "You're lost in the void friend!"}

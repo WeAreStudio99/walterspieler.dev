@@ -1,7 +1,8 @@
-import Error404 from "@/components/NotFound";
 import { FC } from "react";
 
-const NotFound: FC = () => {
+import Error404 from "@/components/Error404";
+
+const NotFoundPage: FC = () => {
 	return (
 		<Error404
 			button={{
@@ -13,4 +14,4 @@ const NotFound: FC = () => {
 	);
 };
 
-export default NotFound;
+export default NotFoundPage;

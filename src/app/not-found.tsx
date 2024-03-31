@@ -1,13 +1,14 @@
-import Error404 from "@/components/NotFound";
 import { cn } from "@/lib/utils";
 import { Space_Grotesk } from "next/font/google";
+
+import Error404 from "@/components/Error404";
 
 const spaceGrotesk = Space_Grotesk({
 	subsets: ["latin"],
 	variable: "--font-sans",
 });
 
-export default function NotFound() {
+export default function NotFoundPage() {
 	return (
 		<html lang="en">
 			<body
