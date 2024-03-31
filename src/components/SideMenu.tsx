@@ -1,6 +1,6 @@
 "use client";
 
-import { ScrollArea } from "@/components/ScrollArea";
+import ScrollArea from "@/components/ScrollArea";
 import { MenuContext } from "@/contexts/MenuContext";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, Variants, motion } from "framer-motion";
@@ -11,27 +11,28 @@ type Props = {
 	isInner?: boolean;
 } & PropsWithChildren;
 
-const variants: Variants = {
-	open: { x: "100%", opacity: 1 },
-	closed: { x: "0%", opacity: 0 },
-	exit: { x: "100%", opacity: 1 },
-};
-
 const innerMenuVariants: Variants = {
 	closed: { x: "-100%", opacity: 1 },
 	animate: { x: "0%", opacity: 1 },
 };
 
 const iconVariants: Variants = {
-	open: { opacity: 1 },
-	closed: { opacity: 0 },
+	open: {
+		scale: 1,
+		opacity: 1,
+	},
+	closed: {
+		scale: 0.3,
+		opacity: 0,
+	},
 };
 
-export const SideMenu: FC<Props> = ({ children, isInner }) => {
+const SideMenu: FC<Props> = ({ children, isInner }) => {
 	const { isMenuOpen, openMenu, closeMenu } = useContext(MenuContext) ?? {};
 
 	const scrollAreaClasses = cn(
-		"bg-eerie-dark lg:flex lg:flex-col border-r border-grey z-40 justify-between",
+		" lg:flex lg:flex-col border-r border-grey z-50 justify-between",
+		"dot-grid",
 		isInner
 			? "lg:w-72 xl:w-72 shadow"
 			: "lg:w-60 xl:w-72 flex flex-col shadow-xl",
@@ -40,53 +41,42 @@ export const SideMenu: FC<Props> = ({ children, isInner }) => {
 
 	return (
 		<>
-			{!isMenuOpen && (
+			{!isMenuOpen ? (
 				<div className="absolute top-8 right-4 lg:hidden bg-metal/5 z-50 backdrop-blur rounded-lg p-2 border-grey border">
-					<Command onClick={openMenu} size={24} />
+					<motion.div
+						animate={isMenuOpen ? "open" : "closed"}
+						initial="closed"
+						transition={{
+							type: "spring",
+							stiffness: 400,
+							damping: 17,
+							duration: 0.5,
+						}}
+						whileHover={{ scale: 1.2 }}
+						whileTap={{ scale: 0.9 }}
+					>
+						<Command onClick={openMenu} size={24} />
+					</motion.div>
+				</div>
+			) : (
+				<div className="absolute top-8 right-4 lg:hidden bg-metal/80 z-50 backdrop-blur rounded-lg p-2 border-grey border">
+					<motion.div
+						animate={isMenuOpen ? "open" : "closed"}
+						initial="closed"
+						transition={{
+							type: "spring",
+							stiffness: 400,
+							damping: 17,
+							duration: 0.8,
+						}}
+						variants={iconVariants}
+						whileHover={{ scale: 1.2 }}
+						whileTap={{ scale: 0.9 }}
+					>
+						<X onClick={closeMenu} size={24} />
+					</motion.div>
 				</div>
 			)}
-
-			{isMenuOpen && (
-				<motion.div
-					animate={isMenuOpen ? "open" : "closed"}
-					className="absolute top-10 right-4 lg:hidden bg-metal/5 z-50 backdrop-blur rounded-lg p-2 border-grey border"
-					exit="closed"
-					initial="closed"
-					transition={{
-						type: "spring",
-						stiffness: 200,
-						damping: 40,
-						delay: 0.5,
-					}}
-					variants={iconVariants}
-				>
-					<div>
-						<X onClick={closeMenu} size={24} />
-					</div>
-				</motion.div>
-			)}
-
-			{!isInner && (
-				<AnimatePresence>
-					{isMenuOpen && (
-						<motion.div
-							animate={isMenuOpen ? "open" : "closed"}
-							className="md:hidden fixed top-0 left-0 z-40 w-screen"
-							exit="exit"
-							initial="closed"
-							transition={{
-								type: "spring",
-								stiffness: 200,
-								damping: 40,
-							}}
-							variants={variants}
-						>
-							<ScrollArea className={scrollAreaClasses}>{children}</ScrollArea>
-						</motion.div>
-					)}
-				</AnimatePresence>
-			)}
-
 			{isInner ? (
 				<motion.div
 					animate="animate"
@@ -100,12 +90,34 @@ export const SideMenu: FC<Props> = ({ children, isInner }) => {
 					<ScrollArea className={scrollAreaClasses}>{children}</ScrollArea>
 				</motion.div>
 			) : (
-				<ScrollArea
-					className={cn(scrollAreaClasses, isInner && "hidden md:block")}
-				>
-					{children}
-				</ScrollArea>
+				<>
+					<AnimatePresence>
+						{isMenuOpen && (
+							<>
+								<motion.div
+									animate={{ opacity: 1 }}
+									className="fixed z-40 w-screen md:hidden bg-eerie-dark/80 backdrop-blur-3xl"
+									exit={{ opacity: 0 }}
+									initial={{ opacity: 0 }}
+									transition={{
+										ease: [0.93, -0.01, 0.17, 1],
+										duration: 0.6,
+									}}
+								>
+									<ScrollArea className={cn(scrollAreaClasses)}>
+										{children}
+									</ScrollArea>
+								</motion.div>
+							</>
+						)}
+					</AnimatePresence>
+					<ScrollArea className={cn(scrollAreaClasses, "hidden md:blo")}>
+						{children}
+					</ScrollArea>
+				</>
 			)}
 		</>
 	);
 };
+
+export default SideMenu;
