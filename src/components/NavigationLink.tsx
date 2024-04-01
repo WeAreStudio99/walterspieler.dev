@@ -45,8 +45,10 @@ const NavigationLink: FC<Props> = ({ label, link, lang }) => {
 		<PrismicNextLink
 			className={cn(
 				"group flex items-center justify-between rounded-lg p-4 bg-metal border-grey border duration-200 hover:scale-[1.01] active:scale-[0.98] active:bg-eerie-light transition-all",
-				isActive && "bg-chinese-black",
-				!isActive && "hover:bg-eerie-light",
+				{
+					"bg-chinese-black": isActive,
+					"hover:bg-eerie-light": !isActive,
+				},
 			)}
 			field={link}
 			onClick={closeMenu}

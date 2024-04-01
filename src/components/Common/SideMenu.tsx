@@ -34,10 +34,11 @@ const SideMenu: FC<Props> = ({ children, isInner }) => {
 	const scrollAreaClasses = cn(
 		" lg:flex lg:flex-col border-r border-grey z-50 justify-between",
 		"dot-grid",
-		isInner
-			? "lg:w-72 xl:w-72 shadow"
-			: "lg:w-60 xl:w-72 flex flex-col shadow-xl",
-		!isMenuOpen && "hidden",
+		{
+			"lg:w-72 xl:w-72": isInner,
+			"lg:w-60 xl:w-72": !isInner,
+			hidden: !isMenuOpen,
+		},
 	);
 
 	return (
