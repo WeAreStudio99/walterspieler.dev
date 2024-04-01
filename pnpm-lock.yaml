@@ -10,16 +10,16 @@ dependencies:
     version: 0.5.4
   '@hookform/resolvers':
     specifier: ^3.3.4
-    version: 3.3.4(react-hook-form@7.51.1)
+    version: 3.3.4(react-hook-form@7.51.2)
   '@prismicio/client':
-    specifier: ^7.3.1
-    version: 7.3.1
+    specifier: ^7.4.0
+    version: 7.4.0
   '@prismicio/next':
     specifier: ^1.5.0
-    version: 1.5.0(@prismicio/client@7.3.1)(next@14.1.4)(react@18.2.0)
+    version: 1.5.0(@prismicio/client@7.4.0)(next@14.1.4)(react@18.2.0)
   '@prismicio/react':
-    specifier: ^2.7.3
-    version: 2.7.3(@prismicio/client@7.3.1)(react@18.2.0)
+    specifier: ^2.7.4
+    version: 2.7.4(@prismicio/client@7.4.0)(react@18.2.0)
   '@radix-ui/react-dropdown-menu':
     specifier: ^2.0.6
     version: 2.0.6(@types/react-dom@18.2.19)(@types/react@18.2.57)(react-dom@18.2.0)(react@18.2.0)
@@ -57,8 +57,8 @@ dependencies:
     specifier: ^3.6.0
     version: 3.6.0
   framer-motion:
-    specifier: ^11.0.20
-    version: 11.0.20(react-dom@18.2.0)(react@18.2.0)
+    specifier: ^11.0.24
+    version: 11.0.24(react-dom@18.2.0)(react@18.2.0)
   lucide-react:
     specifier: ^0.363.0
     version: 0.363.0(react@18.2.0)
@@ -78,8 +78,8 @@ dependencies:
     specifier: ^18
     version: 18.2.0(react@18.2.0)
   react-hook-form:
-    specifier: ^7.51.1
-    version: 7.51.1(react@18.2.0)
+    specifier: ^7.51.2
+    version: 7.51.2(react@18.2.0)
   schema-dts:
     specifier: ^1.1.2
     version: 1.1.2(typescript@5.3.3)
@@ -88,18 +88,18 @@ dependencies:
     version: 2.2.2
   tailwindcss-animate:
     specifier: ^1.0.7
-    version: 1.0.7(tailwindcss@3.4.1)
+    version: 1.0.7(tailwindcss@3.4.3)
   zod:
     specifier: ^3.22.4
     version: 3.22.4
 
 devDependencies:
   '@biomejs/biome':
-    specifier: 1.6.2
-    version: 1.6.2
+    specifier: 1.6.3
+    version: 1.6.3
   '@slicemachine/adapter-next':
     specifier: ^0.3.38
-    version: 0.3.38(@prismicio/client@7.3.1)(@types/uuid@9.0.8)(next@14.1.4)(react@18.2.0)(uuid@9.0.1)
+    version: 0.3.38(@prismicio/client@7.4.0)(@types/uuid@9.0.8)(next@14.1.4)(react@18.2.0)(uuid@9.0.1)
   '@types/negotiator':
     specifier: ^0.6.3
     version: 0.6.3
@@ -126,10 +126,10 @@ devDependencies:
     version: 8.4.38
   slice-machine-ui:
     specifier: ^1.26.0
-    version: 1.26.0(@prismicio/client@7.3.1)(@types/react-dom@18.2.19)(@types/react@18.2.57)(@types/uuid@9.0.8)(react-dom@18.2.0)(react@18.2.0)(uuid@9.0.1)
+    version: 1.26.0(@prismicio/client@7.4.0)(@types/react-dom@18.2.19)(@types/react@18.2.57)(@types/uuid@9.0.8)(react-dom@18.2.0)(react@18.2.0)(uuid@9.0.1)
   tailwindcss:
-    specifier: ^3.4.1
-    version: 3.4.1
+    specifier: ^3.4.3
+    version: 3.4.3
   typescript:
     specifier: ^5
     version: 5.3.3
@@ -163,24 +163,24 @@ packages:
       regenerator-runtime: 0.14.1
     dev: false
 
-  /@biomejs/biome@1.6.2:
-    resolution: {integrity: sha512-vw6JhYnpLRRDaawI+d7NaQj17F7LSSJrgT03IQUETwRUG3Q1/a4ByJRphTVXPuhiTnaKVmUlEF3I5NSitcdD+g==}
+  /@biomejs/biome@1.6.3:
+    resolution: {integrity: sha512-Xnp/TIpIcTnRA4LwerJuoGYQJEqwXtn5AL0U0OPXll/QGbAKmcUAfizU880xTwZRD4f53iceqODLDaD3wxYlIw==}
     engines: {node: '>=14.*'}
     hasBin: true
     requiresBuild: true
     optionalDependencies:
-      '@biomejs/cli-darwin-arm64': 1.6.2
-      '@biomejs/cli-darwin-x64': 1.6.2
-      '@biomejs/cli-linux-arm64': 1.6.2
-      '@biomejs/cli-linux-arm64-musl': 1.6.2
-      '@biomejs/cli-linux-x64': 1.6.2
-      '@biomejs/cli-linux-x64-musl': 1.6.2
-      '@biomejs/cli-win32-arm64': 1.6.2
-      '@biomejs/cli-win32-x64': 1.6.2
+      '@biomejs/cli-darwin-arm64': 1.6.3
+      '@biomejs/cli-darwin-x64': 1.6.3
+      '@biomejs/cli-linux-arm64': 1.6.3
+      '@biomejs/cli-linux-arm64-musl': 1.6.3
+      '@biomejs/cli-linux-x64': 1.6.3
+      '@biomejs/cli-linux-x64-musl': 1.6.3
+      '@biomejs/cli-win32-arm64': 1.6.3
+      '@biomejs/cli-win32-x64': 1.6.3
     dev: true
 
-  /@biomejs/cli-darwin-arm64@1.6.2:
-    resolution: {integrity: sha512-2sGcNO1wDuQ6r97/SDaPzP3ehrCL7qHXpVggcB/OonbVBEamqIkN1tHsID/snnX3R2ax2QTarjb4bQ+1BpEWzA==}
+  /@biomejs/cli-darwin-arm64@1.6.3:
+    resolution: {integrity: sha512-0E8PGu3/8HSkBJdtjno+niJE1ANS/12D7sPK65vw5lTBYmmaYwJdfclDp6XO0IAX7uVd3/YtXlsEua0SVrNt3Q==}
     engines: {node: '>=14.*'}
     cpu: [arm64]
     os: [darwin]
@@ -188,8 +188,8 @@ packages:
     dev: true
     optional: true
 
-  /@biomejs/cli-darwin-x64@1.6.2:
-    resolution: {integrity: sha512-qtHDXIHd7eRIHv41XdG6pt1dbw+qiD0OgLlJn5rvW20kSSFfLxW8yc4upcC1PzlruP1BQpKFec3r5rx1duTtzw==}
+  /@biomejs/cli-darwin-x64@1.6.3:
+    resolution: {integrity: sha512-UWu0We/aIRtWXgJKe6ygWt2xR0yXs64BwWqtZbfxBojRn3jgW8UdFAkV5yiUOX3TQlsV6BZH1EQaUAVsccUeeA==}
     engines: {node: '>=14.*'}
     cpu: [x64]
     os: [darwin]
@@ -197,8 +197,8 @@ packages:
     dev: true
     optional: true
 
-  /@biomejs/cli-linux-arm64-musl@1.6.2:
-    resolution: {integrity: sha512-ej3Jj6O9KUSCJUWqVs+9aOo6IcRIALHaGFB20wnQTWtRMFhu1PluM48MrQtMKputgdk5/CopQ662IdKf1PeuEg==}
+  /@biomejs/cli-linux-arm64-musl@1.6.3:
+    resolution: {integrity: sha512-AntGCSfLN1nPcQj4VOk3X2JgnDw07DaPC8BuBmRcsRmn+7GPSWLllVN5awIKlRPZEbGJtSnLkTiDc5Bxw8OiuA==}
     engines: {node: '>=14.*'}
     cpu: [arm64]
     os: [linux]
@@ -206,8 +206,8 @@ packages:
     dev: true
     optional: true
 
-  /@biomejs/cli-linux-arm64@1.6.2:
-    resolution: {integrity: sha512-e1FJ59lx84QoqQgu1/uzAPIcYGcTkZY/m6Aj8ZHwi7KoWAE5xSogximFHNQ82lS4qkUfG7KaPTbYT6cGJjN9jQ==}
+  /@biomejs/cli-linux-arm64@1.6.3:
+    resolution: {integrity: sha512-wFVkQw38kOssfnkbpSh6ums5TaElw3RAt5i/VZwHmgR2nQgE0fHXLO7HwIE9VBkOEdbiIFq+2PxvFIHuJF3z3Q==}
     engines: {node: '>=14.*'}
     cpu: [arm64]
     os: [linux]
@@ -215,8 +215,8 @@ packages:
     dev: true
     optional: true
 
-  /@biomejs/cli-linux-x64-musl@1.6.2:
-    resolution: {integrity: sha512-uOVt4UBkFTFtdXgPX3QuSHRPVIvj07FP0P7A0UOP++idd0r9Bxyt5iIBaAORM3eQyGQqzCGPln1GuM6GalYKzg==}
+  /@biomejs/cli-linux-x64-musl@1.6.3:
+    resolution: {integrity: sha512-GelAvGsUwbxfFpKLG+7+dvDmbrfkGqn08sL8CMQrGnhjE1krAqHWiXQsjfmi0UMFdMsk7hbc4oSAP+1+mrXcHQ==}
     engines: {node: '>=14.*'}
     cpu: [x64]
     os: [linux]
@@ -224,8 +224,8 @@ packages:
     dev: true
     optional: true
 
-  /@biomejs/cli-linux-x64@1.6.2:
-    resolution: {integrity: sha512-S6Wc5YX6aLDLMzwlDmiw/kjK62Ex+xzE432M5ge9q8tSCluGeHIzrenrJlu8E0xPG2FEipDaK4iqwnjS9O6e2A==}
+  /@biomejs/cli-linux-x64@1.6.3:
+    resolution: {integrity: sha512-vyn8TQaTZg617hjqFitwGmb1St5XXvq6I3vmxU/QFalM74BryMSvYCrYWb2Yw/TkykdEwZTMGYp+SWHRb04fTg==}
     engines: {node: '>=14.*'}
     cpu: [x64]
     os: [linux]
@@ -233,8 +233,8 @@ packages:
     dev: true
     optional: true
 
-  /@biomejs/cli-win32-arm64@1.6.2:
-    resolution: {integrity: sha512-5zuxNyvnKy7oLN7KLkqcYpsMKGubfMaeQ+RqnpFsmrofQAxpOo6EL/TyJvr8g533Z0a2/cQ/ALqnwl0mN3KQoQ==}
+  /@biomejs/cli-win32-arm64@1.6.3:
+    resolution: {integrity: sha512-Gx8N2Tixke6pAI1BniteCVZgUUmaFEDYosdWxoaCus15BZI/7RcBxhsRM0ZL/lC66StSQ8vHl8JBrrld1k570Q==}
     engines: {node: '>=14.*'}
     cpu: [arm64]
     os: [win32]
@@ -242,8 +242,8 @@ packages:
     dev: true
     optional: true
 
-  /@biomejs/cli-win32-x64@1.6.2:
-    resolution: {integrity: sha512-O3nf09/m3cb3/U3M+uO4l236iTZr4F4SmLNG3okKXPfyZqKLNnF6OjdTHOYEiNXnGEtlRuUeemqb3vht9JkXaw==}
+  /@biomejs/cli-win32-x64@1.6.3:
+    resolution: {integrity: sha512-meungPJw64SqoR7LXY1wG7GC4+4wgpyThdFUMGXa6PCe0BLFOIOcZ9VMj9PstuczMPdgmt/BUMPsj25dK1VO8A==}
     engines: {node: '>=14.*'}
     cpu: [x64]
     os: [win32]
@@ -332,12 +332,12 @@ packages:
       '@hapi/hoek': 9.3.0
     dev: true
 
-  /@hookform/resolvers@3.3.4(react-hook-form@7.51.1):
+  /@hookform/resolvers@3.3.4(react-hook-form@7.51.2):
     resolution: {integrity: sha512-o5cgpGOuJYrd+iMKvkttOclgwRW86EsWJZZRC23prf0uU2i48Htq4PuT73AVb9ionFyZrwYEITuOFGF+BydEtQ==}
     peerDependencies:
       react-hook-form: ^7.0.0
     dependencies:
-      react-hook-form: 7.51.1(react@18.2.0)
+      react-hook-form: 7.51.2(react@18.2.0)
     dev: false
 
   /@humanwhocodes/config-array@0.11.14:
@@ -534,8 +534,8 @@ packages:
       uuid: 8.3.2
     dev: true
 
-  /@prismicio/client@7.3.1:
-    resolution: {integrity: sha512-9MKR/atr4dIQz8rZsQ4Fe7588qSQF2CYXutYW8O9bJOqlrjvAcC8b1Yvu7AIOksXlxE/aAWPtriQ2JZMiTFjNw==}
+  /@prismicio/client@7.4.0:
+    resolution: {integrity: sha512-CNUSffXDcBXWb8lRko8cW/975hPFKsT0lxziXUOHfsGZ/AOYkQlW9LOO04UBPzHGqWxt0PU45k7kpT692JoKTw==}
     engines: {node: '>=14.15.0'}
     dependencies:
       imgix-url-builder: 0.0.4
@@ -544,7 +544,7 @@ packages:
     resolution: {integrity: sha512-UN8adUBxrOqbg30pYxWBPimNoAYeiCjSavc7Za1ZemujS44YDYTr0tsd15oU+3PnDQrYq2BX8cxOgRoL1Y7CaA==}
     engines: {node: '>=14.15.0'}
     dependencies:
-      '@prismicio/client': 7.3.1
+      '@prismicio/client': 7.4.0
     dev: true
 
   /@prismicio/mocks@2.0.0:
@@ -579,7 +579,7 @@ packages:
       uuid: 8.3.2
     dev: true
 
-  /@prismicio/next@1.5.0(@prismicio/client@7.3.1)(next@14.1.4)(react@18.2.0):
+  /@prismicio/next@1.5.0(@prismicio/client@7.4.0)(next@14.1.4)(react@18.2.0):
     resolution: {integrity: sha512-WbAbBwvUUfrgCJCX8a1SKjGrbnpzLtbo9MnTn0aDRc2yZ4BhK1PRN4Q24Bqx0wmJybQkzM6PcBKiDkZBps1gxA==}
     engines: {node: '>=14.15.0'}
     peerDependencies:
@@ -588,21 +588,21 @@ packages:
       react: ^18
     dependencies:
       '@formatjs/intl-localematcher': 0.5.4
-      '@prismicio/client': 7.3.1
+      '@prismicio/client': 7.4.0
       imgix-url-builder: 0.0.4
       negotiator: 0.6.3
       next: 14.1.4(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
     dev: false
 
-  /@prismicio/react@2.7.3(@prismicio/client@7.3.1)(react@18.2.0):
-    resolution: {integrity: sha512-4Fr19mcJPCDCQUvCYUjphgFH6bzoNeamIVubDvDTdedYYGT+SjKCwNRIElDJIh6QMCU8zqvVAT4jAS3Tok5hlw==}
+  /@prismicio/react@2.7.4(@prismicio/client@7.4.0)(react@18.2.0):
+    resolution: {integrity: sha512-FIbDxAH6gy2Cw9AaA+UhI5LG2QyHwfgJS60Wuo/i6xwcgZRLELUcsoHK7/rLzxSXvNMmiaoqH61Wi5rip8Z0Rg==}
     engines: {node: '>=12.7.0'}
     peerDependencies:
       '@prismicio/client': ^6 || ^7
       react: ^18
     dependencies:
-      '@prismicio/client': 7.3.1
+      '@prismicio/client': 7.4.0
       '@prismicio/richtext': 2.1.5
       react: 18.2.0
     dev: false
@@ -618,7 +618,7 @@ packages:
     resolution: {integrity: sha512-aBDwGghM8LqXOvdbJWJScBTpY8wuVl3CyCWFqiFwqC8l5SPrQtD2CwEVX0UCB0azPlisb7l7al5Wcg2nxQ6xrQ==}
     engines: {node: '>=14.15.0'}
     dependencies:
-      '@prismicio/client': 7.3.1
+      '@prismicio/client': 7.4.0
       '@types/statuses': 2.0.4
       statuses: 2.0.1
     dev: true
@@ -1385,7 +1385,7 @@ packages:
     resolution: {integrity: sha512-RNiOoTPkptFtSVzQevY/yWtZwf/RxyVnPy/OcA9HBM3MlGDnBEYL5B41H0MTn0Uec8Hi+2qUtTfG2WWZBmMejQ==}
     dev: true
 
-  /@slicemachine/adapter-next@0.3.38(@prismicio/client@7.3.1)(@types/uuid@9.0.8)(next@14.1.4)(react@18.2.0)(uuid@9.0.1):
+  /@slicemachine/adapter-next@0.3.38(@prismicio/client@7.4.0)(@types/uuid@9.0.8)(next@14.1.4)(react@18.2.0)(uuid@9.0.1):
     resolution: {integrity: sha512-WP68O8JpMh4/0ijEUO9WWQozdluFDmglhQiwDhWY+n+BEOYDOabnGh8w2x0YbBvS8UdnrXitCiyn5aBavmhR6g==}
     engines: {node: '>=14.15.0'}
     peerDependencies:
@@ -1394,7 +1394,7 @@ packages:
     dependencies:
       '@prismicio/simulator': 0.1.4
       '@prismicio/types-internal': 2.3.1(@types/uuid@9.0.8)(fp-ts@2.16.2)(io-ts-types@0.5.19)(io-ts@2.2.21)(uuid@9.0.1)
-      '@slicemachine/plugin-kit': 0.4.38(@prismicio/client@7.3.1)
+      '@slicemachine/plugin-kit': 0.4.38(@prismicio/client@7.4.0)
       common-tags: 1.8.2
       fp-ts: 2.16.2
       io-ts: 2.2.21(fp-ts@2.16.2)
@@ -1404,7 +1404,7 @@ packages:
       newtype-ts: 0.3.5(fp-ts@2.16.2)(monocle-ts@2.3.13)
       next: 14.1.4(react-dom@18.2.0)(react@18.2.0)
       pascal-case: 3.1.2
-      prismic-ts-codegen: 0.1.19(@prismicio/client@7.3.1)
+      prismic-ts-codegen: 0.1.19(@prismicio/client@7.4.0)
       react: 18.2.0
     transitivePeerDependencies:
       - '@prismicio/client'
@@ -1413,7 +1413,7 @@ packages:
       - uuid
     dev: true
 
-  /@slicemachine/manager@0.18.3(@prismicio/client@7.3.1)(@types/uuid@9.0.8)(uuid@9.0.1):
+  /@slicemachine/manager@0.18.3(@prismicio/client@7.4.0)(@types/uuid@9.0.8)(uuid@9.0.1):
     resolution: {integrity: sha512-wsii0vpuZ7p5DJgzQWNKVuTfmD0ZlgAkRtsxNhxi2048GQls2aUsWvFka7nOH544pgzwoyHkEXWXTSvpKSz40A==}
     engines: {node: '>=14.15.0'}
     peerDependencies:
@@ -1427,7 +1427,7 @@ packages:
       '@prismicio/mocks': 2.0.0
       '@prismicio/types-internal': 2.3.1(@types/uuid@9.0.8)(fp-ts@2.16.2)(io-ts-types@0.5.19)(io-ts@2.2.21)(uuid@9.0.1)
       '@segment/analytics-node': 1.1.3
-      '@slicemachine/plugin-kit': 0.4.38(@prismicio/client@7.3.1)
+      '@slicemachine/plugin-kit': 0.4.38(@prismicio/client@7.4.0)
       cookie: 0.5.0
       cors: 2.8.5
       execa: 7.2.0
@@ -1454,7 +1454,7 @@ packages:
       - uuid
     dev: true
 
-  /@slicemachine/plugin-kit@0.4.38(@prismicio/client@7.3.1):
+  /@slicemachine/plugin-kit@0.4.38(@prismicio/client@7.4.0):
     resolution: {integrity: sha512-X7yVniUnj4J2ZOPkYSgPu4M3MQ8m/oQvW2T8uzvGV1wUxjgCaWaRBs9W8dH07iKVrg8++6l/B8XX03IjT27ySA==}
     engines: {node: '>=14.15.0'}
     dependencies:
@@ -1467,7 +1467,7 @@ packages:
       io-ts-reporters: 2.0.1(fp-ts@2.16.2)(io-ts@2.2.21)
       p-limit: 4.0.0
       prettier: 3.2.5
-      prismic-ts-codegen: 0.1.19(@prismicio/client@7.3.1)
+      prismic-ts-codegen: 0.1.19(@prismicio/client@7.4.0)
     transitivePeerDependencies:
       - '@prismicio/client'
       - '@prismicio/types'
@@ -2861,8 +2861,8 @@ packages:
     resolution: {integrity: sha512-ZsDfxO51wGAXREY55a7la9LScWpwv9RxIrYABrlvOFBlH/ShPnrtsXeuUIfXKKOVicNxQ+o8JTbJvjS4M89yew==}
     dev: true
 
-  /framer-motion@11.0.20(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-YSDmWznt3hpdERosbE0UAPYWoYhTnmQ0J1qWPsgpCia9NgY8Xsz5IpOiUEGGj/nzCAW29fSrWugeLRkdp5de7g==}
+  /framer-motion@11.0.24(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-l2iM8NR53qtcujgAqYvGPJJGModPNWEVUaATRDLfnaLvUoFpImovBm0AHalSSsY8tW6knP8mfJTW4WYGbnAe4w==}
     peerDependencies:
       '@emotion/is-prop-valid': '*'
       react: ^18.0.0
@@ -4144,7 +4144,7 @@ packages:
     hasBin: true
     dev: true
 
-  /prismic-ts-codegen@0.1.19(@prismicio/client@7.3.1):
+  /prismic-ts-codegen@0.1.19(@prismicio/client@7.4.0):
     resolution: {integrity: sha512-FvLjF+V2zUOHYTJS++yimMTiMTiilBPBFrOdSz3M45JdYLS2BeUa3QQ2PWsrpcs4qvvtqcOM7rybKIubrS4O7w==}
     engines: {node: '>=12.7.0'}
     hasBin: true
@@ -4157,7 +4157,7 @@ packages:
       '@prismicio/types':
         optional: true
     dependencies:
-      '@prismicio/client': 7.3.1
+      '@prismicio/client': 7.4.0
       '@prismicio/custom-types-client': 1.3.0
       common-tags: 1.8.2
       fast-glob: 3.3.2
@@ -4258,8 +4258,8 @@ packages:
       react: 18.2.0
       scheduler: 0.23.0
 
-  /react-hook-form@7.51.1(react@18.2.0):
-    resolution: {integrity: sha512-ifnBjl+kW0ksINHd+8C/Gp6a4eZOdWyvRv0UBaByShwU8JbVx5hTcTWEcd5VdybvmPTATkVVXk9npXArHmo56w==}
+  /react-hook-form@7.51.2(react@18.2.0):
+    resolution: {integrity: sha512-y++lwaWjtzDt/XNnyGDQy6goHskFualmDlf+jzEZvjvz6KWDf7EboL7pUvRCzPTJd0EOPpdekYaQLEvvG6m6HA==}
     engines: {node: '>=12.22.0'}
     peerDependencies:
       react: ^16.8.0 || ^17 || ^18
@@ -4573,14 +4573,14 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /slice-machine-ui@1.26.0(@prismicio/client@7.3.1)(@types/react-dom@18.2.19)(@types/react@18.2.57)(@types/uuid@9.0.8)(react-dom@18.2.0)(react@18.2.0)(uuid@9.0.1):
+  /slice-machine-ui@1.26.0(@prismicio/client@7.4.0)(@types/react-dom@18.2.19)(@types/react@18.2.57)(@types/uuid@9.0.8)(react-dom@18.2.0)(react@18.2.0)(uuid@9.0.1):
     resolution: {integrity: sha512-+CADPpC9Pc66LoO8GLY+NlGniL3sqrM+8tC8eRPncrljmVRg1loCwTlDDIW2qqs5GUDjidUKrqbqq6W1sESNMg==}
     engines: {node: '>=14'}
     hasBin: true
     dependencies:
       '@radix-ui/react-visually-hidden': 1.0.3(@types/react-dom@18.2.19)(@types/react@18.2.57)(react-dom@18.2.0)(react@18.2.0)
-      '@slicemachine/manager': 0.18.3(@prismicio/client@7.3.1)(@types/uuid@9.0.8)(uuid@9.0.1)
-      start-slicemachine: 0.12.18(@prismicio/client@7.3.1)(@types/uuid@9.0.8)(uuid@9.0.1)
+      '@slicemachine/manager': 0.18.3(@prismicio/client@7.4.0)(@types/uuid@9.0.8)(uuid@9.0.1)
+      start-slicemachine: 0.12.18(@prismicio/client@7.4.0)(@types/uuid@9.0.8)(uuid@9.0.1)
     transitivePeerDependencies:
       - '@prismicio/client'
       - '@prismicio/types'
@@ -4605,14 +4605,14 @@ packages:
     resolution: {integrity: sha512-itJW8lvSA0TXEphiRoawsCksnlf8SyvmFzIhltqAHluXd88pkCd+cXJVHTDwdCr0IzwptSm035IHQktUu1QUMg==}
     engines: {node: '>=0.10.0'}
 
-  /start-slicemachine@0.12.18(@prismicio/client@7.3.1)(@types/uuid@9.0.8)(uuid@9.0.1):
+  /start-slicemachine@0.12.18(@prismicio/client@7.4.0)(@types/uuid@9.0.8)(uuid@9.0.1):
     resolution: {integrity: sha512-4nP6qoG5ag47bZjMos/gp1WQPhEoJFa9ebw1SXtG130YRPpelm0ve4Zod0FgIcWaCxdfgAjgmpq0/06QI3Yafw==}
     engines: {node: '>=14.15.0'}
     hasBin: true
     dependencies:
       '@prismicio/mocks': 2.1.1
       '@prismicio/types-internal': 2.3.1(@types/uuid@9.0.8)(fp-ts@2.16.2)(io-ts-types@0.5.19)(io-ts@2.2.21)(uuid@9.0.1)
-      '@slicemachine/manager': 0.18.3(@prismicio/client@7.3.1)(@types/uuid@9.0.8)(uuid@9.0.1)
+      '@slicemachine/manager': 0.18.3(@prismicio/client@7.4.0)(@types/uuid@9.0.8)(uuid@9.0.1)
       body-parser: 1.20.2
       chalk: 4.1.2
       cors: 2.8.5
@@ -4790,16 +4790,16 @@ packages:
       '@babel/runtime': 7.24.1
     dev: false
 
-  /tailwindcss-animate@1.0.7(tailwindcss@3.4.1):
+  /tailwindcss-animate@1.0.7(tailwindcss@3.4.3):
     resolution: {integrity: sha512-bl6mpH3T7I3UFxuvDEXLxy/VuFxBk5bbzplh7tXI68mwMokNYd1t9qPBHlnyTwfa4JGC4zP516I1hYYtQ/vspA==}
     peerDependencies:
       tailwindcss: '>=3.0.0 || insiders'
     dependencies:
-      tailwindcss: 3.4.1
+      tailwindcss: 3.4.3
     dev: false
 
-  /tailwindcss@3.4.1:
-    resolution: {integrity: sha512-qAYmXRfk3ENzuPBakNK0SRrUDipP8NQnEY6772uDhflcQz5EhRdD7JNZxyrFHVQNCwULPBn6FNPp9brpO7ctcA==}
+  /tailwindcss@3.4.3:
+    resolution: {integrity: sha512-U7sxQk/n397Bmx4JHbJx/iSOOv5G+II3f1kpLpY2QeUv5DcPdcTsYLlusZfq1NthHS1c1cZoyFmmkex1rzke0A==}
     engines: {node: '>=14.0.0'}
     hasBin: true
     dependencies:
