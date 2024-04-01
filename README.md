@@ -1,6 +1,13 @@
-# Thibs portfolio
+<h1 align="center">
+  <a href="https://walterspieler.dev/">walterspieler.dev</a>
+</h1>
+<p align="center">
+  <a href="https://walterspieler.dev/">My portfolio</a> built using Next.js with TypeScript, Tailwind CSS and Prismic
+</p>
 
-This is the repository for my personal portfolio. It is a Next.js application that showcases my projects, skills, and experiences.
+## What is this repo?
+
+[walterspieler.dev](https://walterspieler.dev/) is my portfolio showcasing my projects, skills, and experiences. This repository is the source code for the website. It is built using [Next.js](https://nextjs.org), a React Framework.
 
 ## Prerequisites
 
