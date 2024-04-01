@@ -1,5 +1,5 @@
 <h1 align="center">
-  <a href="https://walterspieler.dev/">walterspieler.dev</a>
+walterspieler.dev
 </h1>
 <p align="center">
   <a href="https://walterspieler.dev/">My portfolio</a> built using Next.js with TypeScript, Tailwind CSS and Prismic
