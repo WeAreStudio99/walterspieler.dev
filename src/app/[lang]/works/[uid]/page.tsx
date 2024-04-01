@@ -1,6 +1,3 @@
-import ScrollArea from "@/components/Common/ScrollArea";
-import ArticleBreadcrumb from "@/components/Works/Article/ArticleBreadcrumb";
-import ArticleContent from "@/components/Works/Article/ArticleContent";
 import { I18N_CONFIG } from "@/lib/i18n/config";
 import { Locale } from "@/lib/i18n/types";
 import { getDictionary } from "@/lib/i18n/utils";
@@ -8,11 +5,14 @@ import getSchemaNewsArticle from "@/lib/schema-dts/news-article";
 import { generateAlternates } from "@/lib/utils";
 import { createClient } from "@/prismicio";
 import { Content } from "@prismicio/client";
-import { ChevronLeft } from "lucide-react";
 import { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { FC } from "react";
+
+import ScrollArea from "@/components/Common/ScrollArea";
+import Article from "@/components/Works/Article/Article";
+import { ChevronLeft } from "lucide-react";
 
 type Params = {
 	lang: Locale;
@@ -74,13 +74,9 @@ const WorkPage: FC<Props> = async (props) => {
 							<ChevronLeft size={24} />
 						</div>
 					</Link>
-					<article className="content ">
-						<ArticleBreadcrumb
-							lang={lang}
-							title={page.data.meta_title || uid}
-						/>
-						{company && <ArticleContent company={company} page={page} />}
-					</article>
+					{company && (
+						<Article company={company} lang={lang} page={page} uid={uid} />
+					)}
 				</div>
 			</ScrollArea>
 		</>

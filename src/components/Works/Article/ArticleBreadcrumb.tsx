@@ -22,7 +22,7 @@ const ArticleBreadcrumb: FC<Props> = async ({ lang, title }) => {
 	const dictionary = await getDictionary(lang);
 
 	return (
-		<Breadcrumb className="mb-5">
+		<Breadcrumb className="mb-5 animate-in fade-in duration-300">
 			<BreadcrumbList>
 				<BreadcrumbItem>
 					<BreadcrumbLink asChild>
