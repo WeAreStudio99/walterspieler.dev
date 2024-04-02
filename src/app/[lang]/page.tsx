@@ -1,6 +1,3 @@
-import ScrollArea from "@/components/Common/ScrollArea";
-import { H1 } from "@/components/Common/Typography";
-import { Separator } from "@/components/ui/separator";
 import { Locale } from "@/lib/i18n/types";
 import { getDictionary } from "@/lib/i18n/utils";
 import getSchemaProfilePage from "@/lib/schema-dts/profile-page";
@@ -9,6 +6,10 @@ import { components } from "@/slices";
 import { SliceZone } from "@prismicio/react";
 import { notFound } from "next/navigation";
 import { FC } from "react";
+
+import ScrollArea from "@/components/Common/ScrollArea";
+import { H1 } from "@/components/Common/Typography";
+import { Separator } from "@/components/ui/separator";
 
 type Params = {
 	lang: Locale;

@@ -1,8 +1,9 @@
-import ContentWrapper from "@/components/Common/ContentWrapper";
 import { createClient } from "@/prismicio";
 import { components } from "@/slices";
 import { SliceZone } from "@prismicio/react";
 import { FC } from "react";
+
+import ContentWrapper from "@/components/Common/ContentWrapper";
 
 const HomePage: FC = async () => {
 	const client = createClient();

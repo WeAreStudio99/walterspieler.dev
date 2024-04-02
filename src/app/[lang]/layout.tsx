@@ -1,7 +1,4 @@
 import PostHogProvider from "@/app/ph-provider";
-import MainMenuContent from "@/components/Common/MainMenuContent";
-import SideMenu from "@/components/Common/SideMenu";
-import { Toaster } from "@/components/ui/toaster";
 import { MenuContextProvider } from "@/contexts/MenuContext";
 import { Locale } from "@/lib/i18n/types";
 import { getDictionary } from "@/lib/i18n/utils";
@@ -15,6 +12,10 @@ import { notFound } from "next/navigation";
 import Script from "next/script";
 import { FC, PropsWithChildren } from "react";
 import { BASE_URL } from "../../../next.constants.mjs";
+
+import MainMenuContent from "@/components/Common/MainMenuContent";
+import SideMenu from "@/components/Common/SideMenu";
+import { Toaster } from "@/components/ui/toaster";
 
 type Params = {
 	lang: Locale;
