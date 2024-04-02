@@ -1,5 +1,10 @@
 {
-	"name": "thibs-portfolio",
+	"name": "walterspieler.dev",
+	"author": {
+		"name": "Thibault Walterspieler",
+		"email": "thibs@wearestudio99.fr",
+		"url": "https://walterspieler.dev"
+	},
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
