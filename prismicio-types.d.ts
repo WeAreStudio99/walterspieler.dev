@@ -4,6 +4,104 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
+type BlogPostDocumentDataSlicesSlice = ParagraphSlice;
+
+/**
+ * Content for Blog post documents
+ */
+interface BlogPostDocumentData {
+  /**
+   * title field in *Blog post*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: blog_post.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * description field in *Blog post*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: blog_post.description
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  description: prismic.KeyTextField;
+
+  /**
+   * cover field in *Blog post*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: blog_post.cover
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  cover: prismic.ImageField<never>;
+
+  /**
+   * Slice Zone field in *Blog post*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: blog_post.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<BlogPostDocumentDataSlicesSlice> /**
+   * Meta Description field in *Blog post*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: blog_post.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Blog post*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: blog_post.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+
+  /**
+   * Meta Title field in *Blog post*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: blog_post.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_title: prismic.KeyTextField;
+}
+
+/**
+ * Blog post document from Prismic
+ *
+ * - **API ID**: `blog_post`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type BlogPostDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<BlogPostDocumentData>,
+    "blog_post",
+    Lang
+  >;
+
 type HomeDocumentDataSlicesSlice =
   | SocialsListSlice
   | ButtonSlice
@@ -512,6 +610,39 @@ type WorkPostDocumentDataSlicesSlice = ButtonSlice | ParagraphSlice;
  */
 interface WorkPostDocumentData {
   /**
+   * title field in *Work Post*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: workPost.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * description field in *Work Post*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: workPost.description
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  description: prismic.KeyTextField;
+
+  /**
+   * externalLink field in *Work Post*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: workPost.externalLink
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  externalLink: prismic.LinkField;
+
+  /**
    * work field in *Work Post*
    *
    * - **Field Type**: Content Relationship
@@ -643,6 +774,7 @@ export type WorksDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<Simplify<WorksDocumentData>, "works", Lang>;
 
 export type AllDocumentTypes =
+  | BlogPostDocument
   | HomeDocument
   | LegalNoticeDocument
   | NavigationDocument
@@ -1142,6 +1274,9 @@ declare module "@prismicio/client" {
 
   namespace Content {
     export type {
+      BlogPostDocument,
+      BlogPostDocumentData,
+      BlogPostDocumentDataSlicesSlice,
       HomeDocument,
       HomeDocumentData,
       HomeDocumentDataSlicesSlice,

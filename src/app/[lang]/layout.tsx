@@ -68,7 +68,7 @@ const LangRootLayout: FC<Props> = (props) => {
 					<PostHogPageView />
 					<MenuContextProvider>
 						<div className="lg:flex">
-							<SideMenu>
+							<SideMenu lang={lang}>
 								<MainMenuContent lang={lang} />
 							</SideMenu>
 							<div className="flex flex-1">{children}</div>

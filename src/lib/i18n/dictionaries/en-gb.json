@@ -1,7 +1,8 @@
 {
 	"firstLevelPages": {
 		"home": "Home",
-		"works": "Works"
+		"works": "Works",
+		"blog": "Blog"
 	},
 	"home": {
 		"metadata": {

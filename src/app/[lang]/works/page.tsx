@@ -1,5 +1,5 @@
 import EmptyWork from "@/components/Works/EmptyWork";
-import WorksList from "@/components/Works/WorksList";
+import MenuInitializer from "@/contexts/MenuContext/MenuInitializer";
 import { Locale } from "@/lib/i18n/types";
 import { getDictionary } from "@/lib/i18n/utils";
 import { generateAlternates } from "@/lib/utils";
@@ -23,10 +23,8 @@ const Works: FC<Props> = async (props) => {
 
 	return (
 		<>
+			<MenuInitializer isInnerMenuOpen />
 			<EmptyWork label={dictionary.selectAWork} />
-			<div className="flex-1 lg:hidden">
-				<WorksList lang={lang} />
-			</div>
 		</>
 	);
 };

@@ -1,15 +1,21 @@
 "use client";
 
 import { MenuContext } from "@/contexts/MenuContext";
+import { I18N_CONFIG } from "@/lib/i18n/config";
+import { Locale } from "@/lib/i18n/types";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, Variants, motion } from "framer-motion";
-import { FC, PropsWithChildren, useContext } from "react";
+import Link from "next/link";
+import { FC, PropsWithChildren, use } from "react";
 
 import ScrollArea from "@/components/Common/ScrollArea";
-import { Command, X } from "lucide-react";
+import { ChevronLeft, Command, X } from "lucide-react";
 
 type Props = {
+	lang: Locale;
 	isInner?: boolean;
+	collection?: "works" | "blog";
+	displayReturnButton?: boolean;
 } & PropsWithChildren;
 
 const innerMenuVariants: Variants = {
@@ -28,42 +34,68 @@ const iconVariants: Variants = {
 	},
 };
 
-const SideMenu: FC<Props> = ({ children, isInner }) => {
-	const { isMenuOpen, openMenu, closeMenu } = useContext(MenuContext) ?? {};
+const SideMenu: FC<Props> = (props) => {
+	const { children, isInner, lang, displayReturnButton, collection } = props;
+
+	const {
+		isMainMenuOpen,
+		openMainMenu,
+		closeMainMenu,
+		isInnerMenuOpen,
+		setIsInnerMenuOpen = () => {},
+	} = use(MenuContext) ?? {};
 
 	const scrollAreaClasses = cn(
-		" lg:flex lg:flex-col border-r border-grey z-50 justify-between",
+		"lg:flex lg:flex-col border-r border-grey z-50 justify-between",
 		"dot-grid",
 		{
-			"lg:w-72 xl:w-72": isInner,
+			"w-screen lg:w-72 xl:w-72": isInner,
 			"lg:w-60 xl:w-72": !isInner,
-			hidden: !isMenuOpen,
 		},
 	);
 
 	return (
 		<>
-			{!isMenuOpen ? (
-				<div className="absolute top-8 right-4 lg:hidden bg-metal/5 z-50 backdrop-blur rounded-lg p-2 border-grey border">
-					<motion.div
-						animate={isMenuOpen ? "open" : "closed"}
-						initial="closed"
-						transition={{
-							type: "spring",
-							stiffness: 400,
-							damping: 17,
-							duration: 0.5,
-						}}
-						whileHover={{ scale: 1.2 }}
-						whileTap={{ scale: 0.9 }}
-					>
-						<Command onClick={openMenu} size={24} />
-					</motion.div>
-				</div>
+			{!isMainMenuOpen ? (
+				<>
+					<div className="absolute top-8 right-4 lg:hidden bg-metal/5 z-50 backdrop-blur rounded-lg p-2 border-grey border">
+						<motion.div
+							animate={isMainMenuOpen ? "open" : "closed"}
+							initial="closed"
+							transition={{
+								type: "spring",
+								stiffness: 400,
+								damping: 17,
+								duration: 0.5,
+							}}
+							whileHover={{ scale: 1.2 }}
+							whileTap={{ scale: 0.9 }}
+						>
+							<Command onClick={openMainMenu} size={24} />
+						</motion.div>
+					</div>
+					{displayReturnButton && (
+						<Link
+							className={cn("block", {
+								hidden: isMainMenuOpen || isInnerMenuOpen,
+							})}
+							href={
+								lang === I18N_CONFIG.defaultLocale
+									? `/${collection}`
+									: `/${lang}/${collection}`
+							}
+							onClick={() => setIsInnerMenuOpen(true)}
+						>
+							<div className="fixed top-8 left-4 bg-metal/5 z-50 backdrop-blur rounded-lg p-2 border-grey border lg:hidden">
+								<ChevronLeft size={24} />
+							</div>
+						</Link>
+					)}
+				</>
 			) : (
 				<div className="absolute top-8 right-4 lg:hidden bg-metal/80 z-50 backdrop-blur rounded-lg p-2 border-grey border">
 					<motion.div
-						animate={isMenuOpen ? "open" : "closed"}
+						animate={isMainMenuOpen ? "open" : "closed"}
 						initial="closed"
 						transition={{
 							type: "spring",
@@ -75,14 +107,17 @@ const SideMenu: FC<Props> = ({ children, isInner }) => {
 						whileHover={{ scale: 1.2 }}
 						whileTap={{ scale: 0.9 }}
 					>
-						<X onClick={closeMenu} size={24} />
+						<X onClick={closeMainMenu} size={24} />
 					</motion.div>
 				</div>
 			)}
 			{isInner ? (
 				<motion.div
 					animate="animate"
-					className="hidden md:block fixed z-10 bg-eerie-dark"
+					className={cn("fixed z-10 bg-eerie-dark", {
+						hidden: !isInnerMenuOpen,
+						"md:block": !isInnerMenuOpen || isInnerMenuOpen,
+					})}
 					initial="closed"
 					transition={{
 						duration: 0.5,
@@ -94,7 +129,7 @@ const SideMenu: FC<Props> = ({ children, isInner }) => {
 			) : (
 				<>
 					<AnimatePresence>
-						{isMenuOpen && (
+						{isMainMenuOpen && (
 							<>
 								<motion.div
 									animate={{ opacity: 1 }}

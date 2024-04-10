@@ -3,13 +3,12 @@ import { getDictionary } from "@/lib/i18n/utils";
 import getSchemaNewsArticle from "@/lib/schema-dts/news-article";
 import { generateAlternates } from "@/lib/utils";
 import { createClient } from "@/prismicio";
-import { Content } from "@prismicio/client";
 import { Metadata } from "next";
-import { notFound } from "next/navigation";
 import { FC } from "react";
 
 import Article from "@/components/Articles/Article";
 import ScrollArea from "@/components/Common/ScrollArea";
+import { notFound } from "next/navigation";
 
 type Params = {
 	lang: Locale;
@@ -20,33 +19,16 @@ type Props = {
 	params: Params;
 };
 
-const WorkPage: FC<Props> = async (props) => {
+const BlogPostPage: FC<Props> = async (props) => {
 	const { params } = props;
 	const { lang, uid } = params;
 
 	const client = createClient();
 	const page = await client
-		.getByUID<
-			Content.WorkPostDocument & {
-				data: {
-					work: {
-						data: Pick<Content.WorkDocument["data"], "company">;
-					};
-				};
-			}
-		>("workPost", uid, {
+		.getByUID("blog_post", uid, {
 			lang,
-			fetchLinks: [
-				"work.company",
-				"work.description",
-				"work.duration",
-				"work.tags",
-				"work.logo",
-			],
 		})
 		.catch(() => notFound());
-
-	const company = page?.data?.work?.data?.company[0];
 
 	const jsonLd = getSchemaNewsArticle(
 		page.data.meta_title || uid,
@@ -62,7 +44,7 @@ const WorkPage: FC<Props> = async (props) => {
 			/>
 			<ScrollArea className="flex flex-col lg:pl-72 z-0 blueprint-layout">
 				<div className="content-wrapper mt-14 lg:mt-0">
-					<Article lang={lang} uid={uid} content={page} collection="work" />
+					<Article lang={lang} uid={uid} collection="blog" content={page} />
 				</div>
 			</ScrollArea>
 		</>
@@ -74,11 +56,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 	const dictionary = await getDictionary(lang);
 
 	const client = createClient();
-	const page = await client
-		.getByUID("workPost", uid, {
-			lang,
-		})
-		.catch(() => notFound());
+	const page = await client.getByUID("blog_post", uid, {
+		lang,
+	});
 
 	const { works } = dictionary;
 
@@ -117,4 +97,4 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 	};
 }
 
-export default WorkPage;
+export default BlogPostPage;

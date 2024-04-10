@@ -6,10 +6,16 @@ import { cn } from "@/lib/utils";
 import { LinkField, asLink } from "@prismicio/client";
 import { PrismicNextLink } from "@prismicio/next";
 import { usePathname } from "next/navigation";
-import { FC, useContext, useMemo } from "react";
+import { FC, use, useMemo } from "react";
 
 import WeAreStudio99 from "@/components/Icons/Company/WeAreStudio99";
-import { BoltIcon, DraftingCompass, ExternalLink, Nfc } from "lucide-react";
+import {
+	BoltIcon,
+	DraftingCompass,
+	ExternalLink,
+	Nfc,
+	Sparkle,
+} from "lucide-react";
 
 type Props = {
 	label: string;
@@ -19,7 +25,8 @@ type Props = {
 
 const NavigationLink: FC<Props> = ({ label, link, lang }) => {
 	const pathname = usePathname();
-	const { closeMenu } = useContext(MenuContext) ?? {};
+	const { closeMainMenu = () => {}, setIsInnerMenuOpen = () => {} } =
+		use(MenuContext) ?? {};
 
 	const url = asLink(link);
 	const isActive = useMemo(() => {
@@ -51,7 +58,10 @@ const NavigationLink: FC<Props> = ({ label, link, lang }) => {
 				},
 			)}
 			field={link}
-			onClick={closeMenu}
+			onClick={() => {
+				closeMainMenu();
+				setIsInnerMenuOpen(true);
+			}}
 			rel={({ isExternal }) => (isExternal ? "noreferrer nofollow" : undefined)}
 		>
 			{"type" in link ? (
@@ -59,6 +69,7 @@ const NavigationLink: FC<Props> = ({ label, link, lang }) => {
 					{link.type === "home" && <BoltIcon className="w-4" />}
 					{link.type === "works" && <DraftingCompass className="w-4" />}
 					{link.type === "weAreStudio99" && <WeAreStudio99 className="w-4" />}
+					{link.type === "blog" && <Sparkle className="w-4" />}
 					<span className="text-ellipsis overflow-hidden">{label}</span>
 				</div>
 			) : (
