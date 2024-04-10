@@ -1,3 +1,4 @@
+import { I18N_CONFIG } from "@/lib/i18n/config";
 import { Locale } from "@/lib/i18n/types";
 import { getDictionary } from "@/lib/i18n/utils";
 import getSchemaNewsArticle from "@/lib/schema-dts/news-article";
@@ -60,12 +61,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 		lang,
 	});
 
-	const { works } = dictionary;
-
 	return {
-		title: `${page.data.meta_title} | Thibault Walterspieler`,
+		title: `${page.data.meta_title || uid} | Thibault Walterspieler`,
 		description: page.data.meta_description,
-		alternates: generateAlternates(`works/${uid}`, lang),
+		alternates: generateAlternates(`blog/${uid}`, lang),
 		icons: [
 			{
 				rel: "icon",
@@ -76,21 +75,28 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 		twitter: {
 			card: "summary_large_image",
 			title: `${page.data.meta_title || uid} | Thibault Walterspieler`,
-			description: page.data.meta_description || works.metadata.description,
+			description: page.data.meta_description || "",
 			images: {
-				url: "/images/og/default.png",
-				alt: "Thibault Walterspieler | Fullstack engineer",
+				url: page.data.meta_image.url || "/images/og/default.png",
+				alt:
+					page.data.meta_image.alt ||
+					"Thibault Walterspieler | Fullstack engineer",
 				type: "image/png",
 			},
 		},
 		openGraph: {
 			type: "website",
 			title: `${page.data.meta_title || uid} | Thibault Walterspieler`,
-			description: page.data.meta_description || works.metadata.description,
-			url: `/`,
+			description: page.data.meta_description || "",
+			url:
+				lang !== I18N_CONFIG.defaultLocale
+					? `/blog/${uid}`
+					: `/blog/${lang}/${uid}`,
 			images: {
-				url: "/images/og/default.png",
-				alt: "Thibault Walterspieler | Fullstack engineer",
+				url: page.data.meta_image.url || "/images/og/default.png",
+				alt:
+					page.data.meta_image.alt ||
+					"Thibault Walterspieler | Fullstack engineer",
 				type: "image/png",
 			},
 		},
