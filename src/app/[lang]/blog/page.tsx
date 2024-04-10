@@ -1,4 +1,5 @@
-import SideMenuContent from "@/components/Common/SideMenuContent";
+import EmptyLayout from "@/components/Common/EmptyLayout";
+import MenuInitializer from "@/contexts/MenuContext/MenuInitializer";
 import { Locale } from "@/lib/i18n/types";
 import { getDictionary } from "@/lib/i18n/utils";
 import { FC } from "react";
@@ -20,21 +21,8 @@ const Blog: FC<Props> = async (props) => {
 
 	return (
 		<>
-			<div className="flex-1 lg:hidden">
-				<SideMenuContent
-					lang={lang}
-					title={dictionary.firstLevelPages.works}
-					collection="blog"
-					data={[
-						{
-							title: "Blog Post 1",
-							uid: "blog-post-1",
-							startDate: undefined,
-							endDate: undefined,
-						},
-					]}
-				/>
-			</div>
+			<MenuInitializer isInnerMenuOpen />
+			<EmptyLayout label={dictionary.selectABlogPost} />
 		</>
 	);
 };
