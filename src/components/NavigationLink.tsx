@@ -23,7 +23,9 @@ type Props = {
 	lang: Locale;
 };
 
-const NavigationLink: FC<Props> = ({ label, link, lang }) => {
+const NavigationLink: FC<Props> = (props) => {
+	const { label, link, lang } = props;
+
 	const pathname = usePathname();
 	const { closeMainMenu = () => {}, setIsInnerMenuOpen = () => {} } =
 		use(MenuContext) ?? {};

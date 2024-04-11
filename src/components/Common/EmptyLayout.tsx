@@ -19,7 +19,9 @@ const textVariants = {
 	exit: { opacity: 0, y: -50 },
 };
 
-const EmptyLayout: FC<Props> = ({ label }) => {
+const EmptyLayout: FC<Props> = (props) => {
+	const { label } = props;
+
 	return (
 		<motion.div
 			animate="animate"

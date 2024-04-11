@@ -22,7 +22,9 @@ type Props = {
 	};
 };
 
-const MiscMenu: FC<Props> = ({ title, labels }) => {
+const MiscMenu: FC<Props> = (props) => {
+	const { title, labels } = props;
+
 	const { closeMainMenu: closeMenu } = use(MenuContext) ?? {};
 
 	return (

@@ -8,7 +8,8 @@ type Props = {
 	text: string;
 };
 
-const CopyLink: FC<Props> = ({ text }) => {
+const CopyLink: FC<Props> = (props) => {
+	const { text } = props;
 	const { toast } = useToast();
 
 	const onHyperlinkClick = (text: string) => {

@@ -31,7 +31,9 @@ const localeLabels = {
 	"fr-fr": "Français 🇫🇷",
 };
 
-const LangSelector: FC<Props> = ({ locales, currentLang, title }) => {
+const LangSelector: FC<Props> = (props) => {
+	const { locales, currentLang, title } = props;
+
 	const router = useRouter();
 	const currentLangPlaceholder =
 		localeLabels[currentLang as LocaleKey] || currentLang;

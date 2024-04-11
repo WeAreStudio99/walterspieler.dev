@@ -9,11 +9,12 @@ import {
 	LinkedInLogoIcon,
 	StackIcon,
 } from "@radix-ui/react-icons";
+import { FC } from "react";
 
 /**
  * Props for `SocialsList`.
  */
-export type SocialsListProps = SliceComponentProps<
+export type Props = SliceComponentProps<
 	Content.SocialsListSlice & {
 		items: {
 			social: {
@@ -26,7 +27,9 @@ export type SocialsListProps = SliceComponentProps<
 /**
  * Component for "SocialsList" Slices.
  */
-const SocialsList = ({ slice }: SocialsListProps): JSX.Element => {
+const SocialsList: FC<Props> = (props) => {
+	const { slice } = props;
+
 	const { items } = slice;
 
 	return (

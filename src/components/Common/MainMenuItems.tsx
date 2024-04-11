@@ -14,7 +14,9 @@ type Props = {
 	lang: Locale;
 };
 
-const MainMenuItems: FC<Props> = ({ items, lang }) => {
+const MainMenuItems: FC<Props> = (props) => {
+	const { items, lang } = props;
+
 	const { isMainMenuOpen: isMenuOpen } = use(MenuContext) ?? {};
 	const controls = useAnimation();
 

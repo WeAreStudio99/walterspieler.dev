@@ -1,25 +1,21 @@
 import { Content } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
+import { FC } from "react";
 
-/**
- * Props for `NavigationItem`.
- */
-export type NavigationItemProps =
-  SliceComponentProps<Content.NavigationItemSlice>;
+export type Props = SliceComponentProps<Content.NavigationItemSlice>;
 
-/**
- * Component for "NavigationItem" Slices.
- */
-const NavigationItem = ({ slice }: NavigationItemProps): JSX.Element => {
-  return (
-    <section
-      data-slice-type={slice.slice_type}
-      data-slice-variation={slice.variation}
-    >
-      Placeholder component for navigation_item (variation: {slice.variation})
-      Slices
-    </section>
-  );
+const NavigationItem: FC<Props> = (props) => {
+	const { slice } = props;
+
+	return (
+		<section
+			data-slice-type={slice.slice_type}
+			data-slice-variation={slice.variation}
+		>
+			Placeholder component for navigation_item (variation: {slice.variation})
+			Slices
+		</section>
+	);
 };
 
 export default NavigationItem;

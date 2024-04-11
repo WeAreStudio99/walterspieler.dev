@@ -18,7 +18,9 @@ type Props = {
 	lang: Locale;
 };
 
-const ArticleBreadcrumb: FC<Props> = async ({ lang, title }) => {
+const ArticleBreadcrumb: FC<Props> = async (props) => {
+	const { title, lang } = props;
+
 	const dictionary = await getDictionary(lang);
 
 	return (

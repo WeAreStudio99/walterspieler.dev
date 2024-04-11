@@ -12,7 +12,8 @@ type Props = {
 	lang: Locale;
 };
 
-const MainMenuContent: FC<Props> = async ({ lang }) => {
+const MainMenuContent: FC<Props> = async (props) => {
+	const { lang } = props;
 	const dictionary = await getDictionary(lang);
 
 	const client = createClient();
