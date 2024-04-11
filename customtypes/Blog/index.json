@@ -1,14 +1,24 @@
 {
   "format": "page",
   "id": "blog",
+  "label": "Blog",
+  "repeatable": false,
+  "status": true,
   "json": {
     "Main": {
+      "uid": {
+        "type": "UID",
+        "config": {
+          "label": "uid",
+          "placeholder": ""
+        }
+      },
       "slices": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
         "config": {
           "choices": {}
-        },
-        "fieldset": "Slice Zone",
-        "type": "Slices"
+        }
       }
     },
     "SEO & Metadata": {
@@ -38,8 +48,5 @@
         "type": "Text"
       }
     }
-  },
-  "label": "Blog",
-  "repeatable": false,
-  "status": true
+  }
 }

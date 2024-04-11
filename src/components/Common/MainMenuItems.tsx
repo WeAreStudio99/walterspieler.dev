@@ -2,15 +2,13 @@
 
 import { MenuContext } from "@/contexts/MenuContext";
 import { Locale } from "@/lib/i18n/types";
-import { SliceZone } from "@prismicio/client";
 import { motion, useAnimation } from "framer-motion";
 import { FC, use, useEffect } from "react";
-import { NavigationItemSlice } from "../../../prismicio-types";
 
 import NavigationLink from "@/components/NavigationLink";
 
 type Props = {
-	items: SliceZone<NavigationItemSlice>;
+	items: { label: string; path: string; type: string; external?: boolean }[];
 	lang: Locale;
 };
 
@@ -42,12 +40,13 @@ const MainMenuItems: FC<Props> = (props) => {
 			<nav className="md:hidden flex h-full flex-col gap-3 pt-20 md:pt-0">
 				{items.map((item, i) => {
 					return (
-						<motion.div animate={controls} custom={i} key={item.id}>
+						<motion.div animate={controls} custom={i} key={item.label}>
 							<NavigationLink
-								key={item.id}
-								label={item.primary.name || ""}
+								label={item.label || ""}
 								lang={lang}
-								link={item.primary.link}
+								path={item.path}
+								external={item.external}
+								type={item.type}
 							/>
 						</motion.div>
 					);
@@ -57,10 +56,11 @@ const MainMenuItems: FC<Props> = (props) => {
 				{items.map((item) => {
 					return (
 						<NavigationLink
-							key={item.id}
-							label={item.primary.name || ""}
+							label={item.label || ""}
 							lang={lang}
-							link={item.primary.link}
+							path={item.path}
+							external={item.external}
+							type={item.type}
 						/>
 					);
 				})}

@@ -2,7 +2,8 @@
 	"firstLevelPages": {
 		"home": "Accueil",
 		"works": "Travaux",
-		"blog": "Blog"
+		"blog": "Blog",
+		"weAreStudio99": "WeAreStudio99"
 	},
 	"home": {
 		"metadata": {
@@ -49,7 +50,7 @@
 		"legalNotice": "Mentions légales"
 	},
 	"selectAWork": "Sélectionnez un travail",
-	"selectABlogPost": "Sélectionnez un article de blog",
+	"selectABlogPost": "Sélectionnez un article",
 	"languages": "Langues",
 	"time": {
 		"week": {

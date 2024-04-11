@@ -2,7 +2,8 @@
 	"firstLevelPages": {
 		"home": "Home",
 		"works": "Works",
-		"blog": "Blog"
+		"blog": "Blog",
+		"weAreStudio99": "WeAreStudio99"
 	},
 	"home": {
 		"metadata": {

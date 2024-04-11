@@ -63,7 +63,7 @@ interface BlogDocumentData {
  * @typeParam Lang - Language API ID of the document.
  */
 export type BlogDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithoutUID<Simplify<BlogDocumentData>, "blog", Lang>;
+  prismic.PrismicDocumentWithUID<Simplify<BlogDocumentData>, "blog", Lang>;
 
 type BlogPostDocumentDataSlicesSlice = ParagraphSlice;
 
