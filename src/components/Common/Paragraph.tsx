@@ -2,9 +2,11 @@ import { RichTextField } from "@prismicio/client";
 import { PrismicRichText } from "@prismicio/react";
 import Image from "next/image";
 import { FC } from "react";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 
 import CopyLink from "@/components/Common/CopyLink";
 import { A, H1, H2, H3, H4, LI, P, UL } from "@/components/Common/Typography";
+import { nightOwl } from "react-syntax-highlighter/dist/cjs/styles/prism";
 
 type Props = {
 	field: RichTextField | null | undefined;
@@ -20,6 +22,11 @@ const ParagraphBlock: FC<Props> = ({ field }) => {
 				heading4: ({ children }) => <H4>{children}</H4>,
 				paragraph: ({ children }) => <P>{children}</P>,
 				list: ({ children }) => <UL className="">{children}</UL>,
+				preformatted: ({ text }) => (
+					<SyntaxHighlighter style={nightOwl}>
+						{text as unknown as string}
+					</SyntaxHighlighter>
+				),
 				listItem: ({ children }) => <LI>{children}</LI>,
 				image: ({ node }) => {
 					return (
