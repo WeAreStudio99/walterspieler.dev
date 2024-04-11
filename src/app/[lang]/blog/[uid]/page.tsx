@@ -83,7 +83,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 			},
 		},
 		openGraph: {
-			type: "website",
+			type: "article",
 			title: `${page.data.meta_title || uid} | Thibault Walterspieler`,
 			description: page.data.meta_description || "",
 			url:

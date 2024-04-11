@@ -46,8 +46,6 @@ const WorkPage: FC<Props> = async (props) => {
 		})
 		.catch(() => notFound());
 
-	const company = page?.data?.work?.data?.company[0];
-
 	const jsonLd = getSchemaNewsArticle(
 		page.data.meta_title || uid,
 		page.first_publication_date,
@@ -104,8 +102,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 			},
 		},
 		openGraph: {
-			type: "website",
+			type: "article",
 			title: `${page.data.meta_title || uid} | Thibault Walterspieler`,
+			publishedTime: page.first_publication_date,
+			modifiedTime: page.last_publication_date,
+			authors: "Thibault Walterspieler",
+			tags: ["Web development"],
 			description: page.data.meta_description || works.metadata.description,
 			url: `/`,
 			images: {

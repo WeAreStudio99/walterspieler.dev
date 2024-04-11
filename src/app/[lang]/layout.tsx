@@ -96,6 +96,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 	return {
 		metadataBase: new URL(BASE_URL),
+		publisher: "Thibault Walterspieler",
+		creator: "Thibault Walterspieler",
 		title:
 			page.data.meta_title || "Thibault Walterspieler | Fullstack engineer",
 		description:
