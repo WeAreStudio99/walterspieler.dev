@@ -71,7 +71,7 @@ const LangRootLayout: FC<Props> = (props) => {
 							<SideMenu lang={lang}>
 								<MainMenuContent lang={lang} />
 							</SideMenu>
-							<div className="flex flex-1">{children}</div>
+							<div className="flex flex-1 blueprint-layout">{children}</div>
 						</div>
 					</MenuContextProvider>
 					<Toaster />

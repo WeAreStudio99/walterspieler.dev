@@ -4,9 +4,7 @@ import { FC } from "react";
 const Loading: FC = async () => {
 	return (
 		<div
-			className={cn(
-				"hidden w-full h-full lg:flex justify-center items-center blueprint-layout",
-			)}
+			className={cn("hidden w-full h-full lg:flex justify-center items-center")}
 		>
 			<span className="text-3xl font-bold inline-flex animate-text-gradient bg-gradient-to-r from-stone-400 via-metal to-stone-400 bg-[200%_auto]  text-center text-transparent bg-clip-text md:pl-72">
 				Loading blog post...

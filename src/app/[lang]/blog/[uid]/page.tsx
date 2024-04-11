@@ -42,7 +42,7 @@ const BlogPostPage: FC<Props> = async (props) => {
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 				type="application/ld+json"
 			/>
-			<ScrollArea className="flex flex-col lg:pl-72 z-0 blueprint-layout">
+			<ScrollArea className="flex flex-col lg:pl-72 z-0">
 				<div className="content-wrapper mt-14 lg:mt-0">
 					<Article lang={lang} uid={uid} collection="blog" content={page} />
 				</div>

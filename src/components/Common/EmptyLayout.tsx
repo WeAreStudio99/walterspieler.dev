@@ -25,9 +25,7 @@ const EmptyLayout: FC<Props> = (props) => {
 	return (
 		<motion.div
 			animate="animate"
-			className={cn(
-				"hidden w-full h-full lg:flex justify-center items-center blueprint-layout",
-			)}
+			className={cn("hidden w-full h-full lg:flex justify-center items-center")}
 			initial="initial"
 			transition={{ duration: 0.5 }}
 			variants={variants}
