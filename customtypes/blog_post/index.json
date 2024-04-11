@@ -1,7 +1,7 @@
 {
   "format": "page",
-  "id": "workPost",
-  "label": "Work Post",
+  "id": "blog_post",
+  "label": "Blog post",
   "repeatable": true,
   "status": true,
   "json": {
@@ -26,21 +26,12 @@
           "placeholder": ""
         }
       },
-      "externalLink": {
-        "type": "Link",
+      "cover": {
+        "type": "Image",
         "config": {
-          "label": "externalLink",
-          "placeholder": "",
-          "allowTargetBlank": true,
-          "select": null
-        }
-      },
-      "work": {
-        "type": "Link",
-        "config": {
-          "label": "work",
-          "select": "document",
-          "customtypes": ["work"]
+          "label": "cover",
+          "constraint": {},
+          "thumbnails": []
         }
       },
       "slices": {
@@ -48,9 +39,6 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
-            "button": {
-              "type": "SharedSlice"
-            },
             "paragraph": {
               "type": "SharedSlice"
             }
@@ -59,13 +47,6 @@
       }
     },
     "SEO & Metadata": {
-      "meta_title": {
-        "config": {
-          "label": "Meta Title",
-          "placeholder": "A title of the page used for social media and search engines"
-        },
-        "type": "Text"
-      },
       "meta_description": {
         "config": {
           "label": "Meta Description",
@@ -83,6 +64,13 @@
           "thumbnails": []
         },
         "type": "Image"
+      },
+      "meta_title": {
+        "config": {
+          "label": "Meta Title",
+          "placeholder": "A title of the page used for social media and search engines"
+        },
+        "type": "Text"
       }
     }
   }

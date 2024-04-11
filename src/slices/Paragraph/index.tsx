@@ -2,16 +2,13 @@ import { Content } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
 
 import ParagraphBlock from "@/components/Common/Paragraph";
+import { FC } from "react";
 
-/**
- * Props for `Paragraph`.
- */
-export type ParagraphProps = SliceComponentProps<Content.ParagraphSlice>;
+export type Props = SliceComponentProps<Content.ParagraphSlice>;
 
-/**
- * Component for "Paragraph" Slices.
- */
-const Paragraph = ({ slice }: ParagraphProps): JSX.Element => {
+const Paragraph: FC<Props> = (props) => {
+	const { slice } = props;
+
 	return (
 		<section
 			data-slice-type={slice.slice_type}

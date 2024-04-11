@@ -6,11 +6,9 @@ import Link from "next/link";
 
 import { buttonVariants } from "@/components/ui/button";
 import { CalendarHeart } from "lucide-react";
+import { FC } from "react";
 
-/**
- * Props for `Button`.
- */
-export type ButtonProps = SliceComponentProps<Content.ButtonSlice>;
+type Props = SliceComponentProps<Content.ButtonSlice>;
 
 const positionVariants = cva("flex my-6", {
 	variants: {
@@ -25,10 +23,8 @@ const positionVariants = cva("flex my-6", {
 	},
 });
 
-/**
- * Component for "Button" Slices.
- */
-const ButtonSlice = ({ slice }: ButtonProps): JSX.Element => {
+const ButtonSlice: FC<Props> = (props) => {
+	const { slice } = props;
 	const {
 		variation,
 		primary: { label, link, position },

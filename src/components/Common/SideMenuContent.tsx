@@ -1,60 +1,65 @@
 "use client";
 
+import { MenuContext } from "@/contexts/MenuContext";
 import { formatDateToMonthYear } from "@/lib/date";
 import { I18N_CONFIG } from "@/lib/i18n/config";
 import { Locale } from "@/lib/i18n/types";
 import { cn } from "@/lib/utils";
-import { Content, asDate } from "@prismicio/client";
+import { DateField, TimestampField, asDate } from "@prismicio/client";
+import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FC, useMemo } from "react";
-
-import { ChevronRight } from "lucide-react";
+import { FC, use, useMemo } from "react";
 
 type Props = {
 	lang: Locale;
 	title: string;
-	workPages: (Content.WorkPostDocument & {
-		data: {
-			work: {
-				data: Pick<Content.WorkDocument["data"], "duration" | "company">;
-			};
-		};
-	})[];
+	collection: "works" | "blog";
+	data: {
+		title: string;
+		uid: string;
+		startDate: DateField | TimestampField<"filled"> | undefined;
+		endDate?: DateField | undefined;
+	}[];
 };
 
-const WorksMenuContent: FC<Props> = ({ lang, workPages, title }) => {
+const SideMenuContent: FC<Props> = (props) => {
+	const { lang, data, title, collection } = props;
+
+	const { setIsInnerMenuOpen = () => {} } = use(MenuContext) ?? {};
+
 	const pathname = usePathname();
 	const splitPathname = pathname.split("/");
-	const currentWork = splitPathname[splitPathname.length - 1];
+	const currentPage = splitPathname[splitPathname.length - 1];
 
 	const isActiveArray = useMemo(
-		() => workPages.map((work) => currentWork === work.uid),
-		[workPages, currentWork],
+		() => data.map((item) => currentPage === item.uid),
+		[data, currentPage],
 	);
 
 	return (
-		<div className="flex w-full flex-col">
-			<div className="w-full p-4">
-				<span className={cn("font-bold text-lg")}>{title}</span>
+		<div className="w-full wrapper bg-eerie-dark h-screen">
+			<div className="w-full px-4 pt-10 md:p-4">
+				<span className="text-3xl md:text-lg font-bold">{title}</span>
 			</div>
-			<div className="flex flex-col w-full p-4 gap-4 ">
-				{workPages.map((work, idx) => {
-					const workData = work.data.work.data;
-					const company = workData.company[0];
-
-					const duration = workData.duration[0];
-					const date1 = asDate(duration?.start);
-					const date2 = asDate(duration?.end);
-
-					const isActive = isActiveArray[idx];
+			<div className="w-full mx-auto content px-4 pt-10 md:p-4 flex flex-col gap-3">
+				{data.map((item, idx) => {
 					const href =
 						lang !== I18N_CONFIG.defaultLocale
-							? `/${lang}/works/${work.uid} `
-							: `/works/${work.uid}`;
+							? `/${lang}/${collection}/${item.uid}`
+							: `/${collection}/${item.uid}`;
+
+					const startDate = asDate(item.startDate);
+					const endDate = asDate(item.endDate);
+
+					const isActive = isActiveArray[idx];
 
 					return (
-						<Link href={href} key={work.id}>
+						<Link
+							href={href}
+							key={item.uid}
+							onClick={() => setIsInnerMenuOpen(false)}
+						>
 							<div
 								className={cn(
 									"group relative px-4 py-5 group flex items-center justify-between rounded-lg p-4 bg-metal border-grey border hover:bg-eerie-light  shadow-duration-200 hover:scale-[1.01] active:scale-[0.98] active:bg-eerie-light transition-all",
@@ -71,14 +76,18 @@ const WorksMenuContent: FC<Props> = ({ lang, workPages, title }) => {
 									</>
 								)}
 								<div className="space-y-2 z-10 flex flex-col text-base">
-									<h3 className="font-bold text-stone-50">
-										{company && company.name}
-									</h3>
-									{date1 && date2 && (
-										<div className="text-sm flex items-center gap-1 text-stone-400">
-											<span>{formatDateToMonthYear(date1, lang)}</span>
-											<span> - </span>
-											<span>{formatDateToMonthYear(date2, lang)}</span>
+									<span className="font-bold text-lg md:text-base">
+										{item.title}
+									</span>
+									{(startDate || (startDate && endDate)) && (
+										<div className="text-sm flex items-center gap-1">
+											<span>{formatDateToMonthYear(startDate, lang)}</span>
+											{endDate && (
+												<>
+													<span> - </span>
+													<span>{formatDateToMonthYear(endDate, lang)}</span>
+												</>
+											)}
 										</div>
 									)}
 								</div>
@@ -97,4 +106,4 @@ const WorksMenuContent: FC<Props> = ({ lang, workPages, title }) => {
 	);
 };
 
-export default WorksMenuContent;
+export default SideMenuContent;

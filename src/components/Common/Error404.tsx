@@ -11,7 +11,9 @@ type Props = {
 	};
 };
 
-const Error404: FC<Props> = ({ label, button }) => {
+const Error404: FC<Props> = (props) => {
+	const { label, button } = props;
+
 	return (
 		<div className="text-white h-full w-full flex flex-col justify-center items-center blueprint-layout">
 			<h2 className="text-9xl font-bold">404</h2>

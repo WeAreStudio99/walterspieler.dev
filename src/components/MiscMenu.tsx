@@ -2,7 +2,7 @@
 
 import { MenuContext } from "@/contexts/MenuContext";
 import Link from "next/link";
-import { FC, useContext } from "react";
+import { FC, use } from "react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -22,8 +22,10 @@ type Props = {
 	};
 };
 
-const MiscMenu: FC<Props> = ({ title, labels }) => {
-	const { closeMenu } = useContext(MenuContext) ?? {};
+const MiscMenu: FC<Props> = (props) => {
+	const { title, labels } = props;
+
+	const { closeMainMenu: closeMenu } = use(MenuContext) ?? {};
 
 	return (
 		<DropdownMenu>

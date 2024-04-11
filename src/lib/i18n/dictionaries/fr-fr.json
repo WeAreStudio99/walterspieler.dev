@@ -1,7 +1,8 @@
 {
 	"firstLevelPages": {
 		"home": "Accueil",
-		"works": "Travaux"
+		"works": "Travaux",
+		"blog": "Blog"
 	},
 	"home": {
 		"metadata": {
@@ -16,6 +17,12 @@
 		"metadata": {
 			"title": "Travaux | Thibault Walterspieler",
 			"description": "Voici quelques-uns des projets sur lesquels j'ai travaillé."
+		}
+	},
+	"blog": {
+		"metadata": {
+			"title": "Blog | Thibault Walterspieler",
+			"description": "Quelques articles de blog sur des sujets qui me tiennent à cœur."
 		}
 	},
 	"openSource": {
@@ -42,6 +49,7 @@
 		"legalNotice": "Mentions légales"
 	},
 	"selectAWork": "Sélectionnez un travail",
+	"selectABlogPost": "Sélectionnez un article de blog",
 	"languages": "Langues",
 	"time": {
 		"week": {

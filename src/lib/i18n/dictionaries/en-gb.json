@@ -1,7 +1,8 @@
 {
 	"firstLevelPages": {
 		"home": "Home",
-		"works": "Works"
+		"works": "Works",
+		"blog": "Blog"
 	},
 	"home": {
 		"metadata": {
@@ -16,6 +17,12 @@
 		"metadata": {
 			"title": "Works | Thibault Walterspieler",
 			"description": "Here are some of the projects I've worked on."
+		}
+	},
+	"blog": {
+		"metadata": {
+			"title": "Blog | Thibault Walterspieler",
+			"description": "Here are some thoughts I've shared about dev & stuff."
 		}
 	},
 	"weAreStudio99": {
@@ -42,6 +49,7 @@
 		"legalNotice": "Legal Notice"
 	},
 	"selectAWork": "Select a work",
+	"selectABlogPost": "Select a blog post",
 	"languages": "Languages",
 	"time": {
 		"week": {

@@ -6,11 +6,9 @@ import { SliceComponentProps } from "@prismicio/react";
 import { WorkDocumentData } from "../../../prismicio-types";
 
 import WorkCard from "@/components/Works/WorkCard";
+import { FC } from "react";
 
-/**
- * Props for `WorkItem`.
- */
-export type WorkItemProps = SliceComponentProps<
+export type Props = SliceComponentProps<
 	Content.WorkItemSlice & {
 		primary: {
 			work: {
@@ -21,10 +19,9 @@ export type WorkItemProps = SliceComponentProps<
 	}
 >;
 
-/**
- * Component for "WorkItem" Slices.
- */
-const WorkItem = async ({ slice }: WorkItemProps) => {
+const WorkItem: FC<Props> = async (props) => {
+	const { slice } = props;
+
 	if (!slice.primary.work || !slice.primary.work.data) {
 		return <></>;
 	}

@@ -4,12 +4,12 @@ import { StateSetter } from "@/lib/types";
 import { FC, PropsWithChildren, createContext, useState } from "react";
 
 type MenuContextValue = {
-	isMenuOpen: boolean;
+	isMainMenuOpen: boolean;
 	isInnerMenuOpen: boolean;
-	setIsMenuOpen: StateSetter<boolean>;
+	setIsMainMenuOpen: StateSetter<boolean>;
 	setIsInnerMenuOpen: StateSetter<boolean>;
-	closeMenu: () => void;
-	openMenu: () => void;
+	closeMainMenu: () => void;
+	openMainMenu: () => void;
 };
 
 const MenuContext = createContext<MenuContextValue | undefined>(undefined);
@@ -17,11 +17,11 @@ const MenuContext = createContext<MenuContextValue | undefined>(undefined);
 const MenuContextProvider: FC<PropsWithChildren> = (props) => {
 	const { children } = props;
 
-	const [isMenuOpen, setIsMenuOpen] = useState(false);
-	const [isInnerMenuOpen, setIsInnerMenuOpen] = useState(true);
+	const [isMainMenuOpen, setIsMainMenuOpen] = useState(false);
+	const [isInnerMenuOpen, setIsInnerMenuOpen] = useState(false);
 
-	const closeMenu = () => {
-		setIsMenuOpen(false);
+	const closeMainMenu = () => {
+		setIsMainMenuOpen(false);
 
 		const meta = document.querySelector('meta[name="theme-color"]');
 		if (meta) {
@@ -31,8 +31,8 @@ const MenuContextProvider: FC<PropsWithChildren> = (props) => {
 		document.body.classList.remove("overflow-hidden", "h-screen");
 	};
 
-	const openMenu = () => {
-		setIsMenuOpen(true);
+	const openMainMenu = () => {
+		setIsMainMenuOpen(true);
 
 		const meta = document.querySelector('meta[name="theme-color"]');
 		if (meta) {
@@ -48,12 +48,12 @@ const MenuContextProvider: FC<PropsWithChildren> = (props) => {
 	};
 
 	const contextValue: MenuContextValue = {
-		isMenuOpen,
-		setIsMenuOpen,
+		isMainMenuOpen,
+		setIsMainMenuOpen,
 		isInnerMenuOpen,
 		setIsInnerMenuOpen,
-		closeMenu,
-		openMenu,
+		closeMainMenu,
+		openMainMenu,
 	};
 
 	return (

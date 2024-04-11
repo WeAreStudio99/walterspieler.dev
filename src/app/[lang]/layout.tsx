@@ -68,7 +68,7 @@ const LangRootLayout: FC<Props> = (props) => {
 					<PostHogPageView />
 					<MenuContextProvider>
 						<div className="lg:flex">
-							<SideMenu>
+							<SideMenu lang={lang}>
 								<MainMenuContent lang={lang} />
 							</SideMenu>
 							<div className="flex flex-1">{children}</div>
@@ -92,8 +92,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 		})
 		.catch(() => notFound());
 
+	const imagePath = `/images/og/main_${lang}.png`;
+
 	return {
 		metadataBase: new URL(BASE_URL),
+		publisher: "Thibault Walterspieler",
+		creator: "Thibault Walterspieler",
 		title:
 			page.data.meta_title || "Thibault Walterspieler | Fullstack engineer",
 		description:
@@ -111,7 +115,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 			title: "Thibault Walterspieler | Fullstack engineer",
 			description: dictionary.home.metadata.description,
 			images: {
-				url: "/images/og/default.png",
+				url: imagePath,
 				alt: "Thibault Walterspieler | Fullstack engineer",
 				type: "image/png",
 			},
@@ -122,7 +126,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 			description: dictionary.home.metadata.description,
 			url: `/`,
 			images: {
-				url: "/images/og/default.png",
+				url: imagePath,
 				alt: "Thibault Walterspieler | Fullstack engineer",
 				type: "image/png",
 			},

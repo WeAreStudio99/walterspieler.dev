@@ -6,7 +6,7 @@ import { FC, PropsWithChildren, Suspense } from "react";
 
 import LoadingSpinner from "@/components/Common/LoadingSpinner";
 import SideMenu from "@/components/Common/SideMenu";
-import WorksMenuContent from "@/components/Works/WorksMenuContent";
+import SideMenuContent from "@/components/Common/SideMenuContent";
 
 type Params = {
 	lang: Locale;
@@ -38,12 +38,25 @@ const WorksLayout: FC<Props> = async (props) => {
 
 	return (
 		<>
-			<SideMenu isInner>
+			<SideMenu isInner lang={lang} collection="works" displayReturnButton>
 				<Suspense fallback={<LoadingSpinner />}>
-					<WorksMenuContent
+					<SideMenuContent
 						lang={lang}
-						title={dictionary.menuItems.myWorks}
-						workPages={workPages}
+						title={dictionary.firstLevelPages.works}
+						collection="works"
+						data={workPages.map((work) => {
+							const workData = work.data.work.data;
+							const company = workData.company[0];
+
+							const duration = workData.duration[0];
+
+							return {
+								title: company?.name || "",
+								uid: work.uid,
+								startDate: duration?.start,
+								endDate: duration?.end,
+							};
+						})}
 					/>
 				</Suspense>
 			</SideMenu>

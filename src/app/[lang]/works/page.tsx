@@ -1,5 +1,5 @@
-import EmptyWork from "@/components/Works/EmptyWork";
-import WorksList from "@/components/Works/WorksList";
+import EmptyLayout from "@/components/Common/EmptyLayout";
+import MenuInitializer from "@/contexts/MenuContext/MenuInitializer";
 import { Locale } from "@/lib/i18n/types";
 import { getDictionary } from "@/lib/i18n/utils";
 import { generateAlternates } from "@/lib/utils";
@@ -23,10 +23,8 @@ const Works: FC<Props> = async (props) => {
 
 	return (
 		<>
-			<EmptyWork label={dictionary.selectAWork} />
-			<div className="flex-1 lg:hidden">
-				<WorksList lang={lang} />
-			</div>
+			<MenuInitializer isInnerMenuOpen />
+			<EmptyLayout label={dictionary.selectAWork} />
 		</>
 	);
 };
@@ -36,6 +34,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 	const dictionary = await getDictionary(lang);
 
 	const { works } = dictionary;
+
+	const imagePath = `/images/og/works_${lang}.png`;
 
 	return {
 		title: works.metadata.title,
@@ -53,7 +53,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 			title: works.metadata.title,
 			description: works.metadata.description,
 			images: {
-				url: `/images/og/works_${lang}.png`,
+				url: imagePath,
 				alt: "Thibault Walterspieler | Fullstack engineer",
 				type: "image/png",
 			},
@@ -64,7 +64,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 			description: works.metadata.description,
 			url: `/`,
 			images: {
-				url: `/images/og/works_${lang}.png`,
+				url: imagePath,
 				alt: "Thibault Walterspieler | Fullstack engineer",
 				type: "image/png",
 			},

@@ -4,7 +4,7 @@ import { MenuContext } from "@/contexts/MenuContext";
 import { Locale } from "@/lib/i18n/types";
 import { SliceZone } from "@prismicio/client";
 import { motion, useAnimation } from "framer-motion";
-import { FC, useContext, useEffect } from "react";
+import { FC, use, useEffect } from "react";
 import { NavigationItemSlice } from "../../../prismicio-types";
 
 import NavigationLink from "@/components/NavigationLink";
@@ -14,8 +14,10 @@ type Props = {
 	lang: Locale;
 };
 
-const MainMenuItems: FC<Props> = ({ items, lang }) => {
-	const { isMenuOpen } = useContext(MenuContext) ?? {};
+const MainMenuItems: FC<Props> = (props) => {
+	const { items, lang } = props;
+
+	const { isMainMenuOpen: isMenuOpen } = use(MenuContext) ?? {};
 	const controls = useAnimation();
 
 	useEffect(() => {
