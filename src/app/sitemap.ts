@@ -5,7 +5,7 @@ import { BASE_URL } from '../../next.constants.mjs';
 
 const prismicClient = createClient();
 
-const STATIC_PATHS = ['open-source', 'wearestudio99', 'works'];
+const STATIC_PATHS = ['open-source', 'wearestudio99', 'works', 'blog'];
 
 const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
   const paths: Array<string> = [];
@@ -14,12 +14,16 @@ const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
     const workPages = await prismicClient.getAllByType('workPost', {
       lang: locale,
     });
+    const blogPost = await prismicClient.getAllByType('blog_post', {
+      lang: locale,
+    });
 
     if (locale === I18N_CONFIG.defaultLocale) {
       paths.push(
         `${BASE_URL}/`,
         ...STATIC_PATHS.map((path) => `${BASE_URL}/${path}`),
-        ...workPages.map((workPage) => `${BASE_URL}/works/${workPage.uid}`)
+        ...workPages.map((workPage) => `${BASE_URL}/works/${workPage.uid}`),
+        ...blogPost.map((blogPost) => `${BASE_URL}/blog/${blogPost.uid}`)
       );
     }
 
@@ -28,6 +32,9 @@ const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
       ...STATIC_PATHS.map((path) => `${BASE_URL}/${locale}/${path}`),
       ...workPages.map(
         (workPage) => `${BASE_URL}/${locale}/works/${workPage.uid}`
+      ),
+      ...blogPost.map(
+        (blogPost) => `${BASE_URL}/${locale}/blog/${blogPost.uid}`
       )
     );
   }
