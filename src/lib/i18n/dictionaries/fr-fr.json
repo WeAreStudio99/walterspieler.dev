@@ -19,6 +19,12 @@
 			"description": "Voici quelques-uns des projets sur lesquels j'ai travaillé."
 		}
 	},
+	"blog": {
+		"metadata": {
+			"title": "Blog | Thibault Walterspieler",
+			"description": "Quelques articles de blog sur des sujets qui me tiennent à cœur."
+		}
+	},
 	"openSource": {
 		"metadata": {
 			"title": "Open Source | Thibault Walterspieler",

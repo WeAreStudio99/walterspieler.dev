@@ -19,6 +19,12 @@
 			"description": "Here are some of the projects I've worked on."
 		}
 	},
+	"blog": {
+		"metadata": {
+			"title": "Blog | Thibault Walterspieler",
+			"description": "Here are some thoughts I've shared about dev & stuff."
+		}
+	},
 	"weAreStudio99": {
 		"metadata": {
 			"title": "WeAreStudio99 | Thibault Walterspieler",

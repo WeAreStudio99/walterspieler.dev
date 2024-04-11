@@ -1,6 +1,8 @@
 import { Locale } from "@/lib/i18n/types";
 import { getDictionary } from "@/lib/i18n/utils";
+import { generateAlternates } from "@/lib/utils";
 import { createClient } from "@/prismicio";
+import { Metadata } from "next";
 import { FC, PropsWithChildren, Suspense } from "react";
 
 import LoadingSpinner from "@/components/Common/LoadingSpinner";
@@ -48,5 +50,48 @@ const BlogLayout: FC<Props> = async (props) => {
 		</>
 	);
 };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+	const { lang } = params;
+	const dictionary = await getDictionary(lang);
+
+	const { blog } = dictionary;
+
+	const imagePath = `/images/og/blog_${lang}.png`;
+
+	return {
+		title: blog.metadata.title,
+		description: blog.metadata.description,
+		alternates: generateAlternates("blog", lang),
+		icons: [
+			{
+				rel: "icon",
+				url: "/favicon.ico",
+				sizes: "any",
+			},
+		],
+		twitter: {
+			card: "summary_large_image",
+			title: blog.metadata.title,
+			description: blog.metadata.description,
+			images: {
+				url: imagePath,
+				alt: "Thibault Walterspieler | Fullstack engineer",
+				type: "image/png",
+			},
+		},
+		openGraph: {
+			type: "website",
+			title: blog.metadata.title,
+			description: blog.metadata.description,
+			url: `/`,
+			images: {
+				url: imagePath,
+				alt: "Thibault Walterspieler | Fullstack engineer",
+				type: "image/png",
+			},
+		},
+	};
+}
 
 export default BlogLayout;
