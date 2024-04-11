@@ -52,6 +52,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 	const { weAreStudio99 } = dictionary;
 
+	const imagePath = `/images/og/99_${lang}.png`;
+
 	return {
 		title: weAreStudio99.metadata.title,
 		description: weAreStudio99.metadata.description,
@@ -68,7 +70,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 			title: weAreStudio99.metadata.title,
 			description: weAreStudio99.metadata.description,
 			images: {
-				url: `/images/og/open_source.png`,
+				url: imagePath,
 				alt: "Thibault Walterspieler | Fullstack engineer",
 				type: "image/png",
 			},
@@ -79,7 +81,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 			description: weAreStudio99.metadata.description,
 			url: `/`,
 			images: {
-				url: `/images/og/open_source.png`,
+				url: imagePath,
 				alt: "Thibault Walterspieler | Fullstack engineer",
 				type: "image/png",
 			},

@@ -35,6 +35,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 	const { works } = dictionary;
 
+	const imagePath = `/images/og/works_${lang}.png`;
+
 	return {
 		title: works.metadata.title,
 		description: works.metadata.description,
@@ -51,7 +53,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 			title: works.metadata.title,
 			description: works.metadata.description,
 			images: {
-				url: `/images/og/works_${lang}.png`,
+				url: imagePath,
 				alt: "Thibault Walterspieler | Fullstack engineer",
 				type: "image/png",
 			},
@@ -62,7 +64,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 			description: works.metadata.description,
 			url: `/`,
 			images: {
-				url: `/images/og/works_${lang}.png`,
+				url: imagePath,
 				alt: "Thibault Walterspieler | Fullstack engineer",
 				type: "image/png",
 			},

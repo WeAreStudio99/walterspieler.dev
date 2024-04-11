@@ -32,9 +32,11 @@ const NoticePage: FC<Props> = async (props) => {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
 	const { lang } = params;
-	const dictionary = await getDictionary(lang);
 
+	const dictionary = await getDictionary(lang);
 	const { notice } = dictionary;
+
+	const imagePath = `/images/og/notice_${lang}.png`;
 
 	return {
 		title: notice.metadata.title,
@@ -52,7 +54,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 			title: notice.metadata.title,
 			description: notice.metadata.description,
 			images: {
-				url: `/images/og/notice_${lang}.png`,
+				url: imagePath,
 				alt: "Thibault Walterspieler | Fullstack engineer",
 				type: "image/png",
 			},
@@ -63,7 +65,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 			description: notice.metadata.description,
 			url: `/`,
 			images: {
-				url: `/images/notice_${lang}.png`,
+				url: imagePath,
 				alt: "Thibault Walterspieler | Fullstack engineer",
 				type: "image/png",
 			},

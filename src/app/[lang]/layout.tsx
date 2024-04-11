@@ -92,6 +92,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 		})
 		.catch(() => notFound());
 
+	const imagePath = `/images/og/main_${lang}.png`;
+
 	return {
 		metadataBase: new URL(BASE_URL),
 		title:
@@ -111,7 +113,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 			title: "Thibault Walterspieler | Fullstack engineer",
 			description: dictionary.home.metadata.description,
 			images: {
-				url: "/images/og/default.png",
+				url: imagePath,
 				alt: "Thibault Walterspieler | Fullstack engineer",
 				type: "image/png",
 			},
@@ -122,7 +124,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 			description: dictionary.home.metadata.description,
 			url: `/`,
 			images: {
-				url: "/images/og/default.png",
+				url: imagePath,
 				alt: "Thibault Walterspieler | Fullstack engineer",
 				type: "image/png",
 			},

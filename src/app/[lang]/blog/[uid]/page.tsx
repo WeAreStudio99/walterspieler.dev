@@ -1,6 +1,5 @@
 import { I18N_CONFIG } from "@/lib/i18n/config";
 import { Locale } from "@/lib/i18n/types";
-import { getDictionary } from "@/lib/i18n/utils";
 import getSchemaNewsArticle from "@/lib/schema-dts/news-article";
 import { generateAlternates } from "@/lib/utils";
 import { createClient } from "@/prismicio";
@@ -54,7 +53,6 @@ const BlogPostPage: FC<Props> = async (props) => {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
 	const { lang, uid } = params;
-	const dictionary = await getDictionary(lang);
 
 	const client = createClient();
 	const page = await client.getByUID("blog_post", uid, {
