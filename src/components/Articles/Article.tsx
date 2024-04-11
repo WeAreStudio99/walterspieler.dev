@@ -45,7 +45,11 @@ const Article: FC<Props> = (props) => {
 
 	return (
 		<div className="content">
-			<ArticleBreadcrumb lang={lang} title={content.data.title || uid} />
+			<ArticleBreadcrumb
+				lang={lang}
+				title={content.data.title || uid}
+				collection={collection}
+			/>
 			<motion.article
 				animate="animate"
 				initial="initial"

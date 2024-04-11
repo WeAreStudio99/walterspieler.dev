@@ -16,10 +16,11 @@ import { FC } from "react";
 type Props = {
 	title: string;
 	lang: Locale;
+	collection: "work" | "blog";
 };
 
 const ArticleBreadcrumb: FC<Props> = async (props) => {
-	const { title, lang } = props;
+	const { title, lang, collection } = props;
 
 	const dictionary = await getDictionary(lang);
 
@@ -34,7 +35,11 @@ const ArticleBreadcrumb: FC<Props> = async (props) => {
 				<BreadcrumbSeparator />
 				<BreadcrumbItem>
 					<BreadcrumbLink asChild>
-						<Link href="/works">{dictionary.firstLevelPages.works}</Link>
+						{collection === "blog" ? (
+							<Link href="/blog">{dictionary.firstLevelPages.blog}</Link>
+						) : (
+							<Link href="/works">{dictionary.firstLevelPages.works}</Link>
+						)}
 					</BreadcrumbLink>
 				</BreadcrumbItem>
 				<BreadcrumbSeparator />
