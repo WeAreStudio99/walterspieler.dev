@@ -1,10 +1,10 @@
-import { match } from '@formatjs/intl-localematcher';
-import Negotiator from 'negotiator';
-import { NextRequest } from 'next/server';
+import { match } from "@formatjs/intl-localematcher";
+import Negotiator from "negotiator";
+import { NextRequest } from "next/server";
 
-import { I18N_CONFIG } from './config';
-import { DICTIONARIES } from './constants';
-import { Locale } from './types';
+import { I18N_CONFIG } from "./config";
+import { DICTIONARIES } from "./constants";
+import { Locale } from "./types";
 
 const getDictionary = (locale: Locale) => {
   if (!(locale in DICTIONARIES)) {
@@ -20,8 +20,8 @@ const getLocaleFromRequest = (request: NextRequest): string | undefined => {
 
   const locales = I18N_CONFIG.locales;
 
-  let languages = new Negotiator({ headers: negotiatorHeaders }).languages(
-    locales as unknown as string[]
+  const languages = new Negotiator({ headers: negotiatorHeaders }).languages(
+    locales as unknown as string[],
   );
 
   return match(languages, locales, I18N_CONFIG.defaultLocale);

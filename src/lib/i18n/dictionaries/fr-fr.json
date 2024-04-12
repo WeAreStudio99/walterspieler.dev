@@ -1,73 +1,73 @@
 {
-	"firstLevelPages": {
-		"home": "Accueil",
-		"works": "Travaux",
-		"blog": "Blog",
-		"weAreStudio99": "WeAreStudio99"
-	},
-	"home": {
-		"metadata": {
-			"description": "Hello, je suis Thibault Walterspieler, un ingénieur fullstack freelance basé à Lyon, France."
-		},
-		"job": "Ingénieur Fullstack Freelance",
-		"buttons": {
-			"readMore": "En savoir plus sur"
-		}
-	},
-	"works": {
-		"metadata": {
-			"title": "Travaux | Thibault Walterspieler",
-			"description": "Voici quelques-uns des projets sur lesquels j'ai travaillé."
-		}
-	},
-	"blog": {
-		"metadata": {
-			"title": "Blog | Thibault Walterspieler",
-			"description": "Quelques articles de blog sur des sujets qui me tiennent à cœur."
-		}
-	},
-	"openSource": {
-		"metadata": {
-			"title": "Open Source | Thibault Walterspieler",
-			"description": "Merci à la communauté open-source sans qui tout notre travail d'ingénieur serait bien plus complexe."
-		}
-	},
-	"notice": {
-		"metadata": {
-			"title": "Mentions légales | Thibault Walterspieler",
-			"description": "Mentions légales du site walterspieler.dev"
-		}
-	},
-	"weAreStudio99": {
-		"metadata": {
-			"title": "WeAreStudio99 | Thibault Walterspieler",
-			"description": "WeAreStudio99 est un collectif de développeurs et d'artistes."
-		}
-	},
-	"menuItems": {
-		"myWorks": "Mes travaux",
-		"other": "Autre",
-		"legalNotice": "Mentions légales"
-	},
-	"selectAWork": "Sélectionnez un travail",
-	"selectABlogPost": "Sélectionnez un article",
-	"languages": "Langues",
-	"time": {
-		"week": {
-			"plural": "semaines",
-			"singular": "semaine"
-		},
-		"day": {
-			"plural": "jours",
-			"singular": "jour"
-		},
-		"month": {
-			"plural": "mois",
-			"singular": "mois"
-		},
-		"year": {
-			"plural": "ans",
-			"singular": "an"
-		}
-	}
+  "firstLevelPages": {
+    "home": "Accueil",
+    "works": "Travaux",
+    "blog": "Blog",
+    "weAreStudio99": "WeAreStudio99"
+  },
+  "home": {
+    "metadata": {
+      "description": "Hello, je suis Thibault Walterspieler, un ingénieur fullstack freelance basé à Lyon, France."
+    },
+    "job": "Ingénieur Fullstack Freelance",
+    "buttons": {
+      "readMore": "En savoir plus sur"
+    }
+  },
+  "works": {
+    "metadata": {
+      "title": "Travaux | Thibault Walterspieler",
+      "description": "Voici quelques-uns des projets sur lesquels j'ai travaillé."
+    }
+  },
+  "blog": {
+    "metadata": {
+      "title": "Blog | Thibault Walterspieler",
+      "description": "Quelques articles de blog sur des sujets qui me tiennent à cœur."
+    }
+  },
+  "openSource": {
+    "metadata": {
+      "title": "Open Source | Thibault Walterspieler",
+      "description": "Merci à la communauté open-source sans qui tout notre travail d'ingénieur serait bien plus complexe."
+    }
+  },
+  "notice": {
+    "metadata": {
+      "title": "Mentions légales | Thibault Walterspieler",
+      "description": "Mentions légales du site walterspieler.dev"
+    }
+  },
+  "weAreStudio99": {
+    "metadata": {
+      "title": "WeAreStudio99 | Thibault Walterspieler",
+      "description": "WeAreStudio99 est un collectif de développeurs et d'artistes."
+    }
+  },
+  "menuItems": {
+    "myWorks": "Mes travaux",
+    "other": "Autre",
+    "legalNotice": "Mentions légales"
+  },
+  "selectAWork": "Sélectionnez un travail",
+  "selectABlogPost": "Sélectionnez un article",
+  "languages": "Langues",
+  "time": {
+    "week": {
+      "plural": "semaines",
+      "singular": "semaine"
+    },
+    "day": {
+      "plural": "jours",
+      "singular": "jour"
+    },
+    "month": {
+      "plural": "mois",
+      "singular": "mois"
+    },
+    "year": {
+      "plural": "ans",
+      "singular": "an"
+    }
+  }
 }

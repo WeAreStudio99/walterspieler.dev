@@ -1,73 +1,73 @@
 {
-	"firstLevelPages": {
-		"home": "Home",
-		"works": "Works",
-		"blog": "Blog",
-		"weAreStudio99": "WeAreStudio99"
-	},
-	"home": {
-		"metadata": {
-			"description": "Hi, I'm Thibault Walterspieler, a fullstack engineer based in Lyon, France."
-		},
-		"job": "Freelance Fullstack Engineer",
-		"buttons": {
-			"readMore": "Read more on"
-		}
-	},
-	"works": {
-		"metadata": {
-			"title": "Works | Thibault Walterspieler",
-			"description": "Here are some of the projects I've worked on."
-		}
-	},
-	"blog": {
-		"metadata": {
-			"title": "Blog | Thibault Walterspieler",
-			"description": "Here are some thoughts I've shared about dev & stuff."
-		}
-	},
-	"weAreStudio99": {
-		"metadata": {
-			"title": "WeAreStudio99 | Thibault Walterspieler",
-			"description": "WeAreStudio99 is a collective of artists and engineers. We create digital experiences."
-		}
-	},
-	"openSource": {
-		"metadata": {
-			"title": "Open Source | Thibault Walterspieler",
-			"description": "Thanks to the open-source community. Without you our work as engineer would give more headaches."
-		}
-	},
-	"notice": {
-		"metadata": {
-			"title": "Legal notice | Thibault Walterspieler",
-			"description": "Legal notice of walterspieler.dev website"
-		}
-	},
-	"menuItems": {
-		"myWorks": "My works",
-		"other": "Other",
-		"legalNotice": "Legal Notice"
-	},
-	"selectAWork": "Select a work",
-	"selectABlogPost": "Select a blog post",
-	"languages": "Languages",
-	"time": {
-		"week": {
-			"plural": "weeks",
-			"singular": "week"
-		},
-		"day": {
-			"plural": "days",
-			"singular": "day"
-		},
-		"month": {
-			"plural": "months",
-			"singular": "month"
-		},
-		"year": {
-			"plural": "years",
-			"singular": "year"
-		}
-	}
+  "firstLevelPages": {
+    "home": "Home",
+    "works": "Works",
+    "blog": "Blog",
+    "weAreStudio99": "WeAreStudio99"
+  },
+  "home": {
+    "metadata": {
+      "description": "Hi, I'm Thibault Walterspieler, a fullstack engineer based in Lyon, France."
+    },
+    "job": "Freelance Fullstack Engineer",
+    "buttons": {
+      "readMore": "Read more on"
+    }
+  },
+  "works": {
+    "metadata": {
+      "title": "Works | Thibault Walterspieler",
+      "description": "Here are some of the projects I've worked on."
+    }
+  },
+  "blog": {
+    "metadata": {
+      "title": "Blog | Thibault Walterspieler",
+      "description": "Here are some thoughts I've shared about dev & stuff."
+    }
+  },
+  "weAreStudio99": {
+    "metadata": {
+      "title": "WeAreStudio99 | Thibault Walterspieler",
+      "description": "WeAreStudio99 is a collective of artists and engineers. We create digital experiences."
+    }
+  },
+  "openSource": {
+    "metadata": {
+      "title": "Open Source | Thibault Walterspieler",
+      "description": "Thanks to the open-source community. Without you our work as engineer would give more headaches."
+    }
+  },
+  "notice": {
+    "metadata": {
+      "title": "Legal notice | Thibault Walterspieler",
+      "description": "Legal notice of walterspieler.dev website"
+    }
+  },
+  "menuItems": {
+    "myWorks": "My works",
+    "other": "Other",
+    "legalNotice": "Legal Notice"
+  },
+  "selectAWork": "Select a work",
+  "selectABlogPost": "Select a blog post",
+  "languages": "Languages",
+  "time": {
+    "week": {
+      "plural": "weeks",
+      "singular": "week"
+    },
+    "day": {
+      "plural": "days",
+      "singular": "day"
+    },
+    "month": {
+      "plural": "months",
+      "singular": "month"
+    },
+    "year": {
+      "plural": "years",
+      "singular": "year"
+    }
+  }
 }

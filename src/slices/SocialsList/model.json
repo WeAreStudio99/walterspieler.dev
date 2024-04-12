@@ -18,9 +18,7 @@
           "config": {
             "label": "social",
             "select": "document",
-            "customtypes": [
-              "social"
-            ]
+            "customtypes": ["social"]
           }
         }
       }
