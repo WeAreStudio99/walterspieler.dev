@@ -5,13 +5,13 @@ import { FC, PropsWithChildren } from "react";
 import type { Viewport } from "next";
 
 export const viewport: Viewport = {
-	themeColor: "dark",
+  themeColor: "dark",
 };
 
 const RootLayout: FC<PropsWithChildren> = (props) => {
-	const { children } = props;
+  const { children } = props;
 
-	return children;
+  return children;
 };
 
 export default RootLayout;

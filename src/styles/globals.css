@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 .scrollable-area {
-  @apply h-full max-h-[100dvh] min-h-[100dvh] overflow-x-hidden overflow-y-auto;
+  @apply h-full max-h-[100dvh] min-h-[100dvh] overflow-y-auto overflow-x-hidden;
 }
 
 .content-wrapper {
-  @apply z-[1] w-full px-6 pb-8 pt-10 md:pt-7 lg:px-8 lg:pb-16 lg:pt-20 relative;
+  @apply relative z-[1] w-full px-6 pb-8 pt-10 md:pt-7 lg:px-8 lg:pb-16 lg:pt-20;
 }
 
 .content {
@@ -15,8 +15,8 @@
 }
 
 .blueprint-layout::before {
-  @apply top-0 left-0 w-screen pointer-events-none absolute;
-  content: '';
+  @apply pointer-events-none absolute left-0 top-0 w-screen;
+  content: "";
   height: 100dvh;
   z-index: -100;
   background:

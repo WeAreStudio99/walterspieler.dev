@@ -1,19 +1,20 @@
-import { createClient } from "@/prismicio";
-import { components } from "@/slices";
 import { SliceZone } from "@prismicio/react";
 import { FC } from "react";
 
 import ContentWrapper from "@/components/Common/ContentWrapper";
 
-const HomePage: FC = async () => {
-	const client = createClient();
-	const page = await client.getSingle("home");
+import { createClient } from "@/prismicio";
+import { components } from "@/slices";
 
-	return (
-		<ContentWrapper>
-			<SliceZone components={components} slices={page.data.slices} />
-		</ContentWrapper>
-	);
+const HomePage: FC = async () => {
+  const client = createClient();
+  const page = await client.getSingle("home");
+
+  return (
+    <ContentWrapper>
+      <SliceZone components={components} slices={page.data.slices} />
+    </ContentWrapper>
+  );
 };
 
 export default HomePage;

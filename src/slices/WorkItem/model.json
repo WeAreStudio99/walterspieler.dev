@@ -17,9 +17,7 @@
           "config": {
             "label": "work",
             "select": "document",
-            "customtypes": [
-              "work"
-            ]
+            "customtypes": ["work"]
           }
         }
       },

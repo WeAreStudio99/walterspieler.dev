@@ -1,6 +1,8 @@
-import { PUBLIC_PATHS } from '@/lib/routing/constants';
-import { createClient } from '@/prismicio';
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from "next/server";
+
+import { PUBLIC_PATHS } from "@/lib/routing/constants";
+
+import { createClient } from "@/prismicio";
 
 export async function middleware(request: NextRequest) {
   const client = createClient();
@@ -19,20 +21,21 @@ export async function middleware(request: NextRequest) {
 
       return pathnameIsPublicPath;
     },
-    false
+    false,
   );
 
   const pathnameIsMissingLocale = locales.every(
-    (locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
+    (locale) =>
+      !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`,
   );
 
   if (pathnameIsMissingLocale && !pathnameIsPublicPath) {
     return NextResponse.rewrite(
-      new URL(`/${defaultLocale}${pathname}`, request.url)
+      new URL(`/${defaultLocale}${pathname}`, request.url),
     );
   }
 }
 
 export const config = {
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
+  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
 };

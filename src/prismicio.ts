@@ -1,6 +1,7 @@
-import * as prismic from '@prismicio/client';
-import * as prismicNext from '@prismicio/next';
-import config from '../slicemachine.config.json';
+import * as prismic from "@prismicio/client";
+import * as prismicNext from "@prismicio/next";
+
+import config from "../slicemachine.config.json";
 
 /**
  * The project's Prismic repository name.
@@ -13,34 +14,34 @@ export const repositoryName =
  *
  * {@link https://prismic.io/docs/route-resolver#route-resolver}
  */
-const routes: prismic.ClientConfig['routes'] = [
+const routes: prismic.ClientConfig["routes"] = [
   {
-    type: 'home',
-    path: '/:lang?',
+    type: "home",
+    path: "/:lang?",
   },
   {
-    type: 'works',
-    path: '/:lang?/works',
+    type: "works",
+    path: "/:lang?/works",
   },
   {
-    type: 'workPost',
-    path: '/:lang?/works/:uid',
+    type: "workPost",
+    path: "/:lang?/works/:uid",
   },
   {
-    type: 'blog_post',
-    path: '/:lang?/blog/:uid',
+    type: "blog_post",
+    path: "/:lang?/blog/:uid",
   },
   {
-    type: 'openSource',
-    path: '/:lang?/open-source',
+    type: "openSource",
+    path: "/:lang?/open-source",
   },
   {
-    type: 'legalNotice',
-    path: '/:lang?/legal/notice',
+    type: "legalNotice",
+    path: "/:lang?/legal/notice",
   },
   {
-    type: 'weAreStudio99',
-    path: '/:lang?/wearestudio99',
+    type: "weAreStudio99",
+    path: "/:lang?/wearestudio99",
   },
 ];
 
@@ -54,8 +55,8 @@ export const createClient = (config: prismicNext.CreateClientConfig = {}) => {
   const client = prismic.createClient(repositoryName, {
     routes,
     fetchOptions:
-      process.env.NODE_ENV === 'production'
-        ? { next: { tags: ['prismic'] }, cache: 'force-cache' }
+      process.env.NODE_ENV === "production"
+        ? { next: { tags: ["prismic"] }, cache: "force-cache" }
         : { next: { revalidate: 5 } },
     ...config,
   });
