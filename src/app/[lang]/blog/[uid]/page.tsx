@@ -90,8 +90,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: page.data.meta_description || "",
       url:
         lang !== I18N_CONFIG.defaultLocale
-          ? `/blog/${uid}`
-          : `/blog/${lang}/${uid}`,
+          ? `/blog/${lang}/${uid}`
+          : `/blog/${uid}`,
       images: {
         url: page.data.meta_image.url || "/images/og/default.png",
         alt:
