@@ -41,17 +41,19 @@ type Props = {
   tags: GroupField<Simplify<Content.WorkDocumentDataTagsItem>>;
 };
 
-const WorkCard: FC<Props> = ({
-  title,
-  description,
-  logo,
-  duration,
-  link,
-  lang,
-  relatedWorkPostLink,
-  buttonLabel,
-  tags,
-}) => {
+const WorkCard: FC<Props> = (props) => {
+  const {
+    title,
+    description,
+    logo,
+    duration,
+    link,
+    lang,
+    relatedWorkPostLink,
+    buttonLabel,
+    tags,
+  } = props;
+
   const router = useRouter();
 
   const mouseX = useMotionValue(0);

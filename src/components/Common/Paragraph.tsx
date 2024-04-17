@@ -12,7 +12,9 @@ type Props = {
   field: RichTextField | null | undefined;
 };
 
-const ParagraphBlock: FC<Props> = ({ field }) => {
+const ParagraphBlock: FC<Props> = (props) => {
+  const { field } = props;
+
   return (
     <PrismicRichText
       components={{
