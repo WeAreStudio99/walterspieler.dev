@@ -28,7 +28,7 @@ type Props = {
 const SideMenuContent: FC<Props> = (props) => {
   const { lang, data, title, collection } = props;
 
-  const { closeInnerMenu = () => {} } = use(MenuContext) ?? {};
+  const { closeInnerMenu } = use(MenuContext) ?? {};
 
   const pathname = usePathname();
   const splitPathname = pathname.split("/");
@@ -57,13 +57,7 @@ const SideMenuContent: FC<Props> = (props) => {
           const isActive = isActiveArray[idx];
 
           return (
-            <Link
-              href={href}
-              key={item.uid}
-              onClick={() => {
-                closeInnerMenu();
-              }}
-            >
+            <Link href={href} key={item.uid} onClick={closeInnerMenu}>
               <div
                 className={cn(
                   "shadow-duration-200 group group relative flex items-center justify-between rounded-lg border border-grey bg-metal p-4 px-4 py-5  transition-all hover:scale-[1.01] hover:bg-eerie-light active:scale-[0.98] active:bg-eerie-light",

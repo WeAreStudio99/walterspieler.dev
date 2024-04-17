@@ -12,10 +12,13 @@ type Props = {
 const MenuInitializer: FC<Props> = (props) => {
   const { isInnerMenuOpen, isMainMenuOpen } = props;
 
-  const { openMainMenu = () => {}, openInnerMenu = () => {} } =
-    use(MenuContext) ?? {};
+  const { openMainMenu, openInnerMenu } = use(MenuContext) ?? {};
 
   useEffect(() => {
+    if (!openMainMenu || !openInnerMenu) {
+      return;
+    }
+
     if (isInnerMenuOpen) {
       openInnerMenu();
     } else if (isMainMenuOpen) {

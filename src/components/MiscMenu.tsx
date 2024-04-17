@@ -26,7 +26,7 @@ type Props = {
 const MiscMenu: FC<Props> = (props) => {
   const { title, labels } = props;
 
-  const { closeMainMenu: closeMenu } = use(MenuContext) ?? {};
+  const { closeMainMenu } = use(MenuContext) ?? {};
 
   return (
     <DropdownMenu>
@@ -39,10 +39,10 @@ const MiscMenu: FC<Props> = (props) => {
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <DropdownMenuItem asChild onClick={closeMenu}>
+          <DropdownMenuItem asChild onClick={closeMainMenu}>
             <Link href="/legal/notice">{labels.legalNotice}</Link>
           </DropdownMenuItem>
-          <DropdownMenuItem asChild onClick={closeMenu}>
+          <DropdownMenuItem asChild onClick={closeMainMenu}>
             <Link href="/open-source">Open source</Link>
           </DropdownMenuItem>
         </DropdownMenuGroup>

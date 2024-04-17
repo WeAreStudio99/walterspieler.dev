@@ -44,7 +44,7 @@ const SideMenu: FC<Props> = (props) => {
     openMainMenu,
     closeMainMenu,
     isInnerMenuOpen,
-    openInnerMenu = () => {},
+    openInnerMenu,
   } = use(MenuContext) ?? {};
 
   const scrollAreaClasses = cn(
