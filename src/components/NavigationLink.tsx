@@ -27,7 +27,7 @@ type Props = {
 };
 
 const NavigationLink: FC<Props> = (props) => {
-  const { label, path, lang, type } = props;
+  const { label, path, lang, type, external } = props;
 
   const pathname = usePathname();
   const { closeMainMenu = () => {}, setIsInnerMenuOpen = () => {} } =
@@ -66,7 +66,7 @@ const NavigationLink: FC<Props> = (props) => {
         closeMainMenu();
         setIsInnerMenuOpen(true);
       }}
-      rel={props.external ? "noreferrer nofollow" : undefined}
+      rel={external ? "noreferrer nofollow" : undefined}
     >
       <div className="flex items-center gap-2 text-xl md:text-base">
         {type === "home" && <BoltIcon className="w-4" />}
