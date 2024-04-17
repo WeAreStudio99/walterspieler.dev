@@ -30,8 +30,7 @@ const NavigationLink: FC<Props> = (props) => {
   const { label, path, lang, type, external } = props;
 
   const pathname = usePathname();
-  const { closeMainMenu = () => {}, setIsInnerMenuOpen = () => {} } =
-    use(MenuContext) ?? {};
+  const { closeMainMenu = () => {} } = use(MenuContext) ?? {};
 
   const isActive = useMemo(() => {
     let isActive = false;
@@ -64,7 +63,6 @@ const NavigationLink: FC<Props> = (props) => {
       href={path}
       onClick={() => {
         closeMainMenu();
-        setIsInnerMenuOpen(true);
       }}
       rel={external ? "noreferrer nofollow" : undefined}
     >

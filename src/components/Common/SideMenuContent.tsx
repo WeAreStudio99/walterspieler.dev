@@ -28,7 +28,7 @@ type Props = {
 const SideMenuContent: FC<Props> = (props) => {
   const { lang, data, title, collection } = props;
 
-  const { setIsInnerMenuOpen = () => {} } = use(MenuContext) ?? {};
+  const { closeInnerMenu = () => {} } = use(MenuContext) ?? {};
 
   const pathname = usePathname();
   const splitPathname = pathname.split("/");
@@ -60,7 +60,9 @@ const SideMenuContent: FC<Props> = (props) => {
             <Link
               href={href}
               key={item.uid}
-              onClick={() => setIsInnerMenuOpen(false)}
+              onClick={() => {
+                closeInnerMenu();
+              }}
             >
               <div
                 className={cn(

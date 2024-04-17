@@ -2,15 +2,13 @@
 
 import { FC, PropsWithChildren, createContext, useState } from "react";
 
-import { StateSetter } from "@/lib/types";
-
 type MenuContextValue = {
   isMainMenuOpen: boolean;
   isInnerMenuOpen: boolean;
-  setIsMainMenuOpen: StateSetter<boolean>;
-  setIsInnerMenuOpen: StateSetter<boolean>;
   closeMainMenu: () => void;
   openMainMenu: () => void;
+  closeInnerMenu: () => void;
+  openInnerMenu: () => void;
 };
 
 const MenuContext = createContext<MenuContextValue | undefined>(undefined);
@@ -48,13 +46,21 @@ const MenuContextProvider: FC<PropsWithChildren> = (props) => {
     document.body.classList.add("overflow-hidden", "h-screen");
   };
 
+  const closeInnerMenu = () => {
+    setIsInnerMenuOpen(false);
+  };
+
+  const openInnerMenu = () => {
+    setIsInnerMenuOpen(true);
+  };
+
   const contextValue: MenuContextValue = {
     isMainMenuOpen,
-    setIsMainMenuOpen,
     isInnerMenuOpen,
-    setIsInnerMenuOpen,
     closeMainMenu,
     openMainMenu,
+    closeInnerMenu,
+    openInnerMenu,
   };
 
   return (

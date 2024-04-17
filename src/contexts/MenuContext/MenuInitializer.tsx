@@ -12,16 +12,18 @@ type Props = {
 const MenuInitializer: FC<Props> = (props) => {
   const { isInnerMenuOpen, isMainMenuOpen } = props;
 
-  const { openMainMenu = () => {}, setIsInnerMenuOpen = () => {} } =
+  const { openMainMenu = () => {}, openInnerMenu = () => {} } =
     use(MenuContext) ?? {};
 
   useEffect(() => {
     if (isInnerMenuOpen) {
-      setIsInnerMenuOpen(true);
+      openInnerMenu();
     } else if (isMainMenuOpen) {
       openMainMenu();
     }
-  }, [isInnerMenuOpen, isMainMenuOpen, openMainMenu, setIsInnerMenuOpen]);
+    // Only run on first render
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return <></>;
 };

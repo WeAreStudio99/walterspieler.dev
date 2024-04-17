@@ -44,7 +44,7 @@ const SideMenu: FC<Props> = (props) => {
     openMainMenu,
     closeMainMenu,
     isInnerMenuOpen,
-    setIsInnerMenuOpen = () => {},
+    openInnerMenu = () => {},
   } = use(MenuContext) ?? {};
 
   const scrollAreaClasses = cn(
@@ -86,7 +86,7 @@ const SideMenu: FC<Props> = (props) => {
                   ? `/${collection}`
                   : `/${lang}/${collection}`
               }
-              onClick={() => setIsInnerMenuOpen(true)}
+              onClick={openInnerMenu}
             >
               <div className="fixed left-4 top-8 z-50 rounded-lg border border-grey bg-metal/5 p-2 backdrop-blur lg:hidden">
                 <ChevronLeft size={24} />
