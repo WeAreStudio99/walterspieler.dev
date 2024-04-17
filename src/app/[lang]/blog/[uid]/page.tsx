@@ -47,12 +47,14 @@ const BlogPostPage: FC<Props> = async (props) => {
       />
       <ScrollArea className="z-0 flex flex-col lg:pl-72">
         <div className="content-wrapper mt-14 lg:mt-0">
-          <ArticleBreadcrumb
-            collection="blog"
-            lang={lang}
-            title={page.data.title || uid}
-          />
-          <Article collection="blog" content={page} lang={lang} uid={uid} />
+          <div className="content">
+            <ArticleBreadcrumb
+              collection="blog"
+              lang={lang}
+              title={page.data.title || uid}
+            />
+            <Article collection="blog" content={page} lang={lang} uid={uid} />
+          </div>
         </div>
       </ScrollArea>
     </>

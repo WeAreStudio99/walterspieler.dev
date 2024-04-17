@@ -45,42 +45,39 @@ const Article: FC<Props> = (props) => {
   }
 
   return (
-    <div className="content">
-      <motion.article
-        animate="animate"
-        initial="initial"
-        transition={{ duration: 0.7 }}
-        variants={variants}
-      >
-        <div className="mb-8 flex flex-col">
-          <H1 className="mb-5">{content.data.title}</H1>
-          {externalLink && (
-            <A className="mb-2" href={externalLink} rel={"noopener nofollow"}>
-              {externalLink.replace(/(^\w+:|^)\/\//, "")}
-            </A>
-          )}
-          <span className="mb-5 text-stone-400">
-            <P>{content.data.description}</P>
-          </span>
-          {collection === "work" && <Separator />}
-          {collection === "blog" && content.data.cover && (
-            <Image
-              alt={
-                content.data.cover.alt ||
-                `Cover image for ${content.data.title}`
-              }
-              className="rounded-t-lg object-cover lg:max-h-[550px] lg:max-w-full"
-              height={content.data.cover.dimensions?.height}
-              priority={true}
-              sizes="(max-width: 768px) 90vw, (max-width: 1024px) 688px, 768px"
-              src={content.data.cover.url || ""}
-              width={content.data.cover.dimensions?.width}
-            />
-          )}
-        </div>
-        <SliceZone components={components} slices={content.data.slices} />
-      </motion.article>
-    </div>
+    <motion.article
+      animate="animate"
+      initial="initial"
+      transition={{ duration: 0.7 }}
+      variants={variants}
+    >
+      <div className="mb-8 flex flex-col">
+        <H1 className="mb-5">{content.data.title}</H1>
+        {externalLink && (
+          <A className="mb-2" href={externalLink} rel={"noopener nofollow"}>
+            {externalLink.replace(/(^\w+:|^)\/\//, "")}
+          </A>
+        )}
+        <span className="mb-5 text-stone-400">
+          <P>{content.data.description}</P>
+        </span>
+        {collection === "work" && <Separator />}
+        {collection === "blog" && content.data.cover && (
+          <Image
+            alt={
+              content.data.cover.alt || `Cover image for ${content.data.title}`
+            }
+            className="rounded-t-lg object-cover lg:max-h-[550px] lg:max-w-full"
+            height={content.data.cover.dimensions?.height}
+            priority={true}
+            sizes="(max-width: 768px) 90vw, (max-width: 1024px) 688px, 768px"
+            src={content.data.cover.url || ""}
+            width={content.data.cover.dimensions?.width}
+          />
+        )}
+      </div>
+      <SliceZone components={components} slices={content.data.slices} />
+    </motion.article>
   );
 };
 

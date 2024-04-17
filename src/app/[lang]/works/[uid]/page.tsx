@@ -63,12 +63,14 @@ const WorkPage: FC<Props> = async (props) => {
       />
       <ScrollArea className="z-0 flex flex-col lg:pl-72">
         <div className="content-wrapper mt-14 lg:mt-0">
-          <ArticleBreadcrumb
-            collection="work"
-            lang={lang}
-            title={page.data.title || uid}
-          />
-          <Article collection="work" content={page} lang={lang} uid={uid} />
+          <div className="content">
+            <ArticleBreadcrumb
+              collection="work"
+              lang={lang}
+              title={page.data.title || uid}
+            />
+            <Article collection="work" content={page} lang={lang} uid={uid} />
+          </div>
         </div>
       </ScrollArea>
     </>
