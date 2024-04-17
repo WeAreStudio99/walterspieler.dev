@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { FC } from "react";
 
 import Article from "@/components/Articles/Article";
+import ArticleBreadcrumb from "@/components/Articles/ArticleBreadcrumb";
 import ScrollArea from "@/components/Common/ScrollArea";
 
 import { Locale } from "@/lib/i18n/types";
@@ -62,6 +63,11 @@ const WorkPage: FC<Props> = async (props) => {
       />
       <ScrollArea className="z-0 flex flex-col lg:pl-72">
         <div className="content-wrapper mt-14 lg:mt-0">
+          <ArticleBreadcrumb
+            collection="work"
+            lang={lang}
+            title={page.data.title || uid}
+          />
           <Article collection="work" content={page} lang={lang} uid={uid} />
         </div>
       </ScrollArea>

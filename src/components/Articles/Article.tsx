@@ -6,7 +6,6 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { FC } from "react";
 
-import ArticleBreadcrumb from "@/components/Articles/ArticleBreadcrumb";
 import { A, H1, P } from "@/components/Common/Typography";
 import { Separator } from "@/components/ui/separator";
 
@@ -47,11 +46,6 @@ const Article: FC<Props> = (props) => {
 
   return (
     <div className="content">
-      <ArticleBreadcrumb
-        collection={collection}
-        lang={lang}
-        title={content.data.title || uid}
-      />
       <motion.article
         animate="animate"
         initial="initial"
@@ -77,6 +71,7 @@ const Article: FC<Props> = (props) => {
               }
               className="rounded-t-lg object-cover lg:max-h-[550px] lg:max-w-full"
               height={content.data.cover.dimensions?.height}
+              priority={true}
               sizes="(max-width: 768px) 90vw, (max-width: 1024px) 688px, 768px"
               src={content.data.cover.url || ""}
               width={content.data.cover.dimensions?.width}
