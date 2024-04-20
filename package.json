@@ -18,7 +18,7 @@
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.5.4",
     "@hookform/resolvers": "^3.3.4",
-    "@prismicio/client": "^7.4.0",
+    "@prismicio/client": "^7.4.1",
     "@prismicio/next": "^1.5.0",
     "@prismicio/react": "^2.7.4",
     "@radix-ui/react-dropdown-menu": "^2.0.6",
@@ -33,19 +33,19 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "date-fns": "^3.6.0",
-    "framer-motion": "^11.0.25",
-    "lucide-react": "^0.365.0",
+    "framer-motion": "^11.1.7",
+    "lucide-react": "^0.372.0",
     "negotiator": "^0.6.3",
     "next": "14.2.2",
-    "posthog-js": "^1.120.1",
+    "posthog-js": "^1.128.1",
     "react": "^18",
     "react-dom": "^18",
-    "react-hook-form": "^7.51.2",
+    "react-hook-form": "^7.51.3",
     "react-syntax-highlighter": "^15.5.0",
     "schema-dts": "^1.1.2",
-    "tailwind-merge": "^2.2.2",
+    "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
-    "zod": "^3.22.4"
+    "zod": "^3.22.5"
   },
   "devDependencies": {
     "@slicemachine/adapter-next": "^0.3.38",
@@ -62,6 +62,6 @@
     "tailwindcss": "^3.4.3",
     "typescript": "^5",
     "prettier": "^3.2.5",
-    "prettier-plugin-tailwindcss": "^0.5.13"
+    "prettier-plugin-tailwindcss": "^0.5.14"
   }
 }
