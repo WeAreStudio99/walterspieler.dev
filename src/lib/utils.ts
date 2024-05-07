@@ -33,7 +33,7 @@ const generateAlternates = (
   );
 
   return {
-    canonical: `${BASE_URL}/${lang === "en-gb" ? "" : lang}${pathWithoutLang}`,
+    canonical: `${BASE_URL}/${lang === "en-gb" ? "/" : lang}${pathWithoutLang}`,
     languages,
   };
 };
