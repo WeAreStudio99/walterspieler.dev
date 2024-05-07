@@ -5,6 +5,7 @@ import { twMerge } from "tailwind-merge";
 import { DICTIONARIES } from "@/lib/i18n/constants";
 import { Locale } from "@/lib/i18n/types";
 
+import { I18N_CONFIG } from "@/lib/i18n/config";
 import { BASE_URL } from "../../next.constants.mjs";
 
 function cn(...inputs: ClassValue[]) {
@@ -33,7 +34,7 @@ const generateAlternates = (
   );
 
   return {
-    canonical: `${BASE_URL}/${lang === "en-gb" ? "/" : lang}${pathWithoutLang}`,
+    canonical: `${BASE_URL}/${lang === I18N_CONFIG.defaultLocale ? "" : lang}${pathWithoutLang !== "" ? `${lang !== I18N_CONFIG.defaultLocale ? "/" : ""}${pathWithoutLang}` : ""}`,
     languages,
   };
 };
