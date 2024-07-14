@@ -10,6 +10,7 @@ const PAGES: Record<PageKey<"first">, PageValue> = {
 const PUBLIC_PATHS: string[] = [
   "/UI",
   "/images",
+  "/models",
   "/robots.txt",
   "/favicon.ico",
   "/sitemap.xml",
