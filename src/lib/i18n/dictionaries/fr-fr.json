@@ -3,7 +3,14 @@
     "home": "Accueil",
     "works": "Travaux",
     "blog": "Blog",
+    "lab": "Lab",
     "weAreStudio99": "WeAreStudio99"
+  },
+  "lab": {
+    "metadata": {
+      "title": "Lab | Thibault Walterspieler",
+      "description": ""
+    }
   },
   "home": {
     "metadata": {
@@ -51,6 +58,7 @@
   },
   "selectAWork": "Sélectionnez un travail",
   "selectABlogPost": "Sélectionnez un article",
+  "selectALabPost": "Sélectionnez une expérience",
   "languages": "Langues",
   "time": {
     "week": {

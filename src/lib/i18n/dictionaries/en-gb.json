@@ -3,6 +3,7 @@
     "home": "Home",
     "works": "Works",
     "blog": "Blog",
+    "lab": "Lab",
     "weAreStudio99": "WeAreStudio99"
   },
   "home": {
@@ -12,6 +13,12 @@
     "job": "Freelance Fullstack Engineer",
     "buttons": {
       "readMore": "Read more on"
+    }
+  },
+  "lab": {
+    "metadata": {
+      "title": "Lab | Thibault Walterspieler",
+      "description": ""
     }
   },
   "works": {
@@ -51,6 +58,7 @@
   },
   "selectAWork": "Select a work",
   "selectABlogPost": "Select a blog post",
+  "selectALabPost": "Select an experiment",
   "languages": "Languages",
   "time": {
     "week": {

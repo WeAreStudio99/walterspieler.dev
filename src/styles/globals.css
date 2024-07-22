@@ -33,3 +33,21 @@
     0 -5px 15px rgba(255, 90, 0, 0.15),
     0 0 8px rgba(255, 255, 255, 0.3);
 }
+
+@layer base {
+  :root {
+    --chart-1: 210 10% 10%; /* eerie dark */
+    --chart-2: 210 10% 12%; /* eerie light */
+    --chart-3: 210 10% 14%; /* metal */
+    --chart-4: 168 64% 50%; /* pearl light */
+    --chart-5: 210 17% 31%; /* grey */
+  }
+
+  .dark {
+    --chart-1: 168 21% 45%; /* pearl dark */
+    --chart-2: 210 17% 31%; /* grey */
+    --chart-3: 210 6% 8%; /* chinese black */
+    --chart-4: 168 64% 50%; /* pearl light */
+    --chart-5: 210 10% 10%; /* eerie dark */
+  }
+}

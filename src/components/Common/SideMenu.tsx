@@ -8,7 +8,7 @@ import { FC, PropsWithChildren, use } from "react";
 import ScrollArea from "@/components/Common/ScrollArea";
 
 import { I18N_CONFIG } from "@/lib/i18n/config";
-import { Locale } from "@/lib/i18n/types";
+import { Collection, Locale } from "@/lib/i18n/types";
 import { cn } from "@/lib/utils";
 
 import { MenuContext } from "@/contexts/MenuContext";
@@ -16,7 +16,7 @@ import { MenuContext } from "@/contexts/MenuContext";
 type Props = {
   lang: Locale;
   isInner?: boolean;
-  collection?: "works" | "blog";
+  collection?: Collection;
   displayReturnButton?: boolean;
 } & PropsWithChildren;
 

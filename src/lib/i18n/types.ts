@@ -6,3 +6,4 @@ export type Config = {
   defaultLocale: Locale;
   locales: Locale[];
 };
+export type Collection = "works" | "blog" | "lab";

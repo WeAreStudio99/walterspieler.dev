@@ -1,6 +1,5 @@
 "use client";
 
-import { DateField, TimestampField, asDate } from "@prismicio/client";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -8,7 +7,7 @@ import { FC, use, useMemo } from "react";
 
 import { formatDateToMonthYear } from "@/lib/date";
 import { I18N_CONFIG } from "@/lib/i18n/config";
-import { Locale } from "@/lib/i18n/types";
+import { Collection, Locale } from "@/lib/i18n/types";
 import { cn } from "@/lib/utils";
 
 import { MenuContext } from "@/contexts/MenuContext";
@@ -16,12 +15,12 @@ import { MenuContext } from "@/contexts/MenuContext";
 type Props = {
   lang: Locale;
   title: string;
-  collection: "works" | "blog";
+  collection: Collection;
   data: {
     title: string;
     uid: string;
-    startDate: DateField | TimestampField<"filled"> | undefined;
-    endDate?: DateField | undefined;
+    startDate: Date;
+    endDate?: Date;
   }[];
 };
 
@@ -51,8 +50,8 @@ const SideMenuContent: FC<Props> = (props) => {
               ? `/${lang}/${collection}/${item.uid}`
               : `/${collection}/${item.uid}`;
 
-          const startDate = asDate(item.startDate);
-          const endDate = asDate(item.endDate);
+          const startDate = item.startDate;
+          const endDate = item.endDate;
 
           const isActive = isActiveArray[idx];
 

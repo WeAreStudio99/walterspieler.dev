@@ -45,6 +45,11 @@ const MainMenuContent: FC<Props> = async (props) => {
       type: "blog",
     },
     {
+      label: dictionary.firstLevelPages.lab,
+      path: lang !== I18N_CONFIG.defaultLocale ? `/${lang}/lab` : "/lab",
+      type: "lab",
+    },
+    {
       label: dictionary.firstLevelPages.weAreStudio99,
       path:
         lang !== I18N_CONFIG.defaultLocale

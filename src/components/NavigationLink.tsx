@@ -4,6 +4,7 @@ import {
   BoltIcon,
   DraftingCompass,
   ExternalLink,
+  FlaskConical,
   Nfc,
   Sparkle,
 } from "lucide-react";
@@ -70,6 +71,7 @@ const NavigationLink: FC<Props> = (props) => {
         {type === "home" && <BoltIcon className="w-4" />}
         {type === "blog" && <Sparkle className="w-4" />}
         {type === "works" && <DraftingCompass className="w-4" />}
+        {type === "lab" && <FlaskConical className="w-4" />}
         {type === "weAreStudio99" && <WeAreStudio99 className="w-4" />}
         {type === "contact" && <Nfc className="w-4" />}
         <span className="overflow-hidden text-ellipsis">{label}</span>

@@ -8,6 +8,8 @@ import {
 import * as tf from "@tensorflow/tfjs";
 import { FC, useEffect, useRef, useState } from "react";
 
+import { cn } from "@/lib/utils";
+
 const initializeFaceDetection = async () => {
   try {
     const vision = await FilesetResolver.forVisionTasks(
@@ -17,17 +19,18 @@ const initializeFaceDetection = async () => {
     const faceDetector = await FaceDetector.createFromOptions(vision, {
       baseOptions: {
         modelAssetPath: "/models/mediapipe/blaze_face_short_range.tflite",
+        delegate: "GPU",
       },
       runningMode: "VIDEO",
     });
 
     return faceDetector;
-  } catch (error) {
-    console.error("Error initializing hand detection:", error);
+  } catch (err) {
+    console.error("Error initializing hand detection:", err);
   }
 };
 
-const LabPage: FC = () => {
+const BinocularMLPage: FC = () => {
   const webcamRef = useRef<HTMLVideoElement>(null);
   const drawingCanvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -40,7 +43,13 @@ const LabPage: FC = () => {
     useState<boolean>(true);
 
   const [binocularProbabilities, setBinocularProbabilities] = useState<
-    { id: number; probability: number }[]
+    {
+      id: number;
+      probabilities: {
+        probability: number;
+        date: Date;
+      }[];
+    }[]
   >([]);
 
   useEffect(() => {
@@ -91,14 +100,13 @@ const LabPage: FC = () => {
       const scaleX = drawingCtx.canvas.width / video.videoWidth;
       const scaleY = drawingCtx.canvas.height / video.videoHeight;
 
-      const currentFaceIds = new Set<number>();
+      const currentFaceProbabilities: { id: number; probability: number }[] =
+        [];
 
       detections.forEach((detection, idx) => {
         if (!detection.boundingBox) return;
 
         const { originX, originY, width, height } = detection.boundingBox;
-
-        currentFaceIds.add(idx);
 
         const tempCanvas = document.createElement("canvas");
         const tempCtx = tempCanvas.getContext("2d", {
@@ -134,10 +142,7 @@ const LabPage: FC = () => {
         ) as tf.Tensor;
         const probability = 1 - prediction.dataSync()[0];
 
-        setBinocularProbabilities((prevProbabilities) => [
-          ...prevProbabilities.filter((prob) => prob.id !== idx),
-          { id: idx, probability },
-        ]);
+        currentFaceProbabilities.push({ id: idx, probability });
 
         drawingCtx.font = "16px __Space_Grotesk_587f35";
         drawingCtx.fillStyle = probability < 0.5 ? "#ff0000" : "#29cca4";
@@ -181,9 +186,24 @@ const LabPage: FC = () => {
 
         tf.dispose([faceTensor, resizedFaceTensor, normalizedFaceTensor]);
       });
-      setBinocularProbabilities((prevProbabilities) =>
-        prevProbabilities.filter((prob) => currentFaceIds.has(prob.id)),
-      );
+
+      setBinocularProbabilities((prevProbabilities) => {
+        const updatedProbabilities = [...prevProbabilities];
+
+        currentFaceProbabilities.forEach(({ id, probability }) => {
+          const faceProb = updatedProbabilities.find((fp) => fp.id === id);
+          if (faceProb) {
+            faceProb.probabilities.push({ probability, date: new Date() });
+          } else {
+            updatedProbabilities.push({
+              id,
+              probabilities: [{ probability, date: new Date() }],
+            });
+          }
+        });
+
+        return updatedProbabilities;
+      });
     };
 
     const processFrame = async () => {
@@ -208,7 +228,7 @@ const LabPage: FC = () => {
     return () => {
       cancelAnimationFrame(frameId);
     };
-  }, [binocularModel, binocularProbabilities, faceDetector]);
+  }, [binocularModel, faceDetector]);
 
   useEffect(() => {
     const video = webcamRef.current;
@@ -236,6 +256,7 @@ const LabPage: FC = () => {
         window.addEventListener("resize", adjustCanvasSize);
       })
       .catch((err) => {
+        alert(err);
         console.error(`An error occurred: ${err}`);
       });
 
@@ -246,18 +267,26 @@ const LabPage: FC = () => {
   }, []);
 
   return (
-    <>
-      {isBinocularModelLoading ? <p>Loading model...</p> : null}
-      <div className="relative flex h-full w-full items-center justify-center">
-        <div className="absolute right-0 top-0">
-          {binocularProbabilities.map((prob) => (
-            <p key={prob.id}>
-              Face {prob.id + 1} : {(prob.probability * 100).toFixed(2)}
-            </p>
-          ))}
+    <div className="z-0 flex h-screen w-full flex-col md:h-full lg:pl-72">
+      {(isBinocularModelLoading || isFaceDetectorLoading) && (
+        <div
+          className={cn(
+            "hidden h-full w-full items-center justify-center lg:flex",
+          )}
+        >
+          <span className="inline-flex animate-text-gradient bg-gradient-to-r from-stone-400 via-metal to-stone-400 bg-[200%_auto] bg-clip-text text-center  text-3xl font-bold text-transparent md:pl-72">
+            Loading ML models...
+          </span>
         </div>
+      )}
+      <div
+        className={cn(
+          "relative flex h-full w-full items-center justify-center",
+          isBinocularModelLoading || isFaceDetectorLoading ? "hidden" : "flex",
+        )}
+      >
         <video
-          className="absolute left-1/2 top-1/2 max-h-full max-w-full -translate-x-1/2 -translate-y-1/2 transform"
+          className="absolute left-1/2 top-1/2 w-5/6 -translate-x-1/2 -translate-y-1/2 transform rounded-lg border-2 border-grey bg-chinese-black md:w-3/4 md:max-w-[1000px]"
           ref={webcamRef}
         />
         <canvas
@@ -265,8 +294,9 @@ const LabPage: FC = () => {
           ref={drawingCanvasRef}
         />
       </div>
-    </>
+      {/* <BinocularAreaChart data={binocularProbabilities} /> */}
+    </div>
   );
 };
 
-export default LabPage;
+export default BinocularMLPage;
