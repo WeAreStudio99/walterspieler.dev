@@ -1,4 +1,4 @@
-import { Content } from "@prismicio/client";
+import { Content, asDate } from "@prismicio/client";
 import { FC, PropsWithChildren, Suspense } from "react";
 
 import LoadingSpinner from "@/components/Common/LoadingSpinner";
@@ -53,8 +53,8 @@ const WorksLayout: FC<Props> = async (props) => {
               return {
                 title: company?.name || "",
                 uid: work.uid,
-                startDate: duration?.start,
-                endDate: duration?.end,
+                startDate: asDate(duration?.start),
+                endDate: asDate(duration?.end),
               };
             })}
             lang={lang}

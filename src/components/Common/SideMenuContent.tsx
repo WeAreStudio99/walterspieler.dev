@@ -19,8 +19,8 @@ type Props = {
   data: {
     title: string;
     uid: string;
-    startDate: Date;
-    endDate?: Date;
+    startDate: Date | null;
+    endDate?: Date | null;
   }[];
 };
 
