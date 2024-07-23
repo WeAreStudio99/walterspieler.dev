@@ -1,3 +1,4 @@
+import { asDate } from "@prismicio/client";
 import { Metadata } from "next";
 import { FC, PropsWithChildren, Suspense } from "react";
 
@@ -40,7 +41,7 @@ const BlogLayout: FC<Props> = async (props) => {
               return {
                 title: post.data.title || "",
                 uid: post.uid,
-                startDate: post?.first_publication_date,
+                startDate: asDate(post?.first_publication_date),
               };
             })}
             lang={lang}
