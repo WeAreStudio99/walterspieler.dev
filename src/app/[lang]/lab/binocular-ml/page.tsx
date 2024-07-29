@@ -34,6 +34,9 @@ const BinocularMLPage: FC = () => {
   const webcamRef = useRef<HTMLVideoElement>(null);
   const drawingCanvasRef = useRef<HTMLCanvasElement>(null);
 
+  const video = webcamRef.current;
+  const canvas = drawingCanvasRef.current;
+
   const [binocularModel, setBinocularModel] = useState<tf.LayersModel>();
   const [isBinocularModelLoading, setIsBinocularModelLoading] =
     useState<boolean>(true);
@@ -77,10 +80,6 @@ const BinocularMLPage: FC = () => {
   }, []);
 
   useEffect(() => {
-    if (!faceDetector) {
-      return;
-    }
-
     let frameId: number;
     const drawingCtx = drawingCanvasRef.current?.getContext("2d");
 
@@ -103,20 +102,20 @@ const BinocularMLPage: FC = () => {
       const currentFaceProbabilities: { id: number; probability: number }[] =
         [];
 
-      detections.forEach((detection, idx) => {
-        if (!detection.boundingBox) return;
+      detections.forEach((face, idx) => {
+        if (!face.boundingBox) return;
 
-        const { originX, originY, width, height } = detection.boundingBox;
+        const { originX, originY, width, height } = face.boundingBox;
 
-        const tempCanvas = document.createElement("canvas");
-        const tempCtx = tempCanvas.getContext("2d", {
+        const temporaryCanvas = document.createElement("canvas");
+        const temporaryCtx = temporaryCanvas.getContext("2d", {
           willReadFrequently: true,
         });
 
-        tempCanvas.width = width;
-        tempCanvas.height = height;
+        temporaryCanvas.width = width;
+        temporaryCanvas.height = height;
 
-        tempCtx!.drawImage(
+        temporaryCtx!.drawImage(
           video,
           originX,
           originY,
@@ -128,9 +127,9 @@ const BinocularMLPage: FC = () => {
           height,
         );
 
-        const face = tempCtx!.getImageData(0, 0, width, height);
+        const faceImg = temporaryCtx!.getImageData(0, 0, width, height);
 
-        const faceTensor = tf.browser.fromPixels(face);
+        const faceTensor = tf.browser.fromPixels(faceImg);
         const resizedFaceTensor = tf.image.resizeBilinear(
           faceTensor,
           [128, 128],
@@ -171,7 +170,7 @@ const BinocularMLPage: FC = () => {
         drawingCtx.stroke();
         drawingCtx.fill();
 
-        detection.keypoints.forEach((keypoint) => {
+        face.keypoints.forEach((keypoint) => {
           drawingCtx.fillStyle = "#29cca4";
           drawingCtx.beginPath();
           drawingCtx.arc(
@@ -231,9 +230,6 @@ const BinocularMLPage: FC = () => {
   }, [binocularModel, faceDetector]);
 
   useEffect(() => {
-    const video = webcamRef.current;
-    const canvas = drawingCanvasRef.current;
-
     if (!video || !canvas) {
       return;
     }
@@ -256,7 +252,6 @@ const BinocularMLPage: FC = () => {
         window.addEventListener("resize", adjustCanvasSize);
       })
       .catch((err) => {
-        alert(err);
         console.error(`An error occurred: ${err}`);
       });
 
@@ -264,7 +259,7 @@ const BinocularMLPage: FC = () => {
       window.removeEventListener("resize", adjustCanvasSize);
       video.removeEventListener("loadedmetadata", adjustCanvasSize);
     };
-  }, []);
+  }, [canvas, video]);
 
   return (
     <div className="z-0 flex h-screen w-full flex-col md:h-full lg:pl-72">
