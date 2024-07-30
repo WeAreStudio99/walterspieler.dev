@@ -360,7 +360,7 @@ const BinocularMLPage: FC = () => {
         <video
           autoPlay
           className={cn(
-            "absolute left-1/2 top-1/2 w-5/6 -translate-x-1/2 -translate-y-1/2 transform rounded-lg border-2 border-grey bg-chinese-black md:w-3/4 md:max-w-[1000px]",
+            "absolute left-1/2 top-1/2 w-11/12 -translate-x-1/2 -translate-y-1/2 transform rounded-lg border-2 border-grey bg-chinese-black md:w-3/4 md:max-w-[1000px]",
           )}
           muted
           playsInline
