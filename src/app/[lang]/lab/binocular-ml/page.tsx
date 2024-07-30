@@ -8,6 +8,17 @@ import {
 import * as tf from "@tensorflow/tfjs";
 import { FC, useEffect, useRef, useState } from "react";
 
+import { Button } from "@/components/ui/button";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
 import { cn } from "@/lib/utils";
 
 const initializeFaceDetection = async () => {
@@ -37,14 +48,18 @@ const BinocularMLPage: FC = () => {
   const video = webcamRef.current;
   const canvas = drawingCanvasRef.current;
 
+  const [isCameraAuthorized, setIsCameraAuthorized] = useState<boolean>(false);
+  const [availableCameraDevices, setAvailableCameraDevices] = useState<
+    MediaDeviceInfo[]
+  >([]);
+  const [selectedCameraDevice, setSelectedCameraDevice] =
+    useState<MediaDeviceInfo | null>(null);
   const [binocularModel, setBinocularModel] = useState<tf.LayersModel>();
   const [isBinocularModelLoading, setIsBinocularModelLoading] =
     useState<boolean>(true);
-
   const [faceDetector, setFaceDetector] = useState<FaceDetector>();
   const [isFaceDetectorLoading, setIsFaceDetectorLoading] =
     useState<boolean>(true);
-
   const [binocularProbabilities, setBinocularProbabilities] = useState<
     {
       id: number;
@@ -186,23 +201,23 @@ const BinocularMLPage: FC = () => {
         tf.dispose([faceTensor, resizedFaceTensor, normalizedFaceTensor]);
       });
 
-      setBinocularProbabilities((prevProbabilities) => {
-        const updatedProbabilities = [...prevProbabilities];
+      // setBinocularProbabilities((prevProbabilities) => {
+      //   const updatedProbabilities = [...prevProbabilities];
 
-        currentFaceProbabilities.forEach(({ id, probability }) => {
-          const faceProb = updatedProbabilities.find((fp) => fp.id === id);
-          if (faceProb) {
-            faceProb.probabilities.push({ probability, date: new Date() });
-          } else {
-            updatedProbabilities.push({
-              id,
-              probabilities: [{ probability, date: new Date() }],
-            });
-          }
-        });
+      //   currentFaceProbabilities.forEach(({ id, probability }) => {
+      //     const faceProb = updatedProbabilities.find((fp) => fp.id === id);
+      //     if (faceProb) {
+      //       faceProb.probabilities.push({ probability, date: new Date() });
+      //     } else {
+      //       updatedProbabilities.push({
+      //         id,
+      //         probabilities: [{ probability, date: new Date() }],
+      //       });
+      //     }
+      //   });
 
-        return updatedProbabilities;
-      });
+      //   return updatedProbabilities;
+      // });
     };
 
     const processFrame = async () => {
@@ -249,10 +264,13 @@ const BinocularMLPage: FC = () => {
           video.play();
         });
 
+        setIsCameraAuthorized(true);
+
         window.addEventListener("resize", adjustCanvasSize);
       })
       .catch((err) => {
         console.error(`An error occurred: ${err}`);
+        setIsCameraAuthorized(false);
       });
 
     return () => {
@@ -261,35 +279,135 @@ const BinocularMLPage: FC = () => {
     };
   }, [canvas, video]);
 
+  useEffect(() => {
+    navigator.mediaDevices
+      .enumerateDevices()
+      .then((devices) => {
+        const videoDevices = devices.filter(
+          (device) => device.kind === "videoinput",
+        );
+        setAvailableCameraDevices(videoDevices);
+        if (videoDevices.length > 0) {
+          setSelectedCameraDevice(videoDevices[0]);
+          console.log("Selected camera device:", videoDevices);
+        }
+      })
+      .catch((err) => console.error("Error enumerating devices:", err));
+  }, [isCameraAuthorized]);
+
+  const handleCameraChange = (deviceId: string) => {
+    const device = availableCameraDevices.find(
+      (device) => device.deviceId === deviceId,
+    );
+
+    if (!device) return;
+
+    setSelectedCameraDevice(device);
+
+    const videoTrack = (
+      webcamRef.current?.srcObject as MediaStream
+    ).getVideoTracks()[0];
+    navigator.mediaDevices
+      .getUserMedia({
+        video: { deviceId: { exact: device.deviceId } },
+      })
+      .then((stream) => {
+        videoTrack.stop();
+        webcamRef.current!.srcObject = stream;
+      })
+      .catch((err) => console.error("Error switching camera:", err));
+  };
+
   return (
-    <div className="z-0 flex h-screen w-full flex-col md:h-full lg:pl-72">
+    <div className={cn("z-0 flex h-screen w-full flex-col md:h-full lg:pl-72")}>
       {(isBinocularModelLoading || isFaceDetectorLoading) && (
         <div
           className={cn(
             "hidden h-full w-full items-center justify-center lg:flex",
           )}
         >
-          <span className="inline-flex animate-text-gradient bg-gradient-to-r from-stone-400 via-metal to-stone-400 bg-[200%_auto] bg-clip-text text-center  text-3xl font-bold text-transparent md:pl-72">
+          <span
+            className={cn(
+              "inline-flex animate-text-gradient bg-gradient-to-r from-stone-400 via-metal to-stone-400 bg-[200%_auto] bg-clip-text text-center text-3xl font-bold text-transparent md:pl-72",
+            )}
+          >
             Loading ML models...
           </span>
         </div>
       )}
+      {!isCameraAuthorized &&
+        !isBinocularModelLoading &&
+        !isFaceDetectorLoading && (
+          <div
+            className={cn(
+              "absolute left-1/2 top-1/2 z-10 flex h-60 w-96 -translate-x-1/2 -translate-y-1/2 transform flex-col items-center justify-center rounded-lg border border-grey bg-chinese-black p-5",
+            )}
+          >
+            <span className="mb-4">Camera not available or not authorized</span>
+            <Button onClick={() => window.location.reload()}>Reload</Button>
+          </div>
+        )}
       <div
         className={cn(
           "relative flex h-full w-full items-center justify-center",
-          isBinocularModelLoading || isFaceDetectorLoading ? "hidden" : "flex",
+          isBinocularModelLoading ||
+            isFaceDetectorLoading ||
+            !isCameraAuthorized
+            ? "hidden"
+            : "flex",
         )}
       >
         <video
-          className="absolute left-1/2 top-1/2 w-5/6 -translate-x-1/2 -translate-y-1/2 transform rounded-lg border-2 border-grey bg-chinese-black md:w-3/4 md:max-w-[1000px]"
+          autoPlay
+          className={cn(
+            "absolute left-1/2 top-1/2 w-5/6 -translate-x-1/2 -translate-y-1/2 transform rounded-lg border-2 border-grey bg-chinese-black md:w-3/4 md:max-w-[1000px]",
+          )}
+          muted
+          playsInline
           ref={webcamRef}
         />
+
         <canvas
-          className="absolute left-1/2 top-1/2 max-h-full max-w-full -translate-x-1/2 -translate-y-1/2 transform"
+          className={cn(
+            "absolute left-1/2 top-1/2 max-h-full max-w-full -translate-x-1/2 -translate-y-1/2 transform",
+          )}
           ref={drawingCanvasRef}
         />
+        {isCameraAuthorized && availableCameraDevices.length && (
+          <div
+            className={cn(
+              "absolute bottom-0 left-1/2 -translate-x-1/2 -translate-y-1/2 transform",
+            )}
+          >
+            <Select
+              onValueChange={handleCameraChange}
+              value={selectedCameraDevice?.deviceId}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="Select a camera" />
+              </SelectTrigger>
+              <SelectContent align="center">
+                <SelectGroup>
+                  <SelectLabel>Cameras</SelectLabel>
+                  {availableCameraDevices.map((camera) => {
+                    if (!camera.deviceId) {
+                      return;
+                    }
+                    return (
+                      <SelectItem key={camera.deviceId} value={camera.deviceId}>
+                        {camera.label || `Camera ${camera.deviceId}`}
+                      </SelectItem>
+                    );
+                  })}
+                </SelectGroup>
+              </SelectContent>
+            </Select>
+            <div className="mt-4 w-full text-center text-white">
+              All data is processed locally.
+            </div>
+          </div>
+        )}
       </div>
-      {/* <BinocularAreaChart data={binocularProbabilities} /> */}
     </div>
   );
 };
