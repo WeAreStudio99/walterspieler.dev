@@ -42,11 +42,11 @@ const initializeFaceDetection = async () => {
 };
 
 const BinocularMLPage: FC = () => {
-  const webcamRef = useRef<HTMLVideoElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const drawingCanvasRef = useRef<HTMLCanvasElement>(null);
 
-  const video = webcamRef.current;
-  const canvas = drawingCanvasRef.current;
+  const video = videoRef.current;
+  const drawingCanvas = drawingCanvasRef.current;
 
   const [isCameraAuthorized, setIsCameraAuthorized] = useState<boolean>(false);
   const [availableCameraDevices, setAvailableCameraDevices] = useState<
@@ -221,16 +221,14 @@ const BinocularMLPage: FC = () => {
     };
 
     const processFrame = async () => {
-      if (webcamRef.current && faceDetector) {
-        if (
-          webcamRef.current.readyState === webcamRef.current.HAVE_ENOUGH_DATA
-        ) {
+      if (videoRef.current && faceDetector) {
+        if (videoRef.current.readyState === videoRef.current.HAVE_ENOUGH_DATA) {
           const faceDetection = faceDetector.detectForVideo(
-            webcamRef.current,
+            videoRef.current,
             performance.now(),
           );
 
-          drawDetections(faceDetection.detections, webcamRef.current);
+          drawDetections(faceDetection.detections, videoRef.current);
         }
       }
 
@@ -245,13 +243,15 @@ const BinocularMLPage: FC = () => {
   }, [binocularModel, faceDetector]);
 
   useEffect(() => {
-    if (!video || !canvas) {
+    console.log("exec");
+
+    if (!video || !drawingCanvas) {
       return;
     }
 
     const adjustCanvasSize = () => {
-      canvas.width = video.clientWidth;
-      canvas.height = video.clientHeight;
+      drawingCanvas.width = video.clientWidth;
+      drawingCanvas.height = video.clientHeight;
     };
 
     navigator.mediaDevices
@@ -260,6 +260,8 @@ const BinocularMLPage: FC = () => {
         video.srcObject = stream;
 
         video.addEventListener("loadedmetadata", () => {
+          console.log("Video metadata loaded");
+
           adjustCanvasSize();
           video.play();
         });
@@ -277,7 +279,7 @@ const BinocularMLPage: FC = () => {
       window.removeEventListener("resize", adjustCanvasSize);
       video.removeEventListener("loadedmetadata", adjustCanvasSize);
     };
-  }, [canvas, video]);
+  });
 
   useEffect(() => {
     navigator.mediaDevices
@@ -289,7 +291,6 @@ const BinocularMLPage: FC = () => {
         setAvailableCameraDevices(videoDevices);
         if (videoDevices.length > 0) {
           setSelectedCameraDevice(videoDevices[0]);
-          console.log("Selected camera device:", videoDevices);
         }
       })
       .catch((err) => console.error("Error enumerating devices:", err));
@@ -305,7 +306,7 @@ const BinocularMLPage: FC = () => {
     setSelectedCameraDevice(device);
 
     const videoTrack = (
-      webcamRef.current?.srcObject as MediaStream
+      videoRef.current?.srcObject as MediaStream
     ).getVideoTracks()[0];
     navigator.mediaDevices
       .getUserMedia({
@@ -313,7 +314,7 @@ const BinocularMLPage: FC = () => {
       })
       .then((stream) => {
         videoTrack.stop();
-        webcamRef.current!.srcObject = stream;
+        videoRef.current!.srcObject = stream;
       })
       .catch((err) => console.error("Error switching camera:", err));
   };
@@ -364,9 +365,8 @@ const BinocularMLPage: FC = () => {
           )}
           muted
           playsInline
-          ref={webcamRef}
+          ref={videoRef}
         />
-
         <canvas
           className={cn(
             "absolute left-1/2 top-1/2 max-h-full max-w-full -translate-x-1/2 -translate-y-1/2 transform",
