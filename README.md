@@ -110,4 +110,4 @@ $ pnpm start
 
 ## License
 
-This project is licensed under the GNU General Public License. See the [LICENSE](./LICENSE) file for more details.
+This project is licensed under the GNU General Public License. See the [LICENSE](./LICENSE.md) file for more details.
