@@ -86,7 +86,7 @@ Also, for easier dependency updating, you should use the pnpm interactive mode :
 
 ```bash
 pnpm up -i -L
-``` 
+```
 
 ## Running the Application
 
@@ -99,3 +99,15 @@ $ pnpm dev
 # Production mode
 $ pnpm start
 ```
+
+## Project Structure
+
+- `src/app`: Contains the main application pages and layouts
+- `src/components`: Reusable React components
+- `src/lib`: Utility functions and configuration files
+- `src/slices`: Prismic slice components
+- `src/styles`: Global CSS styles
+
+## License
+
+This project is licensed under the GNU General Public License. See the [LICENSE](./LICENSE) file for more details.
