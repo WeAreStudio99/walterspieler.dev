@@ -19,12 +19,12 @@ type Params = {
   uid: string;
 };
 
-type Props = {
+type Props = Promise<{
   params: Params;
-};
+}>;
 
 const WorkPage: FC<Props> = async (props) => {
-  const { params } = props;
+  const { params } = await props;
   const { lang, uid } = params;
 
   const client = createClient();
@@ -77,8 +77,10 @@ const WorkPage: FC<Props> = async (props) => {
   );
 };
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const { params } = await props;
   const { lang, uid } = params;
+
   const dictionary = await getDictionary(lang);
 
   const client = createClient();

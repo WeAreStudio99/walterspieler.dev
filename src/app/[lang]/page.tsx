@@ -17,12 +17,12 @@ type Params = {
   lang: Locale;
 };
 
-type Props = {
+type Props = Promise<{
   params: Params;
-};
+}>;
 
 const HomeLang: FC<Props> = async (props) => {
-  const { params } = props;
+  const { params } = await props;
   const { lang } = params;
 
   const dictionary = await getDictionary(lang);

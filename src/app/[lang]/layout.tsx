@@ -25,15 +25,14 @@ type Params = {
   lang: Locale;
 };
 
-type Props = PropsWithChildren<{
-  params: Params;
-}>;
+type Props = Promise<
+  PropsWithChildren<{
+    params: Params;
+  }>
+>;
 
 const PostHogPageView = dynamic(
   () => import("../../components/PostHogPageView"),
-  {
-    ssr: false,
-  },
 );
 
 const spaceGrotesk = Space_Grotesk({
@@ -41,8 +40,8 @@ const spaceGrotesk = Space_Grotesk({
   variable: "--font-sans",
 });
 
-const LangRootLayout: FC<Props> = (props) => {
-  const { children, params } = props;
+const LangRootLayout: FC<Props> = async (props) => {
+  const { children, params } = await props;
   const { lang } = params;
 
   return (
@@ -85,8 +84,10 @@ const LangRootLayout: FC<Props> = (props) => {
   );
 };
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const { params } = await props;
   const { lang } = params;
+
   const dictionary = await getDictionary(lang);
 
   const client = createClient();

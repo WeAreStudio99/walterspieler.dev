@@ -15,12 +15,12 @@ type Params = {
   lang: Locale;
 };
 
-type Props = {
+type Props = Promise<{
   params: Params;
-};
+}>;
 
 const OpenSourcePage: FC<Props> = async (props) => {
-  const { params } = props;
+  const { params } = await props;
   const { lang } = params;
 
   const client = createClient();
@@ -33,8 +33,10 @@ const OpenSourcePage: FC<Props> = async (props) => {
   );
 };
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const { params } = await props;
   const { lang } = params;
+
   const dictionary = await getDictionary(lang);
 
   const { openSource } = dictionary;
