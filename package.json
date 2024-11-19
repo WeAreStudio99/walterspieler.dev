@@ -8,9 +8,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 2499",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 2499",
     "lint": "next lint",
     "format": "prettier ./src --write",
     "slicemachine": "start-slicemachine"
