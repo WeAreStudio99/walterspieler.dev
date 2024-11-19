@@ -1,13 +1,12 @@
-import { Metadata } from "next";
 import { FC } from "react";
 
-import EmptyLayout from "@/components/Common/EmptyLayout";
+import { Metadata } from "next";
 
+import EmptyLayout from "@/components/Common/EmptyLayout";
+import MenuInitializer from "@/contexts/MenuContext/MenuInitializer";
 import { Locale } from "@/lib/i18n/types";
 import { getDictionary } from "@/lib/i18n/utils";
 import { generateAlternates } from "@/lib/utils";
-
-import MenuInitializer from "@/contexts/MenuContext/MenuInitializer";
 
 type Params = {
   lang: Locale;

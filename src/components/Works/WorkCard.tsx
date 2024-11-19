@@ -1,34 +1,24 @@
 "use client";
 
-import {
-  Content,
-  GroupField,
-  ImageFieldImage,
-  RichTextField,
-} from "@prismicio/client";
-import { PrismicNextImage } from "@prismicio/next";
-import { PrismicRichText } from "@prismicio/react";
+import { FC } from "react";
+
 import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
 import { CalendarIcon } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { FC } from "react";
 
 import { A, H3 } from "@/components/Common/Typography";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-
 import { formatDateToMonthYear } from "@/lib/date";
 import { I18N_CONFIG } from "@/lib/i18n/config";
 import { Locale } from "@/lib/i18n/types";
 import { cn } from "@/lib/utils";
 
-import { Simplify } from "../../../prismicio-types";
-
 type Props = {
   title: string;
-  description: RichTextField;
-  logo: ImageFieldImage;
+  description: string;
+  logo: string;
   link: string;
   duration: {
     start: Date | null;
@@ -38,7 +28,9 @@ type Props = {
   relatedWorkPostLink: string;
   lang: Locale;
   buttonLabel: string;
-  tags: GroupField<Simplify<Content.WorkDocumentDataTagsItem>>;
+  tags: {
+    name: string;
+  }[];
 };
 
 const WorkCard: FC<Props> = (props) => {
@@ -80,11 +72,11 @@ const WorkCard: FC<Props> = (props) => {
     >
       <div
         className={cn(
-          "absolute bottom-0  left-0 right-5 h-px w-80 bg-gradient-to-l from-transparent via-white/30 via-10% to-transparent",
+          "absolute bottom-0 left-0 right-5 h-px w-80 bg-gradient-to-l from-transparent via-white/30 via-10% to-transparent",
         )}
       />
       <motion.div
-        className="pointer-events-none absolute -inset-px rounded-xl opacity-0 transition duration-300 group-hover:opacity-100"
+        // className="pointer-events-none absolute -inset-px rounded-xl opacity-0 transition duration-300 group-hover:opacity-100"
         style={{
           background: useMotionTemplate`
 						radial-gradient(200px circle at ${mouseX}px ${mouseY}px, rgba(22, 24, 27, 0.4), transparent 80%)
@@ -93,11 +85,11 @@ const WorkCard: FC<Props> = (props) => {
       />
       <div className="relative flex flex-col rounded-xl border border-white/10">
         <div className="flex flex-row items-center gap-4 space-y-2 p-6">
-          <PrismicNextImage
+          {/* <PrismicNextImage
             className="max-h-8 w-8"
             field={logo}
             sizes="(max-width: 640px) 32px, (max-width: 768px) 32px, (max-width: 1024px) 32px, 32px"
-          />
+          /> */}
           <div className="grid gap-1">
             <H3 className="text-xl">{title}</H3>
             <div className="flex items-center text-sm text-stone-400 md:gap-1">
@@ -128,7 +120,7 @@ const WorkCard: FC<Props> = (props) => {
           </div>
         </div>
         <div className="p-6 pt-0 text-sm leading-[1.5] text-stone-300">
-          <PrismicRichText field={description} />
+          {/* <PrismicRichText field={description} /> */}
           <div className="mt-4 flex flex-wrap gap-2">
             {tags.map((tag, idx) => (
               <div
@@ -136,7 +128,7 @@ const WorkCard: FC<Props> = (props) => {
                 key={idx}
               >
                 <span className="absolute inset-[-1000%] animate-[spin_3s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#c2c2c2_0%,#505050_50%,#bebebe_100%)]" />
-                <span className="inline-flex h-full w-full items-center justify-center rounded-full  px-3 py-1 text-xs font-medium text-gray-50 backdrop-blur-3xl">
+                <span className="inline-flex h-full w-full items-center justify-center rounded-full px-3 py-1 text-xs font-medium text-gray-50 backdrop-blur-3xl">
                   {tag.name}
                 </span>
               </div>

@@ -1,13 +1,12 @@
 "use client";
 
-import { motion, useAnimation } from "framer-motion";
 import { FC, use, useEffect } from "react";
 
+import { motion, useAnimation } from "framer-motion";
+
 import NavigationLink from "@/components/NavigationLink";
-
-import { Locale } from "@/lib/i18n/types";
-
 import { MenuContext } from "@/contexts/MenuContext";
+import { Locale } from "@/lib/i18n/types";
 
 type Props = {
   items: { label: string; path: string; type: string; external?: boolean }[];

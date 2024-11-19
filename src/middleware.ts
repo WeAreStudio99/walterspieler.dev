@@ -1,14 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import { PUBLIC_PATHS } from "@/lib/routing/constants";
-
-import { createClient } from "@/prismicio";
+import { PUBLIC_PATHS } from "./lib/routing/constants";
 
 export async function middleware(request: NextRequest) {
-  const client = createClient();
-  const repository = await client.getRepository();
-
-  const locales = repository.languages.map((lang) => lang.id);
+  const locales = ["en", "fr"];
   const defaultLocale = locales[0];
 
   const { pathname } = request.nextUrl;

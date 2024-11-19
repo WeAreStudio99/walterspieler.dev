@@ -1,15 +1,11 @@
-import { SliceZone } from "@prismicio/react";
-import { Metadata } from "next";
 import { FC } from "react";
 
-import ContentWrapper from "@/components/Common/ContentWrapper";
+import { Metadata } from "next";
 
+import ContentWrapper from "@/components/Common/ContentWrapper";
 import { Locale } from "@/lib/i18n/types";
 import { getDictionary } from "@/lib/i18n/utils";
 import { generateAlternates } from "@/lib/utils";
-
-import { createClient } from "@/prismicio";
-import { components } from "@/slices";
 
 type Params = {
   lang: Locale;
@@ -23,14 +19,7 @@ const OpenSourcePage: FC<Props> = async (props) => {
   const { params } = await props;
   const { lang } = params;
 
-  const client = createClient();
-  const page = await client.getSingle("openSource", { lang });
-
-  return (
-    <ContentWrapper>
-      <SliceZone components={components} slices={page.data.slices} />
-    </ContentWrapper>
-  );
+  return <ContentWrapper></ContentWrapper>;
 };
 
 export async function generateMetadata(props: Props): Promise<Metadata> {

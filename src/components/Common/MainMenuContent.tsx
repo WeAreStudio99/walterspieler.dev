@@ -1,15 +1,10 @@
 import { FC } from "react";
 
 import MainMenuItems from "@/components/Common/MainMenuItems";
-import LangSelector from "@/components/LangSelector";
 import MiscMenu from "@/components/MiscMenu";
-
 import { I18N_CONFIG } from "@/lib/i18n/config";
 import { Locale } from "@/lib/i18n/types";
 import { getDictionary } from "@/lib/i18n/utils";
-import { getLocales } from "@/lib/locales";
-
-import { createClient } from "@/prismicio";
 
 type Props = {
   lang: Locale;
@@ -18,10 +13,6 @@ type Props = {
 const MainMenuContent: FC<Props> = async (props) => {
   const { lang } = props;
   const dictionary = await getDictionary(lang);
-
-  const client = createClient();
-  const page = await client.getSingle("home", { lang });
-  const locales = await getLocales(page, client);
 
   const menuItems: {
     label: string;
@@ -60,11 +51,6 @@ const MainMenuContent: FC<Props> = async (props) => {
     },
   ];
 
-  const navigation = await client.getByUID("navigation", "main-menu", {
-    lang,
-  });
-  const navigationItems = navigation.data.slices;
-
   return (
     <>
       <header>
@@ -74,16 +60,16 @@ const MainMenuContent: FC<Props> = async (props) => {
         </div>
         <MainMenuItems items={menuItems} lang={lang} />
       </header>
-      <footer className="flex justify-between gap-3 border-t-grey p-5  md:border-t lg:flex-col xl:flex-row ">
+      <footer className="flex justify-between gap-3 border-t-grey p-5 md:border-t lg:flex-col xl:flex-row">
         <MiscMenu
           labels={{ legalNotice: dictionary.menuItems.legalNotice }}
           title={dictionary.menuItems.other}
         />
-        <LangSelector
+        {/* <LangSelector
           currentLang={lang}
-          locales={locales}
+          locales={}
           title={dictionary.languages}
-        />
+        /> */}
       </footer>
     </>
   );

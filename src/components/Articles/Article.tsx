@@ -1,17 +1,13 @@
 "use client";
 
-import { Content, asLink } from "@prismicio/client";
-import { SliceZone } from "@prismicio/react";
+import { FC } from "react";
+
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { FC } from "react";
 
 import { A, H1, P } from "@/components/Common/Typography";
 import { Separator } from "@/components/ui/separator";
-
 import { Locale } from "@/lib/i18n/types";
-
-import { components } from "@/slices";
 
 type CommonProps = {
   lang: Locale;
@@ -20,12 +16,12 @@ type CommonProps = {
 
 type WorkProps = {
   collection: "work";
-  content: Content.WorkPostDocument;
+  content: "";
 };
 
 type BlogProps = {
   collection: "blog";
-  content: Content.BlogPostDocument;
+  content: "";
 };
 
 type Props = (WorkProps | BlogProps) & CommonProps;
@@ -37,12 +33,9 @@ const variants = {
 };
 
 const Article: FC<Props> = (props) => {
-  const { lang, uid, content, collection } = props;
+  const { uid, collection } = props;
 
-  let externalLink = null;
-  if (collection === "work") {
-    externalLink = asLink(content.data.externalLink);
-  }
+  const externalLink = null;
 
   return (
     <motion.article
@@ -52,31 +45,28 @@ const Article: FC<Props> = (props) => {
       variants={variants}
     >
       <div className="mb-8 flex flex-col">
-        <H1 className="mb-5">{content.data.title}</H1>
+        <H1 className="mb-5">{uid}</H1>
         {externalLink && (
           <A className="mb-2" href={externalLink} rel={"noopener nofollow"}>
-            {externalLink.replace(/(^\w+:|^)\/\//, "")}
+            LINK
           </A>
         )}
         <span className="mb-5 text-stone-400">
-          <P>{content.data.description}</P>
+          <P>DESCRIPTION</P>
         </span>
         {collection === "work" && <Separator />}
-        {collection === "blog" && content.data.cover && (
+        {collection === "blog" && (
           <Image
-            alt={
-              content.data.cover.alt || `Cover image for ${content.data.title}`
-            }
+            alt={""}
             className="rounded-t-lg object-cover lg:max-h-[550px] lg:max-w-full"
-            height={content.data.cover.dimensions?.height}
+            height={0}
             priority={true}
             sizes="(max-width: 768px) 90vw, (max-width: 1024px) 688px, 768px"
-            src={content.data.cover.url || ""}
-            width={content.data.cover.dimensions?.width}
+            src={""}
+            width={0}
           />
         )}
       </div>
-      <SliceZone components={components} slices={content.data.slices} />
     </motion.article>
   );
 };

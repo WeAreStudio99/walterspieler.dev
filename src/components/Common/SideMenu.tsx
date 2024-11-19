@@ -1,17 +1,16 @@
 "use client";
 
+import { FC, PropsWithChildren, use } from "react";
+
 import { AnimatePresence, Variants, motion } from "framer-motion";
 import { ChevronLeft, Command, X } from "lucide-react";
 import Link from "next/link";
-import { FC, PropsWithChildren, use } from "react";
 
 import ScrollArea from "@/components/Common/ScrollArea";
-
+import { MenuContext } from "@/contexts/MenuContext";
 import { I18N_CONFIG } from "@/lib/i18n/config";
 import { Locale } from "@/lib/i18n/types";
 import { cn } from "@/lib/utils";
-
-import { MenuContext } from "@/contexts/MenuContext";
 
 type Props = {
   lang: Locale;

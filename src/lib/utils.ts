@@ -2,10 +2,10 @@ import { clsx, type ClassValue } from "clsx";
 import { AlternateURLs } from "next/dist/lib/metadata/types/alternative-urls-types";
 import { twMerge } from "tailwind-merge";
 
+import { I18N_CONFIG } from "@/lib/i18n/config";
 import { DICTIONARIES } from "@/lib/i18n/constants";
 import { Locale } from "@/lib/i18n/types";
 
-import { I18N_CONFIG } from "@/lib/i18n/config";
 import { BASE_URL } from "../../next.constants.mjs";
 
 function cn(...inputs: ClassValue[]) {

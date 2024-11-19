@@ -1,29 +1,11 @@
-import { Client, Content } from "@prismicio/client";
+import { I18N_CONFIG } from "@/lib/i18n/config";
 
-export async function getLocales(
-  doc: Content.AllDocumentTypes,
-  client: Client<Content.AllDocumentTypes>,
-) {
-  const [repository, altDocs] = await Promise.all([
-    client.getRepository(),
-    doc.alternate_languages.length > 0
-      ? client.getAllByIDs(
-          doc.alternate_languages.map((altLang) => altLang.id),
-          {
-            lang: "*",
-            fetch: `${doc.type}.__nonexistent-field__`,
-          },
-        )
-      : Promise.resolve([]),
-  ]);
+export async function getLocales() {
+  const locales = I18N_CONFIG.locales;
 
-  return [doc, ...altDocs].map((page) => {
-    const lang = repository?.languages.find((l) => l.id === page.lang);
-
+  return locales.map((locale) => {
     return {
-      lang: lang?.id || "",
-      url: page?.url || "",
-      lang_name: lang?.name || "",
+      lang: locale,
     };
   });
 }

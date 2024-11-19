@@ -1,17 +1,16 @@
 "use client";
 
-import { DateField, TimestampField, asDate } from "@prismicio/client";
+import { FC, use, useMemo } from "react";
+
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FC, use, useMemo } from "react";
 
+import { MenuContext } from "@/contexts/MenuContext";
 import { formatDateToMonthYear } from "@/lib/date";
 import { I18N_CONFIG } from "@/lib/i18n/config";
 import { Locale } from "@/lib/i18n/types";
 import { cn } from "@/lib/utils";
-
-import { MenuContext } from "@/contexts/MenuContext";
 
 type Props = {
   lang: Locale;
@@ -20,8 +19,8 @@ type Props = {
   data: {
     title: string;
     uid: string;
-    startDate: DateField | TimestampField<"filled"> | undefined;
-    endDate?: DateField | undefined;
+    startDate: string;
+    endDate?: string;
   }[];
 };
 
@@ -60,7 +59,7 @@ const SideMenuContent: FC<Props> = (props) => {
             <Link href={href} key={item.uid} onClick={closeInnerMenu}>
               <div
                 className={cn(
-                  "shadow-duration-200 group group relative flex items-center justify-between rounded-lg border border-grey bg-metal p-4 px-4 py-5  transition-all hover:scale-[1.01] hover:bg-eerie-light active:scale-[0.98] active:bg-eerie-light",
+                  "shadow-duration-200 group relative flex items-center justify-between rounded-lg border border-grey bg-metal p-4 px-4 py-5 transition-all hover:scale-[1.01] hover:bg-eerie-light active:scale-[0.98] active:bg-eerie-light",
                   {
                     "[0_1000px_0_0_hsl(0_0%_20%)_inset] overflow-hidden":
                       isActive,
@@ -69,7 +68,7 @@ const SideMenuContent: FC<Props> = (props) => {
               >
                 {isActive && (
                   <>
-                    <span className="spark mask-gradient pointer-events-none absolute inset-0 h-[100%] w-[100%]  animate-flip rounded-lg [mask:linear-gradient(#7ACCB8,_transparent_50%)] before:absolute before:aspect-square before:w-[200%] before:rotate-[-90deg] before:animate-rotate before:bg-[conic-gradient(from_0deg,transparent_0_340deg,#7ACCB8_360deg)] before:content-[''] before:[inset:0_auto_auto_50%] before:[translate:-50%_-15%]" />
+                    <span className="spark mask-gradient pointer-events-none absolute inset-0 h-[100%] w-[100%] animate-flip rounded-lg [mask:linear-gradient(#7ACCB8,_transparent_50%)] before:absolute before:aspect-square before:w-[200%] before:rotate-[-90deg] before:animate-rotate before:bg-[conic-gradient(from_0deg,transparent_0_340deg,#7ACCB8_360deg)] before:content-[''] before:[inset:0_auto_auto_50%] before:[translate:-50%_-15%]" />
                     <span className="backdrop pointer-events-none absolute inset-px rounded-lg bg-chinese-black transition-colors duration-200" />
                   </>
                 )}

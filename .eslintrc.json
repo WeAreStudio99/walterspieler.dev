@@ -17,12 +17,27 @@
         ],
         "pathGroups": [
           {
-            "pattern": "@/components/**",
+            "pattern": "{react,react-dom/**}",
+            "group": "external",
+            "position": "before"
+          },
+          {
+            "pattern": "@averse/**",
             "group": "external",
             "position": "after"
           },
           {
-            "pattern": "@/lib/**",
+            "pattern": "@components/**",
+            "group": "external",
+            "position": "after"
+          },
+          {
+            "pattern": "@lib/**",
+            "group": "external",
+            "position": "after"
+          },
+          {
+            "pattern": "@styles/**",
             "group": "external",
             "position": "after"
           }

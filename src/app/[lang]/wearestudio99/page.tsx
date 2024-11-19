@@ -1,16 +1,12 @@
-import { SliceZone } from "@prismicio/react";
-import { Metadata } from "next";
 import { FC } from "react";
 
-import ScrollArea from "@/components/Common/ScrollArea";
+import { Metadata } from "next";
 
+import ScrollArea from "@/components/Common/ScrollArea";
 import { Locale } from "@/lib/i18n/types";
 import { getDictionary } from "@/lib/i18n/utils";
 import getSchemaOrganization from "@/lib/schema-dts/organization";
 import { generateAlternates } from "@/lib/utils";
-
-import { createClient } from "@/prismicio";
-import { components } from "@/slices";
 
 type Params = {
   lang: Locale;
@@ -24,12 +20,6 @@ const WeAreStudio99Page: FC<Props> = async (props) => {
   const { params } = await props;
   const { lang } = params;
 
-  const client = createClient();
-  const page = await client.getSingle("weAreStudio99", {
-    lang,
-    fetchLinks: ["social.label", "social.url", "social.type"],
-  });
-
   const jsonLd = getSchemaOrganization();
 
   return (
@@ -40,9 +30,7 @@ const WeAreStudio99Page: FC<Props> = async (props) => {
       />
       <ScrollArea className="flex flex-col">
         <div className="content-wrapper">
-          <article className="content duration-700 animate-in fade-in">
-            <SliceZone components={components} slices={page.data.slices} />
-          </article>
+          <article className="content duration-700 animate-in fade-in"></article>
         </div>
       </ScrollArea>
     </>

@@ -1,17 +1,11 @@
-import { SliceZone } from "@prismicio/react";
-import { notFound } from "next/navigation";
 import { FC } from "react";
 
 import ScrollArea from "@/components/Common/ScrollArea";
 import { H1 } from "@/components/Common/Typography";
 import { Separator } from "@/components/ui/separator";
-
 import { Locale } from "@/lib/i18n/types";
 import { getDictionary } from "@/lib/i18n/utils";
 import getSchemaProfilePage from "@/lib/schema-dts/profile-page";
-
-import { createClient } from "@/prismicio";
-import { components } from "@/slices";
 
 type Params = {
   lang: Locale;
@@ -26,24 +20,6 @@ const HomeLang: FC<Props> = async (props) => {
   const { lang } = params;
 
   const dictionary = await getDictionary(lang);
-
-  const client = createClient();
-  const page = await client
-    .getSingle("home", {
-      lang,
-      fetchLinks: [
-        "work.company",
-        "work.description",
-        "work.duration",
-        "work.workPost",
-        "work.tags",
-        "work.logo",
-        "social.label",
-        "social.url",
-        "social.type",
-      ],
-    })
-    .catch(() => notFound());
 
   const jsonLd = getSchemaProfilePage(
     dictionary.home.metadata.description,
@@ -70,7 +46,6 @@ const HomeLang: FC<Props> = async (props) => {
               </span>
             </H1>
             <Separator className="my-6" />
-            <SliceZone components={components} slices={page.data.slices} />
           </div>
         </div>
       </ScrollArea>
