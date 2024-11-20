@@ -7,17 +7,17 @@ import { Locale } from "@/lib/i18n/types";
 import { getDictionary } from "@/lib/i18n/utils";
 import getSchemaProfilePage from "@/lib/schema-dts/profile-page";
 
-type Params = {
+type Params = Promise<{
   lang: Locale;
-};
-
-type Props = Promise<{
-  params: Params;
 }>;
 
+type Props = {
+  params: Params;
+};
+
 const HomeLang: FC<Props> = async (props) => {
-  const { params } = await props;
-  const { lang } = params;
+  const { params } = props;
+  const { lang } = await params;
 
   const dictionary = await getDictionary(lang);
 

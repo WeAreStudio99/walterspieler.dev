@@ -9,19 +9,17 @@ import { Locale } from "@/lib/i18n/types";
 import { getDictionary } from "@/lib/i18n/utils";
 import { generateAlternates } from "@/lib/utils";
 
-type Params = {
+type Params = Promise<{
   lang: Locale;
-};
+}>;
 
-type Props = Promise<
-  PropsWithChildren<{
-    params: Params;
-  }>
->;
+type Props = PropsWithChildren<{
+  params: Params;
+}>;
 
 const BlogLayout: FC<Props> = async (props) => {
-  const { children, params } = await props;
-  const { lang } = params;
+  const { children, params } = props;
+  const { lang } = await params;
 
   const dictionary = await getDictionary(lang);
 
@@ -43,8 +41,8 @@ const BlogLayout: FC<Props> = async (props) => {
 };
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
-  const { params } = await props;
-  const { lang } = params;
+  const { params } = props;
+  const { lang } = await params;
   const dictionary = await getDictionary(lang);
 
   const { blog } = dictionary;

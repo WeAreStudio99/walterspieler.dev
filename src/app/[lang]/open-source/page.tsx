@@ -7,24 +7,24 @@ import { Locale } from "@/lib/i18n/types";
 import { getDictionary } from "@/lib/i18n/utils";
 import { generateAlternates } from "@/lib/utils";
 
-type Params = {
+type Params = Promise<{
   lang: Locale;
-};
-
-type Props = Promise<{
-  params: Params;
 }>;
 
+type Props = {
+  params: Params;
+};
+
 const OpenSourcePage: FC<Props> = async (props) => {
-  const { params } = await props;
-  const { lang } = params;
+  const { params } = props;
+  const { lang } = await params;
 
   return <ContentWrapper></ContentWrapper>;
 };
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
-  const { params } = await props;
-  const { lang } = params;
+  const { params } = props;
+  const { lang } = await params;
 
   const dictionary = await getDictionary(lang);
 

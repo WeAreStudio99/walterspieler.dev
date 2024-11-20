@@ -7,7 +7,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import { MenuContext } from "@/contexts/MenuContext";
-import { formatDateToMonthYear } from "@/lib/date";
 import { I18N_CONFIG } from "@/lib/i18n/config";
 import { Locale } from "@/lib/i18n/types";
 import { cn } from "@/lib/utils";
@@ -50,8 +49,8 @@ const SideMenuContent: FC<Props> = (props) => {
               ? `/${lang}/${collection}/${item.uid}`
               : `/${collection}/${item.uid}`;
 
-          const startDate = asDate(item.startDate);
-          const endDate = asDate(item.endDate);
+          // const startDate = asDate(item.startDate);
+          // const endDate = asDate(item.endDate);
 
           const isActive = isActiveArray[idx];
 
@@ -76,7 +75,7 @@ const SideMenuContent: FC<Props> = (props) => {
                   <span className="text-lg font-bold md:text-base">
                     {item.title}
                   </span>
-                  {(startDate || (startDate && endDate)) && (
+                  {/* {(startDate || (startDate && endDate)) && (
                     <div className="flex items-center gap-1 text-sm">
                       <span>{formatDateToMonthYear(startDate, lang)}</span>
                       {endDate && (
@@ -86,7 +85,7 @@ const SideMenuContent: FC<Props> = (props) => {
                         </>
                       )}
                     </div>
-                  )}
+                  )} */}
                 </div>
                 <ChevronRight
                   className="z-10 text-pearl-light"

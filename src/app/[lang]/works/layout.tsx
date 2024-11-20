@@ -6,9 +6,9 @@ import SideMenuContent from "@/components/Common/SideMenuContent";
 import { Locale } from "@/lib/i18n/types";
 import { getDictionary } from "@/lib/i18n/utils";
 
-type Params = {
+type Params = Promise<{
   lang: Locale;
-};
+}>;
 
 type Props = PropsWithChildren<{
   params: Params;
@@ -16,7 +16,7 @@ type Props = PropsWithChildren<{
 
 const WorksLayout: FC<Props> = async (props) => {
   const { children, params } = props;
-  const { lang } = params;
+  const { lang } = await params;
 
   const dictionary = await getDictionary(lang);
 

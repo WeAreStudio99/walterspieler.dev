@@ -8,17 +8,17 @@ import { getDictionary } from "@/lib/i18n/utils";
 import getSchemaOrganization from "@/lib/schema-dts/organization";
 import { generateAlternates } from "@/lib/utils";
 
-type Params = {
+type Params = Promise<{
   lang: Locale;
-};
-
-type Props = Promise<{
-  params: Params;
 }>;
 
+type Props = {
+  params: Params;
+};
+
 const WeAreStudio99Page: FC<Props> = async (props) => {
-  const { params } = await props;
-  const { lang } = params;
+  const { params } = props;
+  const { lang } = await params;
 
   const jsonLd = getSchemaOrganization();
 
@@ -38,8 +38,8 @@ const WeAreStudio99Page: FC<Props> = async (props) => {
 };
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
-  const { params } = await props;
-  const { lang } = params;
+  const { params } = props;
+  const { lang } = await params;
 
   const dictionary = await getDictionary(lang);
 

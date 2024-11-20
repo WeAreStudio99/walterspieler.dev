@@ -5,18 +5,18 @@ import MenuInitializer from "@/contexts/MenuContext/MenuInitializer";
 import { Locale } from "@/lib/i18n/types";
 import { getDictionary } from "@/lib/i18n/utils";
 
-type Params = {
+type Params = Promise<{
   lang: Locale;
   uid: string;
-};
-
-type Props = Promise<{
-  params: Params;
 }>;
 
+type Props = {
+  params: Params;
+};
+
 const Blog: FC<Props> = async (props) => {
-  const { params } = await props;
-  const { lang } = params;
+  const { params } = props;
+  const { lang } = await params;
 
   const dictionary = await getDictionary(lang);
 
