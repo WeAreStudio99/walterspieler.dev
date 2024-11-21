@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 import { Space_Grotesk } from "next/font/google";
 import Script from "next/script";
 
-import PostHogProvider from "@/app/ph-provider";
+import PostHogProvider from "@/app/(frontend)/ph-provider";
 import MainMenuContent from "@/components/Common/MainMenuContent";
 import SideMenu from "@/components/Common/SideMenu";
 import { Toaster } from "@/components/ui/toaster";
@@ -14,7 +14,7 @@ import { Locale } from "@/lib/i18n/types";
 import { getDictionary } from "@/lib/i18n/utils";
 import { cn, generateAlternates } from "@/lib/utils";
 
-import { BASE_URL } from "../../../next.constants.mjs";
+import { BASE_URL } from "../../../../next.constants.mjs";
 
 import type { Metadata } from "next";
 
@@ -27,7 +27,7 @@ type Props = PropsWithChildren<{
 }>;
 
 const PostHogPageView = dynamic(
-  () => import("../../components/PostHogPageView"),
+  () => import("../../../components/PostHogPageView"),
 );
 
 const spaceGrotesk = Space_Grotesk({

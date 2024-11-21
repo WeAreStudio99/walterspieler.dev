@@ -1,3 +1,5 @@
+import { withPayload } from "@payloadcms/next/withPayload";
+
 /** @type {import('next').NextConfig} */
 const nextConfig = async () => {
   return {
@@ -12,4 +14,4 @@ const nextConfig = async () => {
   };
 };
 
-module.exports = nextConfig;
+export default withPayload(nextConfig);

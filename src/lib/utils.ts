@@ -6,7 +6,7 @@ import { I18N_CONFIG } from "@/lib/i18n/config";
 import { DICTIONARIES } from "@/lib/i18n/constants";
 import { Locale } from "@/lib/i18n/types";
 
-import { BASE_URL } from "../../next.constants.mjs";
+import { BASE_URL } from "../.././next.constants.mjs";
 
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
