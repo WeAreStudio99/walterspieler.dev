@@ -45,7 +45,7 @@ const formatDateDiff = async (
   return getPluralization(weeksDiff, dictionary, "week");
 };
 
-const formatDateToMonthYear = (date: Date, locale: TypedLocale) => {
+const formatDateToMonthYear = (date: Date | string, locale: TypedLocale) => {
   const locales = { en: enGB, fr: fr };
   const selectedLocale = locales[locale];
 

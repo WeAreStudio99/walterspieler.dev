@@ -193,6 +193,7 @@ export interface BlogPost {
  */
 export interface ExperiencePost {
   id: number;
+  slug: string;
   experience: number | Experience;
   content?:
     | (
@@ -265,6 +266,12 @@ export interface Experience {
   companyWebsite?: string | null;
   startDate: string;
   endDate?: string | null;
+  usedTechnologies?:
+    | {
+        technology?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   relatedExperiencePosts?: {
     docs?: (number | ExperiencePost)[] | null;
     hasNextPage?: boolean | null;
@@ -333,6 +340,12 @@ export interface Page {
             id?: string | null;
             blockName?: string | null;
             blockType: 'Quote';
+          }
+        | {
+            experiencePost?: (number | ExperiencePost)[] | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'Experience';
           }
       )[]
     | null;
@@ -539,6 +552,13 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        Experience?:
+          | T
+          | {
+              experiencePost?: T;
+              id?: T;
+              blockName?: T;
+            };
       };
   meta?:
     | T
@@ -563,6 +583,12 @@ export interface ExperiencesSelect<T extends boolean = true> {
   companyWebsite?: T;
   startDate?: T;
   endDate?: T;
+  usedTechnologies?:
+    | T
+    | {
+        technology?: T;
+        id?: T;
+      };
   relatedExperiencePosts?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -572,6 +598,7 @@ export interface ExperiencesSelect<T extends boolean = true> {
  * via the `definition` "experiencePosts_select".
  */
 export interface ExperiencePostsSelect<T extends boolean = true> {
+  slug?: T;
   experience?: T;
   content?:
     | T

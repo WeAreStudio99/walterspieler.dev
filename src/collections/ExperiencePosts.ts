@@ -15,6 +15,13 @@ export const ExperiencePosts: CollectionConfig = {
   },
   fields: [
     {
+      name: "slug",
+      type: "text",
+      unique: true,
+      required: true,
+      index: true,
+    },
+    {
       name: "experience",
       type: "relationship",
       relationTo: "experiences",

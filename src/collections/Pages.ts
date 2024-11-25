@@ -1,6 +1,7 @@
 import { CollectionConfig } from "payload";
 
 import { CodeBlock } from "../blocks/Code";
+import { ExperienceBlock } from "../blocks/Experience";
 import { ImageBlock } from "../blocks/Image";
 import { ParagraphBlock } from "../blocks/Paragraph";
 import { QuoteBlock } from "../blocks/Quote";
@@ -24,7 +25,13 @@ export const Pages: CollectionConfig = {
     {
       name: "content",
       type: "blocks",
-      blocks: [ParagraphBlock, ImageBlock, CodeBlock, QuoteBlock],
+      blocks: [
+        ParagraphBlock,
+        ImageBlock,
+        CodeBlock,
+        QuoteBlock,
+        ExperienceBlock,
+      ],
       localized: true,
     },
   ],

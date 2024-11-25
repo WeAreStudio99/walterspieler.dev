@@ -21,9 +21,9 @@ type Props = {
   logo: string;
   link: string;
   duration: {
-    start: Date | null;
-    end: Date | null;
-    difference: string;
+    start: Date | string | null;
+    end?: Date | string | null;
+    difference?: string;
   };
   relatedWorkPostLink: string;
   lang: TypedLocale;
@@ -93,17 +93,24 @@ const WorkCard: FC<Props> = (props) => {
           <div className="grid gap-1">
             <H3 className="text-xl">{title}</H3>
             <div className="flex items-center text-sm text-stone-400 md:gap-1">
-              {duration.start && duration.end && (
+              {duration.start && (
                 <>
                   <CalendarIcon className="mr-1 h-4 w-4 text-stone-400" />
+                  {!duration.end && <span>Since</span>}
                   <span>{formatDateToMonthYear(duration.start, lang)}</span>
-                  <span> - </span>
-                  <span>{formatDateToMonthYear(duration.end, lang)}</span>
-                  <Separator
-                    className="mx-2 hidden h-4 md:block"
-                    orientation="vertical"
-                  />
-                  <span className="hidden md:block">{duration.difference}</span>
+                  {duration.end && (
+                    <>
+                      <span> - </span>
+                      <span>{formatDateToMonthYear(duration.end, lang)}</span>
+                      <Separator
+                        className="mx-2 hidden h-4 md:block"
+                        orientation="vertical"
+                      />
+                      <span className="hidden md:block">
+                        {duration.difference}
+                      </span>
+                    </>
+                  )}
                 </>
               )}
             </div>
@@ -121,6 +128,7 @@ const WorkCard: FC<Props> = (props) => {
         </div>
         <div className="p-6 pt-0 text-sm leading-[1.5] text-stone-300">
           {/* <PrismicRichText field={description} /> */}
+          <p>{description}</p>
           <div className="mt-4 flex flex-wrap gap-2">
             {tags.map((tag, idx) => (
               <div

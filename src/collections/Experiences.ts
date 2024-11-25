@@ -64,6 +64,17 @@ export const Experiences: CollectionConfig = {
       },
     },
     {
+      name: "usedTechnologies",
+      label: "Used Technologies",
+      type: "array",
+      fields: [
+        {
+          name: "technology",
+          type: "text",
+        },
+      ],
+    },
+    {
       name: "relatedExperiencePosts",
       type: "join",
       collection: "experiencePosts",

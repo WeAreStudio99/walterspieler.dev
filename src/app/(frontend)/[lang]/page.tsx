@@ -75,7 +75,7 @@ const HomeLang: FC<Props> = async (props) => {
               </span>
             </H1>
             <Separator className="my-6" />
-            <Content content={homePage.content} />
+            <Content content={homePage.content} lang={lang} />
           </div>
         </div>
       </ScrollArea>
