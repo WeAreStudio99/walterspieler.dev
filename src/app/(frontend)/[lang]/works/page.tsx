@@ -1,15 +1,15 @@
 import { FC } from "react";
 
 import { Metadata } from "next";
+import { TypedLocale } from "payload";
 
 import EmptyLayout from "@/components/Common/EmptyLayout";
 import MenuInitializer from "@/contexts/MenuContext/MenuInitializer";
-import { Locale } from "@/lib/i18n/types";
 import { getDictionary } from "@/lib/i18n/utils";
 import { generateAlternates } from "@/lib/utils";
 
 type Params = Promise<{
-  lang: Locale;
+  lang: TypedLocale;
   uid: string;
 }>;
 
@@ -44,7 +44,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   return {
     title: works.metadata.title,
     description: works.metadata.description,
-    alternates: generateAlternates("works", lang),
+    alternates: await generateAlternates("works", lang),
     icons: [
       {
         rel: "icon",

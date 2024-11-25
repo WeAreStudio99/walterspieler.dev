@@ -1,6 +1,7 @@
 import { FC } from "react";
 
 import Link from "next/link";
+import { TypedLocale } from "payload";
 
 import {
   Breadcrumb,
@@ -10,12 +11,11 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import { Locale } from "@/lib/i18n/types";
 import { getDictionary } from "@/lib/i18n/utils";
 
 type Props = {
   title: string;
-  lang: Locale;
+  lang: TypedLocale;
   collection: "work" | "blog";
 };
 

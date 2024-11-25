@@ -1,27 +1,12 @@
-import type { Block, CollectionConfig } from "payload";
+import { CodeBlock } from '../blocks/Code';
+import { ImageBlock } from '../blocks/Image';
+import { ParagraphBlock } from '../blocks/Paragraph';
+import { QuoteBlock } from '../blocks/Quote';
 
-const ParagraphBlock: Block = {
-  slug: "Paragraph",
-  fields: [{ name: "paragraph", type: "richText" }],
-};
+import type { CollectionConfig } from "payload";
 
-const ImageBlock: Block = {
-  slug: "Image",
-  fields: [{ name: "image", type: "upload", relationTo: "media" }],
-};
-
-const CodeBlock: Block = {
-  slug: "Code",
-  fields: [{ name: "code", type: "code" }],
-};
-
-const QuoteBlock: Block = {
-  slug: "Quote",
-  fields: [{ name: "quote", type: "richText" }],
-};
-
-export const BlogPost: CollectionConfig = {
-  slug: "blog-post",
+export const BlogPosts: CollectionConfig = {
+  slug: "blog-posts",
   access: {
     read: () => true,
   },

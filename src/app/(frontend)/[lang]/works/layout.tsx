@@ -1,13 +1,14 @@
 import { FC, PropsWithChildren, Suspense } from "react";
 
+import { TypedLocale } from "payload";
+
 import LoadingSpinner from "@/components/Common/LoadingSpinner";
 import SideMenu from "@/components/Common/SideMenu";
 import SideMenuContent from "@/components/Common/SideMenuContent";
-import { Locale } from "@/lib/i18n/types";
 import { getDictionary } from "@/lib/i18n/utils";
 
 type Params = Promise<{
-  lang: Locale;
+  lang: TypedLocale;
 }>;
 
 type Props = PropsWithChildren<{

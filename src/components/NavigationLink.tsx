@@ -11,17 +11,24 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { TypedLocale } from "payload";
 
 import WeAreStudio99 from "@/components/Icons/Company/WeAreStudio99";
 import { MenuContext } from "@/contexts/MenuContext";
-import { Locale } from "@/lib/i18n/types";
 import { cn } from "@/lib/utils";
 
 type Props = {
   label: string;
   path: string;
-  type: string;
-  lang: Locale;
+  type:
+    | "home"
+    | "blog"
+    | "lab"
+    | "experiences"
+    | "contact"
+    | "weAreStudio99"
+    | "other";
+  lang: TypedLocale;
   external?: boolean;
 };
 
@@ -68,7 +75,7 @@ const NavigationLink: FC<Props> = (props) => {
       <div className="flex items-center gap-2 text-xl md:text-base">
         {type === "home" && <BoltIcon className="w-4" />}
         {type === "blog" && <Sparkle className="w-4" />}
-        {type === "works" && <DraftingCompass className="w-4" />}
+        {type === "experiences" && <DraftingCompass className="w-4" />}
         {type === "weAreStudio99" && <WeAreStudio99 className="w-4" />}
         {type === "contact" && <Nfc className="w-4" />}
         <span className="overflow-hidden text-ellipsis">{label}</span>

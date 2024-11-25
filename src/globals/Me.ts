@@ -18,6 +18,18 @@ export const Me: GlobalConfig = {
           required: true,
           defaultValue: "Software Engineer",
         },
+        {
+          name: "description",
+          type: "textarea",
+          required: true,
+          defaultValue: "I'm a software engineer",
+        },
+        {
+          name: "email",
+          type: "email",
+          required: true,
+          defaultValue: "thibs@wearestudio99.fr",
+        },
       ],
     },
   ],

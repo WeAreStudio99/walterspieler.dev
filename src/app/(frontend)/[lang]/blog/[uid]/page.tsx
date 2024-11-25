@@ -1,13 +1,13 @@
 import { FC } from "react";
 
 import { Metadata } from "next";
+import { TypedLocale } from "payload";
 
 import { I18N_CONFIG } from "@/lib/i18n/config";
-import { Locale } from "@/lib/i18n/types";
 import { generateAlternates } from "@/lib/utils";
 
 type Params = Promise<{
-  lang: Locale;
+  lang: TypedLocale;
   uid: string;
 }>;
 
@@ -52,7 +52,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   return {
     title: `${uid} | Thibault Walterspieler`,
     description: "",
-    alternates: generateAlternates(`blog/${uid}`, lang),
+    alternates: await generateAlternates(`blog/${uid}`, lang),
     icons: [
       {
         rel: "icon",

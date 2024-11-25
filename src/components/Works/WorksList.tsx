@@ -1,11 +1,12 @@
 import { FC } from "react";
 
+import { TypedLocale } from "payload";
+
 import { H1 } from "@/components/Common/Typography";
-import { Locale } from "@/lib/i18n/types";
 import { getDictionary } from "@/lib/i18n/utils";
 
 type Props = {
-  lang: Locale;
+  lang: TypedLocale;
 };
 
 const WorksList: FC<Props> = async (props) => {

@@ -1,14 +1,14 @@
 import { FC } from "react";
 
 import { Metadata } from "next";
+import { TypedLocale } from "payload";
 
 import ContentWrapper from "@/components/Common/ContentWrapper";
-import { Locale } from "@/lib/i18n/types";
 import { getDictionary } from "@/lib/i18n/utils";
 import { generateAlternates } from "@/lib/utils";
 
 type Params = Promise<{
-  lang: Locale;
+  lang: TypedLocale;
 }>;
 
 type Props = {
@@ -34,7 +34,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   return {
     title: notice.metadata.title,
     description: notice.metadata.description,
-    alternates: generateAlternates("open-source", lang),
+    alternates: await generateAlternates("open-source", lang),
     icons: [
       {
         rel: "icon",

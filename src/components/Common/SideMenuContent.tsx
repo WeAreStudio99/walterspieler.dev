@@ -5,14 +5,14 @@ import { FC, use, useMemo } from "react";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { TypedLocale } from "payload";
 
 import { MenuContext } from "@/contexts/MenuContext";
 import { I18N_CONFIG } from "@/lib/i18n/config";
-import { Locale } from "@/lib/i18n/types";
 import { cn } from "@/lib/utils";
 
 type Props = {
-  lang: Locale;
+  lang: TypedLocale;
   title: string;
   collection: "works" | "blog";
   data: {

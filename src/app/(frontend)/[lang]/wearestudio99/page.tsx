@@ -1,15 +1,15 @@
 import { FC } from "react";
 
 import { Metadata } from "next";
+import { TypedLocale } from "payload";
 
 import ScrollArea from "@/components/Common/ScrollArea";
-import { Locale } from "@/lib/i18n/types";
 import { getDictionary } from "@/lib/i18n/utils";
 import getSchemaOrganization from "@/lib/schema-dts/organization";
 import { generateAlternates } from "@/lib/utils";
 
 type Params = Promise<{
-  lang: Locale;
+  lang: TypedLocale;
 }>;
 
 type Props = {
@@ -50,7 +50,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   return {
     title: weAreStudio99.metadata.title,
     description: weAreStudio99.metadata.description,
-    alternates: generateAlternates("wearestudio99", lang),
+    alternates: await generateAlternates("wearestudio99", lang),
     icons: [
       {
         rel: "icon",

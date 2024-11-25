@@ -10,9 +10,11 @@ import { uploadthingStorage } from "@payloadcms/storage-uploadthing";
 import { buildConfig } from "payload";
 import sharp from "sharp";
 
-import { BlogPost } from "./collections/BlogPost";
+import { BlogPosts } from "./collections/BlogPosts";
 import { Media } from "./collections/Media";
+import { Pages } from "./collections/Pages";
 import { Users } from "./collections/Users";
+import { MainMenu } from "./globals/MainMenu";
 import { Me } from "./globals/Me";
 
 const filename = fileURLToPath(import.meta.url);
@@ -25,10 +27,19 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, BlogPost],
-  globals: [Me],
+  collections: [Users, Media, BlogPosts, Pages],
+  globals: [Me, MainMenu],
   localization: {
-    locales: ["en", "fr"],
+    locales: [
+      {
+        code: "en",
+        label: "English 🇬🇧",
+      },
+      {
+        code: "fr",
+        label: "Français 🇫🇷",
+      },
+    ],
     defaultLocale: "en",
   },
   editor: lexicalEditor(),
@@ -44,7 +55,7 @@ export default buildConfig({
   sharp,
   plugins: [
     seoPlugin({
-      collections: ["blog-post"],
+      collections: ["blog-posts", "pages"],
       uploadsCollection: "media",
       generateTitle: ({ doc }) => `${doc.title} — Thibault Walterspieler`,
       generateDescription: ({ doc }) => doc.excerpt,

@@ -4,22 +4,18 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import dynamic from "next/dynamic";
 import { Space_Grotesk } from "next/font/google";
 import Script from "next/script";
+import { getPayload, TypedLocale } from "payload";
 
 import PostHogProvider from "@/app/(frontend)/ph-provider";
 import MainMenuContent from "@/components/Common/MainMenuContent";
 import SideMenu from "@/components/Common/SideMenu";
 import { Toaster } from "@/components/ui/toaster";
 import { MenuContextProvider } from "@/contexts/MenuContext";
-import { Locale } from "@/lib/i18n/types";
-import { getDictionary } from "@/lib/i18n/utils";
-import { cn, generateAlternates } from "@/lib/utils";
-
-import { BASE_URL } from "../../../../next.constants.mjs";
-
-import type { Metadata } from "next";
+import { cn } from "@/lib/utils";
+import config from "@payload-config";
 
 type Params = Promise<{
-  lang: Locale;
+  lang: TypedLocale;
 }>;
 
 type Props = PropsWithChildren<{
@@ -35,9 +31,26 @@ const spaceGrotesk = Space_Grotesk({
   variable: "--font-sans",
 });
 
+const getMe = async (lang: TypedLocale) => {
+  const payload = await getPayload({
+    config,
+  });
+  return payload.findGlobal({ slug: "me", locale: lang });
+};
+
+const getMainMenu = async (lang: TypedLocale) => {
+  const payload = await getPayload({
+    config,
+  });
+  return payload.findGlobal({ slug: "mainMenu", locale: lang });
+};
+
 const LangRootLayout: FC<Props> = async (props) => {
   const { children, params } = props;
   const { lang } = await params;
+
+  const me = await getMe(lang);
+  const mainMenu = await getMainMenu(lang);
 
   return (
     <html lang={lang}>
@@ -67,7 +80,7 @@ const LangRootLayout: FC<Props> = async (props) => {
           <MenuContextProvider>
             <div className="lg:flex">
               <SideMenu lang={lang}>
-                <MainMenuContent lang={lang} />
+                <MainMenuContent lang={lang} mainMenu={mainMenu} me={me} />
               </SideMenu>
               <div className="blueprint-layout flex flex-1">{children}</div>
             </div>
@@ -78,51 +91,5 @@ const LangRootLayout: FC<Props> = async (props) => {
     </html>
   );
 };
-
-export async function generateMetadata(props: Props): Promise<Metadata> {
-  const { params } = props;
-  const { lang } = await params;
-
-  const dictionary = await getDictionary(lang);
-
-  const imagePath = `/images/og/main_${lang}.png`;
-
-  return {
-    metadataBase: new URL(BASE_URL),
-    publisher: "Thibault Walterspieler",
-    creator: "Thibault Walterspieler",
-    title: "Thibault Walterspieler | Fullstack engineer",
-    description: dictionary.home.metadata.description,
-    alternates: generateAlternates("", lang),
-    icons: [
-      {
-        rel: "icon",
-        url: "/favicon.ico",
-        sizes: "any",
-      },
-    ],
-    twitter: {
-      card: "summary_large_image",
-      title: "Thibault Walterspieler | Fullstack engineer",
-      description: dictionary.home.metadata.description,
-      images: {
-        url: imagePath,
-        alt: "Thibault Walterspieler | Fullstack engineer",
-        type: "image/png",
-      },
-    },
-    openGraph: {
-      type: "website",
-      title: "Thibault Walterspieler | Fullstack engineer",
-      description: dictionary.home.metadata.description,
-      url: `/`,
-      images: {
-        url: imagePath,
-        alt: "Thibault Walterspieler | Fullstack engineer",
-        type: "image/png",
-      },
-    },
-  };
-}
 
 export default LangRootLayout;

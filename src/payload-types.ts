@@ -13,7 +13,8 @@ export interface Config {
   collections: {
     users: User;
     media: Media;
-    'blog-post': BlogPost;
+    'blog-posts': BlogPost;
+    pages: Page;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -22,7 +23,8 @@ export interface Config {
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
-    'blog-post': BlogPostSelect<false> | BlogPostSelect<true>;
+    'blog-posts': BlogPostsSelect<false> | BlogPostsSelect<true>;
+    pages: PagesSelect<false> | PagesSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -32,9 +34,11 @@ export interface Config {
   };
   globals: {
     me: Me;
+    mainMenu: MainMenu;
   };
   globalsSelect: {
     me: MeSelect<false> | MeSelect<true>;
+    mainMenu: MainMenuSelect<false> | MainMenuSelect<true>;
   };
   locale: 'en' | 'fr';
   user: User & {
@@ -106,7 +110,7 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "blog-post".
+ * via the `definition` "blog-posts".
  */
 export interface BlogPost {
   id: number;
@@ -115,6 +119,78 @@ export interface BlogPost {
   authors?: (number | User)[] | null;
   mainImage?: (number | null) | Media;
   excerpt: string;
+  content?:
+    | (
+        | {
+            paragraph?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'Paragraph';
+          }
+        | {
+            image?: (number | null) | Media;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'Image';
+          }
+        | {
+            code?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'Code';
+          }
+        | {
+            quote?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'Quote';
+          }
+      )[]
+    | null;
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    image?: (number | null) | Media;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pages".
+ */
+export interface Page {
+  id: number;
+  title: string;
+  slug: string;
   content?:
     | (
         | {
@@ -195,8 +271,12 @@ export interface PayloadLockedDocument {
         value: number | Media;
       } | null)
     | ({
-        relationTo: 'blog-post';
+        relationTo: 'blog-posts';
         value: number | BlogPost;
+      } | null)
+    | ({
+        relationTo: 'pages';
+        value: number | Page;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -280,14 +360,65 @@ export interface MediaSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "blog-post_select".
+ * via the `definition` "blog-posts_select".
  */
-export interface BlogPostSelect<T extends boolean = true> {
+export interface BlogPostsSelect<T extends boolean = true> {
   title?: T;
   slug?: T;
   authors?: T;
   mainImage?: T;
   excerpt?: T;
+  content?:
+    | T
+    | {
+        Paragraph?:
+          | T
+          | {
+              paragraph?: T;
+              id?: T;
+              blockName?: T;
+            };
+        Image?:
+          | T
+          | {
+              image?: T;
+              id?: T;
+              blockName?: T;
+            };
+        Code?:
+          | T
+          | {
+              code?: T;
+              id?: T;
+              blockName?: T;
+            };
+        Quote?:
+          | T
+          | {
+              quote?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
+  meta?:
+    | T
+    | {
+        overview?: T;
+        title?: T;
+        description?: T;
+        image?: T;
+        preview?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pages_select".
+ */
+export interface PagesSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
   content?:
     | T
     | {
@@ -372,6 +503,27 @@ export interface Me {
   id: number;
   fullName: string;
   role: string;
+  description: string;
+  email: string;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "mainMenu".
+ */
+export interface MainMenu {
+  id: number;
+  menuItems?:
+    | {
+        label: string;
+        type: 'home' | 'blog' | 'lab' | 'experiences' | 'contact' | 'weAreStudio99' | 'other';
+        external?: boolean | null;
+        page?: (number | null) | Page;
+        path?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -382,6 +534,27 @@ export interface Me {
 export interface MeSelect<T extends boolean = true> {
   fullName?: T;
   role?: T;
+  description?: T;
+  email?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "mainMenu_select".
+ */
+export interface MainMenuSelect<T extends boolean = true> {
+  menuItems?:
+    | T
+    | {
+        label?: T;
+        type?: T;
+        external?: T;
+        page?: T;
+        path?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

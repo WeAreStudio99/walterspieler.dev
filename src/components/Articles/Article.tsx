@@ -4,13 +4,13 @@ import { FC } from "react";
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { TypedLocale } from "payload";
 
 import { A, H1, P } from "@/components/Common/Typography";
 import { Separator } from "@/components/ui/separator";
-import { Locale } from "@/lib/i18n/types";
 
 type CommonProps = {
-  lang: Locale;
+  lang: TypedLocale;
   uid: string;
 };
 

@@ -1,15 +1,15 @@
 import { FC } from "react";
 
 import { Metadata } from "next";
+import { TypedLocale } from "payload";
 
 import ArticleBreadcrumb from "@/components/Articles/ArticleBreadcrumb";
 import ScrollArea from "@/components/Common/ScrollArea";
-import { Locale } from "@/lib/i18n/types";
 import { getDictionary } from "@/lib/i18n/utils";
 import { generateAlternates } from "@/lib/utils";
 
 type Params = Promise<{
-  lang: Locale;
+  lang: TypedLocale;
   uid: string;
 }>;
 
@@ -56,7 +56,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   return {
     title: `Thibault Walterspieler`,
     // description: page.data.meta_description,
-    alternates: generateAlternates(`works/${uid}`, lang),
+    alternates: await generateAlternates(`works/${uid}`, lang),
     icons: [
       {
         rel: "icon",

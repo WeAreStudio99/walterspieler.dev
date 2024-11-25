@@ -2,18 +2,18 @@
 
 import { FC, PropsWithChildren, use } from "react";
 
-import { AnimatePresence, Variants, motion } from "framer-motion";
+import { AnimatePresence, motion, Variants } from "framer-motion";
 import { ChevronLeft, Command, X } from "lucide-react";
 import Link from "next/link";
+import { TypedLocale } from "payload";
 
 import ScrollArea from "@/components/Common/ScrollArea";
 import { MenuContext } from "@/contexts/MenuContext";
 import { I18N_CONFIG } from "@/lib/i18n/config";
-import { Locale } from "@/lib/i18n/types";
 import { cn } from "@/lib/utils";
 
 type Props = {
-  lang: Locale;
+  lang: TypedLocale;
   isInner?: boolean;
   collection?: "works" | "blog";
   displayReturnButton?: boolean;

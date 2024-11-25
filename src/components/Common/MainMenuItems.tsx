@@ -3,14 +3,15 @@
 import { FC, use, useEffect } from "react";
 
 import { motion, useAnimation } from "framer-motion";
+import { TypedLocale } from "payload";
 
 import NavigationLink from "@/components/NavigationLink";
 import { MenuContext } from "@/contexts/MenuContext";
-import { Locale } from "@/lib/i18n/types";
+import { MainMenu } from "@/payload-types";
 
 type Props = {
-  items: { label: string; path: string; type: string; external?: boolean }[];
-  lang: Locale;
+  items: MainMenu["menuItems"];
+  lang: TypedLocale;
 };
 
 const MainMenuItems: FC<Props> = (props) => {
@@ -36,6 +37,8 @@ const MainMenuItems: FC<Props> = (props) => {
     }
   }, [controls, isMenuOpen]);
 
+  if (!items) return null;
+
   return (
     <div className="flex h-full w-full flex-col justify-between p-4 text-sm">
       <nav className="flex h-full flex-col gap-3 pt-20 md:hidden md:pt-0">
@@ -43,11 +46,11 @@ const MainMenuItems: FC<Props> = (props) => {
           return (
             <motion.div animate={controls} custom={i} key={item.label}>
               <NavigationLink
-                external={item.external}
+                external={item.external || false}
                 label={item.label || ""}
                 lang={lang}
-                path={item.path}
-                type={item.type}
+                path={item.path || ""}
+                type={item.type || ""}
               />
             </motion.div>
           );
@@ -57,12 +60,12 @@ const MainMenuItems: FC<Props> = (props) => {
         {items.map((item) => {
           return (
             <NavigationLink
-              external={item.external}
+              external={item.external || false}
               key={item.label}
               label={item.label || ""}
               lang={lang}
-              path={item.path}
-              type={item.type}
+              path={item.path || ""}
+              type={item.type || ""}
             />
           );
         })}
