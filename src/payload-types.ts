@@ -13,18 +13,26 @@ export interface Config {
   collections: {
     users: User;
     media: Media;
-    'blog-posts': BlogPost;
+    blogPosts: BlogPost;
     pages: Page;
+    experiences: Experience;
+    experiencePosts: ExperiencePost;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
-  collectionsJoins: {};
+  collectionsJoins: {
+    experiences: {
+      relatedExperiencePosts: 'experiencePosts';
+    };
+  };
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
-    'blog-posts': BlogPostsSelect<false> | BlogPostsSelect<true>;
+    blogPosts: BlogPostsSelect<false> | BlogPostsSelect<true>;
     pages: PagesSelect<false> | PagesSelect<true>;
+    experiences: ExperiencesSelect<false> | ExperiencesSelect<true>;
+    experiencePosts: ExperiencePostsSelect<false> | ExperiencePostsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -110,7 +118,7 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "blog-posts".
+ * via the `definition` "blogPosts".
  */
 export interface BlogPost {
   id: number;
@@ -175,11 +183,92 @@ export interface BlogPost {
           }
       )[]
     | null;
-  meta?: {
-    title?: string | null;
-    description?: string | null;
-    image?: (number | null) | Media;
-  };
+  relatedExperiencePosts?: (number | ExperiencePost)[] | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "experiencePosts".
+ */
+export interface ExperiencePost {
+  id: number;
+  experience: number | Experience;
+  content?:
+    | (
+        | {
+            paragraph?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'Paragraph';
+          }
+        | {
+            image?: (number | null) | Media;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'Image';
+          }
+        | {
+            code?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'Code';
+          }
+        | {
+            quote?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'Quote';
+          }
+      )[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "experiences".
+ */
+export interface Experience {
+  id: number;
+  companyName: string;
+  companyLogo?: (number | null) | Media;
+  companyDescription?: string | null;
+  companyWebsite?: string | null;
+  startDate: string;
+  endDate?: string | null;
+  relatedExperiencePosts?: {
+    docs?: (number | ExperiencePost)[] | null;
+    hasNextPage?: boolean | null;
+  } | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -271,12 +360,20 @@ export interface PayloadLockedDocument {
         value: number | Media;
       } | null)
     | ({
-        relationTo: 'blog-posts';
+        relationTo: 'blogPosts';
         value: number | BlogPost;
       } | null)
     | ({
         relationTo: 'pages';
         value: number | Page;
+      } | null)
+    | ({
+        relationTo: 'experiences';
+        value: number | Experience;
+      } | null)
+    | ({
+        relationTo: 'experiencePosts';
+        value: number | ExperiencePost;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -360,7 +457,7 @@ export interface MediaSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "blog-posts_select".
+ * via the `definition` "blogPosts_select".
  */
 export interface BlogPostsSelect<T extends boolean = true> {
   title?: T;
@@ -400,15 +497,7 @@ export interface BlogPostsSelect<T extends boolean = true> {
               blockName?: T;
             };
       };
-  meta?:
-    | T
-    | {
-        overview?: T;
-        title?: T;
-        description?: T;
-        image?: T;
-        preview?: T;
-      };
+  relatedExperiencePosts?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -459,6 +548,62 @@ export interface PagesSelect<T extends boolean = true> {
         description?: T;
         image?: T;
         preview?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "experiences_select".
+ */
+export interface ExperiencesSelect<T extends boolean = true> {
+  companyName?: T;
+  companyLogo?: T;
+  companyDescription?: T;
+  companyWebsite?: T;
+  startDate?: T;
+  endDate?: T;
+  relatedExperiencePosts?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "experiencePosts_select".
+ */
+export interface ExperiencePostsSelect<T extends boolean = true> {
+  experience?: T;
+  content?:
+    | T
+    | {
+        Paragraph?:
+          | T
+          | {
+              paragraph?: T;
+              id?: T;
+              blockName?: T;
+            };
+        Image?:
+          | T
+          | {
+              image?: T;
+              id?: T;
+              blockName?: T;
+            };
+        Code?:
+          | T
+          | {
+              code?: T;
+              id?: T;
+              blockName?: T;
+            };
+        Quote?:
+          | T
+          | {
+              quote?: T;
+              id?: T;
+              blockName?: T;
+            };
       };
   updatedAt?: T;
   createdAt?: T;

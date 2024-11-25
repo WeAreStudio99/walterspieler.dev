@@ -11,6 +11,8 @@ import { buildConfig } from "payload";
 import sharp from "sharp";
 
 import { BlogPosts } from "./collections/BlogPosts";
+import { ExperiencePosts } from "./collections/ExperiencePosts";
+import { Experiences } from "./collections/Experiences";
 import { Media } from "./collections/Media";
 import { Pages } from "./collections/Pages";
 import { Users } from "./collections/Users";
@@ -27,7 +29,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, BlogPosts, Pages],
+  collections: [Users, Media, BlogPosts, Pages, Experiences, ExperiencePosts],
   globals: [Me, MainMenu],
   localization: {
     locales: [

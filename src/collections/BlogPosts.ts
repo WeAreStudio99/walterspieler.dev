@@ -1,12 +1,12 @@
-import { CodeBlock } from '../blocks/Code';
-import { ImageBlock } from '../blocks/Image';
-import { ParagraphBlock } from '../blocks/Paragraph';
-import { QuoteBlock } from '../blocks/Quote';
+import { CodeBlock } from "../blocks/Code";
+import { ImageBlock } from "../blocks/Image";
+import { ParagraphBlock } from "../blocks/Paragraph";
+import { QuoteBlock } from "../blocks/Quote";
 
 import type { CollectionConfig } from "payload";
 
 export const BlogPosts: CollectionConfig = {
-  slug: "blog-posts",
+  slug: "blogPosts",
   access: {
     read: () => true,
   },
@@ -46,6 +46,12 @@ export const BlogPosts: CollectionConfig = {
       type: "blocks",
       blocks: [ParagraphBlock, ImageBlock, CodeBlock, QuoteBlock],
       localized: true,
+    },
+    {
+      name: "relatedExperiencePosts",
+      type: "relationship",
+      relationTo: "experiencePosts",
+      hasMany: true,
     },
   ],
 };

@@ -8,7 +8,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 2499",
+    "dev": "next dev -p 2499 --turbo",
     "build": "next build",
     "start": "next start -p 2499",
     "lint": "next lint",
