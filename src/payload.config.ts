@@ -15,6 +15,7 @@ import { ExperiencePosts } from "./collections/ExperiencePosts";
 import { Experiences } from "./collections/Experiences";
 import { Media } from "./collections/Media";
 import { Pages } from "./collections/Pages";
+import { Socials } from "./collections/Socials";
 import { Users } from "./collections/Users";
 import { MainMenu } from "./globals/MainMenu";
 import { Me } from "./globals/Me";
@@ -29,7 +30,15 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, BlogPosts, Pages, Experiences, ExperiencePosts],
+  collections: [
+    Users,
+    Media,
+    BlogPosts,
+    Pages,
+    Experiences,
+    ExperiencePosts,
+    Socials,
+  ],
   globals: [Me, MainMenu],
   localization: {
     locales: [

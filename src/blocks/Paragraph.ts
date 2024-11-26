@@ -1,6 +1,6 @@
-import { Block } from 'payload';
+import { Block } from "payload";
 
 export const ParagraphBlock: Block = {
   slug: "Paragraph",
-  fields: [{ name: "paragraph", type: "richText",localized:true }],
+  fields: [{ name: "paragraph", type: "richText", localized: true }],
 };

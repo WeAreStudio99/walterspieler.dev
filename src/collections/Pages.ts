@@ -1,8 +1,10 @@
 import { CollectionConfig } from "payload";
 
+import { ButtonBlock } from "../blocks/Button";
 import { CodeBlock } from "../blocks/Code";
 import { ExperienceBlock } from "../blocks/Experience";
 import { ImageBlock } from "../blocks/Image";
+import { MySocialsBlock } from "../blocks/MySocials";
 import { ParagraphBlock } from "../blocks/Paragraph";
 import { QuoteBlock } from "../blocks/Quote";
 
@@ -31,6 +33,8 @@ export const Pages: CollectionConfig = {
         CodeBlock,
         QuoteBlock,
         ExperienceBlock,
+        MySocialsBlock,
+        ButtonBlock,
       ],
       localized: true,
     },

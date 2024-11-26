@@ -17,6 +17,7 @@ export interface Config {
     pages: Page;
     experiences: Experience;
     experiencePosts: ExperiencePost;
+    socials: Social;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -33,6 +34,7 @@ export interface Config {
     pages: PagesSelect<false> | PagesSelect<true>;
     experiences: ExperiencesSelect<false> | ExperiencesSelect<true>;
     experiencePosts: ExperiencePostsSelect<false> | ExperiencePostsSelect<true>;
+    socials: SocialsSelect<false> | SocialsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -347,6 +349,21 @@ export interface Page {
             blockName?: string | null;
             blockType: 'Experience';
           }
+        | {
+            socials?: (number | Social)[] | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'MySocials';
+          }
+        | {
+            label?: string | null;
+            isExternal?: boolean | null;
+            page?: (number | null) | Page;
+            externalUrl?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'button';
+          }
       )[]
     | null;
   meta?: {
@@ -354,6 +371,17 @@ export interface Page {
     description?: string | null;
     image?: (number | null) | Media;
   };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "socials".
+ */
+export interface Social {
+  id: number;
+  name: string;
+  link: string;
   updatedAt: string;
   createdAt: string;
 }
@@ -387,6 +415,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'experiencePosts';
         value: number | ExperiencePost;
+      } | null)
+    | ({
+        relationTo: 'socials';
+        value: number | Social;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -559,6 +591,23 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        MySocials?:
+          | T
+          | {
+              socials?: T;
+              id?: T;
+              blockName?: T;
+            };
+        button?:
+          | T
+          | {
+              label?: T;
+              isExternal?: T;
+              page?: T;
+              externalUrl?: T;
+              id?: T;
+              blockName?: T;
+            };
       };
   meta?:
     | T
@@ -637,6 +686,16 @@ export interface ExperiencePostsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "socials_select".
+ */
+export interface SocialsSelect<T extends boolean = true> {
+  name?: T;
+  link?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents_select".
  */
 export interface PayloadLockedDocumentsSelect<T extends boolean = true> {
@@ -677,6 +736,7 @@ export interface Me {
   role: string;
   description: string;
   email: string;
+  socials?: (number | Social)[] | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -708,6 +768,7 @@ export interface MeSelect<T extends boolean = true> {
   role?: T;
   description?: T;
   email?: T;
+  socials?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

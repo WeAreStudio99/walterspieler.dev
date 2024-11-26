@@ -32,5 +32,11 @@ export const Me: GlobalConfig = {
         },
       ],
     },
+    {
+      name: "socials",
+      type: "relationship",
+      relationTo: "socials",
+      hasMany: true,
+    },
   ],
 };
