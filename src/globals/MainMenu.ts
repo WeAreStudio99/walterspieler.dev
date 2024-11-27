@@ -54,6 +54,7 @@ export const MainMenu: GlobalConfig = {
           name: "external",
           type: "checkbox",
           defaultValue: false,
+          required: true,
         },
         {
           name: "page",

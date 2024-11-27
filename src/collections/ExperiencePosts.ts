@@ -11,7 +11,7 @@ export const ExperiencePosts: CollectionConfig = {
     read: () => true,
   },
   admin: {
-    useAsTitle: "experience",
+    useAsTitle: "title",
   },
   fields: [
     {
@@ -20,6 +20,16 @@ export const ExperiencePosts: CollectionConfig = {
       unique: true,
       required: true,
       index: true,
+    },
+    {
+      name: "title",
+      type: "text",
+      required: true,
+      defaultValue: "Untitled",
+    },
+    {
+      name: "description",
+      type: "textarea",
     },
     {
       name: "experience",

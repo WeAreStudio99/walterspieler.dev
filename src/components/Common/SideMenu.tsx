@@ -15,7 +15,7 @@ import { cn } from "@/lib/utils";
 type Props = {
   lang: TypedLocale;
   isInner?: boolean;
-  collection?: "works" | "blog";
+  collection?: "works" | "blog" | "experiences";
   displayReturnButton?: boolean;
 } & PropsWithChildren;
 

@@ -38,7 +38,9 @@ const ArticleBreadcrumb: FC<Props> = async (props) => {
             {collection === "blog" ? (
               <Link href="/blog">{dictionary.firstLevelPages.blog}</Link>
             ) : (
-              <Link href="/works">{dictionary.firstLevelPages.works}</Link>
+              <Link href="/works">
+                {dictionary.firstLevelPages.experiences}
+              </Link>
             )}
           </BreadcrumbLink>
         </BreadcrumbItem>

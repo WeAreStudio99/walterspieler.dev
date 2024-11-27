@@ -124,11 +124,11 @@ export interface Media {
  */
 export interface BlogPost {
   id: number;
-  title: string;
   slug: string;
+  title: string;
+  description?: string | null;
   authors?: (number | User)[] | null;
   mainImage?: (number | null) | Media;
-  excerpt: string;
   content?:
     | (
         | {
@@ -196,6 +196,8 @@ export interface BlogPost {
 export interface ExperiencePost {
   id: number;
   slug: string;
+  title: string;
+  description?: string | null;
   experience: number | Experience;
   content?:
     | (
@@ -253,6 +255,23 @@ export interface ExperiencePost {
           }
       )[]
     | null;
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    image?: (number | null) | Media;
+    tags?:
+      | {
+          tag?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+    authors?:
+      | {
+          relationTo: 'users';
+          value: number | User;
+        }[]
+      | null;
+  };
   updatedAt: string;
   createdAt: string;
 }
@@ -370,6 +389,18 @@ export interface Page {
     title?: string | null;
     description?: string | null;
     image?: (number | null) | Media;
+    tags?:
+      | {
+          tag?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+    authors?:
+      | {
+          relationTo: 'users';
+          value: number | User;
+        }[]
+      | null;
   };
   updatedAt: string;
   createdAt: string;
@@ -505,11 +536,11 @@ export interface MediaSelect<T extends boolean = true> {
  * via the `definition` "blogPosts_select".
  */
 export interface BlogPostsSelect<T extends boolean = true> {
-  title?: T;
   slug?: T;
+  title?: T;
+  description?: T;
   authors?: T;
   mainImage?: T;
-  excerpt?: T;
   content?:
     | T
     | {
@@ -617,6 +648,13 @@ export interface PagesSelect<T extends boolean = true> {
         description?: T;
         image?: T;
         preview?: T;
+        tags?:
+          | T
+          | {
+              tag?: T;
+              id?: T;
+            };
+        authors?: T;
       };
   updatedAt?: T;
   createdAt?: T;
@@ -648,6 +686,8 @@ export interface ExperiencesSelect<T extends boolean = true> {
  */
 export interface ExperiencePostsSelect<T extends boolean = true> {
   slug?: T;
+  title?: T;
+  description?: T;
   experience?: T;
   content?:
     | T
@@ -680,6 +720,22 @@ export interface ExperiencePostsSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+      };
+  meta?:
+    | T
+    | {
+        overview?: T;
+        title?: T;
+        description?: T;
+        image?: T;
+        preview?: T;
+        tags?:
+          | T
+          | {
+              tag?: T;
+              id?: T;
+            };
+        authors?: T;
       };
   updatedAt?: T;
   createdAt?: T;
@@ -750,7 +806,7 @@ export interface MainMenu {
     | {
         label: string;
         type: 'home' | 'blog' | 'lab' | 'experiences' | 'contact' | 'weAreStudio99' | 'other';
-        external?: boolean | null;
+        external: boolean;
         page?: (number | null) | Page;
         path?: string | null;
         id?: string | null;

@@ -66,10 +66,30 @@ export default buildConfig({
   sharp,
   plugins: [
     seoPlugin({
-      collections: ["blog-posts", "pages"],
+      collections: ["blog-posts", "pages", "experiencePosts"],
       uploadsCollection: "media",
-      generateTitle: ({ doc }) => `${doc.title} — Thibault Walterspieler`,
-      generateDescription: ({ doc }) => doc.excerpt,
+      generateTitle: ({ doc }) => `${doc.title} | Thibault Walterspieler`,
+      generateDescription: ({ doc }) => doc.excerpt || doc.description || "",
+      fields: ({ defaultFields }) => [
+        ...defaultFields,
+        {
+          name: "tags",
+          type: "array",
+          label: "Tags",
+          fields: [
+            {
+              name: "tag",
+              type: "text",
+            },
+          ],
+        },
+        {
+          name: "authors",
+          type: "relationship",
+          relationTo: ["users"],
+          hasMany: true,
+        },
+      ],
     }),
     payloadCloudPlugin(),
     uploadthingStorage({

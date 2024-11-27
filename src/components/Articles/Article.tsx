@@ -7,21 +7,23 @@ import Image from "next/image";
 import { TypedLocale } from "payload";
 
 import { A, H1, P } from "@/components/Common/Typography";
+import { Content } from "@/components/Content";
 import { Separator } from "@/components/ui/separator";
+import { BlogPost, ExperiencePost } from "@/payload-types";
 
 type CommonProps = {
   lang: TypedLocale;
-  uid: string;
+  slug: string;
 };
 
 type WorkProps = {
   collection: "work";
-  content: "";
+  content: ExperiencePost;
 };
 
 type BlogProps = {
   collection: "blog";
-  content: "";
+  content: BlogPost;
 };
 
 type Props = (WorkProps | BlogProps) & CommonProps;
@@ -33,9 +35,11 @@ const variants = {
 };
 
 const Article: FC<Props> = (props) => {
-  const { uid, collection } = props;
+  const { collection, content, lang } = props;
 
   const externalLink = null;
+
+  if (typeof content === "number") return null;
 
   return (
     <motion.article
@@ -45,14 +49,14 @@ const Article: FC<Props> = (props) => {
       variants={variants}
     >
       <div className="mb-8 flex flex-col">
-        <H1 className="mb-5">{uid}</H1>
+        <H1 className="mb-5">{content.title}</H1>
         {externalLink && (
           <A className="mb-2" href={externalLink} rel={"noopener nofollow"}>
             LINK
           </A>
         )}
         <span className="mb-5 text-stone-400">
-          <P>DESCRIPTION</P>
+          <P>{content.description}</P>
         </span>
         {collection === "work" && <Separator />}
         {collection === "blog" && (
@@ -67,6 +71,7 @@ const Article: FC<Props> = (props) => {
           />
         )}
       </div>
+      <Content content={content.content} lang={lang} />
     </motion.article>
   );
 };

@@ -4,12 +4,11 @@ import { TypedLocale } from "payload";
 
 import { H1 } from "@/components/Common/Typography";
 import { getDictionary } from "@/lib/i18n/utils";
-
 type Props = {
   lang: TypedLocale;
 };
 
-const WorksList: FC<Props> = async (props) => {
+const ExperiencesList: FC<Props> = async (props) => {
   const { lang } = props;
   const dictionary = await getDictionary(lang);
 
@@ -64,4 +63,4 @@ const WorksList: FC<Props> = async (props) => {
   );
 };
 
-export default WorksList;
+export default ExperiencesList;

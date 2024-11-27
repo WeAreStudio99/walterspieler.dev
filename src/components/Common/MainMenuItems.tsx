@@ -43,31 +43,45 @@ const MainMenuItems: FC<Props> = (props) => {
     <div className="flex h-full w-full flex-col justify-between p-4 text-sm">
       <nav className="flex h-full flex-col gap-3 pt-20 md:hidden md:pt-0">
         {items.map((item, i) => {
-          return (
-            <motion.div animate={controls} custom={i} key={item.label}>
-              <NavigationLink
-                external={item.external || false}
-                label={item.label || ""}
-                lang={lang}
-                path={item.path || ""}
-                type={item.type || ""}
-              />
-            </motion.div>
-          );
+          if (typeof item.page !== "number") {
+            return (
+              <motion.div animate={controls} custom={i} key={item.label}>
+                <NavigationLink
+                  external={item.external || false}
+                  label={item.label || ""}
+                  lang={lang}
+                  path={
+                    item.external && item.path
+                      ? item.path
+                      : item.page?.slug || ""
+                  }
+                  type={item.type || ""}
+                />
+              </motion.div>
+            );
+          }
         })}
       </nav>
       <nav className="hidden h-full flex-col gap-3 pt-20 md:flex md:pt-0">
         {items.map((item) => {
-          return (
-            <NavigationLink
-              external={item.external || false}
-              key={item.label}
-              label={item.label || ""}
-              lang={lang}
-              path={item.path || ""}
-              type={item.type || ""}
-            />
-          );
+          if (typeof item.page !== "number") {
+            return (
+              <NavigationLink
+                external={item.external || false}
+                key={item.id}
+                label={item.label || ""}
+                lang={lang}
+                path={
+                  item.external && item.path
+                    ? item.path
+                    : item.page?.slug === "home"
+                      ? "/"
+                      : item.page?.slug || ""
+                }
+                type={item.type || ""}
+              />
+            );
+          }
         })}
       </nav>
     </div>

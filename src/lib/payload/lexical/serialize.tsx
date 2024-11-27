@@ -1,6 +1,9 @@
 import { Fragment, JSX } from "react";
 
-import { A, H1, H2, H3, H4, P } from "@/components/Common/Typography";
+import Image from "next/image";
+
+import { A, H1, H2, H3, H4, LI, P, UL } from "@/components/Common/Typography";
+import { Media } from "@/payload-types";
 
 import {
   IS_BOLD,
@@ -20,6 +23,7 @@ import type {
 import type {
   LinkFields,
   SerializedLinkNode,
+  SerializedUploadNode,
 } from "@payloadcms/richtext-lexical";
 import type {
   SerializedElementNode,
@@ -57,7 +61,7 @@ function escapeHtml(value: string) {
   });
 }
 
-export function serializeLexical({ nodes }: Props): JSX.Element {
+export function SerializeLexical({ nodes }: Props): JSX.Element {
   return (
     <Fragment>
       {nodes?.map((_node, index): JSX.Element | null => {
@@ -126,9 +130,9 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
                   }
                 }
               }
-              return serializeLexical({ nodes: node.children });
+              return SerializeLexical({ nodes: node.children });
             } else {
-              return serializeLexical({ nodes: node.children });
+              return SerializeLexical({ nodes: node.children });
             }
           }
         };
@@ -178,18 +182,20 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
 
             type List = Extract<keyof JSX.IntrinsicElements, "ol" | "ul">;
             const Tag = node?.tag as List;
-            return (
-              <Tag className={node?.listType} key={index}>
-                {serializedChildren}
-              </Tag>
-            );
+
+            switch (Tag) {
+              case "ul":
+                return <UL key={index}>{serializedChildren}</UL>;
+              default:
+                break;
+            }
           }
           case "listitem": {
             const node = _node as SerializedListItemNode;
 
             if (node?.checked != null) {
               return (
-                <li
+                <LI
                   aria-checked={node.checked ? "true" : "false"}
                   className={`component--list-item-checkbox ${
                     node.checked
@@ -199,17 +205,12 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
                   key={index}
                   role="checkbox"
                   tabIndex={-1}
-                  value={node?.value}
                 >
                   {serializedChildren}
-                </li>
+                </LI>
               );
             } else {
-              return (
-                <li key={index} value={node?.value}>
-                  {serializedChildren}
-                </li>
-              );
+              return <LI key={index}>{serializedChildren}</LI>;
             }
           }
           case "quote": {
@@ -237,6 +238,31 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
               );
             } else {
               return <span key={index}>Internal link coming soon</span>;
+            }
+          }
+          case "upload": {
+            const node = _node as SerializedUploadNode;
+            const value = node.value as Media;
+
+            if (value.mimeType?.includes("image") && value.url) {
+              return (
+                <div
+                  className="m-auto my-5 flex w-fit flex-col justify-center bg-chinese-black shadow-2xl"
+                  key={node.id}
+                >
+                  <Image
+                    alt={value.alt}
+                    className="rounded-t-lg object-cover lg:max-h-[550px] lg:max-w-full"
+                    height={value.height ?? 0}
+                    sizes="(max-width: 768px) 90vw, (max-width: 1024px) 688px, 768px"
+                    src={value.url}
+                    width={value.width ?? 0}
+                  />
+                  <div className="rounded-b bg-chinese-black px-2 py-1 text-center text-xs text-stone-400 lg:max-w-[900px]">
+                    {value.alt}
+                  </div>
+                </div>
+              );
             }
           }
 

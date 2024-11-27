@@ -1,34 +1,34 @@
 import { FC } from "react";
 
+import clsx from "clsx";
 import Link from "next/link";
 import { TypedLocale } from "payload";
 
 import ExperiencesBlock from "@/components/Blocks/ExperiencesBlock";
 import MySocialsBlock from "@/components/Blocks/MySocialsBlock";
 import { Button } from "@/components/ui/button";
-import { serializeLexical } from "@/lib/payload/lexical/serialize";
+import { SerializeLexical } from "@/lib/payload/lexical/Serialize";
 import { Page } from "@/payload-types";
 
 type Props = {
   content: Page["content"];
   lang: TypedLocale;
+  className?: string;
 };
 
 export const Content: FC<Props> = (props) => {
-  const { content, lang } = props;
-  console.log(content);
+  const { content, lang, className } = props;
 
   return (
-    <div>
+    <div className={clsx(className)}>
       {content?.map((content) => {
         switch (content.blockType) {
           case "Paragraph":
             return (
               <div key={content?.id}>
-                {content?.paragraph?.root?.children &&
-                  serializeLexical({
-                    nodes: content.paragraph.root.children,
-                  })}
+                {content?.paragraph?.root?.children && (
+                  <SerializeLexical nodes={content.paragraph.root.children} />
+                )}
               </div>
             );
           case "Experience":
@@ -45,7 +45,10 @@ export const Content: FC<Props> = (props) => {
             );
           case "button":
             return (
-              <div className="my-6 flex justify-start" key={content?.id}>
+              <div
+                className={clsx("my-6 flex justify-start")}
+                key={content?.id}
+              >
                 {content.isExternal ? (
                   <Button variant="outline">
                     <a

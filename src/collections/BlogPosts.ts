@@ -12,16 +12,20 @@ export const BlogPosts: CollectionConfig = {
   },
   fields: [
     {
+      name: "slug",
+      type: "text",
+      required: true,
+      localized: true,
+    },
+    {
       name: "title",
       type: "text",
       required: true,
       localized: true,
     },
     {
-      name: "slug",
-      type: "text",
-      required: true,
-      localized: true,
+      name: "description",
+      type: "textarea",
     },
     {
       name: "authors",
@@ -33,12 +37,6 @@ export const BlogPosts: CollectionConfig = {
       name: "mainImage",
       type: "upload",
       relationTo: "media",
-      localized: true,
-    },
-    {
-      name: "excerpt",
-      type: "textarea",
-      required: true,
       localized: true,
     },
     {
