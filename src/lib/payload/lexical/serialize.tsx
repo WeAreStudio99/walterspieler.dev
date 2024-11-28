@@ -61,7 +61,7 @@ function escapeHtml(value: string) {
   });
 }
 
-export function SerializeLexical({ nodes }: Props): JSX.Element {
+export default function SerializeLexical({ nodes }: Props): JSX.Element {
   return (
     <Fragment>
       {nodes?.map((_node, index): JSX.Element | null => {
