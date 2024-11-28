@@ -3,9 +3,6 @@ import { withPayload } from "@payloadcms/next/withPayload";
 /** @type {import('next').NextConfig} */
 const nextConfig = async () => {
   return {
-    devIndicators: {
-      buildActivityPosition: "bottom-right",
-    },
     images: {
       remotePatterns: [
         {
