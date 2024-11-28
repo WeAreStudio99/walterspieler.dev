@@ -19,6 +19,7 @@
     "@hookform/resolvers": "^3.3.4",
     "@lexical/list": "^0.20.0",
     "@lexical/rich-text": "^0.20.0",
+    "@next/env": "^15.0.3",
     "@payloadcms/db-postgres": "3.2.1",
     "@payloadcms/email-resend": "3.2.1",
     "@payloadcms/next": "3.2.1",
@@ -54,7 +55,7 @@
     "react-dom": "19.0.0-rc-65a56d0e-20241020",
     "schema-dts": "^1.1.2",
     "sharp": "^0.33.5",
-    "tailwind-merge": "^2.4.0",
+    "tailwind-merge": "^2.5.5",
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
@@ -68,8 +69,8 @@
     "eslint-config-next": "15.0.3",
     "postcss": "^8.4.39",
     "prettier": "^3.3.3",
-    "prettier-plugin-tailwindcss": "^0.6.5",
-    "tailwindcss": "^3.4.6",
+    "prettier-plugin-tailwindcss": "^0.6.9",
+    "tailwindcss": "^3.4.15",
     "typescript": "^5.3.3"
   },
   "packageManager": "pnpm@9.4.0+sha512.f549b8a52c9d2b8536762f99c0722205efc5af913e77835dbccc3b0b0b2ca9e7dc8022b78062c17291c48e88749c70ce88eb5a74f1fa8c4bf5e18bb46c8bd83a",
