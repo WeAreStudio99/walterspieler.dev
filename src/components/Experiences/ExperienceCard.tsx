@@ -37,7 +37,7 @@ const ExperienceCard: FC<Props> = (props) => {
   const {
     title,
     description,
-    logo,
+    // logo,
     duration,
     link,
     lang,

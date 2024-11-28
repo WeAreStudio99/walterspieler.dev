@@ -7,12 +7,13 @@ import {
 import { enGB, fr } from "date-fns/locale";
 import { TypedLocale } from "payload";
 
+import { Dictionary } from "@/lib/i18n/types";
 import { getDictionary } from "@/lib/i18n/utils";
 
 const getPluralization = (
   count: number,
-  dictionary: any,
-  unit: string,
+  dictionary: Dictionary,
+  unit: keyof Dictionary["time"],
 ): string => {
   const isPlural = count > 1 ? "plural" : "singular";
   return `${count} ${dictionary.time[unit][isPlural]}`;

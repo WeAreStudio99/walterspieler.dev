@@ -16,10 +16,7 @@ type Props = {
   params: Params;
 };
 
-const WeAreStudio99Page: FC<Props> = async (props) => {
-  const { params } = props;
-  const { lang } = await params;
-
+const WeAreStudio99Page: FC<Props> = async () => {
   const jsonLd = getSchemaOrganization();
 
   return (

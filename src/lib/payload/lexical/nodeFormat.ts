@@ -57,7 +57,7 @@ export const IS_ALIGN_END = 6;
 
 // Reconciliation
 export const NON_BREAKING_SPACE = "\u00A0";
-const ZERO_WIDTH_SPACE = "\u200b";
+// const ZERO_WIDTH_SPACE = "\u200b";
 
 export const DOUBLE_LINE_BREAK = "\n\n";
 

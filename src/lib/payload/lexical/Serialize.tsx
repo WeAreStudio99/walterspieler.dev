@@ -16,10 +16,7 @@ import {
 } from "./nodeFormat";
 
 import type { SerializedListItemNode, SerializedListNode } from "@lexical/list";
-import type {
-  SerializedHeadingNode,
-  SerializedQuoteNode,
-} from "@lexical/rich-text";
+import type { SerializedHeadingNode } from "@lexical/rich-text";
 import type {
   LinkFields,
   SerializedLinkNode,
@@ -214,7 +211,7 @@ export default function SerializeLexical({ nodes }: Props): JSX.Element {
             }
           }
           case "quote": {
-            const node = _node as SerializedQuoteNode;
+            // const node = _node as SerializedQuoteNode;
 
             return <blockquote key={index}>{serializedChildren}</blockquote>;
           }

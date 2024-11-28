@@ -13,7 +13,18 @@ const compat = new FlatCompat({
 });
 
 const config = [
-  ...compat.extends("eslint-config-next", "next/core-web-vitals"),
+  ...compat.extends(
+    "eslint-config-next",
+    "next/core-web-vitals",
+    "next/typescript",
+  ),
+  {
+    ignores: [
+      "src/payload-types.ts",
+      "src/app/(payload)/**/*",
+      "src/migrations/**/*",
+    ],
+  },
   {
     rules: {
       "react/jsx-sort-props": "warn",

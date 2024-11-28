@@ -15,10 +15,7 @@ type Props = {
   params: Params;
 };
 
-const OpenSourcePage: FC<Props> = async (props) => {
-  const { params } = props;
-  const { lang } = await params;
-
+const OpenSourcePage: FC<Props> = async () => {
   return <ContentWrapper></ContentWrapper>;
 };
 
