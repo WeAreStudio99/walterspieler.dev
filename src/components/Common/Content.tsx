@@ -16,7 +16,7 @@ type Props = {
   className?: string;
 };
 
-export const Content: FC<Props> = (props) => {
+const Content: FC<Props> = (props) => {
   const { content, lang, className } = props;
 
   return (
@@ -71,3 +71,5 @@ export const Content: FC<Props> = (props) => {
     </div>
   );
 };
+
+export default Content;

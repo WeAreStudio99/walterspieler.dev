@@ -6,8 +6,8 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { TypedLocale } from "payload";
 
+import Content from "@/components/Common/Content";
 import { A, H1, P } from "@/components/Common/Typography";
-import { Content } from "@/components/Content";
 import { Separator } from "@/components/ui/separator";
 import { BlogPost, ExperiencePost } from "@/payload-types";
 

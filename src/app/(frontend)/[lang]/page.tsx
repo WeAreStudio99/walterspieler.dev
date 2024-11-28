@@ -3,9 +3,9 @@ import { FC } from "react";
 import { Metadata } from "next";
 import { getPayload, TypedLocale } from "payload";
 
+import Content from "@/components/Common/Content";
 import ScrollArea from "@/components/Common/ScrollArea";
 import { H1 } from "@/components/Common/Typography";
-import { Content } from "@/components/Content";
 import { Separator } from "@/components/ui/separator";
 import getSchemaProfilePage from "@/lib/schema-dts/profile-page";
 import { generateAlternates } from "@/lib/utils";
