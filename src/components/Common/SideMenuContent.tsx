@@ -15,7 +15,7 @@ import { cn } from "@/lib/utils";
 type Props = {
   lang: TypedLocale;
   title: string;
-  collection: "works" | "blog" | "experiences";
+  collection: "blog" | "experiences";
   data: {
     title: string;
     uid: string;

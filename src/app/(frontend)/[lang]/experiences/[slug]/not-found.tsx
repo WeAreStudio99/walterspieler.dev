@@ -6,8 +6,8 @@ const NotFoundPage: FC = () => {
   return (
     <Error404
       button={{
-        label: "Return to works",
-        path: "/works",
+        label: "Return to experiences",
+        path: "/experiences",
       }}
       label="This experience does not exist."
     />

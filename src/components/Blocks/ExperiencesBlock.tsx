@@ -2,7 +2,7 @@ import { FC } from "react";
 
 import { TypedLocale } from "payload";
 
-import WorkCard from "@/components/Works/WorkCard";
+import ExperienceCard from "@/components/Experiences/ExperienceCard";
 import { ExperiencePost } from "@/payload-types";
 
 type Props = {
@@ -22,7 +22,7 @@ const ExperiencesBlock: FC<Props> = (props) => {
           experiencePost.experience
         ) {
           return (
-            <WorkCard
+            <ExperienceCard
               buttonLabel={"Read more on"}
               description={experiencePost.experience.companyDescription || ""}
               duration={{

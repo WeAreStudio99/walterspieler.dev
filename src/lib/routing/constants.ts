@@ -2,7 +2,7 @@ import { PageKey, PageValue } from "./types";
 
 const PAGES: Record<PageKey<"first">, PageValue> = {
   home: { i18nKey: "home", url: "" },
-  works: { i18nKey: "works", url: "works" },
+  experiences: { i18nKey: "experiences", url: "experiences" },
   blog: { i18nKey: "blog", url: "blog" },
   weAreStudio99: { i18nKey: "weAreStudio99", url: "wearestudio99" },
 };

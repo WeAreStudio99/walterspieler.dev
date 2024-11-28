@@ -33,7 +33,7 @@ type Props = {
   }[];
 };
 
-const WorkCard: FC<Props> = (props) => {
+const ExperienceCard: FC<Props> = (props) => {
   const {
     title,
     description,
@@ -166,4 +166,4 @@ const WorkCard: FC<Props> = (props) => {
   );
 };
 
-export default WorkCard;
+export default ExperienceCard;
