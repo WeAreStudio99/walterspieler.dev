@@ -594,11 +594,9 @@ export interface BlogPostsSelect<T extends boolean = true> {
   meta?:
     | T
     | {
-        overview?: T;
         title?: T;
         description?: T;
         image?: T;
-        preview?: T;
         tags?:
           | T
           | {
@@ -676,11 +674,9 @@ export interface PagesSelect<T extends boolean = true> {
   meta?:
     | T
     | {
-        overview?: T;
         title?: T;
         description?: T;
         image?: T;
-        preview?: T;
         tags?:
           | T
           | {
@@ -757,11 +753,9 @@ export interface ExperiencePostsSelect<T extends boolean = true> {
   meta?:
     | T
     | {
-        overview?: T;
         title?: T;
         description?: T;
         image?: T;
-        preview?: T;
         tags?:
           | T
           | {

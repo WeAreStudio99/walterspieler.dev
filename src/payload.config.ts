@@ -1,7 +1,6 @@
 import path from "path";
 import { fileURLToPath } from "url";
 
-import { loadEnvConfig } from "@next/env";
 import { postgresAdapter } from "@payloadcms/db-postgres";
 import { resendAdapter } from "@payloadcms/email-resend";
 import { payloadCloudPlugin } from "@payloadcms/payload-cloud";
@@ -20,9 +19,6 @@ import { Socials } from "./collections/Socials";
 import { Users } from "./collections/Users";
 import { MainMenu } from "./globals/MainMenu";
 import { Me } from "./globals/Me";
-
-const projectDir = process.cwd();
-loadEnvConfig(projectDir);
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
