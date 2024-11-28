@@ -20,6 +20,8 @@ import { Users } from "./collections/Users";
 import { MainMenu } from "./globals/MainMenu";
 import { Me } from "./globals/Me";
 
+import "dotenv/config";
+
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
