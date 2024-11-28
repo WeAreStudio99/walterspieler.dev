@@ -7,11 +7,22 @@ import { TypedLocale } from "payload";
 
 import NavigationLink from "@/components/NavigationLink";
 import { MenuContext } from "@/contexts/MenuContext";
+import { I18N_CONFIG } from "@/lib/i18n/config";
 import { MainMenu } from "@/payload-types";
 
 type Props = {
   items: MainMenu["menuItems"];
   lang: TypedLocale;
+};
+
+const getPath = (slug: string, lang: TypedLocale) => {
+  if (slug === "home") {
+    return "/";
+  }
+
+  return I18N_CONFIG.defaultLocale === lang
+    ? `/${slug || ""}`
+    : `/${lang}/${slug || ""}`;
 };
 
 const MainMenuItems: FC<Props> = (props) => {
@@ -50,11 +61,7 @@ const MainMenuItems: FC<Props> = (props) => {
                   external={item.external || false}
                   label={item.label || ""}
                   lang={lang}
-                  path={
-                    item.external && item.path
-                      ? item.path
-                      : item.page?.slug || ""
-                  }
+                  path={getPath(item.page?.slug || "", lang)}
                   type={item.type || ""}
                 />
               </motion.div>
@@ -71,13 +78,7 @@ const MainMenuItems: FC<Props> = (props) => {
                 key={item.id}
                 label={item.label || ""}
                 lang={lang}
-                path={
-                  item.external && item.path
-                    ? item.path
-                    : item.page?.slug === "home"
-                      ? "/"
-                      : item.page?.slug || ""
-                }
+                path={getPath(item.page?.slug || "", lang)}
                 type={item.type || ""}
               />
             );

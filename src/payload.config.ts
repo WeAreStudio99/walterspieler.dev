@@ -66,7 +66,7 @@ export default buildConfig({
   sharp,
   plugins: [
     seoPlugin({
-      collections: ["blog-posts", "pages", "experiencePosts"],
+      collections: ["blogPosts", "pages", "experiencePosts"],
       uploadsCollection: "media",
       generateTitle: ({ doc }) => `${doc.title} | Thibault Walterspieler`,
       generateDescription: ({ doc }) => doc.excerpt || doc.description || "",

@@ -17,7 +17,7 @@ type CommonProps = {
 };
 
 type WorkProps = {
-  collection: "work";
+  collection: "experiences";
   content: ExperiencePost;
 };
 
@@ -58,18 +58,21 @@ const Article: FC<Props> = (props) => {
         <span className="mb-5 text-stone-400">
           <P>{content.description}</P>
         </span>
-        {collection === "work" && <Separator />}
-        {collection === "blog" && (
-          <Image
-            alt={""}
-            className="rounded-t-lg object-cover lg:max-h-[550px] lg:max-w-full"
-            height={0}
-            priority={true}
-            sizes="(max-width: 768px) 90vw, (max-width: 1024px) 688px, 768px"
-            src={""}
-            width={0}
-          />
-        )}
+        {collection === "experiences" && <Separator />}
+        {collection === "blog" &&
+          content.mainImage &&
+          typeof content.mainImage !== "number" &&
+          content.mainImage.url && (
+            <Image
+              alt={content.mainImage.alt || "Main article image"}
+              className="rounded-t-lg object-cover lg:max-h-[550px] lg:max-w-full"
+              height={content.mainImage.height || 0}
+              priority={true}
+              sizes="(max-width: 768px) 90vw, (max-width: 1024px) 688px, 768px"
+              src={content.mainImage.url}
+              width={content.mainImage.width || 0}
+            />
+          )}
       </div>
       <Content content={content.content} lang={lang} />
     </motion.article>

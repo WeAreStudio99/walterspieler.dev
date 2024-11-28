@@ -15,7 +15,7 @@ const ExperiencesList: FC<Props> = async (props) => {
   return (
     <div className="wrapper h-screen w-full bg-eerie-dark px-5 py-10 md:py-24">
       <H1 className="sticky top-10 z-30 mb-8">
-        {dictionary.firstLevelPages.works}
+        {dictionary.firstLevelPages.experiences}
       </H1>
       <div className="content mx-auto w-full">
         {/* {workPages.map((work) => {

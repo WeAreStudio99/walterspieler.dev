@@ -9,7 +9,7 @@ const NotFoundPage: FC = () => {
         label: "Return to works",
         path: "/works",
       }}
-      label="This work does not exist."
+      label="This experience does not exist."
     />
   );
 };

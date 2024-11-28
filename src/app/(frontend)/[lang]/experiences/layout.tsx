@@ -50,7 +50,7 @@ const ExperiencesLayout: FC<Props> = async (props) => {
               .map((post) => {
                 if (typeof post.experience !== "number") {
                   return {
-                    title: post.experience.companyName,
+                    title: post.title,
                     uid: post.slug,
                     startDate: post.experience?.startDate,
                     endDate: post.experience?.endDate,

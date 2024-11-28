@@ -16,7 +16,7 @@ import { getDictionary } from "@/lib/i18n/utils";
 type Props = {
   title: string;
   lang: TypedLocale;
-  collection: "work" | "blog";
+  collection: "experiences" | "blog";
 };
 
 const ArticleBreadcrumb: FC<Props> = async (props) => {
@@ -38,7 +38,7 @@ const ArticleBreadcrumb: FC<Props> = async (props) => {
             {collection === "blog" ? (
               <Link href="/blog">{dictionary.firstLevelPages.blog}</Link>
             ) : (
-              <Link href="/works">
+              <Link href="/experiences">
                 {dictionary.firstLevelPages.experiences}
               </Link>
             )}

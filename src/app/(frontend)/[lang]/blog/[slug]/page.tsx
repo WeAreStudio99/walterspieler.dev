@@ -2,7 +2,7 @@ import { FC } from "react";
 
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { TypedLocale, getPayload } from "payload";
+import { getPayload, TypedLocale } from "payload";
 
 import Article from "@/components/Articles/Article";
 import ArticleBreadcrumb from "@/components/Articles/ArticleBreadcrumb";
@@ -20,13 +20,13 @@ type Props = {
   params: Params;
 };
 
-const getExperiencePost = async (slug: string, lang: TypedLocale) => {
+const getBlogPost = async (slug: string, lang: TypedLocale) => {
   const payload = await getPayload({
     config,
   });
 
-  const experiencesPosts = await payload.find({
-    collection: "experiencePosts",
+  const blogPosts = await payload.find({
+    collection: "blogPosts",
     locale: lang,
     where: {
       slug: {
@@ -35,23 +35,23 @@ const getExperiencePost = async (slug: string, lang: TypedLocale) => {
     },
   });
 
-  if (!experiencesPosts.docs[0]) {
+  if (!blogPosts.docs[0]) {
     notFound();
   }
 
-  return experiencesPosts.docs[0];
+  return blogPosts.docs[0];
 };
 
-const ExperiencePage: FC<Props> = async (props) => {
+const BlogPostPage: FC<Props> = async (props) => {
   const { params } = props;
   const { lang, slug } = await params;
 
-  const experiencesPost = await getExperiencePost(slug, lang);
+  const blogPost = await getBlogPost(slug, lang);
 
   const jsonLd = getSchemaNewsArticle(
-    experiencesPost.meta?.title || experiencesPost.title,
-    experiencesPost.createdAt,
-    experiencesPost.updatedAt,
+    blogPost.meta?.title || blogPost.title,
+    blogPost.createdAt,
+    blogPost.updatedAt,
   );
 
   return (
@@ -64,13 +64,13 @@ const ExperiencePage: FC<Props> = async (props) => {
         <div className="content-wrapper mt-14 lg:mt-0">
           <div className="content">
             <ArticleBreadcrumb
-              collection="experiences"
+              collection="blog"
               lang={lang}
-              title={experiencesPost.title}
+              title={blogPost.title}
             />
             <Article
-              collection="experiences"
-              content={experiencesPost}
+              collection="blog"
+              content={blogPost}
               lang={lang}
               slug={slug}
             />
@@ -81,26 +81,23 @@ const ExperiencePage: FC<Props> = async (props) => {
   );
 };
 
+export default BlogPostPage;
+
 export async function generateMetadata(props: Props): Promise<Metadata> {
   const { params } = props;
   const { lang, slug } = await params;
 
-  const experiencesPost = await getExperiencePost(slug, lang);
+  const blogPost = await getBlogPost(slug, lang);
 
   return {
-    title:
-      experiencesPost.meta?.title ||
-      `${experiencesPost.title} | Thibault Walterspieler`,
-    description:
-      experiencesPost.meta?.description || experiencesPost.description,
-    alternates: await generateAlternates(`experiences/${slug}`, lang),
+    title: blogPost.meta?.title || `${blogPost.title} | Thibault Walterspieler`,
+    description: blogPost.meta?.description || blogPost.description,
+    alternates: await generateAlternates(`blog/${slug}`, lang),
     twitter: {
       card: "summary_large_image",
       title:
-        experiencesPost.meta?.title ||
-        `${experiencesPost.title} | Thibault Walterspieler`,
-      description:
-        experiencesPost.meta?.description || experiencesPost.description || "",
+        blogPost.meta?.title || `${blogPost.title} | Thibault Walterspieler`,
+      description: blogPost.meta?.description || blogPost.description || "",
       images: {
         url: "/images/og/default.png",
         alt: "Thibault Walterspieler | Fullstack engineer",
@@ -110,18 +107,17 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
     openGraph: {
       type: "article",
       title:
-        experiencesPost.meta?.title ||
-        `${experiencesPost.title} | Thibault Walterspieler`,
-      publishedTime: experiencesPost.createdAt,
-      modifiedTime: experiencesPost.updatedAt,
-      authors: experiencesPost.meta?.authors
+        blogPost.meta?.title || `${blogPost.title} | Thibault Walterspieler`,
+      publishedTime: blogPost.createdAt,
+      modifiedTime: blogPost.updatedAt,
+      authors: blogPost.meta?.authors
         ?.map((author) => {
           if (typeof author.value !== "number") {
             return author.value.fullName;
           }
         })
         .filter((author): author is string => !!author),
-      tags: experiencesPost.meta?.tags?.map((tag) => tag.tag || "") || [],
+      tags: blogPost.meta?.tags?.map((tag) => tag.tag || "") || [],
       url: `/`,
       images: {
         url: "/images/og/default.png",
@@ -131,5 +127,3 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
     },
   };
 }
-
-export default ExperiencePage;

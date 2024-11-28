@@ -54,8 +54,13 @@ const NavigationLink: FC<Props> = (props) => {
         );
       }
     }
+
+    if (external) {
+      return false;
+    }
+
     return isActive;
-  }, [path, pathname, lang]);
+  }, [path, external, pathname, lang]);
 
   return (
     <Link

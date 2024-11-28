@@ -76,7 +76,7 @@ const WorkCard: FC<Props> = (props) => {
         )}
       />
       <motion.div
-        // className="pointer-events-none absolute -inset-px rounded-xl opacity-0 transition duration-300 group-hover:opacity-100"
+        className="pointer-events-none absolute -inset-px rounded-xl opacity-0 transition duration-300 group-hover:opacity-100"
         style={{
           background: useMotionTemplate`
 						radial-gradient(200px circle at ${mouseX}px ${mouseY}px, rgba(22, 24, 27, 0.4), transparent 80%)

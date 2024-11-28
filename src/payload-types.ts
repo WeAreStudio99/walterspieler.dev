@@ -186,6 +186,23 @@ export interface BlogPost {
       )[]
     | null;
   relatedExperiencePosts?: (number | ExperiencePost)[] | null;
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    image?: (number | null) | Media;
+    tags?:
+      | {
+          tag?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+    authors?:
+      | {
+          relationTo: 'users';
+          value: number | User;
+        }[]
+      | null;
+  };
   updatedAt: string;
   createdAt: string;
 }
@@ -574,6 +591,22 @@ export interface BlogPostsSelect<T extends boolean = true> {
             };
       };
   relatedExperiencePosts?: T;
+  meta?:
+    | T
+    | {
+        overview?: T;
+        title?: T;
+        description?: T;
+        image?: T;
+        preview?: T;
+        tags?:
+          | T
+          | {
+              tag?: T;
+              id?: T;
+            };
+        authors?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }
