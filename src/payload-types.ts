@@ -12,12 +12,12 @@ export interface Config {
   };
   collections: {
     users: User;
-    media: Media;
-    blogPosts: BlogPost;
     pages: Page;
-    experiences: Experience;
+    blogPosts: BlogPost;
     experiencePosts: ExperiencePost;
+    experiences: Experience;
     socials: Social;
+    media: Media;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -29,12 +29,12 @@ export interface Config {
   };
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
-    media: MediaSelect<false> | MediaSelect<true>;
-    blogPosts: BlogPostsSelect<false> | BlogPostsSelect<true>;
     pages: PagesSelect<false> | PagesSelect<true>;
-    experiences: ExperiencesSelect<false> | ExperiencesSelect<true>;
+    blogPosts: BlogPostsSelect<false> | BlogPostsSelect<true>;
     experiencePosts: ExperiencePostsSelect<false> | ExperiencePostsSelect<true>;
+    experiences: ExperiencesSelect<false> | ExperiencesSelect<true>;
     socials: SocialsSelect<false> | SocialsSelect<true>;
+    media: MediaSelect<false> | MediaSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -100,35 +100,12 @@ export interface User {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "media".
+ * via the `definition` "pages".
  */
-export interface Media {
+export interface Page {
   id: number;
-  alt: string;
-  _key?: string | null;
-  updatedAt: string;
-  createdAt: string;
-  url?: string | null;
-  thumbnailURL?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
-  focalX?: number | null;
-  focalY?: number | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "blogPosts".
- */
-export interface BlogPost {
-  id: number;
-  slug: string;
   title: string;
-  description?: string | null;
-  authors?: (number | User)[] | null;
-  mainImage?: (number | null) | Media;
+  slug: string;
   content?:
     | (
         | {
@@ -183,9 +160,29 @@ export interface BlogPost {
             blockName?: string | null;
             blockType: 'Quote';
           }
+        | {
+            experiencePost?: (number | ExperiencePost)[] | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'Experience';
+          }
+        | {
+            socials?: (number | Social)[] | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'MySocials';
+          }
+        | {
+            label?: string | null;
+            isExternal?: boolean | null;
+            page?: (number | null) | Page;
+            externalUrl?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'button';
+          }
       )[]
     | null;
-  relatedExperiencePosts?: (number | ExperiencePost)[] | null;
   meta?: {
     title?: string | null;
     description?: string | null;
@@ -205,6 +202,26 @@ export interface BlogPost {
   };
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media".
+ */
+export interface Media {
+  id: number;
+  alt: string;
+  _key?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -319,12 +336,26 @@ export interface Experience {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "pages".
+ * via the `definition` "socials".
  */
-export interface Page {
+export interface Social {
   id: number;
-  title: string;
+  name: string;
+  link: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "blogPosts".
+ */
+export interface BlogPost {
+  id: number;
   slug: string;
+  title: string;
+  description?: string | null;
+  authors?: (number | User)[] | null;
+  mainImage?: (number | null) | Media;
   content?:
     | (
         | {
@@ -379,29 +410,9 @@ export interface Page {
             blockName?: string | null;
             blockType: 'Quote';
           }
-        | {
-            experiencePost?: (number | ExperiencePost)[] | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'Experience';
-          }
-        | {
-            socials?: (number | Social)[] | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'MySocials';
-          }
-        | {
-            label?: string | null;
-            isExternal?: boolean | null;
-            page?: (number | null) | Page;
-            externalUrl?: string | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'button';
-          }
       )[]
     | null;
+  relatedExperiencePosts?: (number | ExperiencePost)[] | null;
   meta?: {
     title?: string | null;
     description?: string | null;
@@ -424,17 +435,6 @@ export interface Page {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "socials".
- */
-export interface Social {
-  id: number;
-  name: string;
-  link: string;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -445,28 +445,28 @@ export interface PayloadLockedDocument {
         value: number | User;
       } | null)
     | ({
-        relationTo: 'media';
-        value: number | Media;
+        relationTo: 'pages';
+        value: number | Page;
       } | null)
     | ({
         relationTo: 'blogPosts';
         value: number | BlogPost;
       } | null)
     | ({
-        relationTo: 'pages';
-        value: number | Page;
+        relationTo: 'experiencePosts';
+        value: number | ExperiencePost;
       } | null)
     | ({
         relationTo: 'experiences';
         value: number | Experience;
       } | null)
     | ({
-        relationTo: 'experiencePosts';
-        value: number | ExperiencePost;
-      } | null)
-    | ({
         relationTo: 'socials';
         value: number | Social;
+      } | null)
+    | ({
+        relationTo: 'media';
+        value: number | Media;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -528,85 +528,6 @@ export interface UsersSelect<T extends boolean = true> {
   hash?: T;
   loginAttempts?: T;
   lockUntil?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "media_select".
- */
-export interface MediaSelect<T extends boolean = true> {
-  alt?: T;
-  _key?: T;
-  updatedAt?: T;
-  createdAt?: T;
-  url?: T;
-  thumbnailURL?: T;
-  filename?: T;
-  mimeType?: T;
-  filesize?: T;
-  width?: T;
-  height?: T;
-  focalX?: T;
-  focalY?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "blogPosts_select".
- */
-export interface BlogPostsSelect<T extends boolean = true> {
-  slug?: T;
-  title?: T;
-  description?: T;
-  authors?: T;
-  mainImage?: T;
-  content?:
-    | T
-    | {
-        Paragraph?:
-          | T
-          | {
-              paragraph?: T;
-              id?: T;
-              blockName?: T;
-            };
-        Image?:
-          | T
-          | {
-              image?: T;
-              id?: T;
-              blockName?: T;
-            };
-        Code?:
-          | T
-          | {
-              code?: T;
-              id?: T;
-              blockName?: T;
-            };
-        Quote?:
-          | T
-          | {
-              quote?: T;
-              id?: T;
-              blockName?: T;
-            };
-      };
-  relatedExperiencePosts?: T;
-  meta?:
-    | T
-    | {
-        title?: T;
-        description?: T;
-        image?: T;
-        tags?:
-          | T
-          | {
-              tag?: T;
-              id?: T;
-            };
-        authors?: T;
-      };
-  updatedAt?: T;
-  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -690,22 +611,61 @@ export interface PagesSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "experiences_select".
+ * via the `definition` "blogPosts_select".
  */
-export interface ExperiencesSelect<T extends boolean = true> {
-  companyName?: T;
-  companyLogo?: T;
-  companyDescription?: T;
-  companyWebsite?: T;
-  startDate?: T;
-  endDate?: T;
-  usedTechnologies?:
+export interface BlogPostsSelect<T extends boolean = true> {
+  slug?: T;
+  title?: T;
+  description?: T;
+  authors?: T;
+  mainImage?: T;
+  content?:
     | T
     | {
-        technology?: T;
-        id?: T;
+        Paragraph?:
+          | T
+          | {
+              paragraph?: T;
+              id?: T;
+              blockName?: T;
+            };
+        Image?:
+          | T
+          | {
+              image?: T;
+              id?: T;
+              blockName?: T;
+            };
+        Code?:
+          | T
+          | {
+              code?: T;
+              id?: T;
+              blockName?: T;
+            };
+        Quote?:
+          | T
+          | {
+              quote?: T;
+              id?: T;
+              blockName?: T;
+            };
       };
   relatedExperiencePosts?: T;
+  meta?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+        tags?:
+          | T
+          | {
+              tag?: T;
+              id?: T;
+            };
+        authors?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }
@@ -769,6 +729,27 @@ export interface ExperiencePostsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "experiences_select".
+ */
+export interface ExperiencesSelect<T extends boolean = true> {
+  companyName?: T;
+  companyLogo?: T;
+  companyDescription?: T;
+  companyWebsite?: T;
+  startDate?: T;
+  endDate?: T;
+  usedTechnologies?:
+    | T
+    | {
+        technology?: T;
+        id?: T;
+      };
+  relatedExperiencePosts?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "socials_select".
  */
 export interface SocialsSelect<T extends boolean = true> {
@@ -776,6 +757,25 @@ export interface SocialsSelect<T extends boolean = true> {
   link?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media_select".
+ */
+export interface MediaSelect<T extends boolean = true> {
+  alt?: T;
+  _key?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

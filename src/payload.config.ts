@@ -32,12 +32,12 @@ export default buildConfig({
   },
   collections: [
     Users,
-    Media,
-    BlogPosts,
     Pages,
-    Experiences,
+    BlogPosts,
     ExperiencePosts,
+    Experiences,
     Socials,
+    Media,
   ],
   globals: [Me, MainMenu],
   localization: {
