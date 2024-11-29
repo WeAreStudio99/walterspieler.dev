@@ -36,14 +36,14 @@ const MainMenuItems: FC<Props> = (props) => {
       controls.start((i) => ({
         opacity: 1,
         scale: 1,
-        filter: "blur(0px)",
+        filter: "blur-sm(0px)",
         transition: { delay: i * 0.1 + 1.1 },
       }));
     } else {
       controls.start({
         opacity: 0,
         scale: 0.3,
-        filter: "blur(20px)",
+        filter: "blur-sm(20px)",
       });
     }
   }, [controls, isMenuOpen]);

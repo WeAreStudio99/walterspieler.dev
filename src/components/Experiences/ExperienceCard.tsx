@@ -72,7 +72,7 @@ const ExperienceCard: FC<Props> = (props) => {
     >
       <div
         className={cn(
-          "absolute bottom-0 left-0 right-5 h-px w-80 bg-gradient-to-l from-transparent via-white/30 via-10% to-transparent",
+          "absolute bottom-0 left-0 right-5 h-px w-80 bg-linear-to-l from-transparent via-white/30 via-10% to-transparent",
         )}
       />
       <motion.div

@@ -1,13 +1,98 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@variant dark (&:is(.dark *));
+
+@theme {
+  --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+
+  --shadow-grey: 0 0 20px #47505a;
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+  --animate-flip: flip 6s infinite steps(2, end);
+  --animate-rotate: rotate 3s linear infinite both;
+  --animate-text-gradient: text-gradient 2.5s linear infinite;
+
+  --color-eerie-dark: #15181b;
+  --color-eerie-light: #1a1d21;
+
+  --color-metal: #1e2226;
+
+  --color-pearl-light: #29cca4;
+  --color-pearl-dark: #5c9e8a;
+
+  --color-grey: #47505a;
+  --color-chinese-black: #111315;
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+  @keyframes flip {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes rotate {
+    to {
+      transform: rotate(90deg);
+    }
+  }
+  @keyframes text-gradient {
+    to {
+      background-position: 200% center;
+    }
+  }
+}
+
+@utility container {
+  margin-inline: auto;
+  padding-inline: 2rem;
+  @media (width >= theme(--breakpoint-sm)) {
+    max-width: none;
+  }
+  @media (width >= 1400px) {
+    max-width: 1400px;
+  }
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+}
 
 .scrollable-area {
   @apply h-full max-h-[100dvh] min-h-[100dvh] overflow-y-auto overflow-x-hidden;
 }
 
 .content-wrapper {
-  @apply relative z-[1] w-full px-6 pb-8 pt-10 md:pt-7 lg:px-8 lg:pb-16 lg:pt-20;
+  @apply relative z-1 w-full px-6 pb-8 pt-10 md:pt-7 lg:px-8 lg:pb-16 lg:pt-20;
 }
 
 .content {

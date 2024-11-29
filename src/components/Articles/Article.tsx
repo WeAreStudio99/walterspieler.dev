@@ -29,8 +29,8 @@ type BlogProps = {
 type Props = (WorkProps | BlogProps) & CommonProps;
 
 const variants = {
-  initial: { opacity: 0, y: 25, filter: "blur(15px)" },
-  animate: { opacity: 1, y: 0, filter: "blur(0px)" },
+  initial: { opacity: 0, y: 25, filter: "blur-sm(15px)" },
+  animate: { opacity: 1, y: 0, filter: "blur-sm(0px)" },
   exit: { opacity: 0, y: -50 },
 };
 

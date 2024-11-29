@@ -23,7 +23,7 @@ const H2 = forwardRef<
 >(({ className, ...props }, ref) => (
   <h2
     className={cn(
-      `scroll-m-20 border-b border-grey pb-2 text-3xl font-semibold tracking-tight text-stone-50 first:mt-0 [&:not(:first-child)]:mt-6`,
+      `scroll-m-20 border-b border-grey pb-2 text-3xl font-semibold tracking-tight text-stone-50 first:mt-0 not-first:mt-6`,
       className,
     )}
     ref={ref}
@@ -68,7 +68,7 @@ const P = forwardRef<
 >(({ className, ...props }, ref) => (
   <p
     className={cn(
-      `leading-7 text-stone-300 [&:not(:first-child)]:mt-6`,
+      `leading-7 text-stone-300 not-first:mt-6`,
       className,
     )}
     ref={ref}
