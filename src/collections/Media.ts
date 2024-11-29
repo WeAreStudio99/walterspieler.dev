@@ -15,4 +15,14 @@ export const Media: CollectionConfig = {
     },
   ],
   upload: true,
+  hooks: {
+    beforeOperation: [
+      ({ req, operation }) => {
+        if ((operation === "create" || operation === "update") && req.file) {
+          const randomId = crypto.randomUUID();
+          req.file.name = `walterspieler_${randomId}`;
+        }
+      },
+    ],
+  },
 };
