@@ -13,6 +13,9 @@ export const BlogPosts: CollectionConfig = {
   admin: {
     useAsTitle: "title",
   },
+  versions: {
+    drafts: { autosave: true },
+  },
   fields: [
     {
       name: "slug",

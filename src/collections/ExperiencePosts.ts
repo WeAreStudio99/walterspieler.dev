@@ -13,6 +13,9 @@ export const ExperiencePosts: CollectionConfig = {
   admin: {
     useAsTitle: "title",
   },
+  versions: {
+    drafts: { autosave: true },
+  },
   fields: [
     {
       name: "slug",
