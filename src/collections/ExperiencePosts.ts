@@ -29,6 +29,7 @@ export const ExperiencePosts: CollectionConfig = {
     },
     {
       name: "description",
+      localized: true,
       type: "textarea",
     },
     {
