@@ -7,6 +7,7 @@ import Content from "@/components/Common/Content";
 import ScrollArea from "@/components/Common/ScrollArea";
 import { H1 } from "@/components/Common/Typography";
 import { Separator } from "@/components/ui/separator";
+import { I18N_CONFIG } from "@/lib/i18n/config";
 import getSchemaProfilePage from "@/lib/schema-dts/profile-page";
 import { generateAlternates } from "@/lib/utils";
 import config from "@payload-config";
@@ -63,7 +64,7 @@ const HomeLang: FC<Props> = async (props) => {
       />
       <ScrollArea className="flex flex-col">
         <div className="content-wrapper">
-          <div className="content duration-700 animate-in fade-in">
+          <div className="content animate-in fade-in duration-700">
             <H1 className="text-spotlight mb-4 max-w-[60vw] md:mb-4 md:max-w-full">
               {me.fullName}
               <span
@@ -90,7 +91,15 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   const me = await getMe(lang);
   const homePage = await getHomePage(lang);
 
-  const imagePath = `/images/og/main_${lang}.png`;
+  let image;
+
+  if (
+    typeof homePage.meta?.image !== "number" &&
+    homePage.meta &&
+    homePage.meta?.image
+  ) {
+    image = homePage.meta.image;
+  }
 
   return {
     metadataBase: new URL(BASE_URL),
@@ -111,20 +120,22 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
       title: homePage.meta?.title || "",
       description: homePage.meta?.description || "",
       images: {
-        url: imagePath,
-        alt: homePage.meta?.title || "",
-        type: "image/png",
+        url: image?.url || `/images/og/main_${lang}.png`,
+        alt: image?.alt || "",
+        type: image?.mimeType || "image/png",
       },
     },
     openGraph: {
       type: "website",
       title: homePage.meta?.title || "",
+      siteName: "Portfolio of Thibault Walterspieler",
       description: homePage.meta?.description || "",
-      url: `/`,
+      locale: lang,
+      url: lang === I18N_CONFIG.defaultLocale ? "/" : `/${lang}`,
       images: {
-        url: imagePath,
-        alt: homePage.meta?.title || "",
-        type: "image/png",
+        url: image?.url || `/images/og/main_${lang}.png`,
+        alt: image?.alt || "",
+        type: image?.mimeType || "image/png",
       },
     },
   };
