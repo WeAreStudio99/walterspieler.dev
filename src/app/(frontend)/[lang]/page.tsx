@@ -7,12 +7,9 @@ import Content from "@/components/Common/Content";
 import ScrollArea from "@/components/Common/ScrollArea";
 import { H1 } from "@/components/Common/Typography";
 import { Separator } from "@/components/ui/separator";
-import { I18N_CONFIG } from "@/lib/i18n/config";
 import getSchemaProfilePage from "@/lib/schema-dts/profile-page";
-import { generateAlternates } from "@/lib/utils";
+import getMetadata from "@/lib/seo/metadata";
 import config from "@payload-config";
-
-import { BASE_URL } from "../../../../next.constants.mjs";
 
 type Params = Promise<{
   lang: TypedLocale;
@@ -88,57 +85,9 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   const { params } = props;
   const { lang } = await params;
 
-  const me = await getMe(lang);
-  const homePage = await getHomePage(lang);
+  const page = await getHomePage(lang);
 
-  let image;
-
-  if (
-    typeof homePage.meta?.image !== "number" &&
-    homePage.meta &&
-    homePage.meta?.image
-  ) {
-    image = homePage.meta.image;
-  }
-
-  return {
-    metadataBase: new URL(BASE_URL),
-    publisher: me.fullName,
-    creator: me.fullName,
-    title: homePage.meta?.title,
-    description: homePage.meta?.description,
-    alternates: await generateAlternates("", lang),
-    icons: [
-      {
-        rel: "icon",
-        url: "/favicon.ico",
-        sizes: "any",
-      },
-    ],
-    twitter: {
-      card: "summary_large_image",
-      title: homePage.meta?.title || "",
-      description: homePage.meta?.description || "",
-      images: {
-        url: image?.url || `/images/og/main_${lang}.png`,
-        alt: image?.alt || "",
-        type: image?.mimeType || "image/png",
-      },
-    },
-    openGraph: {
-      type: "website",
-      title: homePage.meta?.title || "",
-      siteName: "Portfolio of Thibault Walterspieler",
-      description: homePage.meta?.description || "",
-      locale: lang,
-      url: lang === I18N_CONFIG.defaultLocale ? "/" : `/${lang}`,
-      images: {
-        url: image?.url || `/images/og/main_${lang}.png`,
-        alt: image?.alt || "",
-        type: image?.mimeType || "image/png",
-      },
-    },
-  };
+  return getMetadata(page.meta, lang);
 }
 
 export default HomeLang;

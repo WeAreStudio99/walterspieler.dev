@@ -836,7 +836,7 @@ export interface MainMenu {
   menuItems?:
     | {
         label: string;
-        type: 'home' | 'blog' | 'lab' | 'experiences' | 'contact' | 'weAreStudio99' | 'other';
+        type: 'home' | 'blog' | 'lab' | 'experiences' | 'contact' | '99Stud' | 'other';
         external: boolean;
         page?: (number | null) | Page;
         path?: string | null;

@@ -41,8 +41,8 @@ export const MainMenu: GlobalConfig = {
               value: "contact",
             },
             {
-              label: "WeAreStudio99",
-              value: "weAreStudio99",
+              label: "99Stud",
+              value: "99Stud",
             },
             {
               label: "Other",

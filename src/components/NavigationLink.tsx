@@ -26,7 +26,7 @@ type Props = {
     | "lab"
     | "experiences"
     | "contact"
-    | "weAreStudio99"
+    | "99Stud"
     | "other";
   lang: TypedLocale;
   external?: boolean;
@@ -65,7 +65,7 @@ const NavigationLink: FC<Props> = (props) => {
   return (
     <Link
       className={cn(
-        "group relative flex items-center justify-between rounded-lg border border-grey bg-metal p-4 transition-all duration-200 hover:scale-[1.01] active:scale-[0.98] active:bg-eerie-light",
+        "group border-grey bg-metal active:bg-eerie-light relative flex items-center justify-between rounded-lg border p-4 transition-all duration-200 hover:scale-[1.01] active:scale-[0.98]",
         {
           "bg-chinese-black": isActive,
           "hover:bg-eerie-light": !isActive,
@@ -81,7 +81,7 @@ const NavigationLink: FC<Props> = (props) => {
         {type === "home" && <BoltIcon className="w-4" />}
         {type === "blog" && <Sparkle className="w-4" />}
         {type === "experiences" && <DraftingCompass className="w-4" />}
-        {type === "weAreStudio99" && <WeAreStudio99 className="w-4" />}
+        {type === "99Stud" && <WeAreStudio99 className="w-4" />}
         {type === "contact" && <Nfc className="w-4" />}
         <span className="overflow-hidden text-ellipsis">{label}</span>
       </div>

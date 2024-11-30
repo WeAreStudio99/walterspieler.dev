@@ -8,7 +8,7 @@ import Article from "@/components/Articles/Article";
 import ArticleBreadcrumb from "@/components/Articles/ArticleBreadcrumb";
 import ScrollArea from "@/components/Common/ScrollArea";
 import getSchemaNewsArticle from "@/lib/schema-dts/news-article";
-import { generateAlternates } from "@/lib/utils";
+import getMetadata from "@/lib/seo/metadata";
 import config from "@payload-config";
 
 type Params = Promise<{
@@ -81,49 +81,13 @@ const BlogPostPage: FC<Props> = async (props) => {
   );
 };
 
-export default BlogPostPage;
-
 export async function generateMetadata(props: Props): Promise<Metadata> {
   const { params } = props;
   const { lang, slug } = await params;
 
-  const blogPost = await getBlogPost(slug, lang);
+  const page = await getBlogPost(slug, lang);
 
-  return {
-    title: blogPost.meta?.title || `${blogPost.title} | Thibault Walterspieler`,
-    description: blogPost.meta?.description || blogPost.description,
-    alternates: await generateAlternates(`blog/${slug}`, lang),
-    twitter: {
-      card: "summary_large_image",
-      title:
-        blogPost.meta?.title || `${blogPost.title} | Thibault Walterspieler`,
-      description: blogPost.meta?.description || blogPost.description || "",
-      images: {
-        url: "/images/og/default.png",
-        alt: "Thibault Walterspieler | Fullstack engineer",
-        type: "image/png",
-      },
-    },
-    openGraph: {
-      type: "article",
-      title:
-        blogPost.meta?.title || `${blogPost.title} | Thibault Walterspieler`,
-      publishedTime: blogPost.createdAt,
-      modifiedTime: blogPost.updatedAt,
-      authors: blogPost.meta?.authors
-        ?.map((author) => {
-          if (typeof author.value !== "number") {
-            return author.value.fullName;
-          }
-        })
-        .filter((author): author is string => !!author),
-      tags: blogPost.meta?.tags?.map((tag) => tag.tag || "") || [],
-      url: `/`,
-      images: {
-        url: "/images/og/default.png",
-        alt: "Thibault Walterspieler | Fullstack engineer",
-        type: "image/png",
-      },
-    },
-  };
+  return getMetadata(page.meta, lang);
 }
+
+export default BlogPostPage;

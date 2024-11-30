@@ -3,7 +3,7 @@
     "home": "Home",
     "experiences": "Experiences",
     "blog": "Blog",
-    "weAreStudio99": "WeAreStudio99"
+    "99Stud": "99Stud"
   },
   "home": {
     "metadata": {
@@ -26,10 +26,10 @@
       "description": "Here are some thoughts I've shared about dev & stuff."
     }
   },
-  "weAreStudio99": {
+  "99Stud": {
     "metadata": {
-      "title": "WeAreStudio99 | Thibault Walterspieler",
-      "description": "WeAreStudio99 is a collective of artists and engineers. We create digital experiences."
+      "title": "99Stud | Thibault Walterspieler",
+      "description": "99Stud is a collective of artists and engineers. We create digital experiences."
     }
   },
   "openSource": {

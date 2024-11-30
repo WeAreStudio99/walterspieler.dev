@@ -4,6 +4,7 @@ import { Metadata } from "next";
 import { getPayload, TypedLocale } from "payload";
 
 import Content from "@/components/Common/Content";
+import getSchemaOrganization from "@/lib/schema-dts/organization";
 import getMetadata from "@/lib/seo/metadata";
 import config from "@payload-config";
 
@@ -15,31 +16,39 @@ type Props = {
   params: Params;
 };
 
-const getLegalNoticePage = async (lang: TypedLocale) => {
+const get99StudPage = async (lang: TypedLocale) => {
   const payload = await getPayload({
     config,
   });
   const pages = await payload.find({
     collection: "pages",
-    where: { slug: { equals: "notice" } },
+    where: { slug: { equals: "99stud" } },
     locale: lang,
   });
 
   return pages.docs[0];
 };
 
-const NoticePage: FC<Props> = async (props) => {
+const Stud99Page: FC<Props> = async (props) => {
   const { params } = props;
   const { lang } = await params;
 
-  const page = await getLegalNoticePage(lang);
+  const jsonLd = getSchemaOrganization();
+
+  const page = await get99StudPage(lang);
 
   return (
-    <div className="content-wrapper">
-      <div className="content animate-in fade-in duration-700">
-        <Content content={page.content} lang={lang} />
+    <>
+      <script
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        type="application/ld+json"
+      />
+      <div className="content-wrapper">
+        <div className="content animate-in fade-in duration-700">
+          <Content content={page.content} lang={lang} />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
@@ -47,9 +56,9 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   const { params } = props;
   const { lang } = await params;
 
-  const page = await getLegalNoticePage(lang);
+  const page = await get99StudPage(lang);
 
   return getMetadata(page.meta, lang);
 }
 
-export default NoticePage;
+export default Stud99Page;

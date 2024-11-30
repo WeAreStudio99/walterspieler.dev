@@ -7,7 +7,7 @@ import { getPayload, TypedLocale } from "payload";
 import EmptyLayout from "@/components/Common/EmptyLayout";
 import MenuInitializer from "@/contexts/MenuContext/MenuInitializer";
 import { getDictionary } from "@/lib/i18n/utils";
-import { generateAlternates } from "@/lib/utils";
+import getMetadata from "@/lib/seo/metadata";
 import config from "@payload-config";
 
 type Params = Promise<{
@@ -59,49 +59,9 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   const { params } = props;
   const { lang } = await params;
 
-  const experiencePage = await getExperiencePage(lang);
+  const page = await getExperiencePage(lang);
 
-  return {
-    title:
-      experiencePage.meta?.title ||
-      `${experiencePage.title} | Thibault Walterspieler`,
-    description: experiencePage.meta?.description,
-    alternates: await generateAlternates("experiences", lang),
-    twitter: {
-      card: "summary_large_image",
-      title:
-        experiencePage.meta?.title ||
-        `${experiencePage.title} | Thibault Walterspieler`,
-      description: experiencePage.meta?.description || "",
-      images: {
-        url: "/images/og/default.png",
-        alt: "Thibault Walterspieler | Fullstack engineer",
-        type: "image/png",
-      },
-    },
-    openGraph: {
-      type: "article",
-      title:
-        experiencePage.meta?.title ||
-        `${experiencePage.title} | Thibault Walterspieler`,
-      publishedTime: experiencePage.createdAt,
-      modifiedTime: experiencePage.updatedAt,
-      authors: experiencePage.meta?.authors
-        ?.map((author) => {
-          if (typeof author.value !== "number") {
-            return author.value.fullName;
-          }
-        })
-        .filter((author): author is string => !!author),
-      tags: experiencePage.meta?.tags?.map((tag) => tag.tag || "") || [],
-      url: `/`,
-      images: {
-        url: "/images/og/default.png",
-        alt: "Thibault Walterspieler | Fullstack engineer",
-        type: "image/png",
-      },
-    },
-  };
+  return getMetadata(page.meta, lang);
 }
 
 export default Experiences;

@@ -7,6 +7,7 @@ import SideMenu from "@/components/Common/SideMenu";
 import SideMenuContent from "@/components/Common/SideMenuContent";
 import { getDictionary } from "@/lib/i18n/utils";
 import config from "@payload-config";
+
 type Params = Promise<{
   lang: TypedLocale;
 }>;

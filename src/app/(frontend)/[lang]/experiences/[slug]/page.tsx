@@ -8,7 +8,7 @@ import Article from "@/components/Articles/Article";
 import ArticleBreadcrumb from "@/components/Articles/ArticleBreadcrumb";
 import ScrollArea from "@/components/Common/ScrollArea";
 import getSchemaNewsArticle from "@/lib/schema-dts/news-article";
-import { generateAlternates } from "@/lib/utils";
+import getMetadata from "@/lib/seo/metadata";
 import config from "@payload-config";
 
 type Params = Promise<{
@@ -85,51 +85,9 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   const { params } = props;
   const { lang, slug } = await params;
 
-  const experiencesPost = await getExperiencePost(slug, lang);
+  const page = await getExperiencePost(slug, lang);
 
-  return {
-    title:
-      experiencesPost.meta?.title ||
-      `${experiencesPost.title} | Thibault Walterspieler`,
-    description:
-      experiencesPost.meta?.description || experiencesPost.description,
-    alternates: await generateAlternates(`experiences/${slug}`, lang),
-    twitter: {
-      card: "summary_large_image",
-      title:
-        experiencesPost.meta?.title ||
-        `${experiencesPost.title} | Thibault Walterspieler`,
-      description:
-        experiencesPost.meta?.description || experiencesPost.description || "",
-      images: {
-        url: "/images/og/default.png",
-        alt: "Thibault Walterspieler | Fullstack engineer",
-        type: "image/png",
-      },
-    },
-    openGraph: {
-      type: "article",
-      title:
-        experiencesPost.meta?.title ||
-        `${experiencesPost.title} | Thibault Walterspieler`,
-      publishedTime: experiencesPost.createdAt,
-      modifiedTime: experiencesPost.updatedAt,
-      authors: experiencesPost.meta?.authors
-        ?.map((author) => {
-          if (typeof author.value !== "number") {
-            return author.value.fullName;
-          }
-        })
-        .filter((author): author is string => !!author),
-      tags: experiencesPost.meta?.tags?.map((tag) => tag.tag || "") || [],
-      url: `/`,
-      images: {
-        url: "/images/og/default.png",
-        alt: "Thibault Walterspieler | Fullstack engineer",
-        type: "image/png",
-      },
-    },
-  };
+  return getMetadata(page.meta, lang);
 }
 
 export default ExperiencePage;

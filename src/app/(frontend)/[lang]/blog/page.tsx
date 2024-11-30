@@ -6,7 +6,7 @@ import { getPayload, TypedLocale } from "payload";
 import EmptyLayout from "@/components/Common/EmptyLayout";
 import MenuInitializer from "@/contexts/MenuContext/MenuInitializer";
 import { getDictionary } from "@/lib/i18n/utils";
-import { generateAlternates } from "@/lib/utils";
+import getMetadata from "@/lib/seo/metadata";
 import config from "@payload-config";
 
 type Params = Promise<{
@@ -54,45 +54,9 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   const { params } = props;
   const { lang } = await params;
 
-  const blogPage = await getBlogPage(lang);
+  const page = await getBlogPage(lang);
 
-  return {
-    title: blogPage.meta?.title || `${blogPage.title} | Thibault Walterspieler`,
-    description: blogPage.meta?.description,
-    alternates: await generateAlternates("blog", lang),
-    twitter: {
-      card: "summary_large_image",
-      title:
-        blogPage.meta?.title || `${blogPage.title} | Thibault Walterspieler`,
-      description: blogPage.meta?.description || "",
-      images: {
-        url: "/images/og/default.png",
-        alt: "Thibault Walterspieler | Fullstack engineer",
-        type: "image/png",
-      },
-    },
-    openGraph: {
-      type: "article",
-      title:
-        blogPage.meta?.title || `${blogPage.title} | Thibault Walterspieler`,
-      publishedTime: blogPage.createdAt,
-      modifiedTime: blogPage.updatedAt,
-      authors: blogPage.meta?.authors
-        ?.map((author) => {
-          if (typeof author.value !== "number") {
-            return author.value.fullName;
-          }
-        })
-        .filter((author): author is string => !!author),
-      tags: blogPage.meta?.tags?.map((tag) => tag.tag || "") || [],
-      url: `/`,
-      images: {
-        url: "/images/og/default.png",
-        alt: "Thibault Walterspieler | Fullstack engineer",
-        type: "image/png",
-      },
-    },
-  };
+  return getMetadata(page.meta, lang);
 }
 
 export default Blog;

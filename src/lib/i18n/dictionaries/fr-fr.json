@@ -3,7 +3,7 @@
     "home": "Accueil",
     "experiences": "Expériences",
     "blog": "Blog",
-    "weAreStudio99": "WeAreStudio99"
+    "99Stud": "99Stud"
   },
   "home": {
     "metadata": {
@@ -38,10 +38,10 @@
       "description": "Mentions légales du site walterspieler.dev"
     }
   },
-  "weAreStudio99": {
+  "99Stud": {
     "metadata": {
-      "title": "WeAreStudio99 | Thibault Walterspieler",
-      "description": "WeAreStudio99 est un collectif de développeurs et d'artistes."
+      "title": "99Stud | Thibault Walterspieler",
+      "description": "99Stud est un collectif de développeurs et d'artistes."
     }
   },
   "menuItems": {
