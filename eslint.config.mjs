@@ -20,9 +20,9 @@ const config = [
   ),
   {
     ignores: [
-      "src/payload-types.ts",
       "src/app/(payload)/**/*",
       "src/payload/migrations/**/*",
+      "src/payload/payload-types.ts",
     ],
   },
   {
