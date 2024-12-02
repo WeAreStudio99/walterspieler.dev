@@ -26,7 +26,7 @@ const getPage = async (lang: TypedLocale) => {
   });
   const pages = await payload.find({
     collection: "pages",
-    where: { slug: { equals: "99stud" } },
+    where: { slug: { equals: "99Stud" } },
     locale: lang,
   });
 
