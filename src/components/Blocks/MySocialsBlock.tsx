@@ -8,20 +8,20 @@ import {
 
 import Malt from "@/components/Icons/Company/Malt";
 import { Button } from "@/components/ui/button";
-import { Social } from "@/payload-types";
+import { Social } from "@payload-types";
 
 type Props = {
   socials: (number | Social)[] | null | undefined;
 };
 
 type SocialIconProps = {
-  name: string;
+  label: string;
 };
 
 const SocialIcon: FC<SocialIconProps> = (props) => {
-  const { name } = props;
+  const { label } = props;
 
-  switch (name.toLowerCase()) {
+  switch (label.toLowerCase()) {
     case "linkedin":
       return <LinkedInLogoIcon className="mr-2 h-4 w-4" />;
     case "stackoverflow":
@@ -44,9 +44,9 @@ const MySocialsBlock: FC<Props> = (props) => {
         if (typeof social !== "number") {
           return (
             <Button key={social?.id} variant="outline">
-              <SocialIcon name={social.name} />
+              <SocialIcon label={social.label} />
               <a href={social.link} rel="noreferrer" target="_blank">
-                {social.name}
+                {social.label}
               </a>
             </Button>
           );

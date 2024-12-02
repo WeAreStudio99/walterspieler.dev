@@ -6,8 +6,8 @@ import MainMenuItems from "@/components/Common/MainMenuItems";
 import LangSelector from "@/components/LangSelector";
 import MiscMenu from "@/components/MiscMenu";
 import { getDictionary } from "@/lib/i18n/utils";
-import { MainMenu, Me } from "@/payload-types";
 import config from "@payload-config";
+import { MainMenu, Me } from "@payload-types";
 
 type Props = {
   lang: TypedLocale;
@@ -29,7 +29,7 @@ const MainMenuContent: FC<Props> = async (props) => {
         </div>
         <MainMenuItems items={mainMenu.menuItems} lang={lang} />
       </header>
-      <footer className="flex justify-between gap-3 border-t-grey p-5 md:border-t lg:flex-col xl:flex-row">
+      <footer className="border-t-grey flex justify-between gap-3 p-5 md:border-t lg:flex-col xl:flex-row">
         <MiscMenu
           labels={{ legalNotice: dictionary.menuItems.legalNotice }}
           title={dictionary.menuItems.other}

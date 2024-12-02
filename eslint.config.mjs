@@ -22,7 +22,7 @@ const config = [
     ignores: [
       "src/payload-types.ts",
       "src/app/(payload)/**/*",
-      "src/migrations/**/*",
+      "src/payload/migrations/**/*",
     ],
   },
   {

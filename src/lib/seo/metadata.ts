@@ -2,8 +2,8 @@ import { Metadata } from "next";
 import { getPayload, TypedLocale } from "payload";
 
 import { I18N_CONFIG } from "@/lib/i18n/config";
-import { BlogPost, ExperiencePost, Page } from "@/payload-types";
 import config from "@payload-config";
+import { BlogPost, ExperiencePost, Page } from "@payload-types";
 
 import { BASE_URL } from "../../../next.constants.mjs";
 

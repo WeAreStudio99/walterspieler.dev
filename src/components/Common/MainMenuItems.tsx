@@ -8,7 +8,7 @@ import { TypedLocale } from "payload";
 import NavigationLink from "@/components/NavigationLink";
 import { MenuContext } from "@/contexts/MenuContext";
 import { I18N_CONFIG } from "@/lib/i18n/config";
-import { MainMenu } from "@/payload-types";
+import { MainMenu } from "@payload-types";
 
 type Props = {
   items: MainMenu["menuItems"];

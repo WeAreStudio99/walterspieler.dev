@@ -10,15 +10,15 @@ import { uploadthingStorage } from "@payloadcms/storage-uploadthing";
 import { buildConfig } from "payload";
 import sharp from "sharp";
 
-import { BlogPosts } from "./collections/BlogPosts";
-import { ExperiencePosts } from "./collections/ExperiencePosts";
-import { Experiences } from "./collections/Experiences";
-import { Media } from "./collections/Media";
-import { Pages } from "./collections/Pages";
-import { Socials } from "./collections/Socials";
-import { Users } from "./collections/Users";
-import { MainMenu } from "./globals/MainMenu";
-import { Me } from "./globals/Me";
+import { BlogPosts } from "@/payload/collections/BlogPosts";
+import { ExperiencePosts } from "@/payload/collections/ExperiencePosts";
+import { Experiences } from "@/payload/collections/Experiences";
+import { Media } from "@/payload/collections/Media";
+import { Pages } from "@/payload/collections/Pages";
+import { Socials } from "@/payload/collections/Socials";
+import { Users } from "@/payload/collections/Users";
+import { MainMenu } from "@/payload/globals/MainMenu";
+import { Me } from "@/payload/globals/Me";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -29,6 +29,9 @@ export default buildConfig({
     importMap: {
       baseDir: path.resolve(dirname),
     },
+  },
+  typescript: {
+    outputFile: path.resolve(dirname, "payload", "payload-types.ts"),
   },
   collections: [
     Users,
@@ -55,13 +58,11 @@ export default buildConfig({
   },
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
-  typescript: {
-    outputFile: path.resolve(dirname, "payload-types.ts"),
-  },
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URI || "",
     },
+    migrationDir: path.resolve(dirname, "payload/migrations"),
   }),
   sharp,
   plugins: [

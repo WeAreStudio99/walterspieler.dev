@@ -3,7 +3,7 @@ import { FC } from "react";
 import { TypedLocale } from "payload";
 
 import ExperienceCard from "@/components/Experiences/ExperienceCard";
-import { ExperiencePost } from "@/payload-types";
+import { ExperiencePost } from "@payload-types";
 
 type Props = {
   experiencePosts: (number | ExperiencePost)[] | null | undefined;

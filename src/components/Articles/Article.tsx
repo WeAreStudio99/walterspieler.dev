@@ -9,7 +9,7 @@ import { TypedLocale } from "payload";
 import Content from "@/components/Common/Content";
 import { A, H1, P } from "@/components/Common/Typography";
 import { Separator } from "@/components/ui/separator";
-import { BlogPost, ExperiencePost } from "@/payload-types";
+import { BlogPost, ExperiencePost } from "@payload-types";
 
 type CommonProps = {
   lang: TypedLocale;

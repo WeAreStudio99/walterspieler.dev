@@ -1,4 +1,4 @@
-import { MigrateUpArgs, MigrateDownArgs, sql } from '@payloadcms/db-postgres'
+import { MigrateDownArgs, MigrateUpArgs, sql } from "@payloadcms/db-postgres";
 
 export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   await payload.db.drizzle.execute(sql`
@@ -916,7 +916,7 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX IF NOT EXISTS "main_menu_menu_items_order_idx" ON "main_menu_menu_items" USING btree ("_order");
   CREATE INDEX IF NOT EXISTS "main_menu_menu_items_parent_id_idx" ON "main_menu_menu_items" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "main_menu_menu_items_page_idx" ON "main_menu_menu_items" USING btree ("page_id");
-  CREATE UNIQUE INDEX IF NOT EXISTS "main_menu_menu_items_label_idx" ON "main_menu_menu_items_locales" USING btree ("label","_locale");`)
+  CREATE UNIQUE INDEX IF NOT EXISTS "main_menu_menu_items_label_idx" ON "main_menu_menu_items_locales" USING btree ("label","_locale");`);
 }
 
 export async function down({ payload, req }: MigrateDownArgs): Promise<void> {
@@ -966,5 +966,5 @@ export async function down({ payload, req }: MigrateDownArgs): Promise<void> {
   DROP TABLE "main_menu_menu_items_locales" CASCADE;
   DROP TABLE "main_menu" CASCADE;
   DROP TYPE "public"."_locales";
-  DROP TYPE "public"."enum_main_menu_menu_items_type";`)
+  DROP TYPE "public"."enum_main_menu_menu_items_type";`);
 }

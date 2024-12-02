@@ -3,7 +3,7 @@ import { Fragment, JSX } from "react";
 import Image from "next/image";
 
 import { A, H1, H2, H3, H4, LI, P, UL } from "@/components/Common/Typography";
-import { Media } from "@/payload-types";
+import { Media } from "@payload-types";
 
 import {
   IS_BOLD,
@@ -244,7 +244,7 @@ export default function SerializeLexical({ nodes }: Props): JSX.Element {
             if (value.mimeType?.includes("image") && value.url) {
               return (
                 <div
-                  className="m-auto my-5 flex w-fit flex-col justify-center bg-chinese-black shadow-2xl"
+                  className="bg-chinese-black m-auto my-5 flex w-fit flex-col justify-center shadow-2xl"
                   key={node.id}
                 >
                   <Image
@@ -255,7 +255,7 @@ export default function SerializeLexical({ nodes }: Props): JSX.Element {
                     src={value.url}
                     width={value.width ?? 0}
                   />
-                  <div className="rounded-b bg-chinese-black px-2 py-1 text-center text-xs text-stone-400 lg:max-w-[900px]">
+                  <div className="bg-chinese-black rounded-b px-2 py-1 text-center text-xs text-stone-400 lg:max-w-[900px]">
                     {value.alt}
                   </div>
                 </div>

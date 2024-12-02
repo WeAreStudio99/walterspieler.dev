@@ -8,7 +8,7 @@ import ExperiencesBlock from "@/components/Blocks/ExperiencesBlock";
 import MySocialsBlock from "@/components/Blocks/MySocialsBlock";
 import { Button } from "@/components/ui/button";
 import SerializeLexical from "@/lib/payload/lexical/Serialize";
-import { Page } from "@/payload-types";
+import { Page } from "@payload-types";
 
 type Props = {
   content: Page["content"];

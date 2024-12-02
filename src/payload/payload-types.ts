@@ -342,6 +342,7 @@ export interface Experience {
 export interface Social {
   id: number;
   name: string;
+  label: string;
   link: string;
   updatedAt: string;
   createdAt: string;
@@ -758,6 +759,7 @@ export interface ExperiencesSelect<T extends boolean = true> {
  */
 export interface SocialsSelect<T extends boolean = true> {
   name?: T;
+  label?: T;
   link?: T;
   updatedAt?: T;
   createdAt?: T;
