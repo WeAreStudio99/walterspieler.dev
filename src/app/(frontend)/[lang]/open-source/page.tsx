@@ -1,11 +1,15 @@
 import { FC } from "react";
 
 import { Metadata } from "next";
-import { TypedLocale } from "payload";
+import { notFound } from "next/navigation";
+import { getPayload, TypedLocale } from "payload";
 
-import ContentWrapper from "@/components/Common/ContentWrapper";
-import { getDictionary } from "@/lib/i18n/utils";
-import { generateAlternates } from "@/lib/utils";
+import Content from "@/components/Common/Content";
+import ScrollArea from "@/components/Common/ScrollArea";
+import { H1 } from "@/components/Common/Typography";
+import { Separator } from "@/components/ui/separator";
+import getMetadata from "@/lib/seo/metadata";
+import config from "@payload-config";
 
 type Params = Promise<{
   lang: TypedLocale;
@@ -15,53 +19,51 @@ type Props = {
   params: Params;
 };
 
-const OpenSourcePage: FC<Props> = async () => {
-  return <ContentWrapper></ContentWrapper>;
+const getPage = async (lang: TypedLocale) => {
+  const payload = await getPayload({
+    config,
+  });
+  const pages = await payload.find({
+    collection: "pages",
+    where: { slug: { equals: "open-source" } },
+    locale: lang,
+  });
+
+  if (!pages.docs[0]) {
+    notFound();
+  }
+
+  return pages.docs[0];
+};
+
+const OpenSourcePage: FC<Props> = async (props) => {
+  const { params } = props;
+  const { lang } = await params;
+
+  const page = await getPage(lang);
+
+  return (
+    <ScrollArea className="flex flex-col">
+      <div className="content-wrapper">
+        <div className="content animate-in fade-in duration-700">
+          <H1 className="text-spotlight mb-4 max-w-[60vw] md:mb-4 md:max-w-full">
+            {page.title}
+          </H1>
+          <Separator className="my-6" />
+          <Content content={page.content} lang={lang} />
+        </div>
+      </div>
+    </ScrollArea>
+  );
 };
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
   const { params } = props;
   const { lang } = await params;
 
-  const dictionary = await getDictionary(lang);
+  const page = await getPage(lang);
 
-  const { openSource } = dictionary;
-
-  const imagePath = `/images/og/open_${lang}.png`;
-
-  return {
-    title: openSource.metadata.title,
-    description: openSource.metadata.description,
-    alternates: await generateAlternates("open-source", lang),
-    icons: [
-      {
-        rel: "icon",
-        url: "/favicon.ico",
-        sizes: "any",
-      },
-    ],
-    twitter: {
-      card: "summary_large_image",
-      title: openSource.metadata.title,
-      description: openSource.metadata.description,
-      images: {
-        url: imagePath,
-        alt: "Thibault Walterspieler | Fullstack engineer",
-        type: "image/png",
-      },
-    },
-    openGraph: {
-      type: "website",
-      title: openSource.metadata.title,
-      description: openSource.metadata.description,
-      url: `/`,
-      images: {
-        url: imagePath,
-        alt: "Thibault Walterspieler | Fullstack engineer",
-        type: "image/png",
-      },
-    },
-  };
+  return getMetadata(page.meta, lang);
 }
 
 export default OpenSourcePage;
