@@ -19,10 +19,10 @@ importers:
         specifier: ^3.3.4
         version: 3.9.1(react-hook-form@7.53.2(react@19.0.0-rc-65a56d0e-20241020))
       '@lexical/list':
-        specifier: ^0.20.2
+        specifier: ^0.20.0
         version: 0.20.2
       '@lexical/rich-text':
-        specifier: ^0.20.2
+        specifier: ^0.20.0
         version: 0.20.2
       '@payloadcms/db-postgres':
         specifier: 3.2.2
@@ -94,7 +94,7 @@ importers:
         specifier: ^16.9.0
         version: 16.9.0
       lexical:
-        specifier: ^0.20.2
+        specifier: ^0.20.0
         version: 0.20.2
       lucide-react:
         specifier: ^0.378.0
