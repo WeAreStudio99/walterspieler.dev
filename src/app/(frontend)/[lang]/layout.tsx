@@ -9,7 +9,6 @@ import { getPayload, TypedLocale } from "payload";
 import PostHogProvider from "@/app/(frontend)/ph-provider";
 import MainMenuContent from "@/components/Common/MainMenuContent";
 import SideMenu from "@/components/Common/SideMenu";
-import { Toaster } from "@/components/ui/toaster";
 import { MenuContextProvider } from "@/contexts/MenuContext";
 import { cn } from "@/lib/utils";
 import config from "@payload-config";
@@ -85,7 +84,6 @@ const LangRootLayout: FC<Props> = async (props) => {
               <div className="blueprint-layout flex flex-1">{children}</div>
             </div>
           </MenuContextProvider>
-          <Toaster />
         </body>
       </PostHogProvider>
     </html>
