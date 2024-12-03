@@ -19,11 +19,11 @@ importers:
         specifier: ^3.3.4
         version: 3.9.1(react-hook-form@7.53.2(react@19.0.0-rc-65a56d0e-20241020))
       '@lexical/list':
-        specifier: ^0.20.0
-        version: 0.20.2
+        specifier: 0.20.0
+        version: 0.20.0
       '@lexical/rich-text':
-        specifier: ^0.20.0
-        version: 0.20.2
+        specifier: 0.20.0
+        version: 0.20.0
       '@payloadcms/db-postgres':
         specifier: 3.2.2
         version: 3.2.2(payload@3.2.2(graphql@16.9.0)(monaco-editor@0.52.0)(react-dom@19.0.0-rc-65a56d0e-20241020(react@19.0.0-rc-65a56d0e-20241020))(react@19.0.0-rc-65a56d0e-20241020)(typescript@5.7.2))(react@19.0.0-rc-65a56d0e-20241020)(types-react@19.0.0-rc.1)
@@ -41,7 +41,7 @@ importers:
         version: 3.2.2(monaco-editor@0.52.0)(next@15.0.3(react-dom@19.0.0-rc-65a56d0e-20241020(react@19.0.0-rc-65a56d0e-20241020))(react@19.0.0-rc-65a56d0e-20241020)(sass@1.77.4))(payload@3.2.2(graphql@16.9.0)(monaco-editor@0.52.0)(react-dom@19.0.0-rc-65a56d0e-20241020(react@19.0.0-rc-65a56d0e-20241020))(react@19.0.0-rc-65a56d0e-20241020)(typescript@5.7.2))(react-dom@19.0.0-rc-65a56d0e-20241020(react@19.0.0-rc-65a56d0e-20241020))(react@19.0.0-rc-65a56d0e-20241020)(types-react@19.0.0-rc.1)(typescript@5.7.2)
       '@payloadcms/richtext-lexical':
         specifier: 3.2.2
-        version: 3.2.2(fsb6vkuokyy6epnzmahv77dczy)
+        version: 3.2.2(um6yw2puikipwtraxbq7fikcem)
       '@payloadcms/storage-uploadthing':
         specifier: 3.2.2
         version: 3.2.2(@aws-sdk/client-s3@3.699.0)(@aws-sdk/lib-storage@3.699.0(@aws-sdk/client-s3@3.699.0))(next@15.0.3(react-dom@19.0.0-rc-65a56d0e-20241020(react@19.0.0-rc-65a56d0e-20241020))(react@19.0.0-rc-65a56d0e-20241020)(sass@1.77.4))(payload@3.2.2(graphql@16.9.0)(monaco-editor@0.52.0)(react-dom@19.0.0-rc-65a56d0e-20241020(react@19.0.0-rc-65a56d0e-20241020))(react@19.0.0-rc-65a56d0e-20241020)(typescript@5.7.2))(tailwindcss@4.0.0-beta.3)
@@ -94,8 +94,8 @@ importers:
         specifier: ^16.9.0
         version: 16.9.0
       lexical:
-        specifier: ^0.20.0
-        version: 0.20.2
+        specifier: 0.20.0
+        version: 0.20.0
       lucide-react:
         specifier: ^0.378.0
         version: 0.378.0(react@19.0.0-rc-65a56d0e-20241020)
@@ -1209,9 +1209,6 @@ packages:
 
   '@lexical/rich-text@0.20.0':
     resolution: {integrity: sha512-BR1pACdMA+Ymef0f5EN1y+9yP8w7S+9MgmBP1yjr3w4KdqRnfSaGWyxwcHU8eA+zu16QfivpB6501VJ90YeuXw==}
-
-  '@lexical/rich-text@0.20.2':
-    resolution: {integrity: sha512-YtfPFbG3j9ySPMGDHpVYfHaHlmmNx/hmhEupq1PPkKPcwwGWKDJUsdx3TLrSUSHau1mm06hR7Aacw1FMwnGHGg==}
 
   '@lexical/selection@0.20.0':
     resolution: {integrity: sha512-YnkH5UCMNN/em95or/6uwAV31vcENh1Roj+JOg5KD+gJuA7VGdDCy0vZl/o0+1badXozeZ2VRxXNC6JSK7T4+A==}
@@ -6236,13 +6233,6 @@ snapshots:
       '@lexical/utils': 0.20.0
       lexical: 0.20.0
 
-  '@lexical/rich-text@0.20.2':
-    dependencies:
-      '@lexical/clipboard': 0.20.2
-      '@lexical/selection': 0.20.2
-      '@lexical/utils': 0.20.2
-      lexical: 0.20.2
-
   '@lexical/selection@0.20.0':
     dependencies:
       lexical: 0.20.0
@@ -6516,16 +6506,16 @@ snapshots:
       - supports-color
       - typescript
 
-  '@payloadcms/richtext-lexical@3.2.2(fsb6vkuokyy6epnzmahv77dczy)':
+  '@payloadcms/richtext-lexical@3.2.2(um6yw2puikipwtraxbq7fikcem)':
     dependencies:
       '@faceless-ui/modal': 3.0.0-beta.2(react-dom@19.0.0-rc-65a56d0e-20241020(react@19.0.0-rc-65a56d0e-20241020))(react@19.0.0-rc-65a56d0e-20241020)
       '@faceless-ui/scroll-info': 2.0.0-beta.0(react-dom@19.0.0-rc-65a56d0e-20241020(react@19.0.0-rc-65a56d0e-20241020))(react@19.0.0-rc-65a56d0e-20241020)
       '@lexical/headless': 0.20.0
       '@lexical/link': 0.20.0
-      '@lexical/list': 0.20.2
+      '@lexical/list': 0.20.0
       '@lexical/mark': 0.20.0
       '@lexical/react': 0.20.0(react-dom@19.0.0-rc-65a56d0e-20241020(react@19.0.0-rc-65a56d0e-20241020))(react@19.0.0-rc-65a56d0e-20241020)(yjs@13.6.20)
-      '@lexical/rich-text': 0.20.2
+      '@lexical/rich-text': 0.20.0
       '@lexical/selection': 0.20.2
       '@lexical/table': 0.20.2
       '@lexical/utils': 0.20.2
@@ -6537,7 +6527,7 @@ snapshots:
       bson-objectid: 2.0.4
       dequal: 2.0.3
       escape-html: 1.0.3
-      lexical: 0.20.2
+      lexical: 0.20.0
       mdast-util-from-markdown: 2.0.2
       mdast-util-mdx-jsx: 3.1.3
       micromark-extension-mdx-jsx: 3.0.1
