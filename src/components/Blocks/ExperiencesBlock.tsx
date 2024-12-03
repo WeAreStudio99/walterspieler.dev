@@ -34,7 +34,7 @@ const ExperiencesBlock: FC<Props> = (props) => {
               lang={lang}
               link={experiencePost.experience.companyWebsite || ""}
               logo={""}
-              relatedWorkPostLink={experiencePost.slug || ""}
+              relatedWorkPostSlug={experiencePost.slug || ""}
               tags={
                 experiencePost.experience.usedTechnologies?.map(
                   (technology) => ({

@@ -25,7 +25,7 @@ type Props = {
     end?: Date | string | null;
     difference?: string;
   };
-  relatedWorkPostLink: string;
+  relatedWorkPostSlug: string;
   lang: TypedLocale;
   buttonLabel: string;
   tags: {
@@ -41,7 +41,7 @@ const ExperienceCard: FC<Props> = (props) => {
     duration,
     link,
     lang,
-    relatedWorkPostLink,
+    relatedWorkPostSlug,
     buttonLabel,
     tags,
   } = props;
@@ -53,13 +53,13 @@ const ExperienceCard: FC<Props> = (props) => {
 
   return (
     <div
-      className="group relative my-8 w-full cursor-pointer overflow-hidden rounded-xl bg-metal"
+      className="group bg-metal relative my-8 w-full cursor-pointer overflow-hidden rounded-xl"
       onClick={() => {
-        if (relatedWorkPostLink) {
+        if (relatedWorkPostSlug) {
           router.push(
             lang !== I18N_CONFIG.defaultLocale
-              ? `/${lang}/works/${relatedWorkPostLink}`
-              : `/works/${relatedWorkPostLink}`,
+              ? `/${lang}/experiences/${relatedWorkPostSlug}`
+              : `/experiences/${relatedWorkPostSlug}`,
           );
         }
       }}
@@ -72,7 +72,7 @@ const ExperienceCard: FC<Props> = (props) => {
     >
       <div
         className={cn(
-          "absolute bottom-0 left-0 right-5 h-px w-80 bg-linear-to-l from-transparent via-white/30 via-10% to-transparent",
+          "absolute right-5 bottom-0 left-0 h-px w-80 bg-linear-to-l from-transparent via-white/30 via-10% to-transparent",
         )}
       />
       <motion.div
@@ -127,7 +127,6 @@ const ExperienceCard: FC<Props> = (props) => {
           </div>
         </div>
         <div className="p-6 pt-0 text-sm leading-[1.5] text-stone-300">
-          {/* <PrismicRichText field={description} /> */}
           <p>{description}</p>
           <div className="mt-4 flex flex-wrap gap-2">
             {tags.map((tag, idx) => (
@@ -144,15 +143,15 @@ const ExperienceCard: FC<Props> = (props) => {
           </div>
         </div>
         <div className="flex flex-col items-start justify-between gap-5 p-6 pt-0 md:flex-row">
-          {relatedWorkPostLink && (
+          {relatedWorkPostSlug && (
             <div className="flex">
               <Button asChild variant="outline">
                 <Link
                   aria-label={`Read more about ${title}`}
                   href={
                     lang !== I18N_CONFIG.defaultLocale
-                      ? `/${lang}/works/${relatedWorkPostLink}`
-                      : `/works/${relatedWorkPostLink}`
+                      ? `/${lang}/experiences/${relatedWorkPostSlug}`
+                      : `/experiences/${relatedWorkPostSlug}`
                   }
                 >
                   {buttonLabel} {title}
