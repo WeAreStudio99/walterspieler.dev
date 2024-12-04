@@ -1,7 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { FC } from "react";
+
+import { motion } from "framer-motion";
 
 import { cn } from "@/lib/utils";
 
@@ -34,7 +35,7 @@ const EmptyLayout: FC<Props> = (props) => {
       <motion.span
         animate="animate"
         className={cn(
-          "inline-flex animate-text-gradient bg-gradient-to-r from-stone-400 via-metal to-stone-400 bg-[200%_auto] bg-clip-text pl-72 text-center text-3xl font-bold text-transparent",
+          "inline-flex animate-text-gradient bg-linear-to-r from-stone-400 via-metal to-stone-400 bg-[200%_auto] bg-clip-text pl-72 text-center text-3xl font-bold text-transparent",
         )}
         exit="exit"
         initial="initial"

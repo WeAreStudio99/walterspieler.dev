@@ -1,6 +1,8 @@
 import { ProfilePage, WithContext } from "schema-dts";
 
 const getSchemaProfilePage = (
+  name: string,
+  email: string,
   description: string,
   job: string,
 ): WithContext<ProfilePage> => {
@@ -10,12 +12,12 @@ const getSchemaProfilePage = (
     name: "Thibault Walterspieler",
     mainEntity: {
       "@type": "Person",
-      name: "Thibault Walterspieler",
+      name: name,
       description: description,
       jobTitle: job,
-      affiliation: "WeAreStudio99",
+      affiliation: "99Stud",
       url: "https://walterspieler.dev",
-      email: "thibs@wearestudio99.fr",
+      email: email,
       address: {
         "@type": "PostalAddress",
         addressLocality: "Lyon",
@@ -24,9 +26,9 @@ const getSchemaProfilePage = (
       },
       worksFor: {
         "@type": "Organization",
-        name: "WeAreStudio99",
+        name: "99Stud",
         description: "Collective of freelance web developers && artists",
-        email: "contact@wearestudio99.fr",
+        email: "contact@99stud.fr",
         url: "https://fr.linkedin.com/company/wearestudio99",
         address: {
           "@type": "PostalAddress",

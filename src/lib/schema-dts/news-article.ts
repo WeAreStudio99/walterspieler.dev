@@ -16,7 +16,7 @@ const getSchemaNewsArticle = (
         "@type": "Person",
         name: "Thibault Walterspieler",
         jobTitle: "Fullstack Engineer",
-        affiliation: "WeAreStudio99",
+        affiliation: "99Stud",
         url: "https://walterspieler.dev/",
       },
     ],

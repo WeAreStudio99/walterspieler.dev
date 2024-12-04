@@ -1,5 +1,7 @@
-import Link from "next/link";
 import { FC } from "react";
+
+import Link from "next/link";
+import { TypedLocale } from "payload";
 
 import {
   Breadcrumb,
@@ -9,14 +11,12 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-
-import { Locale } from "@/lib/i18n/types";
 import { getDictionary } from "@/lib/i18n/utils";
 
 type Props = {
   title: string;
-  lang: Locale;
-  collection: "work" | "blog";
+  lang: TypedLocale;
+  collection: "experiences" | "blog";
 };
 
 const ArticleBreadcrumb: FC<Props> = async (props) => {
@@ -38,7 +38,9 @@ const ArticleBreadcrumb: FC<Props> = async (props) => {
             {collection === "blog" ? (
               <Link href="/blog">{dictionary.firstLevelPages.blog}</Link>
             ) : (
-              <Link href="/works">{dictionary.firstLevelPages.works}</Link>
+              <Link href="/experiences">
+                {dictionary.firstLevelPages.experiences}
+              </Link>
             )}
           </BreadcrumbLink>
         </BreadcrumbItem>

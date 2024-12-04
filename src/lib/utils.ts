@@ -1,41 +1,42 @@
 import { clsx, type ClassValue } from "clsx";
 import { AlternateURLs } from "next/dist/lib/metadata/types/alternative-urls-types";
+import { TypedLocale } from "payload";
 import { twMerge } from "tailwind-merge";
 
-import { DICTIONARIES } from "@/lib/i18n/constants";
-import { Locale } from "@/lib/i18n/types";
-
 import { I18N_CONFIG } from "@/lib/i18n/config";
-import { BASE_URL } from "../../next.constants.mjs";
+
+import { BASE_URL } from "../.././next.constants.mjs";
 
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-const generateAlternates = (
+const generateAlternates = async (
   pathWithoutLang: string,
-  lang: Locale,
-): AlternateURLs => {
-  const locales = Object.keys(DICTIONARIES) as Locale[];
+  lang: TypedLocale,
+): Promise<AlternateURLs> => {
+  // const { localization } = await config;
 
-  const languages: AlternateURLs["languages"] = locales.reduce<
-    Record<Locale | "x-default", string>
-  >(
-    (languages, language) => {
-      languages[language] = `${BASE_URL}/${language}/${pathWithoutLang}`;
+  // if (!localization) return { canonical: "", languages: {} };
 
-      return languages;
-    },
-    {
-      "x-default": `${BASE_URL}/${pathWithoutLang}`,
-      "en-gb": "",
-      "fr-fr": "",
-    },
-  );
+  // const languages = localization.locales.reduce<
+  //   Record<TypedLocale | "x-default", string>
+  // >(
+  //   (languages, language) => {
+  //     languages[language.code as TypedLocale] =
+  //       `${BASE_URL}/${language.code}/${pathWithoutLang}`;
+
+  //     return languages;
+  //   },
+  //   {
+  //     "x-default": `${BASE_URL}/${pathWithoutLang}`,
+  //     en: "",
+  //     fr: "",
+  //   },
 
   return {
     canonical: `${BASE_URL}/${lang === I18N_CONFIG.defaultLocale ? "" : lang}${pathWithoutLang !== "" ? `${lang !== I18N_CONFIG.defaultLocale ? "/" : ""}${pathWithoutLang}` : ""}`,
-    languages,
+    languages: {},
   };
 };
 

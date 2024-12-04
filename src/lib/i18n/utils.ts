@@ -1,14 +1,14 @@
 import { match } from "@formatjs/intl-localematcher";
 import Negotiator from "negotiator";
 import { NextRequest } from "next/server";
+import { TypedLocale } from "payload";
 
 import { I18N_CONFIG } from "./config";
 import { DICTIONARIES } from "./constants";
-import { Locale } from "./types";
 
-const getDictionary = (locale: Locale) => {
+const getDictionary = (locale: TypedLocale) => {
   if (!(locale in DICTIONARIES)) {
-    return DICTIONARIES[I18N_CONFIG.defaultLocale]();
+    return DICTIONARIES.fallback();
   }
 
   return DICTIONARIES[locale]();

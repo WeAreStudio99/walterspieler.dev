@@ -1,10 +1,8 @@
-import { Config, Locale } from "./types";
-
-const I18N_LOCALES: Locale[] = ["en-gb", "fr-fr"];
+import { Config } from "./types";
 
 const I18N_CONFIG: Config = {
-  defaultLocale: "en-gb",
-  locales: I18N_LOCALES,
+  defaultLocale: "en",
+  locales: ["en", "fr"],
 };
 
-export { I18N_CONFIG, I18N_LOCALES };
+export { I18N_CONFIG };

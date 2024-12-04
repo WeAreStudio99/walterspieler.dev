@@ -4,7 +4,7 @@ const getSchemaOrganization = (): WithContext<Organization> => {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: "WeAreStudio99",
+    name: "99Stud",
     description: "Collective of freelance web developers && artists",
     email: "contact@wearestudio99.fr",
     url: "https://fr.linkedin.com/company/wearestudio99",

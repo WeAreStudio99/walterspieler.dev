@@ -1,7 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import { FC, use } from "react";
+
+import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -13,7 +14,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-
 import { MenuContext } from "@/contexts/MenuContext";
 
 type Props = {

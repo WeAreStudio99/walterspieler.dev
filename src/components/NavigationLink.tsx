@@ -1,5 +1,7 @@
 "use client";
 
+import { FC, use, useMemo } from "react";
+
 import {
   BoltIcon,
   DraftingCompass,
@@ -9,20 +11,24 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FC, use, useMemo } from "react";
+import { TypedLocale } from "payload";
 
 import WeAreStudio99 from "@/components/Icons/Company/WeAreStudio99";
-
-import { Locale } from "@/lib/i18n/types";
-import { cn } from "@/lib/utils";
-
 import { MenuContext } from "@/contexts/MenuContext";
+import { cn } from "@/lib/utils";
 
 type Props = {
   label: string;
   path: string;
-  type: string;
-  lang: Locale;
+  type:
+    | "home"
+    | "blog"
+    | "lab"
+    | "experiences"
+    | "contact"
+    | "99Stud"
+    | "other";
+  lang: TypedLocale;
   external?: boolean;
 };
 
@@ -48,13 +54,18 @@ const NavigationLink: FC<Props> = (props) => {
         );
       }
     }
+
+    if (external) {
+      return false;
+    }
+
     return isActive;
-  }, [path, pathname, lang]);
+  }, [path, external, pathname, lang]);
 
   return (
     <Link
       className={cn(
-        "group relative flex items-center justify-between rounded-lg border border-grey bg-metal p-4 transition-all duration-200 hover:scale-[1.01] active:scale-[0.98] active:bg-eerie-light",
+        "group border-grey bg-metal active:bg-eerie-light relative flex items-center justify-between rounded-lg border p-4 transition-all duration-200 hover:scale-[1.01] active:scale-[0.98]",
         {
           "bg-chinese-black": isActive,
           "hover:bg-eerie-light": !isActive,
@@ -69,8 +80,8 @@ const NavigationLink: FC<Props> = (props) => {
       <div className="flex items-center gap-2 text-xl md:text-base">
         {type === "home" && <BoltIcon className="w-4" />}
         {type === "blog" && <Sparkle className="w-4" />}
-        {type === "works" && <DraftingCompass className="w-4" />}
-        {type === "weAreStudio99" && <WeAreStudio99 className="w-4" />}
+        {type === "experiences" && <DraftingCompass className="w-4" />}
+        {type === "99Stud" && <WeAreStudio99 className="w-4" />}
         {type === "contact" && <Nfc className="w-4" />}
         <span className="overflow-hidden text-ellipsis">{label}</span>
       </div>

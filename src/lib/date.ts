@@ -5,14 +5,15 @@ import {
   format,
 } from "date-fns";
 import { enGB, fr } from "date-fns/locale";
+import { TypedLocale } from "payload";
 
-import { Locale } from "@/lib/i18n/types";
+import { Dictionary } from "@/lib/i18n/types";
 import { getDictionary } from "@/lib/i18n/utils";
 
 const getPluralization = (
   count: number,
-  dictionary: any,
-  unit: string,
+  dictionary: Dictionary,
+  unit: keyof Dictionary["time"],
 ): string => {
   const isPlural = count > 1 ? "plural" : "singular";
   return `${count} ${dictionary.time[unit][isPlural]}`;
@@ -21,7 +22,7 @@ const getPluralization = (
 const formatDateDiff = async (
   date1: Date,
   date2: Date,
-  locale: Locale,
+  locale: TypedLocale,
 ): Promise<string> => {
   const dictionary = await getDictionary(locale);
 
@@ -33,7 +34,7 @@ const formatDateDiff = async (
       monthsDiff >= 1
         ? ` ${getPluralization(monthsDiff, dictionary, "month")}`
         : "";
-    return `${yearStr} ${locale === "fr-fr" ? "et " : "and "}${monthStr}`;
+    return `${yearStr} ${locale === "fr" ? "et " : "and "}${monthStr}`;
   }
 
   const monthsDiff = differenceInCalendarMonths(date2, date1);
@@ -45,8 +46,8 @@ const formatDateDiff = async (
   return getPluralization(weeksDiff, dictionary, "week");
 };
 
-const formatDateToMonthYear = (date: Date, locale: Locale) => {
-  const locales = { "en-gb": enGB, "fr-fr": fr };
+const formatDateToMonthYear = (date: Date | string, locale: TypedLocale) => {
+  const locales = { en: enGB, fr: fr };
   const selectedLocale = locales[locale];
 
   return format(date, "MMM yyyy", { locale: selectedLocale });

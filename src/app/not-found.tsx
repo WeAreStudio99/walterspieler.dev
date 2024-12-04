@@ -1,7 +1,6 @@
 import { Space_Grotesk } from "next/font/google";
 
 import Error404 from "@/components/Common/Error404";
-
 import { cn } from "@/lib/utils";
 
 const spaceGrotesk = Space_Grotesk({
