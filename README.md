@@ -2,7 +2,7 @@
 walterspieler.dev
 </h1>
 <p align="center">
-  <a href="https://walterspieler.dev/">My portfolio</a> built using Next.js with TypeScript, Tailwind CSS and Prismic
+  <a href="https://walterspieler.dev/">My portfolio</a> built using Next.js with TypeScript, Tailwind CSS and Payload CMS
 </p>
 
 ## What is this repo?
