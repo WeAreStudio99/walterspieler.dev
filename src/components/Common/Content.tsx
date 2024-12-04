@@ -5,7 +5,7 @@ import Link from "next/link";
 import { TypedLocale } from "payload";
 
 import ExperiencesBlock from "@/components/Blocks/ExperiencesBlock";
-import MySocialsBlock from "@/components/Blocks/MySocialsBlock";
+import SocialsBlock from "@/components/Blocks/SocialsBlock";
 import { Button } from "@/components/ui/button";
 import SerializeLexical from "@/lib/payload/lexical/Serialize";
 import { Page } from "@payload-types";
@@ -40,9 +40,7 @@ const Content: FC<Props> = (props) => {
               />
             );
           case "MySocials":
-            return (
-              <MySocialsBlock key={content?.id} socials={content.socials} />
-            );
+            return <SocialsBlock key={content?.id} socials={content.socials} />;
           case "button":
             return (
               <div

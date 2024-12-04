@@ -3,7 +3,7 @@ import type { CollectionConfig } from "payload";
 export const Socials: CollectionConfig = {
   slug: "socials",
   admin: {
-    useAsTitle: "label",
+    useAsTitle: "name",
   },
   fields: [
     {

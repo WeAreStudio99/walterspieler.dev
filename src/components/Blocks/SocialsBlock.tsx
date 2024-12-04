@@ -35,7 +35,7 @@ const SocialIcon: FC<SocialIconProps> = (props) => {
   }
 };
 
-const MySocialsBlock: FC<Props> = (props) => {
+const SocialsBlock: FC<Props> = (props) => {
   const { socials } = props;
 
   return (
@@ -56,4 +56,4 @@ const MySocialsBlock: FC<Props> = (props) => {
   );
 };
 
-export default MySocialsBlock;
+export default SocialsBlock;
