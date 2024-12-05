@@ -48,7 +48,7 @@ const Content: FC<Props> = (props) => {
                 key={content?.id}
               >
                 {content.isExternal ? (
-                  <Button variant="outline">
+                  <Button asChild variant="outline">
                     <a
                       href={content.externalUrl || ""}
                       rel="noreferrer"
