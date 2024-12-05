@@ -33,7 +33,7 @@ const ExperiencesBlock: FC<Props> = async (props) => {
           return (
             <ExperienceCard
               buttonLabel={"Read more on"}
-              description={experiencePost.experience.companyDescription || ""}
+              description={experiencePost.description || ""}
               duration={{
                 start: experiencePost.experience.startDate,
                 end: experiencePost.experience.endDate,
@@ -43,7 +43,7 @@ const ExperiencesBlock: FC<Props> = async (props) => {
               lang={lang}
               link={experiencePost.experience.companyWebsite || ""}
               logo={""}
-              relatedWorkPostSlug={experiencePost.slug || ""}
+              relatedWorkPostSlug={experiencePost.slug}
               tags={
                 experiencePost.experience.usedTechnologies?.map(
                   (technology) => ({
@@ -51,7 +51,7 @@ const ExperiencesBlock: FC<Props> = async (props) => {
                   }),
                 ) || []
               }
-              title={experiencePost.experience.companyName}
+              title={experiencePost.title}
             />
           );
         }
