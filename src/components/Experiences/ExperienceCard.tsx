@@ -23,7 +23,7 @@ type Props = {
   duration: {
     start: Date | string | null;
     end?: Date | string | null;
-    difference?: string;
+    difference?: string | null;
   };
   relatedWorkPostSlug: string;
   lang: TypedLocale;

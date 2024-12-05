@@ -3,6 +3,7 @@ import { FC } from "react";
 import { TypedLocale } from "payload";
 
 import ExperienceCard from "@/components/Experiences/ExperienceCard";
+import { formatDateDiff } from "@/lib/date";
 import { ExperiencePost } from "@payload-types";
 
 type Props = {
@@ -10,17 +11,25 @@ type Props = {
   lang: TypedLocale;
 };
 
-const ExperiencesBlock: FC<Props> = (props) => {
+const ExperiencesBlock: FC<Props> = async (props) => {
   const { experiencePosts, lang } = props;
 
   return (
     <>
-      {experiencePosts?.map((experiencePost) => {
+      {experiencePosts?.map(async (experiencePost) => {
         if (
           typeof experiencePost !== "number" &&
           typeof experiencePost.experience !== "number" &&
           experiencePost.experience
         ) {
+          const difference =
+            experiencePost.experience.endDate &&
+            (await formatDateDiff(
+              experiencePost.experience.startDate,
+              experiencePost.experience.endDate,
+              lang,
+            ));
+
           return (
             <ExperienceCard
               buttonLabel={"Read more on"}
@@ -28,7 +37,7 @@ const ExperiencesBlock: FC<Props> = (props) => {
               duration={{
                 start: experiencePost.experience.startDate,
                 end: experiencePost.experience.endDate,
-                difference: "",
+                difference,
               }}
               key={experiencePost.id}
               lang={lang}
