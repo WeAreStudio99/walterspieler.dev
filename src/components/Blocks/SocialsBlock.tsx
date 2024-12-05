@@ -43,9 +43,9 @@ const SocialsBlock: FC<Props> = (props) => {
       {socials?.map((social) => {
         if (typeof social !== "number") {
           return (
-            <Button key={social?.id} variant="outline">
-              <SocialIcon label={social.label} />
+            <Button asChild key={social?.id} variant="outline">
               <a href={social.link} rel="noreferrer" target="_blank">
+                <SocialIcon label={social.label} />
                 {social.label}
               </a>
             </Button>
