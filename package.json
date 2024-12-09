@@ -47,14 +47,14 @@
     "lexical": "0.20.0",
     "lucide-react": "^0.378.0",
     "negotiator": "^0.6.3",
-    "next": "15.0.3",
+    "next": "15.0.4",
     "payload": "3.5.0",
     "pino": "^9.5.0",
     "pino-pretty": "^13.0.0",
     "plaiceholder": "^3.0.0",
     "posthog-js": "^1.131.0",
-    "react": "19.0.0-rc-65a56d0e-20241020",
-    "react-dom": "19.0.0-rc-65a56d0e-20241020",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
     "schema-dts": "^1.1.2",
     "sharp": "^0.33.5",
     "tailwind-merge": "^2.5.5",
@@ -64,8 +64,8 @@
     "@tailwindcss/postcss": "4.0.0-beta.3",
     "@types/negotiator": "^0.6.3",
     "@types/node": "^20.11.19",
-    "@types/react": "npm:types-react@19.0.0-rc.1",
-    "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1",
+    "@types/react": "19.0.1",
+    "@types/react-dom": "19.0.1",
     "eslint": "9.15.0",
     "eslint-config-next": "15.0.3",
     "postcss": "^8.4.39",
@@ -75,11 +75,5 @@
     "typescript": "^5.3.3"
   },
   "packageManager": "pnpm@9.4.0+sha512.f549b8a52c9d2b8536762f99c0722205efc5af913e77835dbccc3b0b0b2ca9e7dc8022b78062c17291c48e88749c70ce88eb5a74f1fa8c4bf5e18bb46c8bd83a",
-  "pnpm": {
-    "overrides": {
-      "@types/react": "npm:types-react@19.0.0-rc.1",
-      "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1"
-    }
-  },
   "type": "module"
 }
