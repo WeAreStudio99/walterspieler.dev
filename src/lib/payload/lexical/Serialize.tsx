@@ -1,8 +1,9 @@
-import { Fragment, JSX } from "react";
+import { JSX } from "react";
 
 import Image from "next/image";
 
 import { A, H1, H2, H3, H4, LI, P, UL } from "@/components/Common/Typography";
+import { getImage } from "@/lib/plaiceholder";
 import { Media } from "@payload-types";
 
 import {
@@ -58,10 +59,10 @@ function escapeHtml(value: string) {
   });
 }
 
-export default function SerializeLexical({ nodes }: Props): JSX.Element {
+const SerializeLexical = async ({ nodes }: Props) => {
   return (
-    <Fragment>
-      {nodes?.map((_node, index): JSX.Element | null => {
+    <>
+      {nodes?.map(async (_node, index): Promise<JSX.Element | null> => {
         if (_node.type === "text") {
           const node = _node as SerializedTextNode;
           let text = (
@@ -110,9 +111,7 @@ export default function SerializeLexical({ nodes }: Props): JSX.Element {
         // NOTE: Hacky fix for
         // https://github.com/facebook/lexical/blob/d10c4e6e55261b2fdd7d1845aed46151d0f06a8c/packages/lexical-list/src/LexicalListItemNode.ts#L133
         // which does not return checked: false (only true - i.e. there is no prop for false)
-        const serializedChildrenFn = (
-          node: SerializedElementNode,
-        ): JSX.Element | null => {
+        const serializedChildrenFn = (node: SerializedElementNode) => {
           if (node.children == null) {
             return null;
           } else {
@@ -242,6 +241,11 @@ export default function SerializeLexical({ nodes }: Props): JSX.Element {
             const value = node.value as Media;
 
             if (value.mimeType?.includes("image") && value.url) {
+              const { base64 } = await getImage(value.url);
+
+              const isImageThePriority =
+                nodes.findIndex((node) => node.type === "upload") === index;
+
               return (
                 <div
                   className="bg-chinese-black m-auto my-5 flex w-fit flex-col justify-center shadow-2xl"
@@ -249,8 +253,11 @@ export default function SerializeLexical({ nodes }: Props): JSX.Element {
                 >
                   <Image
                     alt={value.alt}
+                    blurDataURL={base64}
                     className="rounded-t-lg object-cover lg:max-h-[550px] lg:max-w-full"
                     height={value.height ?? 0}
+                    placeholder="blur"
+                    priority={isImageThePriority}
                     sizes="(max-width: 768px) 90vw, (max-width: 1024px) 688px, 768px"
                     src={value.url}
                     width={value.width ?? 0}
@@ -267,6 +274,8 @@ export default function SerializeLexical({ nodes }: Props): JSX.Element {
             return null;
         }
       })}
-    </Fragment>
+    </>
   );
-}
+};
+
+export default SerializeLexical;

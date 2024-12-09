@@ -1,13 +1,11 @@
-"use client";
-
 import { FC } from "react";
 
-import { motion } from "framer-motion";
 import Image from "next/image";
 import { TypedLocale } from "payload";
 
 import Content from "@/components/Common/Content";
 import { A, H1, P } from "@/components/Common/Typography";
+import MotionArticle from "@/components/Framer/MotionArticle";
 import { Separator } from "@/components/ui/separator";
 import { BlogPost, ExperiencePost } from "@payload-types";
 
@@ -42,7 +40,7 @@ const Article: FC<Props> = (props) => {
   if (typeof content === "number") return null;
 
   return (
-    <motion.article
+    <MotionArticle
       animate="animate"
       initial="initial"
       transition={{ duration: 0.7 }}
@@ -75,7 +73,7 @@ const Article: FC<Props> = (props) => {
           )}
       </div>
       <Content content={content.content} lang={lang} />
-    </motion.article>
+    </MotionArticle>
   );
 };
 
