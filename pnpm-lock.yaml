@@ -114,6 +114,9 @@ importers:
       pino-pretty:
         specifier: ^13.0.0
         version: 13.0.0
+      plaiceholder:
+        specifier: ^3.0.0
+        version: 3.0.0(sharp@0.33.5)
       posthog-js:
         specifier: ^1.131.0
         version: 1.194.3
@@ -3990,6 +3993,11 @@ packages:
   pino@9.5.0:
     resolution: {integrity: sha512-xSEmD4pLnV54t0NOUN16yCl7RIB1c5UUOse5HSyEXtBp+FgFQyPeDutc+Q2ZO7/22vImV7VfEjH/1zV2QuqvYw==}
     hasBin: true
+
+  plaiceholder@3.0.0:
+    resolution: {integrity: sha512-jwHxxHPnr1BwRzPCeZgEK2BMsEy2327sWynw3qb6XC/oGgGDUTPtR8pFxFQmNArhMBwhkUbUr5OPhhIJpCa8eQ==}
+    peerDependencies:
+      sharp: '>= 0.30.6'
 
   pluralize@8.0.0:
     resolution: {integrity: sha512-Nc3IT5yHzflTfbjgqWcCPpo7DaKy4FnpB0l/zCAW0Tc7jxAiuqSxHasntB3D7887LSrA93kDJ9IXovxJYxyLCA==}
@@ -9485,6 +9493,10 @@ snapshots:
       safe-stable-stringify: 2.5.0
       sonic-boom: 4.2.0
       thread-stream: 3.1.0
+
+  plaiceholder@3.0.0(sharp@0.33.5):
+    dependencies:
+      sharp: 0.33.5
 
   pluralize@8.0.0: {}
 
