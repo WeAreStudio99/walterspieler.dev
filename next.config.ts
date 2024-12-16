@@ -15,6 +15,16 @@ const nextConfig: NextConfig = {
         destination: "/experiences",
         permanent: true,
       },
+      {
+        source: "/fr-fr/:path*",
+        destination: "/fr/:path*",
+        permanent: true,
+      },
+      {
+        source: "/fr-fr",
+        destination: "/fr",
+        permanent: true,
+      },
     ];
   },
 };
