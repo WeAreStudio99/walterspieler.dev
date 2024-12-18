@@ -2,8 +2,8 @@
 
 import { FC } from "react";
 
-import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
 import { CalendarIcon } from "lucide-react";
+import { motion, useMotionTemplate, useMotionValue } from "motion/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { TypedLocale } from "payload";

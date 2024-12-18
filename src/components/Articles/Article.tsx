@@ -5,7 +5,7 @@ import { TypedLocale } from "payload";
 
 import Content from "@/components/Common/Content";
 import { A, H1, P } from "@/components/Common/Typography";
-import MotionArticle from "@/components/Framer/MotionArticle";
+import MotionArticle from "@/components/Motion/MotionArticle";
 import { Separator } from "@/components/ui/separator";
 import { BlogPost, ExperiencePost } from "@payload-types";
 
@@ -27,8 +27,8 @@ type BlogProps = {
 type Props = (WorkProps | BlogProps) & CommonProps;
 
 const variants = {
-  initial: { opacity: 0, y: 25, filter: "blur-sm(15px)" },
-  animate: { opacity: 1, y: 0, filter: "blur-sm(0px)" },
+  initial: { opacity: 0, y: 25, filter: "blur-[15px]" },
+  animate: { opacity: 1, y: 0, filter: "blur-none" },
   exit: { opacity: 0, y: -50 },
 };
 

@@ -2,7 +2,7 @@
 
 import { FC, use, useEffect } from "react";
 
-import { motion, useAnimation } from "framer-motion";
+import { motion, useAnimation } from "motion/react";
 import { TypedLocale } from "payload";
 
 import NavigationLink from "@/components/NavigationLink";
@@ -36,14 +36,14 @@ const MainMenuItems: FC<Props> = (props) => {
       controls.start((i) => ({
         opacity: 1,
         scale: 1,
-        filter: "blur-sm(0px)",
+        filter: "blur-none",
         transition: { delay: i * 0.1 + 1.1 },
       }));
     } else {
       controls.start({
         opacity: 0,
         scale: 0.3,
-        filter: "blur-sm(20px)",
+        filter: "blur-[20px]",
       });
     }
   }, [controls, isMenuOpen]);
