@@ -21,7 +21,7 @@ nvm install
 
 ### Pnpm
 
-Pnpm is the package manager of choice for this project. Make sure you are using at least Node.js 14 _(lts/fermium)_ and then activate it through `corepack` :
+Pnpm is the package manager of choice for this project. Make sure you are using at least Node.js 22 _(lts/jod)_ and then activate it through `corepack` :
 
 ```bash
 corepack enable pnpm
