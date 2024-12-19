@@ -16,11 +16,12 @@ import {
   IS_UNDERLINE,
 } from "./nodeFormat";
 
-import type { SerializedListItemNode, SerializedListNode } from "@lexical/list";
-import type { SerializedHeadingNode } from "@lexical/rich-text";
 import type {
   LinkFields,
+  SerializedHeadingNode,
   SerializedLinkNode,
+  SerializedListItemNode,
+  SerializedListNode,
   SerializedUploadNode,
 } from "@payloadcms/richtext-lexical";
 import type {
